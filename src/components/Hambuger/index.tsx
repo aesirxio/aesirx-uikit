@@ -4,7 +4,6 @@
  */
 
 import React from "react";
-import "./index.scss";
 
 const Hambuger = ({ handleAction, className }: any) => {
   return (

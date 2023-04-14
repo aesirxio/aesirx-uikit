@@ -22,7 +22,7 @@ export const tsup: Options = {
   esbuildPlugins: [
     inlineImage(),
     ScssModulesPlugin(),
-    sassPlugin({ type: "css-text" }),
+    sassPlugin({ type: "style" }),
   ],
   outExtension() {
     return {

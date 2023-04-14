@@ -13,12 +13,11 @@ import Logo from "components/Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isMini, setMini] = useState(false);
-
   const handleCollap = () => {
     document.body.classList.toggle("mini_left");
-    setMini(true);
+    setMini(!isMini);
   };
 
   const handleMenuLeft = () => {
@@ -31,7 +30,7 @@ const Header = () => {
       className="wrapper_header d-flex position-fixed w-100 top-0 left-0 right-0 pr-3 align-items-center shadow-sm z-index-100 bg-header"
     >
       <Hambuger handleAction={handleMenuLeft} />
-      <Logo />
+      <Logo isMini={isMini} />
       <div className="content_header h-80 border-start-1 flex-1 d-flex align-items-center ps-4 pr-4 position-relative">
         <span
           className="

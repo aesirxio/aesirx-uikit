@@ -14,7 +14,7 @@ const MainLayout = ({ children, leftComponent }: any) => {
           <Header />
           <div className="main_content vh-100 main_content_dashboard pd-t-80 d-flex">
             <aside
-              className={`sidebar w-248  mt-0 position-relative bg-dark mh-100 overflow-hidden d-flex flex-column z-index-100 `}
+              className={`sidebar w-248 mt-0 position-relative bg-dark mh-100 overflow-hidden d-flex flex-column z-index-100 `}
             >
               {leftComponent}
             </aside>

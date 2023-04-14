@@ -5,13 +5,21 @@
 
 import React from "react";
 import Image from "../Image";
-import logo from "../../assets/images/logo/logo-white.svg";
+import logoWhite from "../../assets/images/logo/logo-white.svg";
+import logoWhiteMini from "../../assets/images/logo/logo-white-mini.svg";
 
-const Logo = () => {
+const Logo = ({ isMini }: any) => {
   return (
     <div className="wrapper_header_logo bg-dark flex-248 h-80 d-flex align-items-center">
-      <a href="/" className={`header_logo d-block px-3`}>
-        <Image className="logo_white pe-6" src={logo} alt="AesirX" />
+      <a
+        href={window.location.href}
+        className={`header_logo d-block ${isMini ? "mx-auto" : "mx-3"}`}
+      >
+        <Image
+          className={`logo_white ${isMini ? "pe-0" : "pe-3 pe-lg-6"}`}
+          src={`${isMini ? logoWhiteMini : logoWhite}`}
+          alt="AesirX"
+        />
       </a>
     </div>
   );
