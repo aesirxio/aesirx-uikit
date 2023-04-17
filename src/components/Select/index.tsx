@@ -9,12 +9,11 @@ import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import customStyles from './customStyles';
 
-class AesirXSelect extends React.Component {
+class AesirXSelect extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }
 
-  componentDidMount() {}
   render() {
     let { isBorder, plColor, async, placeholder, arrowColor, isDisabled }: any = this.props;
 

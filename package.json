@@ -7,7 +7,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
-    "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 tsup --watch --onSuccess 'yalc push --changed --no-scripts'",
+    "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 tsup --watch --onSuccess 'yalc push  --no-scripts'",
     "build": "NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 tsup",
     "prepublishOnly": "yarn run build --dts",
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
@@ -22,6 +22,7 @@
     "@babel/preset-typescript": "^7.21.4",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.35",
+    "@types/react-datepicker": "^4.10.0",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "esbuild-plugin-inline-image": "^0.0.9",
     "esbuild-sass-plugin": "^2.8.0",
@@ -42,11 +43,12 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aesirx-lib": "^1.9.1",
     "bootstrap": "^5.2.3",
-    "i18next": "^22.4.14",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
-    "react-i18next": "^12.2.0",
+    "react-bootstrap": "^2.7.4",
+    "react-datepicker": "^4.11.0",
+    "react-dropzone": "^11.2.4",
     "react-lazy-load-image-component": "^1.5.6",
-    "react-router-dom": "5",
     "react-select": "^5.7.2"
   }
 }
