@@ -1,7 +1,7 @@
-declare module "*.module.scss" {
+declare module '*.module.scss' {
   const styles: { [className: string]: string };
   export default styles;
 }
 
-declare module "*.png";
-declare module "*.svg";
+declare module '*.png';
+declare module '*.svg';

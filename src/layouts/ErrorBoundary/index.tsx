@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import React from "react";
+import React from 'react';
 
 class ErrorBoundary extends React.Component<any, any> {
   constructor(props: any) {

@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import React from "react";
+import React from 'react';
 
 const Hambuger = ({ handleAction, className }: any) => {
   return (
@@ -18,4 +18,4 @@ const Hambuger = ({ handleAction, className }: any) => {
   );
 };
 
-export default Hambuger;
+export { Hambuger };
