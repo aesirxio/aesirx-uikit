@@ -42,7 +42,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "aesirx-lib": "^1.9.1",
+    "aesirx-lib": "https://gitpkg.now.sh/aesirxio/aesirx-lib?b6a00b1cdd83eed9c66afded6b80bbfc3ffca0f7&scripts.postinstall=yarn%20install%20--ignore-scripts%20%26%26%20yarn%20build",
     "bootstrap": "^5.2.3",
     "moment": "^2.29.4",
     "react": "^18.2.0",
