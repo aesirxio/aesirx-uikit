@@ -8,7 +8,6 @@ import React from 'react';
 class Checkbox extends React.Component {
   render() {
     let { name, text, checked, onCheckBoxChange, disabled }: any = this.props;
-    const { t } = this.props;
     return (
       <div className="form-check">
         <input
@@ -21,7 +20,7 @@ class Checkbox extends React.Component {
           disabled={disabled}
         />
         <label className="form-check-label cursor-pointer" htmlFor={`id_${name}`}>
-          text
+          {text}
         </label>
       </div>
     );
