@@ -1,7 +1,7 @@
 import React from 'react';
 import i18n from 'i18next';
 import { AesirXSelect } from 'components/Select';
-import { env } from 'env';
+import { env } from 'aesirx-lib';
 import { useI18nextContext } from 'providers/I18nextProvider';
 
 const LanguagesSwitcher = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
-import { logout, Helper, Storage, AUTHORIZATION_KEY } from 'aesirx-lib';
+import { logout, Helper, Storage, AUTHORIZATION_KEY, env } from 'aesirx-lib';
 import { Dropdown } from 'react-bootstrap';
 import { Image } from 'components/Image';
-import { env } from 'env';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';

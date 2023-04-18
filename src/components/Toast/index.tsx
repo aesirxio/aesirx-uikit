@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import './index.scss';
 import { Translation } from 'react-i18next';
-import { env } from 'env';
+import { env } from 'aesirx-lib';
 
 const Toast = () => {
   return <ToastContainer hideProgressBar={true} />;
