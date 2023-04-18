@@ -8,6 +8,7 @@ import React from 'react';
 import Select, { components } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import customStyles from './customStyles';
+import { withTranslation } from 'react-i18next';
 
 class AesirXSelect extends React.Component<any, any> {
   constructor(props: any) {
@@ -15,13 +16,13 @@ class AesirXSelect extends React.Component<any, any> {
   }
 
   render() {
-    let { isBorder, plColor, async, placeholder, arrowColor, isDisabled }: any = this.props;
+    let { isBorder, plColor, async, placeholder, arrowColor, isDisabled, t }: any = this.props;
 
     let styles = customStyles(isBorder, plColor, arrowColor, isDisabled);
 
     if (async) {
       return (
-        <AsyncSelect {...this.props} placeholder={placeholder ?? 'txt_select'} styles={styles} />
+        <AsyncSelect {...this.props} placeholder={placeholder ?? t('txt_select')} styles={styles} />
       );
     }
     const { ValueContainer, Placeholder } = components;
@@ -47,11 +48,13 @@ class AesirXSelect extends React.Component<any, any> {
         components={{
           ValueContainer: CustomValueContainer,
         }}
-        placeholder={placeholder ?? 'txt_select...'}
+        placeholder={placeholder ?? t('txt_select...')}
         styles={styles}
       />
     );
   }
 }
 
-export { AesirXSelect };
+const AesirXSelectExtended = withTranslation()(AesirXSelect);
+
+export { AesirXSelectExtended as AesirXSelect };

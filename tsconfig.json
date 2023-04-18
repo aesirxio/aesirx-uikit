@@ -17,7 +17,8 @@
     "skipLibCheck": true,
     "strict": true,
     "baseUrl": "./src/",
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "resolveJsonModule": true,
   },
   "exclude": ["node_modules"]
 }

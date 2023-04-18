@@ -3,27 +3,28 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-@import "./utils/bootstrap.scss";
+@import './utils/bootstrap.scss';
 
-@import "../../node_modules/bootstrap/scss/root";
-@import "../../node_modules/bootstrap/scss/reboot";
-@import "../../node_modules/bootstrap/scss/type";
-@import "../../node_modules/bootstrap/scss/dropdown";
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/dropdown';
 
-@import "../../node_modules/bootstrap/scss/images";
-@import "../../node_modules/bootstrap/scss/containers";
-@import "../../node_modules/bootstrap/scss/grid";
-@import "../../node_modules/bootstrap/scss/tables";
-@import "../../node_modules/bootstrap/scss/forms";
-@import "../../node_modules/bootstrap/scss/button-group";
-@import "../../node_modules/bootstrap/scss/buttons";
-@import "../../node_modules/bootstrap/scss/progress";
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/tables';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/button-group';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/progress';
 
-@import "../../node_modules/bootstrap/scss/transitions";
-@import "../../node_modules/bootstrap/scss/nav";
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/nav';
 
-@import "../../node_modules/bootstrap/scss/helpers";
-@import "../../node_modules/bootstrap/scss/utilities/api";
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/utilities/api';
+@import './themes/index.scss';
 
 img {
   max-width: 100%;
@@ -249,7 +250,7 @@ textarea {
       padding: 1rem;
 
       &:before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: -1px;
@@ -317,7 +318,7 @@ textarea {
   z-index: 10;
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     left: -8px;
     top: 0;
