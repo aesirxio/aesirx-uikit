@@ -3,7 +3,6 @@ import { Logo } from 'components/Logo';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
 
 import './index.scss';
 

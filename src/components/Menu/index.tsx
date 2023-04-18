@@ -8,10 +8,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { Collapse, Button } from 'react-bootstrap';
-import { useAppContext } from 'providers/AppProvider';
+import './index.scss';
 
-const Menu = () => {
-  const { leftMenu } = useAppContext();
+const Menu = ({ dataMenu }: any) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState<any>('default');
 
   const { t } = useTranslation();
@@ -44,11 +43,11 @@ const Menu = () => {
   };
 
   return (
-    leftMenu && (
+    dataMenu && (
       <nav className="main-menu py-24 mt-0">
         <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('txt_main_menu')}</p>
         <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
-          {leftMenu?.map((menuList: any, menuListkey: any) => {
+          {dataMenu?.map((menuList: any, menuListkey: any) => {
             return (
               <li
                 key={menuListkey}
