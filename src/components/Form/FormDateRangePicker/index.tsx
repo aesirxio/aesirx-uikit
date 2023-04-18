@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import React, { useState, lazy } from 'react';
+import React, { useState } from 'react';
 
 import { Form } from 'react-bootstrap';
 
@@ -15,7 +15,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './index.scss';
 
 const FormDateRangePicker = ({ field, validator }: any) => {
-  let { startField, endField } = field;
+  const { startField, endField } = field;
 
   const [startDate, setStartDate] = useState(startField.value && new Date(startField.value));
   const [endDate, setEndDate] = useState(endField.value && new Date(endField.value));

@@ -54,7 +54,7 @@ const AesirXDatePicker = ({
   };
 
   const handleClickOutSide = (event: any) => {
-    let currentRef = datePickerRef ?? pickerRef;
+    const currentRef = datePickerRef ?? pickerRef;
     if (isOpen && !currentRef.current.contains(event.target)) {
       setIsOpen(false);
     }
@@ -99,8 +99,8 @@ const AesirXDatePicker = ({
   };
 
   const getDateDiffString = (start: any, end: any) => {
-    let startDate = start ? moment(start).format('DD MMM, YYYY') : '';
-    let endDate = end ? moment(end).format('DD MMM, YYYY') : '';
+    const startDate = start ? moment(start).format('DD MMM, YYYY') : '';
+    const endDate = end ? moment(end).format('DD MMM, YYYY') : '';
     let result = '';
     if (start || end) {
       result =

@@ -53,7 +53,7 @@ const FormAgeField = ({ field }: any) => {
 
     if (target.name === 'age_from') {
       if (data?.value) {
-        let getAgeFrom = getDataSelectOptionsAge.filter((item) => item.value > data.value);
+        const getAgeFrom = getDataSelectOptionsAge.filter((item) => item.value > data.value);
         setDataSelectOptionsAge(getAgeFrom);
       }
     }

@@ -14,7 +14,7 @@ class Button extends React.Component {
   }
 
   render() {
-    let { icon, text, className, onClick, image, disabled }: any = this.props;
+    const { icon, text, className, onClick, image, disabled }: any = this.props;
 
     if (className !== undefined && styles[className] !== undefined) {
       className = styles[className];

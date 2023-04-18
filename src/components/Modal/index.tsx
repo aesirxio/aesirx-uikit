@@ -10,7 +10,7 @@ import { Modal } from 'react-bootstrap';
 
 class ModalComponent extends React.Component {
   render() {
-    let { header, footer, body, show, onHide, dialogClassName, onShow }: any = this.props;
+    const { header, footer, body, show, onHide, dialogClassName, onShow }: any = this.props;
 
     return (
       <Modal show={show} onShow={onShow} onHide={onHide} centered dialogClassName={dialogClassName}>

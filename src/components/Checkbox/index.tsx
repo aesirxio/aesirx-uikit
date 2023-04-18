@@ -7,7 +7,7 @@ import React from 'react';
 
 class Checkbox extends React.Component {
   render() {
-    let { name, text, checked, onCheckBoxChange, disabled }: any = this.props;
+    const { name, text, checked, onCheckBoxChange, disabled }: any = this.props;
     return (
       <div className="form-check">
         <input

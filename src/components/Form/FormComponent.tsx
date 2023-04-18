@@ -33,7 +33,7 @@ class FormComponent extends Component<any, any> {
   }
 
   populatingFormDataHandler(populatedFormData: any) {
-    throw new Error('Method not implemented.');
+    throw new Error(populatedFormData);
   }
 
   isFormValid = () => {
@@ -68,7 +68,7 @@ class FormComponent extends Component<any, any> {
   render() {
     this.validator.purgeFields();
 
-    let formSetting = this.props.generateFormSetting();
+    const formSetting = this.props.generateFormSetting();
 
     return this.renderingFormHandler(formSetting);
   }

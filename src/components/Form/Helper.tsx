@@ -23,7 +23,7 @@ const renderingGroupFieldHandler = (group: any, validator: any) => {
     .map((fieldIndex) => {
       return [...Array(group.fields[fieldIndex])].map((field) => {
         return (() => {
-          let className = field.className ? field.className : '';
+          const className = field.className ? field.className : '';
           switch (field.type) {
             case FORM_FIELD_TYPE.INPUT:
               return (

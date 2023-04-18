@@ -16,9 +16,9 @@ class AesirXSelect extends React.Component<any, any> {
   }
 
   render() {
-    let { isBorder, plColor, async, placeholder, arrowColor, isDisabled, t }: any = this.props;
+    const { isBorder, plColor, async, placeholder, arrowColor, isDisabled, t }: any = this.props;
 
-    let styles = customStyles(isBorder, plColor, arrowColor, isDisabled);
+    const styles = customStyles(isBorder, plColor, arrowColor, isDisabled);
 
     if (async) {
       return (
