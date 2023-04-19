@@ -10,8 +10,8 @@ import { Header } from 'components/Header';
 
 import { useAppContext } from 'providers/AppProvider';
 
-const MainLayout = () => {
-  const { mainRoutes, isLogin, componentHeader, leftMenu } = useAppContext();
+const MainLayout = ({ children }: any) => {
+  const { mainRoutes, isLogin, componentHeader, leftMenu, integration } = useAppContext();
   return isLogin() ? (
     <div className="container-fluid">
       <div className="row">
@@ -21,9 +21,11 @@ const MainLayout = () => {
             {leftMenu}
             <div className="flex-1 bg-body mh-100 overflow-hidden overflow-y-auto position-relative main-content">
               <Suspense fallback={<Spinner />}>
-                {mainRoutes.map(({ path, exact, main }: any, i: any) => (
-                  <Route key={i} exact={exact} path={path} component={main} />
-                ))}
+                {integration
+                  ? children
+                  : mainRoutes.map(({ path, exact, main }: any, i: any) => (
+                      <Route key={i} exact={exact} path={path} component={main} />
+                    ))}
               </Suspense>
             </div>
           </div>

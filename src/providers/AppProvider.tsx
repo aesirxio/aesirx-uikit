@@ -76,21 +76,24 @@ const AppProvider: React.FC = ({
         <ErrorBoundary>
           <AesirXI18nextProvider appLanguages={appLanguages}>
             <Toast />
-            {children}
             <BrowserRouter>
-              <Router history={history}>
-                <Switch>
-                  <Route exact path={authPath}>
-                    <AuthLayout />
-                  </Route>
-                  <Route exact path={mainPath}>
-                    <MainLayout />
-                  </Route>
-                  <Route path="*">
-                    <NotFound />
-                  </Route>
-                </Switch>
-              </Router>
+              {integration ? (
+                <MainLayout>{children}</MainLayout>
+              ) : (
+                <Router history={history}>
+                  <Switch>
+                    <Route exact path={authPath}>
+                      <AuthLayout />
+                    </Route>
+                    <Route exact path={mainPath}>
+                      <MainLayout />
+                    </Route>
+                    <Route path="*">
+                      <NotFound />
+                    </Route>
+                  </Switch>
+                </Router>
+              )}
             </BrowserRouter>
           </AesirXI18nextProvider>
         </ErrorBoundary>
