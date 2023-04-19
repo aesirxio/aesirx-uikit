@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "license": "GPL-3.0-only",
   "scripts": {
-    "lint": "eslint \"**/*.ts*\"",
+    "lint": "eslint \"src/**/*/*.ts*\"",
     "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 tsup --watch --onSuccess 'yalc push  --no-scripts'",
     "build": "NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 tsup",
     "prepublishOnly": "yarn run build --dts",
@@ -48,7 +48,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "aesirx-lib": "https://gitpkg.now.sh/aesirxio/aesirx-lib?5199acbe0d1cdcc201b61105fba8f4bd0980d459&scripts.postinstall=yarn%20install%20--ignore-scripts%20%26%26%20yarn%20build",
+    "aesirx-lib": "^1.9.2",
     "bootstrap": "^5.2.3",
     "i18next": "^22.4.14",
     "i18next-browser-languagedetector": "^7.0.1",

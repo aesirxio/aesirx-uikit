@@ -21,7 +21,7 @@ const Profile = ({ data }: any) => {
     >
       <Image
         src={
-          Helper.isValidUrl(Storage.getItem(AUTHORIZATION_KEY.AVATAR))
+          Helper.isValidUrl(Storage.getItem(AUTHORIZATION_KEY.AVATAR) ?? '')
             ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
             : env.PUBLIC_URL + '/assets/images/avatar.png'
         }
