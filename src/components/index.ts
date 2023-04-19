@@ -8,6 +8,5 @@ export * from './Checkbox';
 export * from './Toast';
 export * from './Header';
 export * from './LanguagesSwitcher';
-export * from './SbarLeft';
 export * from './Menu';
 export * from './DatePicker';

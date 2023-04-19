@@ -1,6 +1,6 @@
 import { Hambuger } from 'components/Hambuger';
 import { Logo } from 'components/Logo';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
@@ -14,6 +14,12 @@ import { useAppContext } from 'providers/AppProvider';
 const Header = ({ children }: any) => {
   const { noavatar, integration, rootId } = useAppContext();
   const [isMini, setMini] = useState(integration);
+
+  useEffect(() => {
+    if (isMini) {
+      document.querySelector(rootId).classList.add('mini_left');
+    }
+  }, []);
 
   const handleMenuLeft = () => {
     document.querySelector(rootId).classList.toggle('show_menu_left');
