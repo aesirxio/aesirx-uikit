@@ -23,4 +23,5 @@ export const tsup: Options = {
   terserOptions: {
     compress: { drop_console: true },
   },
+  publicDir: 'src/scss',
 };

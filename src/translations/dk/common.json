@@ -70,5 +70,9 @@
   "txt_profile": "Profil",
   "txt_apply": "Anvend",
   "txt_video": "Video",
-  "txt_menu_dashboard": "Dashboard"
+  "txt_menu_dashboard": "Dashboard",
+  "txt_warning": "Advarsel",
+  "txt_successful": "Vellykket",
+  "txt_select": "Vælg...",
+  "txt_error": "Fejl"
 }

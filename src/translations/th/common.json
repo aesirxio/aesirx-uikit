@@ -70,5 +70,9 @@
   "txt_profile": "โปรไฟล์",
   "txt_apply": "นำไปใช้",
   "txt_video": "วีดีโอ",
-  "txt_menu_dashboard": "แผงควบคุม"
+  "txt_menu_dashboard": "แผงควบคุม",
+  "txt_warning": "คำเตือน",
+  "txt_successful": "ประสบความสำเร็จ",
+  "txt_select": "เลือก...",
+  "txt_error": "ข้อผิดพลาด"
 }

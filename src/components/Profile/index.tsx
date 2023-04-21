@@ -6,8 +6,11 @@ import { Image } from 'components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';
+import { useAppContext } from 'providers';
 
 const Profile = ({ data }: any) => {
+  const { profileMenu } = useAppContext();
+
   const { t } = useTranslation();
 
   const CustomToggleAvatar = React.forwardRef(({ onClick }: any, ref: any) => (
@@ -48,10 +51,10 @@ const Profile = ({ data }: any) => {
             id="dropdown-custom-components position-relative"
           ></Dropdown.Toggle>
           <Dropdown.Menu className="shadow border-0">
-            {data && (
+            {profileMenu && (
               <div className="p-16">
                 <ul className="list-unstyled ps-0 mb-0 list_menu_avatar">
-                  {data?.map((value: any, index: any) => {
+                  {profileMenu?.map((value: any, index: any) => {
                     return (
                       <li key={index}>
                         <Dropdown.Item

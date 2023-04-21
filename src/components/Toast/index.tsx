@@ -9,7 +9,11 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import './index.scss';
 import { Translation } from 'react-i18next';
-import { env } from 'aesirx-lib';
+
+import error from 'assets/images/error.png';
+import warn from 'assets/images/warn.png';
+import success from 'assets/images/success.png';
+import { Spinner } from 'components/Spinner';
 
 const Toast = () => {
   return <ToastContainer hideProgressBar={true} />;
@@ -19,37 +23,37 @@ const notify = (msg: any, type = 'success') => {
   switch (type) {
     case 'error':
       toast.error(
-        <div>
-          <Translation ns="common">{(t) => <div>{t('txt_error')}</div>}</Translation>
-          <div className="fw-normal">{msg}</div>
-        </div>,
+        <>
+          <Translation>{(t) => <span>{t('txt_error')}</span>}</Translation>
+          {msg && <p className="fw-normal m-0"></p>}
+        </>,
         {
-          className: 'bg-noti-bg-error fw-bold text-noti-error px-2 py-1',
-          icon: () => <img alt="error" src={env.PUBLIC_URL + '/assets/images/error.png'} />,
+          className: 'bg-red-10 fw-bold text-red-100 ps-4 bg-noti-bg-error text-noti-error',
+          icon: () => <img alt="error" src={error} />,
         }
       );
       break;
     case 'warn':
       toast.warn(
-        <div>
-          <Translation ns="common">{(t) => <div>{t('txt_warning')}</div>}</Translation>
-          <div className="fw-normal">{msg}</div>
-        </div>,
+        <>
+          <Translation>{(t) => <span>{t('txt_warning')}</span>}</Translation>
+          {msg && <p className="fw-normal m-0"></p>}
+        </>,
         {
-          className: 'bg-noti-bg-warn fw-bold text-noti-warn px-2 py-1',
-          icon: () => <img alt="warn" src={env.PUBLIC_URL + '/assets/images/warn.png'} />,
+          className: 'bg-yellow-10 fw-bold text-yellow-200 ps-4 bg-noti-bg-warn text-noti-warn',
+          icon: () => <img alt="warn" src={warn} />,
         }
       );
       break;
     case 'success':
       toast.success(
-        <div>
-          <Translation ns="common">{(t) => <div>{t('txt_successful')}</div>}</Translation>
-          <div className="fw-normal">{msg}</div>
-        </div>,
+        <>
+          <Translation>{(t) => <span>{t('txt_successful')}</span>}</Translation>
+          {msg && <p className="fw-normal m-0"></p>}
+        </>,
         {
-          className: 'bg-noti-bg-success text-green fw-bold px-2 py-1',
-          icon: () => <img alt="success" src={env.PUBLIC_URL + '/assets/images/success.png'} />,
+          className: 'bg-primary-10 bg-noti-bg-success text-green fw-bold ps-4',
+          icon: () => <img alt="success" src={success} />,
         }
       );
       break;
@@ -59,23 +63,34 @@ const notify = (msg: any, type = 'success') => {
         {
           pending: {
             render() {
+              return <span className="p-15 pe-2">Progressing...</span>;
+            },
+            icon: () => <img alt="success" src={success} />,
+          },
+          success: {
+            render() {
               return (
-                <div className={`position-absolute top-50 start-50 translate-middle`}>
-                  <div
-                    className="spinner-border"
-                    style={{ width: '1rem', height: '1rem' }}
-                    role="status"
-                  >
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
-                  <span className="p-15 pe-2">Loading</span>
-                </div>
+                <>
+                  <Translation>{(t) => <span>{t('txt_successful')}</span>}</Translation>
+                  {msg && <p className="fw-normal m-0"></p>}
+                </>
               );
             },
-            icon: true,
+            className: 'bg-primary-10 text-green bg-noti-bg-success  fw-bold ps-4',
+            icon: () => <img alt="success" src={success} />,
           },
-          success: 'Complete. 👌',
-          error: 'Error! 🤯',
+          error: {
+            render() {
+              return (
+                <>
+                  <Translation>{(t) => <span>{t('txt_error')}</span>}</Translation>
+                  {msg && <p className="fw-normal m-0"></p>}
+                </>
+              );
+            },
+            className: 'bg-red-10 fw-bold bg-noti-bg-error text-noti-error text-red-100 ps-4',
+            icon: () => <img alt="error" src={error} />,
+          },
         },
         {
           className: 'bg-dark',
