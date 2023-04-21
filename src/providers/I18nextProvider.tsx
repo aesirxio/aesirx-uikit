@@ -9,6 +9,7 @@ import common_hr from 'translations/hr/common.json';
 import common_th from 'translations/th/common.json';
 import common_ua from 'translations/ua/common.json';
 import common_vn from 'translations/vi/common.json';
+import common_fr from 'translations/fr/common.json';
 
 const defaultLanguages: any = {
   en: {
@@ -38,6 +39,10 @@ const defaultLanguages: any = {
   es: {
     title: 'Español',
     translation: common_es,
+  },
+  fr: {
+    title: 'Français',
+    translation: common_fr,
   },
 };
 

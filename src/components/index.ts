@@ -10,3 +10,5 @@ export * from './Header';
 export * from './LanguagesSwitcher';
 export * from './Menu';
 export * from './DatePicker';
+export * from './Modal';
+export * from './CustomizedDatePicker';

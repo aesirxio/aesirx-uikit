@@ -10,6 +10,8 @@ import { AuthLayout } from 'layouts/AuthLayout';
 import { MainLayout } from 'layouts/MainLayout';
 import { NotFound } from 'layouts/NotFound';
 
+import { SSOContextProvider } from 'aesirx-sso';
+
 interface IAppContext {
   authRoutes: any;
   mainRoutes: any;
@@ -75,26 +77,28 @@ const AppProvider: React.FC = ({
       <ThemesContextProvider>
         <ErrorBoundary>
           <AesirXI18nextProvider appLanguages={appLanguages}>
-            <Toast />
-            <BrowserRouter>
-              {integration ? (
-                <MainLayout>{children}</MainLayout>
-              ) : (
-                <Router history={history}>
-                  <Switch>
-                    <Route exact path={authPath}>
-                      <AuthLayout />
-                    </Route>
-                    <Route exact path={mainPath}>
-                      <MainLayout />
-                    </Route>
-                    <Route path="*">
-                      <NotFound />
-                    </Route>
-                  </Switch>
-                </Router>
-              )}
-            </BrowserRouter>
+            <SSOContextProvider>
+              <Toast />
+              <BrowserRouter>
+                {integration ? (
+                  <MainLayout>{children}</MainLayout>
+                ) : (
+                  <Router history={history}>
+                    <Switch>
+                      <Route exact path={authPath}>
+                        <AuthLayout />
+                      </Route>
+                      <Route exact path={mainPath}>
+                        <MainLayout />
+                      </Route>
+                      <Route path="*">
+                        <NotFound />
+                      </Route>
+                    </Switch>
+                  </Router>
+                )}
+              </BrowserRouter>
+            </SSOContextProvider>
           </AesirXI18nextProvider>
         </ErrorBoundary>
       </ThemesContextProvider>

@@ -1,8 +1,8 @@
 import React from 'react';
 import i18n from 'i18next';
 import { AesirXSelect } from 'components/Select';
-import { env } from 'aesirx-lib';
 import { useI18nextContext } from 'providers/I18nextProvider';
+import language from '../../assets/images/language-icon.png';
 
 const LanguagesSwitcher = () => {
   const { listLanguages } = useI18nextContext();
@@ -15,12 +15,7 @@ const LanguagesSwitcher = () => {
 
   return (
     <div className="ms-auto d-flex align-items-center">
-      <img
-        width={24}
-        height={24}
-        alt="language"
-        src={env.PUBLIC_URL + '/assets/images/language-icon.png'}
-      />
+      <img width={24} height={24} alt="language" src={language} />
       <AesirXSelect
         isClearable={false}
         isSearchable={false}

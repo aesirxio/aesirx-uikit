@@ -7,3 +7,4 @@ export * from './constant/FormFieldType';
 export * from './providers/AppProvider';
 export * from './providers/ThemeContextProvider';
 export * from './routes/history';
+export * from './pages';
