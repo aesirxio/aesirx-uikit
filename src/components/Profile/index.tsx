@@ -8,7 +8,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from 'providers';
 
-const Profile = ({ data }: any) => {
+const Profile = () => {
   const { profileMenu } = useAppContext();
 
   const { t } = useTranslation();

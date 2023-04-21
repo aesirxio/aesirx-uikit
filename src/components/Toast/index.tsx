@@ -13,7 +13,6 @@ import { Translation } from 'react-i18next';
 import error from 'assets/images/error.png';
 import warn from 'assets/images/warn.png';
 import success from 'assets/images/success.png';
-import { Spinner } from 'components/Spinner';
 
 const Toast = () => {
   return <ToastContainer hideProgressBar={true} />;
