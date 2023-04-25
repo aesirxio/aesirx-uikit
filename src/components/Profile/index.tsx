@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from 'providers';
+import avatar from '../../assets/images/avatar.png';
 
 const Profile = () => {
   const { profileMenu } = useAppContext();
@@ -26,7 +27,7 @@ const Profile = () => {
         src={
           Helper.isValidUrl(Storage.getItem(AUTHORIZATION_KEY.AVATAR) ?? '')
             ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
-            : env.PUBLIC_URL + '/assets/images/avatar.png'
+            : avatar
         }
         alt=""
         className="img-avatar rounded-circle object-fit-cover h-45"

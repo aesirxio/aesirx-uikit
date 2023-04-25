@@ -3,14 +3,20 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { env } from 'aesirx-lib';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import { Collapse, Button } from 'react-bootstrap';
 import './index.scss';
+import arrow from '../../assets/images/arrow-right.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAppContext } from 'providers';
 
 const Menu = ({ dataMenu }: any) => {
+  const { settingRoutes } = useAppContext();
+  const match = useRouteMatch();
+  const has = settingRoutes?.find((router: any) => router.path === match.path);
+
   const [isOpenCollapse, setIsOpenCollapse] = useState<any>('default');
 
   const { t } = useTranslation();
@@ -43,13 +49,11 @@ const Menu = ({ dataMenu }: any) => {
   };
 
   return (
-    <aside
-      className={`sidebar w-248  mt-0 position-relative bg-dark mh-100 h-100 d-flex flex-column z-index-100 justify-content-between`}
-    >
+    <>
       {dataMenu && (
         <nav className="main-menu py-24 mt-0">
           <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
-            {t('txt_main_menu')}
+            {t(has ? 'txt_menu_setting' : 'txt_main_menu')}
           </p>
           <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
             {dataMenu?.map((menuList: any, menuListkey: any) => {
@@ -68,14 +72,21 @@ const Menu = ({ dataMenu }: any) => {
                           activeClassName={`active`}
                           onClick={() => setIsOpenCollapse(null)}
                         >
-                          <span
-                            className="icon d-inline-block align-text-bottom"
-                            style={{
-                              WebkitMaskImage: `url(${menuList.icons_color})`,
-                              WebkitMaskRepeat: 'no-repeat',
-                              backgroundColor: '#fff',
-                            }}
-                          ></span>
+                          {menuList.icons_fa ? (
+                            <i>
+                              <FontAwesomeIcon icon={menuList.icons_fa} />
+                            </i>
+                          ) : (
+                            <span
+                              className="icon d-inline-block align-text-bottom"
+                              style={{
+                                WebkitMaskImage: `url(${menuList.icons_color})`,
+                                WebkitMaskRepeat: 'no-repeat',
+                                backgroundColor: '#fff',
+                              }}
+                            ></span>
+                          )}
+
                           <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
                         </NavLink>
                       )}
@@ -109,7 +120,7 @@ const Menu = ({ dataMenu }: any) => {
                         <span
                           className="icon arrow d-inline-block align-text-bottom ms-auto"
                           style={{
-                            WebkitMaskImage: `url(${env.PUBLIC_URL}/assets/images/arrow-right.svg)`,
+                            WebkitMaskImage: `url('${arrow}')`,
                             WebkitMaskRepeat: 'no-repeat',
                             backgroundColor: '#fff',
                           }}
@@ -152,7 +163,7 @@ const Menu = ({ dataMenu }: any) => {
           </ul>
         </nav>
       )}
-    </aside>
+    </>
   );
 };
 

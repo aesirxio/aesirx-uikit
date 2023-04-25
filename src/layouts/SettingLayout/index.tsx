@@ -10,9 +10,10 @@ import { Route, Redirect } from 'react-router-dom';
 import { Spinner } from 'components/Spinner';
 import { Header } from 'components/Header';
 import { useAppContext } from 'providers';
+import { SbarLeft } from 'components';
 
 const SettingLayout = () => {
-  const { isLogin, leftMenu, settingRoutes } = useAppContext();
+  const { isLogin, settingRoutes } = useAppContext();
 
   return isLogin() ? (
     <div className="container-fluid">
@@ -20,7 +21,7 @@ const SettingLayout = () => {
         <main className="p-0">
           <Header />
           <div className="main_content vh-100 main_content_dashboard pd-t-80 d-flex">
-            {leftMenu}
+            <SbarLeft />
             <div className="flex-1 border-start-1 border-gray bg-blue mh-100 overflow-hidden overflow-y-auto position-relative">
               <Suspense fallback={<Spinner />}>
                 {settingRoutes.map(({ path, exact, main }: any, i: any) => (

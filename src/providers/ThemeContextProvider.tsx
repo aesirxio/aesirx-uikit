@@ -26,6 +26,7 @@ const ThemesContextProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
+    localStorage.setItem('theme', theme);
     document.documentElement.setAttribute('class', theme);
   }, [theme]);
 

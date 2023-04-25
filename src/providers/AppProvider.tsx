@@ -24,6 +24,8 @@ interface IAppContext {
   integration?: any;
   leftMenu?: any;
   profileMenu?: any;
+  componentBottomMenu?: any;
+  settingMenu?: any;
 }
 
 const AppContext = createContext<IAppContext>({
@@ -43,13 +45,15 @@ const AppProvider: React.FC = ({
   appLanguages,
   isLogin,
   componentHeader,
-  rootId,
+  componentBottomMenu,
+  rootId = '#root',
   noavatar,
   integration,
   children,
   leftMenu,
   profileMenu,
   settingRoutes,
+  settingMenu,
 }: any) => {
   const authPath = authRoutes
     .map((item: any) => {
@@ -83,11 +87,13 @@ const AppProvider: React.FC = ({
         settingRoutes,
         isLogin,
         componentHeader,
+        componentBottomMenu,
         rootId,
         noavatar,
         integration,
         leftMenu,
         profileMenu,
+        settingMenu,
       }}
     >
       <ThemesContextProvider>
