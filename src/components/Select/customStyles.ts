@@ -70,7 +70,7 @@ const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: 
     }),
     singleValue: (provided: any) => ({
       ...provided,
-      color: 'var(--body-color)',
+      color: 'var(--bs-body-color)',
     }),
     placeholder: (defaultStyles: any) => {
       return {
@@ -86,7 +86,7 @@ const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: 
     },
     multiValueLabel: (styles: any) => ({
       ...styles,
-      color: 'var(--body-color)',
+      color: 'var(--bs-body-color)',
     }),
   };
 };
