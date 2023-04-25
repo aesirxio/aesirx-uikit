@@ -1,5 +1,5 @@
 import React from 'react';
-import { logout, Helper, Storage, AUTHORIZATION_KEY, env } from 'aesirx-lib';
+import { logout, Helper, Storage, AUTHORIZATION_KEY } from 'aesirx-lib';
 import { Dropdown } from 'react-bootstrap';
 import { Image } from 'components/Image';
 
