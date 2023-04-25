@@ -70,5 +70,9 @@
   "txt_profile": "Hồ sơ",
   "txt_apply": "Gán",
   "txt_video": "Video",
-  "txt_menu_dashboard": "Trang chủ"
+  "txt_menu_dashboard": "Trang chủ",
+  "txt_warning": "Cảnh báo",
+  "txt_successful": "Thành công",
+  "txt_error": "Lỗi",
+  "txt_select": "Lựa chọn..."
 }

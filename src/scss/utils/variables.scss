@@ -4,7 +4,7 @@
  */
 
 //FONT
-$font-family-sans-serif: "OpenSans", sans-serif !default;
+$font-family-sans-serif: 'OpenSans', sans-serif !default;
 
 $white: #fff !default;
 $gray-100: #f6f8fa !default;
@@ -20,15 +20,15 @@ $black: #000 !default;
 
 // fusv-disable
 $grays: (
-  "100": $gray-100,
-  "200": $gray-200,
-  "300": $gray-300,
-  "400": $gray-400,
-  "500": $gray-500,
-  "600": $gray-600,
-  "700": $gray-700,
-  "800": $gray-800,
-  "900": $gray-900,
+  '100': $gray-100,
+  '200': $gray-200,
+  '300': $gray-300,
+  '400': $gray-400,
+  '500': $gray-500,
+  '600': $gray-600,
+  '700': $gray-700,
+  '800': $gray-800,
+  '900': $gray-900,
 ) !default;
 // fusv-enable
 
@@ -72,21 +72,21 @@ $noti-bg-error: #fee2e2 !default;
 
 // scss-docs-start colors-map
 $colors: (
-  "blue": $blue,
-  "indigo": $indigo,
-  "purple": $purple,
-  "pink": $pink,
-  "red": $red,
-  "orange": $orange,
-  "yellow": $yellow,
-  "green": $green,
-  "green-light": $green-light,
-  "teal": $teal,
-  "cyan": $cyan,
-  "white": $white,
-  "gray": $gray-600,
-  "gray-100": $gray-100,
-  "gray-dark": $gray-800,
+  'blue': $blue,
+  'indigo': $indigo,
+  'purple': $purple,
+  'pink': $pink,
+  'red': $red,
+  'orange': $orange,
+  'yellow': $yellow,
+  'green': $green,
+  'green-light': $green-light,
+  'teal': $teal,
+  'cyan': $cyan,
+  'white': $white,
+  'gray': $gray-600,
+  'gray-100': $gray-100,
+  'gray-dark': $gray-800,
 ) !default;
 // scss-docs-end colors-map
 
@@ -101,33 +101,33 @@ $dark: #1a2226 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "success": $success,
-  "info": $info,
-  "warning": $warning,
-  "danger": $danger,
-  "light": $light,
-  "dark": $dark,
-  "gray-100": $gray-100,
-  "gray-200": $gray-200,
-  "gray-300": $gray-300,
-  "gray-400": $gray-400,
-  "gray-500": $gray-500,
-  "gray": $gray-600,
-  "gray-700": $gray-700,
-  "gray-800": $gray-800,
-  "gray-900": $gray-900,
-  "cyan": $cyan,
-  "blue-9": $color-blue-9,
-  "dark-blue": $dark-blue,
-  "green-light": $green-light,
-  "noti-error": $noti-error,
-  "noti-warn": $noti-warn,
-  "noti-bg-error": $noti-bg-error,
-  "noti-bg-warn": $noti-bg-warn,
-  "noti-bg-success": $noti-bg-success,
-  "sidebar": #0c1215,
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+  'gray-100': $gray-100,
+  'gray-200': $gray-200,
+  'gray-300': $gray-300,
+  'gray-400': $gray-400,
+  'gray-500': $gray-500,
+  'gray': $gray-600,
+  'gray-700': $gray-700,
+  'gray-800': $gray-800,
+  'gray-900': $gray-900,
+  'cyan': $cyan,
+  'blue-9': $color-blue-9,
+  'dark-blue': $dark-blue,
+  'green-light': $green-light,
+  'noti-error': $noti-error,
+  'noti-warn': $noti-warn,
+  'noti-bg-error': $noti-bg-error,
+  'noti-bg-warn': $noti-bg-warn,
+  'noti-bg-success': $noti-bg-success,
+  'sidebar': #0c1215,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -237,21 +237,26 @@ $border-color: #d5d5d5;
 $enable-negative-margins: true;
 
 //SPACER
+$spacer: 1rem;
 $spacers: (
   0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
   sm: 5px,
   8px: 8px,
-  1: 10px,
   15: 15px,
   16: 16px,
-  2: 20px,
   24: 24px,
-  3: 30px,
-  4: 40px,
-  5: 50px,
   6: 60px,
   7: 70px,
   8: 80px,
+  10: 10px,
+  14: 14px,
+  18px: 18px,
+  32px: 32px,
 ) !default;
 
 $form-switch-width: 2.5em !default;

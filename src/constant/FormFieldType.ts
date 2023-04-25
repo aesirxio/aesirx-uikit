@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const FORM_FIELD_TYPE = {
+const FORM_FIELD_TYPE: any = {
   INPUT: 1,
   TEXTAREA: 2,
   CHECKBOX: 3,

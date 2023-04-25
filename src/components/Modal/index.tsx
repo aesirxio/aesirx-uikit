@@ -5,23 +5,47 @@
 
 import React from 'react';
 
+import { withTranslation } from 'react-i18next';
+
 import './index.scss';
 import { Modal } from 'react-bootstrap';
 
 class ModalComponent extends React.Component {
   render() {
-    const { header, footer, body, show, onHide, dialogClassName, onShow }: any = this.props;
-
+    const {
+      header,
+      footer,
+      body,
+      show,
+      onHide,
+      dialogClassName,
+      onShow,
+      bodyClassName,
+      contentClassName,
+      modalClassname,
+      closeButton,
+    }: any = this.props;
     return (
-      <Modal show={show} onShow={onShow} onHide={onHide} centered dialogClassName={dialogClassName}>
-        <Modal.Header closeButton className="px-4 border-bottom-0 text-blue-0">
+      <Modal
+        show={show}
+        onShow={onShow}
+        onHide={onHide}
+        centered
+        dialogClassName={dialogClassName ?? ''}
+        contentClassName={contentClassName ?? ''}
+        className={modalClassname}
+      >
+        <Modal.Header className="px-4 border-bottom-0 text-blue-0">
           {header && <Modal.Title>{header}</Modal.Title>}
+          {closeButton && <span onClick={onHide} className="close"></span>}
         </Modal.Header>
-        <Modal.Body className="px-4 pt-2 pb-0">{body}</Modal.Body>
+        <Modal.Body className={`${bodyClassName ?? 'px-4 pt-2 pb-0'} `}>{body}</Modal.Body>
         {footer && <Modal.Footer className="px-4">{footer}</Modal.Footer>}
       </Modal>
     );
   }
 }
 
-export { ModalComponent };
+const ModalComponentExtended = withTranslation('dam')(ModalComponent);
+
+export { ModalComponentExtended as ModalComponent };

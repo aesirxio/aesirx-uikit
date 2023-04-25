@@ -6,7 +6,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const Label = (text: any, required: any) => {
+const Label = ({ text, required }: any) => {
   return (
     <Form.Label className="mb-3 w-100 text-blue-0">
       {text}

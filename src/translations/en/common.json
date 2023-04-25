@@ -70,5 +70,9 @@
   "txt_profile": "Profile",
   "txt_apply": "Apply",
   "txt_video": "Video",
-  "txt_menu_dashboard": "Dashboard"
+  "txt_menu_dashboard": "Dashboard",
+  "txt_warning": "Warning",
+  "txt_successful": "Successful",
+  "txt_select": "Select...",
+  "txt_error": "Error"
 }

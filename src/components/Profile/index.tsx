@@ -1,13 +1,17 @@
 import React from 'react';
-import { logout, Helper, Storage, AUTHORIZATION_KEY, env } from 'aesirx-lib';
+import { logout, Helper, Storage, AUTHORIZATION_KEY } from 'aesirx-lib';
 import { Dropdown } from 'react-bootstrap';
 import { Image } from 'components/Image';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';
+import { useAppContext } from 'providers';
+import avatar from '../../assets/images/avatar.png';
 
-const Profile = ({ data }: any) => {
+const Profile = () => {
+  const { profileMenu } = useAppContext();
+
   const { t } = useTranslation();
 
   const CustomToggleAvatar = React.forwardRef(({ onClick }: any, ref: any) => (
@@ -23,7 +27,7 @@ const Profile = ({ data }: any) => {
         src={
           Helper.isValidUrl(Storage.getItem(AUTHORIZATION_KEY.AVATAR) ?? '')
             ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
-            : env.PUBLIC_URL + '/assets/images/avatar.png'
+            : avatar
         }
         alt=""
         className="img-avatar rounded-circle object-fit-cover h-45"
@@ -48,10 +52,10 @@ const Profile = ({ data }: any) => {
             id="dropdown-custom-components position-relative"
           ></Dropdown.Toggle>
           <Dropdown.Menu className="shadow border-0">
-            {data && (
+            {profileMenu && (
               <div className="p-16">
                 <ul className="list-unstyled ps-0 mb-0 list_menu_avatar">
-                  {data?.map((value: any, index: any) => {
+                  {profileMenu?.map((value: any, index: any) => {
                     return (
                       <li key={index}>
                         <Dropdown.Item

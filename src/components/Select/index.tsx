@@ -48,7 +48,7 @@ class AesirXSelect extends React.Component<any, any> {
         components={{
           ValueContainer: CustomValueContainer,
         }}
-        placeholder={placeholder ?? t('txt_select...')}
+        placeholder={placeholder ?? t('txt_select')}
         styles={styles}
       />
     );

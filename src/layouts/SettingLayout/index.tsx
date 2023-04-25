@@ -4,29 +4,29 @@
  */
 
 import React, { Suspense } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+
+import { Route, Redirect } from 'react-router-dom';
+
 import { Spinner } from 'components/Spinner';
 import { Header } from 'components/Header';
-
-import { useAppContext } from 'providers/AppProvider';
+import { useAppContext } from 'providers';
 import { SbarLeft } from 'components';
 
-const MainLayout = ({ children }: any) => {
-  const { mainRoutes, isLogin, componentHeader, integration } = useAppContext();
+const SettingLayout = () => {
+  const { isLogin, settingRoutes } = useAppContext();
+
   return isLogin() ? (
     <div className="container-fluid">
       <div className="row">
         <main className="p-0">
-          <Header>{componentHeader}</Header>
+          <Header />
           <div className="main_content vh-100 main_content_dashboard pd-t-80 d-flex">
             <SbarLeft />
-            <div className="flex-1 bg-body mh-100 overflow-hidden overflow-y-auto position-relative main-content">
+            <div className="flex-1 border-start-1 border-gray bg-blue mh-100 overflow-hidden overflow-y-auto position-relative">
               <Suspense fallback={<Spinner />}>
-                {integration
-                  ? children
-                  : mainRoutes.map(({ path, exact, main }: any, i: any) => (
-                      <Route key={i} exact={exact} path={path} component={main} />
-                    ))}
+                {settingRoutes.map(({ path, exact, main }: any, i: any) => (
+                  <Route key={i} exact={exact} path={path} component={main} />
+                ))}
               </Suspense>
             </div>
           </div>
@@ -38,4 +38,4 @@ const MainLayout = ({ children }: any) => {
   );
 };
 
-export { MainLayout };
+export { SettingLayout };
