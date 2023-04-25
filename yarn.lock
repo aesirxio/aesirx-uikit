@@ -1611,12 +1611,12 @@ acorn@^8.5.0, acorn@^8.8.0:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.8.2.tgz"
   integrity sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==
 
-aesirx-lib@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-1.9.2.tgz#6432021f39b4a040c9756dd26d4511213b840e4c"
-  integrity sha512-znObP0dcNow1Ap4onAg3SLaLKtPB/8p7X4PBIYkJfTeZqtzKBFLnnkNzxqendHyJH/WwtDNriAwA45urnlTjdA==
+aesirx-lib@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-1.9.3.tgz#07416089d84531fd51a4f167b73e823ffc2fa969"
+  integrity sha512-mAYkpxiCHGhN1VciUeeErIxwc0t1rfxbB//eqcGwykZ/Cqdt5URcxiVw4k+Sr67WWAmXtOQomVLkphgBrAZE8Q==
   dependencies:
-    axios "^1.3.4"
+    axios "^1.3.5"
     axios-auth-refresh "^3.3.6"
     crypto-js "^4.1.1"
     date-fns "^2.29.3"
@@ -1624,13 +1624,14 @@ aesirx-lib@^1.9.2:
     moment "^2.29.4"
     query-string "7"
 
-aesirx-sso@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.0.7.tgz#2db06c7d8a19e27adfd7bedf82a9533852b9b97d"
-  integrity sha512-3Hqn4gFM2XI4s4QQ/As0+C3F6Ba8tbWKPXEHSZewONQOIktcVmEBq6EcPbyfDj2COK3DUAjsxqjh7SEc6aYshw==
+aesirx-sso@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.0.8.tgz#641c67a815437267feb703457720ab8ac8131fee"
+  integrity sha512-SlPSgJb4tAB7Q/ftKk20gSwWF5fv3utKz7gupFi6mkwzqw2WhgoGiU0uBkh782ozSHa6oxL1ihFmO7u3U7z4lQ==
   dependencies:
     cross-env "^7.0.3"
     dotenv "^16.0.3"
+    react "^18.2.0"
     react-spinners "^0.13.6"
 
 ajv@^6.10.0, ajv@^6.12.4:
@@ -1745,10 +1746,10 @@ axios-auth-refresh@^3.3.6:
   resolved "https://registry.yarnpkg.com/axios-auth-refresh/-/axios-auth-refresh-3.3.6.tgz#a879f6296a889d6616e51069c2a8135b697966e7"
   integrity sha512-2CeBUce/SxIfFxow5/n8vApJ97yYF6qoV4gh1UrswT7aEOnlOdBLxxyhOI4IaxGs6BY0l8YujU2jlc4aCmK17Q==
 
-axios@^1.3.4:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.3.5.tgz#e07209b39a0d11848e3e341fa087acd71dadc542"
-  integrity sha512-glL/PvG/E+xCWwV8S6nCHcrfg1exGx7vxyUIivIA1iL7BIh6bePylCfVHwp6k13ao7SATxB6imau2kqY+I67kw==
+axios@^1.3.5:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.3.6.tgz#1ace9a9fb994314b5f6327960918406fa92c6646"
+  integrity sha512-PEcdkk7JcdPiMDkvM4K6ZBRYq9keuVJsToxm2zQIM70Qqo2WHTdJZMXcG9X+RmRp2VPNUQC8W1RAGbgt6b1yMg==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"
