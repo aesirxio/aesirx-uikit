@@ -1,6 +1,6 @@
 {
   "name": "aesirx-uikit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -48,7 +48,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "aesirx-lib": "^1.9.3",
+    "aesirx-lib": "^1.9.4",
     "aesirx-sso": "^1.0.8",
     "bootstrap": "^5.2.3",
     "i18next": "^22.4.14",
