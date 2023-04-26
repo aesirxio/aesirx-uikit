@@ -500,6 +500,19 @@ form {
   }
 }
 
+.nav-pills {
+  .nav-link{
+      color: var(--bs-body-color);
+      &.active {
+          color: var(--bs-success);
+          background-color: var(--bs-white);
+          font-weight: 600;
+      }
+  }
+}
+.ChartWrapper {
+  min-height: 200px;
+}
 :root {
   --body-color: #0a083b;
   --body-bg: #f5f8fa;
