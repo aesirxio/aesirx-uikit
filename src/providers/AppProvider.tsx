@@ -47,7 +47,7 @@ const AppProvider: React.FC = ({
   componentHeader,
   componentBottomMenu,
   rootId = '#root',
-  noavatar,
+  noavatar = false,
   integration,
   children,
   leftMenu,
