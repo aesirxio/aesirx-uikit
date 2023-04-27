@@ -71,7 +71,7 @@ const AesirXDatePicker = ({
     return (
       <div
         ref={pickerRef}
-        className="rounded-3 shadow overflow-hidden py-2 px-1 react-datepicker-popper-wrapper"
+        className="rounded-3 shadow overflow-hidden py-2 px-1 bg-white react-datepicker-popper-wrapper"
       >
         <div className={`${className}`}>{children}</div>
         {startDate && (
@@ -82,7 +82,7 @@ const AesirXDatePicker = ({
             </p>
             <span
               style={{ cursor: 'pointer' }}
-              className="btn btn-success ms-3 fw-bold text-uppercase fs-14 lh-sm rounded-1 py-1"
+              className="btn btn-success ms-3 fw-bold text-uppercase fs-14 lh-sm rounded-1 py-2"
               onClick={(e) => handleApply(e, startDate, endDate)}
             >
               {t('txt_apply')}
