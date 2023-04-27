@@ -18,7 +18,7 @@ const Toast = () => {
   return <ToastContainer hideProgressBar={true} />;
 };
 
-const notify = (msg: any, type = 'success') => {
+const notify = async (msg: any, type = 'success') => {
   switch (type) {
     case 'error':
       toast.error(
@@ -57,7 +57,7 @@ const notify = (msg: any, type = 'success') => {
       );
       break;
     case 'promise':
-      toast.promise(
+      return await toast.promise(
         msg,
         {
           pending: {
@@ -95,7 +95,6 @@ const notify = (msg: any, type = 'success') => {
           className: 'bg-dark',
         }
       );
-      break;
 
     default:
       toast.info(msg, {
