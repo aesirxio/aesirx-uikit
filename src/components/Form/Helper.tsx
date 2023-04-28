@@ -23,113 +23,7 @@ const renderingGroupFieldHandler = (group: any, validator: any) => {
     .map((fieldIndex) => {
       return [...Array(group.fields[fieldIndex])].map((field) => {
         return (() => {
-          const className = field.className ? field.className : '';
-          switch (field.type) {
-            case FORM_FIELD_TYPE.INPUT:
-              return (
-                <Form.Group key={field.key} className={`mb-3 ${className}`}>
-                  <Label text={field.label} required={field.required ?? false} />
-                  <Input field={field} />
-                  {field.validation &&
-                    validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
-                    })}
-                </Form.Group>
-              );
-            case FORM_FIELD_TYPE.TEXTAREA:
-              return (
-                <Form.Group key={field.key} className={`mb-3 ${className}`}>
-                  <Label text={field.label} required={field.required ?? false} />
-                  <Form.Control
-                    as="textarea"
-                    defaultValue={field.value}
-                    required={field.required ?? false}
-                    id={field.key}
-                    onChange={field.changed ?? undefined}
-                    onBlur={field.blurred ?? undefined}
-                  />
-
-                  {field.validation &&
-                    validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
-                    })}
-                </Form.Group>
-              );
-
-            case FORM_FIELD_TYPE.DATERANGE:
-              return (
-                <FormDateRangePicker key={Math.random()} field={field} validator={validator} />
-              );
-            case FORM_FIELD_TYPE.IMAGE:
-              return (
-                <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-                  <Label text={field.label} required={field.required ?? false} />
-
-                  <FormImage key={Math.random()} field={field} />
-                </Form.Group>
-              );
-
-            case FORM_FIELD_TYPE.SELECTION:
-              return (
-                <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-                  {field.label && <Label text={field.label} required={field.required ?? false} />}
-
-                  <FormSelection key={Math.random()} field={field} />
-
-                  {field.validation &&
-                    validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
-                    })}
-                </Form.Group>
-              );
-
-            case FORM_FIELD_TYPE.DROPDOWN:
-              return (
-                <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-                  {field.label && <Label text={field.label} required={field.required ?? false} />}
-                  <FormSelectDropdown field={field} />
-                  {field.validation &&
-                    validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
-                    })}
-                </Form.Group>
-              );
-            case FORM_FIELD_TYPE.RADIO:
-              return (
-                <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-                  <Label text={field.label} required={field.required ?? false} />
-                  <FormRadio field={field} />
-                </Form.Group>
-              );
-
-            case FORM_FIELD_TYPE.BIRTHDAY:
-              return (
-                <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-                  <Label text={field.label} />
-                  <div className="form-control w-full">
-                    <CustomizedDatePicker
-                      handleOnChange={(date: any) => field.changed(date)}
-                      defaultDate={field.value ? field.value.split(' ')[0] : null}
-                    />
-                  </div>
-                </Form.Group>
-              );
-
-            case FORM_FIELD_TYPE.AGE:
-              return (
-                <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-                  <Label text={field.label} required={field.required ?? false} />
-                  <FormAgeField field={field} />
-                  {field.validation &&
-                    validator.message(field.label, field.valueFrom, field.validation, {
-                      className: 'text-danger',
-                    })}
-                </Form.Group>
-              );
-
-            default:
-              return null;
-          }
+          renderField(field, validator);
         })();
       });
     })
@@ -138,4 +32,110 @@ const renderingGroupFieldHandler = (group: any, validator: any) => {
     }, []);
 };
 
-export { renderingGroupFieldHandler };
+const renderField = (field: any, validator: any) => {
+  const className = field.className ?? '';
+
+  switch (field.type) {
+    case FORM_FIELD_TYPE.INPUT:
+      return (
+        <Form.Group key={field.key} className={`mb-3 ${className}`}>
+          <Label text={field.label} required={field.required ?? false} />
+          <Input field={field} />
+          {field.validation &&
+            validator.message(field.label, field.value, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+    case FORM_FIELD_TYPE.TEXTAREA:
+      return (
+        <Form.Group key={field.key} className={`mb-3 ${className}`}>
+          <Label text={field.label} required={field.required ?? false} />
+          <Form.Control
+            as="textarea"
+            defaultValue={field.value}
+            required={field.required ?? false}
+            id={field.key}
+            onChange={field.changed ?? undefined}
+            onBlur={field.blurred ?? undefined}
+          />
+        </Form.Group>
+      );
+
+    case FORM_FIELD_TYPE.DATERANGE:
+      return <FormDateRangePicker key={Math.random()} field={field} validator={validator} />;
+    case FORM_FIELD_TYPE.IMAGE:
+      return (
+        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+          <Label text={field.label} required={field.required ?? false} />
+
+          <FormImage key={Math.random()} field={field} />
+        </Form.Group>
+      );
+
+    case FORM_FIELD_TYPE.SELECTION:
+      return (
+        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+          {field.label && <Label text={field.label} required={field.required ?? false} />}
+          <FormSelection key={Math.random()} field={field} />{' '}
+          {field.validation &&
+            validator.message(field.label, field.value, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+
+    case FORM_FIELD_TYPE.DROPDOWN:
+      return (
+        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+          {field.label && <Label text={field.label} required={field.required ?? false} />}
+          <FormSelectDropdown field={field} />
+          {field.validation &&
+            validator.message(field.label, field.value, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+    case FORM_FIELD_TYPE.RADIO:
+      return (
+        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+          <Label text={field.label} required={field.required ?? false} />
+          <FormRadio field={field} />
+          {field.validation &&
+            validator.message(field.label, field.value, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+
+    case FORM_FIELD_TYPE.BIRTHDAY:
+      return (
+        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+          <Label text={field.label} />
+          <div className="form-control w-full">
+            <CustomizedDatePicker
+              handleOnChange={(date: any) => field.changed(date)}
+              defaultDate={field.value ? field.value.split(' ')[0] : null}
+            />
+          </div>
+        </Form.Group>
+      );
+
+    case FORM_FIELD_TYPE.AGE:
+      return (
+        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+          <Label text={field.label} required={field.required ?? false} />
+          <FormAgeField field={field} />{' '}
+          {field.validation &&
+            validator.message(field.label, field.value, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+
+    default:
+      return null;
+  }
+};
+
+export { renderingGroupFieldHandler, renderField };

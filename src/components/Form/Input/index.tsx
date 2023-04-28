@@ -3,6 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
+import { FORM_FIELD_TYPE } from 'constant';
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
@@ -19,16 +20,23 @@ const Input = ({ field }: any) => {
       <Form.Control
         as="input"
         defaultValue={field.value ?? ''}
-        type={field.typeFormat ? (field.typeFormat == 11 ? 'password' : 'text') : 'text'}
+        type={
+          field.typeFormat
+            ? field.typeFormat == FORM_FIELD_TYPE.PASSWORD
+              ? 'password'
+              : 'text'
+            : 'text'
+        }
         required={field.required ?? false}
         id={field.key}
         onChange={(e) => handleChange(e)}
         onPaste={field.pasted ?? undefined}
-        className={`${field.classNameInput}`}
+        className={field.classNameInput ?? ''}
         onBlur={field.blurred ?? undefined}
         placeholder={field.placeholder ?? undefined}
         readOnly={field.readOnly}
         disabled={field.disabled}
+        autoComplete=""
       />
     </>
   );

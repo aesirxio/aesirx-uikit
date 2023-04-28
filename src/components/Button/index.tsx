@@ -8,14 +8,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image } from '../Image';
 import styles from './index.module.scss';
 
-const Button = ({ icon, text, onClick, image, disabled, className, loading }: any) => {
+const Button = ({
+  icon,
+  text,
+  onClick,
+  image,
+  disabled,
+  className,
+  loading,
+  type = 'button',
+}: any) => {
   if (className !== undefined && styles[className] !== undefined) {
     className = styles[className];
   }
 
   return (
     <button
-      type="button"
+      type={type}
       className={`d-flex justify-content-center btn ${className ?? 'btn-success'}`}
       onClick={onClick}
       disabled={disabled || loading}
