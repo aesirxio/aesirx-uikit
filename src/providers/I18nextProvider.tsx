@@ -63,15 +63,17 @@ const AesirXI18nextProvider = ({
 }) => {
   const listLanguages: any = [];
 
-  i18n
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-      resources: defaultLanguages,
-      lng: localStorage.getItem('i18nextLng') || 'en',
-      fallbackLng: 'en',
-      debug: !process.env.NODE_ENV || process.env.NODE_ENV === 'development',
-    });
+  if (!i18n.isInitialized) {
+    i18n
+      .use(LanguageDetector)
+      .use(initReactI18next)
+      .init({
+        resources: defaultLanguages,
+        lng: localStorage.getItem('i18nextLng') || 'en',
+        fallbackLng: 'en',
+        debug: !process.env.NODE_ENV || process.env.NODE_ENV === 'development',
+      });
+  }
 
   Object.entries(appLanguages).forEach(([key, resource]) => {
     i18n.addResourceBundle(key, 'translation', resource);

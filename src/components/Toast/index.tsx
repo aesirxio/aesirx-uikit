@@ -18,13 +18,13 @@ const Toast = () => {
   return <ToastContainer hideProgressBar={true} />;
 };
 
-const notify = (msg: any, type = 'success') => {
+const notify = async (msg: any, type = 'success') => {
   switch (type) {
     case 'error':
       toast.error(
         <>
           <Translation>{(t) => <span>{t('txt_error')}</span>}</Translation>
-          {msg && <p className="fw-normal m-0"></p>}
+          {msg && <p className="fw-normal m-0">{msg}</p>}
         </>,
         {
           className: 'bg-red-10 fw-bold text-red-100 ps-4 bg-noti-bg-error text-noti-error',
@@ -36,7 +36,7 @@ const notify = (msg: any, type = 'success') => {
       toast.warn(
         <>
           <Translation>{(t) => <span>{t('txt_warning')}</span>}</Translation>
-          {msg && <p className="fw-normal m-0"></p>}
+          {msg && <p className="fw-normal m-0">{msg}</p>}
         </>,
         {
           className: 'bg-yellow-10 fw-bold text-yellow-200 ps-4 bg-noti-bg-warn text-noti-warn',
@@ -48,7 +48,7 @@ const notify = (msg: any, type = 'success') => {
       toast.success(
         <>
           <Translation>{(t) => <span>{t('txt_successful')}</span>}</Translation>
-          {msg && <p className="fw-normal m-0"></p>}
+          {msg && <p className="fw-normal m-0">{msg}</p>}
         </>,
         {
           className: 'bg-primary-10 bg-noti-bg-success text-green fw-bold ps-4',
@@ -57,7 +57,7 @@ const notify = (msg: any, type = 'success') => {
       );
       break;
     case 'promise':
-      toast.promise(
+      return await toast.promise(
         msg,
         {
           pending: {
@@ -71,7 +71,7 @@ const notify = (msg: any, type = 'success') => {
               return (
                 <>
                   <Translation>{(t) => <span>{t('txt_successful')}</span>}</Translation>
-                  {msg && <p className="fw-normal m-0"></p>}
+                  {msg && <p className="fw-normal m-0">{msg}</p>}
                 </>
               );
             },
@@ -83,7 +83,7 @@ const notify = (msg: any, type = 'success') => {
               return (
                 <>
                   <Translation>{(t) => <span>{t('txt_error')}</span>}</Translation>
-                  {msg && <p className="fw-normal m-0"></p>}
+                  {msg && <p className="fw-normal m-0">{msg}</p>}
                 </>
               );
             },
@@ -95,7 +95,6 @@ const notify = (msg: any, type = 'success') => {
           className: 'bg-dark',
         }
       );
-      break;
 
     default:
       toast.info(msg, {

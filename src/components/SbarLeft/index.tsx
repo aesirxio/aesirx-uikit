@@ -38,9 +38,7 @@ const SbarLeft = () => {
         leftMenu
       )}
 
-      <div className="position-absolute d-flex flex-wrap align-items-center bottom-0 mb-1 border-top border-gray-700 w-100 py-1 button-language ">
-        {componentBottomMenu}
-      </div>
+      {componentBottomMenu}
     </aside>
   );
 };
