@@ -51,9 +51,9 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aesirx-dam-app": "^1.2.9",
-    "aesirx-sso": "^1.0.8",
+    "aesirx-lib": "^1.9.4",
+    "aesirx-sso": "^1.0.9",
     "bootstrap": "^5.2.3",
-    "formik": "^2.2.9",
     "i18next": "^22.4.14",
     "i18next-browser-languagedetector": "^7.0.1",
     "mobx": "^6.9.0",
@@ -70,7 +70,6 @@
     "react-select": "^5.7.2",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.2",
-    "simple-react-validator": "^1.6.2",
-    "yup": "^1.1.1"
+    "simple-react-validator": "^1.6.2"
   }
 }

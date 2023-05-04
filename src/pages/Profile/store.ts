@@ -27,7 +27,7 @@ class ProfileStore {
       const updatePasswordApiService = new AesirxMemberApiService();
       return await updatePasswordApiService.updateMemberPassword(data);
     } catch (error) {
-      return false;
+      return error;
     }
   }
 }

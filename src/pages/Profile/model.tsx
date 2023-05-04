@@ -7,8 +7,9 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import { PAGE_STATUS } from 'constant/PageStatus';
 import { ProfileStore } from './store';
 import React, { createContext, useContext } from 'react';
-import { Storage } from 'aesirx-lib';
 import { notify } from 'components';
+import { logout } from 'auth';
+import { Storage } from 'aesirx-lib';
 
 class ProfileModel {
   profileStore: ProfileStore;
@@ -42,6 +43,20 @@ class ProfileModel {
   getData = () => {
     return this.data;
   };
+
+  savePassword = async (data: any) => {
+    const rs = await this.profileStore.updatePassword(data);
+
+    runInAction(() => {
+      this.successResponse.state = rs?.result?.success;
+      this.successResponse.content_id = rs?.result?.content_id;
+    });
+
+    if (rs?.result?.success) {
+      logout();
+      notify('Change password successfully, please re-login with your new password.', 'success');
+    }
+  };
 }
 
 const profileStore = new ProfileStore();
@@ -54,7 +69,7 @@ interface IProfileContext {
 const ProfileContext = createContext<IProfileContext>({ model: profileModel });
 
 const ProfileContextProvider = ({ children }: { children: React.ReactNode }) => {
-  //profileModel.init(parseInt(Storage.getItem('member_id') || '0'));
+  profileModel.init(parseInt(Storage.getItem('member_id') || '0'));
 
   return (
     <ProfileContext.Provider value={{ model: profileModel }}>{children}</ProfileContext.Provider>
@@ -64,8 +79,8 @@ const ProfileContextProvider = ({ children }: { children: React.ReactNode }) => 
 const useProfileContext = () => useContext(ProfileContext);
 
 /* HOC to inject store to any functional or class component */
-const withThemeContext = (Component: any) => (props: any) => {
+const withProfileContext = (Component: any) => (props: any) => {
   return <Component {...props} {...useProfileContext()} />;
 };
 
-export { ProfileContextProvider, withThemeContext, useProfileContext };
+export { ProfileContextProvider, withProfileContext, useProfileContext };
