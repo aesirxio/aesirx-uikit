@@ -10,7 +10,7 @@ import { Label } from 'components/Form/FormLabel';
 import { FormAgeField } from './FormAgeField';
 import { FormDateRangePicker } from './FormDateRangePicker';
 import { CustomizedDatePicker } from '../CustomizedDatePicker';
-import { FormImage } from './FormImage';
+
 import { FormSelection } from './FormSelection';
 import { FormSelectDropdown } from './FormSelectDropdown';
 import { FormRadio } from './FormRadio';
@@ -55,14 +55,6 @@ const renderField = (field: any, validator: any) => {
 
     case FORM_FIELD_TYPE.DATERANGE:
       return <FormDateRangePicker key={Math.random()} field={field} validator={validator} />;
-    case FORM_FIELD_TYPE.IMAGE:
-      return (
-        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
-          <Label text={field.label} required={field.required ?? false} />
-
-          <FormImage key={Math.random()} field={field} />
-        </Form.Group>
-      );
 
     case FORM_FIELD_TYPE.SELECTION:
       return (
