@@ -23,7 +23,7 @@ const renderingGroupFieldHandler = (group: any, validator: any) => {
     .map((fieldIndex) => {
       return [...Array(group.fields[fieldIndex])].map((field) => {
         return (() => {
-          renderField(field, validator);
+          return renderField(field, validator);
         })();
       });
     })
