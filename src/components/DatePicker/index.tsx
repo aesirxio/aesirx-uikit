@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import DatePicker, { registerLocale } from 'react-datepicker';
-
 import moment from 'moment';
-
 import vi from 'date-fns/locale/vi';
 import de from 'date-fns/locale/de';
 import uk from 'date-fns/locale/uk';
@@ -13,6 +10,7 @@ import th from 'date-fns/locale/th';
 import hr from 'date-fns/locale/hr';
 import { enUS } from 'date-fns/locale';
 import './index.scss';
+
 registerLocale('vi', vi);
 registerLocale('de', de);
 registerLocale('uk', uk);
