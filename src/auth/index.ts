@@ -21,7 +21,7 @@ if (
   GENERAL_CONFIG.WEBSOCKET_ENDPOINT === ''
 ) {
   notify(
-    'The app has not been fully configured and you will not be able to login.  Go to https://dma.aesirx.io/install-guide/npm for instructions on how to configure your .env file',
+    'The app has not been fully configured and you will not be able to login. Please configure your .env file',
     'error'
   );
 }
@@ -58,8 +58,8 @@ const logout = () => {
 const isLogin = () => {
   try {
     const isAuthenticated = Storage.getItem('auth');
-    const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID, null);
-    const userName = Storage.getItem(AUTHORIZATION_KEY.MEMBER_EMAIL, null);
+    const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
+    const userName = Storage.getItem(AUTHORIZATION_KEY.MEMBER_EMAIL);
 
     if (isAuthenticated && userID && userName) {
       return true;

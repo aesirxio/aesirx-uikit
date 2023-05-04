@@ -5,9 +5,7 @@
 
 import React from 'react';
 import { Form } from 'react-bootstrap';
-
 import { FORM_FIELD_TYPE } from '../../constant/FormFieldType';
-
 import { Label } from 'components/Form/FormLabel';
 import { FormAgeField } from './FormAgeField';
 import { FormDateRangePicker } from './FormDateRangePicker';
@@ -18,19 +16,12 @@ import { FormSelectDropdown } from './FormSelectDropdown';
 import { FormRadio } from './FormRadio';
 import { Input } from './Input';
 
-const renderingGroupFieldHandler = (group: any, validator: any) => {
-  return Object.keys(group.fields)
-    .map((fieldIndex) => {
-      return [...Array(group.fields[fieldIndex])].map((field) => {
-        return (() => {
-          renderField(field, validator);
-        })();
-      });
-    })
-    .reduce((arr, el) => {
-      return arr.concat(el);
-    }, []);
-};
+const renderingGroupFieldHandler = (group: any, validator: any) =>
+  Object.keys(group.fields)
+    .map((fieldIndex) =>
+      [...Array(group.fields[fieldIndex])].map((field) => (() => renderField(field, validator))())
+    )
+    .reduce((arr, el) => arr.concat(el), []);
 
 const renderField = (field: any, validator: any) => {
   const className = field.className ?? '';
@@ -134,7 +125,7 @@ const renderField = (field: any, validator: any) => {
       );
 
     default:
-      return null;
+      return <></>;
   }
 };
 
