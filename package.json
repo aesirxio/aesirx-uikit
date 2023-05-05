@@ -1,6 +1,6 @@
 {
   "name": "aesirx-uikit",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -51,7 +51,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aesirx-dam-app": "^1.2.9",
-    "aesirx-lib": "^1.9.4",
+    "aesirx-lib": "^1.9.5",
     "aesirx-sso": "^1.0.9",
     "bootstrap": "^5.2.3",
     "i18next": "^22.4.15",
@@ -70,5 +70,9 @@
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.2",
     "simple-react-validator": "^1.6.2"
+  },
+  "resolutions": {
+    "react": "^18",
+    "react-dom": "^18"
   }
 }
