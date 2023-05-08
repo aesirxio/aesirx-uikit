@@ -11,7 +11,6 @@ import { FORMAT_DATE } from 'aesirx-lib';
 import { Label } from '../FormLabel';
 import DatePicker from 'react-datepicker';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import './index.scss';
 
 const FormDateRangePicker = ({ field, validator }: any) => {
