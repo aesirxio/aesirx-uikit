@@ -14,7 +14,7 @@ import { notify } from 'components/Toast';
 
 import welcome from '../../assets/images/logo/welcome-logo.png';
 
-const LoginPage = ({ text }: any) => {
+const LoginPage = ({ text, demoUser = '', demoPassword = '' }: any) => {
   const { t } = useTranslation();
 
   const onGetData = async (response: any) => {
@@ -51,6 +51,8 @@ const LoginPage = ({ text }: any) => {
               className="btn-primary btn w-100 fw-bold position-relative d-flex align-item-center justify-content-center my-3  px-6"
               text={t('txt_sign_in_with_sso')}
               onGetData={onGetData}
+              demoUser={demoUser}
+              demoPassword={demoPassword}
             />
           </div>
         </div>
