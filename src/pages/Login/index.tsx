@@ -11,10 +11,10 @@ import './index.scss';
 import { SSOButton } from 'aesirx-sso';
 import { AesirxAuthenticationApiService, Storage } from 'aesirx-lib';
 import { notify } from 'components/Toast';
-
+import { env } from 'aesirx-lib';
 import welcome from '../../assets/images/logo/welcome-logo.png';
 
-const LoginPage = ({ text, demoUser = '', demoPassword = '' }: any) => {
+const LoginPage = ({ text }: any) => {
   const { t } = useTranslation();
 
   const onGetData = async (response: any) => {
@@ -51,8 +51,8 @@ const LoginPage = ({ text, demoUser = '', demoPassword = '' }: any) => {
               className="btn-primary btn w-100 fw-bold position-relative d-flex align-item-center justify-content-center my-3  px-6"
               text={t('txt_sign_in_with_sso')}
               onGetData={onGetData}
-              demoUser={demoUser}
-              demoPassword={demoPassword}
+              demoUser={env.REACT_APP_DEMO_USER ?? ''}
+              demoPassword={env.REACT_APP_DEMO_PASSWORD ?? ''}
             />
           </div>
         </div>
