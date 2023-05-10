@@ -69,7 +69,7 @@ interface IProfileContext {
 const ProfileContext = createContext<IProfileContext>({ model: profileModel });
 
 const ProfileContextProvider = ({ children }: { children: React.ReactNode }) => {
-  profileModel.init(parseInt(Storage.getItem('member_id') || '0'));
+  profileModel.init(parseInt(String(Storage.getItem('member_id'))));
 
   return (
     <ProfileContext.Provider value={{ model: profileModel }}>{children}</ProfileContext.Provider>
