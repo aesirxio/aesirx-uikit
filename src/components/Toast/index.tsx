@@ -105,7 +105,10 @@ const notify = async (msg: any, type = 'success') => {
 };
 
 const notifyHTML = (text: any) => {
-  return toast.success(<div className="text-white" dangerouslySetInnerHTML={{ __html: text }} />);
+  return toast.success(<div dangerouslySetInnerHTML={{ __html: text }} />, {
+    className: 'bg-noti-bg-success text-green fw-bold px-2 py-1',
+    icon: () => <img alt="success" src="/assets/images/success.png" />,
+  });
 };
 
 export { Toast, notify, notifyHTML };
