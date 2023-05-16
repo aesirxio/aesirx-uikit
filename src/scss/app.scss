@@ -501,13 +501,13 @@ form {
 }
 
 .nav-pills {
-  .nav-link{
-      color: var(--bs-body-color);
-      &.active {
-          color: var(--bs-success);
-          background-color: var(--bs-white);
-          font-weight: 600;
-      }
+  .nav-link {
+    color: var(--bs-body-color);
+    &.active {
+      color: var(--bs-success);
+      background-color: var(--bs-white);
+      font-weight: 600;
+    }
   }
 }
 .ChartWrapper {
@@ -537,7 +537,7 @@ form {
 
   --input-disabled-bg: #e9ecef;
   --input-gray-bg: #f6f8fa;
-  --input-placeholder-color: var(--body-color);
+  --input-placeholder-color: #c0c0c0;
 
   --calendar-current-timeline: #74ad31;
   --calendar-header-bg: #dce6eb;
