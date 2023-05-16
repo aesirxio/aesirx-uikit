@@ -89,9 +89,12 @@
     .link_menu {
       position: relative;
     }
-    .icon.arrow,
-    .text {
+    .icon.arrow {
       display: none !important;
+    }
+
+    .text {
+      display: none;
     }
   }
 
