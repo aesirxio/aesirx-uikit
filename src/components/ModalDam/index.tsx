@@ -21,4 +21,4 @@ function ModalDAMComponent({ show, onHide, onSelect }: any) {
   );
 }
 
-export default ModalDAMComponent;
+export { ModalDAMComponent };

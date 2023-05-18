@@ -3,7 +3,7 @@ import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { Image } from 'components/Image';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ModalDAMComponent from 'components/ModalDam';
+import { ModalDAMComponent } from 'components/ModalDam';
 
 const FormDAM = ({ current, onChoose }: any) => {
   const { t } = useTranslation();

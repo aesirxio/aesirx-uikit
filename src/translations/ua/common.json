@@ -69,5 +69,7 @@
   "txt_apply": "Застосувати",
   "txt_video": "Відео",
   "txt_select": "Виберіть...",
-  "txt_menu_dashboard": "Інформаційна панель"
+  "txt_menu_dashboard": "Інформаційна панель",
+  "txt_title_profile_setting": "Налаштування профілю",
+  "txt_title_set_information_name": "Встановіть своє ім'я та іншу загальнодоступну інформацію"
 }

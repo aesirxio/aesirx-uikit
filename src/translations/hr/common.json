@@ -69,5 +69,7 @@
   "txt_apply": "Primjeni",
   "txt_video": "Video",
   "txt_select": "Izaberi...",
-  "txt_menu_dashboard": "Nadzorna ploča"
+  "txt_menu_dashboard": "Nadzorna ploča",
+  "txt_title_profile_setting": "Postavke profila",
+  "txt_title_set_information_name": "Postavite svoje ime i druge podatke za javnost"
 }

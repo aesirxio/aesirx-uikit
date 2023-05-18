@@ -72,5 +72,7 @@
   "txt_warning": "Warning",
   "txt_successful": "Successful",
   "txt_select": "Select...",
-  "txt_error": "Error"
+  "txt_error": "Error",
+  "txt_title_profile_setting": "Profile Setting",
+  "txt_title_set_information_name": "Set your name and other public-facing information"
 }

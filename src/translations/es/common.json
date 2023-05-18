@@ -69,5 +69,7 @@
   "txt_apply": "Aplicar",
   "txt_video": "Video",
   "txt_select": "Seleccionar...",
-  "txt_menu_dashboard": "Tablero"
+  "txt_menu_dashboard": "Tablero",
+  "txt_title_profile_setting": "Ajustes de perfil",
+  "txt_title_set_information_name": "Establezca su nombre y otra información pública"
 }
