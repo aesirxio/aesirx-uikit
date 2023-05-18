@@ -12,7 +12,7 @@ import arrow from '../../assets/images/arrow-right.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAppContext } from 'providers';
 
-const Menu = ({ dataMenu }: any) => {
+const Menu = ({ dataMenu, title = '' }: any) => {
   const { settingRoutes } = useAppContext();
   const match = useRouteMatch();
   const has = settingRoutes?.find((router: any) => router.path === match.path);
@@ -53,7 +53,7 @@ const Menu = ({ dataMenu }: any) => {
       {dataMenu && (
         <nav className="main-menu py-24 mt-0">
           <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
-            {t(has ? 'txt_menu_setting' : 'txt_main_menu')}
+            {t(title ? title : has ? 'txt_menu_setting' : 'txt_main_menu')}
           </p>
           <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
             {dataMenu?.map((menuList: any, menuListkey: any) => {
