@@ -3,12 +3,12 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: any) => {
+const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: any, size: any) => {
   return {
     control: (provided: any) => {
       return {
         ...provided,
-        minHeight: 32,
+        minHeight: size === "large" ? 46 : 32,
         height: '100%',
         boxShadow: 'none',
         borderRadius: '5px',
@@ -75,7 +75,7 @@ const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: 
     placeholder: (defaultStyles: any) => {
       return {
         ...defaultStyles,
-        color: plColor ? plColor : 'var(--text-title-color)',
+        color: plColor ? plColor : 'var(--input-placeholder-color)',
       };
     },
     multiValue: (styles: any) => {

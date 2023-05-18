@@ -28,12 +28,14 @@ const AesirXDatePicker = ({
   dateStart,
   dateEnd,
   setDateFilter,
+  placeholder,
+  classContainer,
 }: any) => {
   const { t, i18n } = useTranslation();
 
   const [dateRange, setDateRange] = useState([
-    moment(dateStart, 'YYYY-MM-DD').toDate(),
-    moment(dateEnd, 'YYYY-MM-DD').toDate(),
+    dateStart ? moment(dateStart, 'YYYY-MM-DD').toDate() : null,
+    dateEnd ? moment(dateEnd, 'YYYY-MM-DD').toDate() : null,
   ]);
 
   const [startDate, endDate] = dateRange;
@@ -112,11 +114,14 @@ const AesirXDatePicker = ({
   };
   return (
     <div
-      style={{ minHeight: '50px' }}
+      style={{ minHeight: classContainer ? '' : '50px' }}
       ref={datePickerRef}
       className="d-flex align-items-center bg-white rounded-1 shadow-sm daterange-picker-wrapper"
     >
-      <div onClick={handleOpenDatePicker} className="position-relative daterange-picker w-100">
+      <div
+        onClick={handleOpenDatePicker}
+        className={`position-relative daterange-picker w-100 ${classContainer}`}
+      >
         <DatePicker
           dateFormat="dd MMM, yyyy"
           selectsRange={true}
@@ -126,11 +131,13 @@ const AesirXDatePicker = ({
             setDateRange(update);
           }}
           value={
-            !isDays
-              ? getDateDiffString(startDate, endDate)
-              : getDateDiff(startDate, endDate)
-              ? `${getDateDiff(startDate, endDate)} ${t('txt_days')}`
-              : ''
+            startDate && endDate
+              ? !isDays
+                ? getDateDiffString(startDate, endDate)
+                : getDateDiff(startDate, endDate)
+                ? `${getDateDiff(startDate, endDate)} ${t('txt_days')}`
+                : ''
+              : placeholder
           }
           isClearable={false}
           className={`${

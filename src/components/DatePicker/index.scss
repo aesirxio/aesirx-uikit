@@ -7,6 +7,11 @@
 @import '../../scss/utils/bootstrap.scss';
 
 .daterange-picker {
+  &.h-auto {
+    .react-datepicker__input-container {
+      height: auto;
+    }
+  }
   .react-datepicker__input-container {
     height: 54px;
   }

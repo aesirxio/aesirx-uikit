@@ -53,7 +53,7 @@ const Profile = () => {
           ></Dropdown.Toggle>
           <Dropdown.Menu className="shadow border-0">
             {profileMenu && (
-              <div className="p-16">
+              <div className="px-16">
                 <ul className="list-unstyled ps-0 mb-0 list_menu_avatar">
                   {profileMenu?.map((value: any, index: any) => {
                     return (
