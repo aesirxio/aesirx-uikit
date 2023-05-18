@@ -56,6 +56,7 @@ $color-blue-6: #dce6eb;
 $color-blue-7: #199ce3;
 $color-blue-8: #54c7ec;
 $color-blue-9: #f0f3fb;
+$color-blue-10: #717b80;
 
 //MAIN COLOR RED
 $color-red: #c60202;
@@ -128,6 +129,7 @@ $theme-colors: (
   'noti-bg-warn': $noti-bg-warn,
   'noti-bg-success': $noti-bg-success,
   'sidebar': #0c1215,
+  'black': $black,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -249,12 +251,14 @@ $spacers: (
   8px: 8px,
   15: 15px,
   16: 16px,
+  20: 20px,
   24: 24px,
   6: 60px,
   7: 70px,
   8: 80px,
   10: 10px,
   14: 14px,
+  40: 40px,
   18px: 18px,
   32px: 32px,
 ) !default;
@@ -265,8 +269,14 @@ $accordion-button-active-bg: $color-blue-6;
 $accordion-border-color: $border-color;
 $accordion-button-focus-border-color: $border-color;
 $accordion-button-focus-box-shadow: $color-blue-6;
-$nav-tabs-link-active-color: #fff;
-$nav-tabs-link-active-bg: $color-blue-3;
+$nav-link-color: #949494 !default;
+$nav-link-hover-color: #949494 !default;
+$nav-tabs-link-active-color: $gray-900;
+$nav-tabs-link-active-bg: transparent;
+$nav-tabs-border-color: $gray-300 !default;
+// $nav-tabs-border-width:             $border-width !default;
+// $nav-tabs-border-radius:            $border-radius !default;
+$nav-tabs-link-active-border-color: transparent transparent $success !default;
 $grid-gutter-width: 1.25rem;
 
 $form-check-input-checked-color: $success;
@@ -275,3 +285,19 @@ $form-check-input-checked-border-color: $success;
 $form-check-radio-checked-color: $success;
 $form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !default;
 $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>") !default;
+
+.light {
+  // for react-select
+  --sidebar-submenu-bg: #0c1215;
+  --dropdown-item-hover-color: #1ab394;
+  --dropdown-item-hover-bg: #e8e9ec;
+  --view-active-bg: #e8e9ec;
+  --text-title-color: #081240;
+  --dropdown-bg: #fff;
+  --dropdown-item-color: #081240;
+  --input-border-color: #e3e3e3;
+  --input-placeholder-color: #c0c0c0;
+  --dropdown-multi-bg: #ebebeb;
+  --dropdown-indicator-color: #1ab394;
+  --datepicker-range-bg-color: #ebf3f6;
+}
