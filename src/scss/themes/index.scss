@@ -83,6 +83,7 @@
     'gray-200': $gray-200,
     'gray-400': $gray-400,
     'white': $dark,
+    'black': $black,
   );
 
   $body-color: #fff;
@@ -143,7 +144,10 @@
   $accordion-border-color: $border-color;
   $accordion-button-focus-border-color: $border-color;
   $accordion-button-focus-box-shadow: $color-blue-6;
-  $nav-tabs-link-active-color: #fff;
+  .nav-tabs {
+    --bs-nav-tabs-link-active-color: #fff;
+  }
+
   $nav-tabs-link-active-bg: $color-blue-3;
   // maps
   @import 'bootstrap/scss/maps';
