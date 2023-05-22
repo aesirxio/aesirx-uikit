@@ -8,7 +8,7 @@ const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: 
     control: (provided: any) => {
       return {
         ...provided,
-        minHeight: size === "large" ? 46 : 32,
+        minHeight: size === 'large' ? 46 : 32,
         height: '100%',
         boxShadow: 'none',
         borderRadius: '5px',
