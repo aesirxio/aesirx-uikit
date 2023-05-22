@@ -1,6 +1,6 @@
 import { Spinner, renderField } from 'components';
 import { Button } from 'components/Button';
-import { FormDAM } from 'components/Form/FormDAM';
+import { FormDAMImage } from 'components/Form/FormDAMImage';
 import { Label } from 'components/Form/FormLabel';
 import { FORM_FIELD_TYPE } from 'constant/FormFieldType';
 
@@ -116,7 +116,7 @@ const ProfileGeneral = observer(() => {
                   <Label text={t('txt_your_avatar')} required={false} />
                 </Form.Group>
 
-                <FormDAM
+                <FormDAMImage
                   onChoose={onSelectAvatar}
                   current={formPropsData[MEMBER_FIELD_KEY.AVATAR_DAM]}
                 />

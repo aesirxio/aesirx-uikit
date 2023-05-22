@@ -4,7 +4,7 @@ import { AesirXDam } from 'aesirx-dam-app';
 import './index.scss';
 import { ModalComponent } from 'components/Modal';
 
-function ModalDAMComponent({ show, onHide, onSelect }: any) {
+function ModalDAMComponent({ show, onHide, onSelect, type = '', accept = '*' }: any) {
   return (
     <ModalComponent
       dialogClassName={'modal-xl modal_digital_assets'}
@@ -14,7 +14,7 @@ function ModalDAMComponent({ show, onHide, onSelect }: any) {
       autoFocus={false}
       body={
         <div className="modal-class">
-          <AesirXDam onSelect={onSelect} />
+          <AesirXDam onSelect={onSelect} toolbar={false} type={type} accept={accept} />
         </div>
       }
     />
