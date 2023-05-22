@@ -32,7 +32,15 @@ const FormDAMImage = ({ current, onChoose }: any) => {
         className="position-relative d-inline-block cursor-pointer rounded-circle h-196 w-196 bg-gray-dark-70 mb-4"
         onClick={() => setShow(true)}
       >
-        <ModalDAMComponent show={show} onHide={handleClose} onSelect={onSelect} type="image" />
+        <ModalDAMComponent
+          show={show}
+          onHide={handleClose}
+          onSelect={onSelect}
+          type="image"
+          accept={{
+            'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
+          }}
+        />
 
         {image != '' ? (
           <Image
