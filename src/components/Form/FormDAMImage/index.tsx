@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ModalDAMComponent } from 'components/ModalDam';
 
-const FormDAM = ({ current, onChoose }: any) => {
+const FormDAMImage = ({ current, onChoose }: any) => {
   const { t } = useTranslation();
   const [image, setImage] = useState(current ?? '');
 
@@ -32,7 +32,7 @@ const FormDAM = ({ current, onChoose }: any) => {
         className="position-relative d-inline-block cursor-pointer rounded-circle h-196 w-196 bg-gray-dark-70 mb-4"
         onClick={() => setShow(true)}
       >
-        <ModalDAMComponent show={show} onHide={handleClose} onSelect={onSelect} />
+        <ModalDAMComponent show={show} onHide={handleClose} onSelect={onSelect} type="image" />
 
         {image != '' ? (
           <Image
@@ -59,4 +59,4 @@ const FormDAM = ({ current, onChoose }: any) => {
   );
 };
 
-export { FormDAM };
+export { FormDAMImage };
