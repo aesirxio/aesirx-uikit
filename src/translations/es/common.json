@@ -71,5 +71,6 @@
   "txt_select": "Seleccionar...",
   "txt_menu_dashboard": "Tablero",
   "txt_title_profile_setting": "Ajustes de perfil",
-  "txt_title_set_information_name": "Establezca su nombre y otra información pública"
+  "txt_title_set_information_name": "Establezca su nombre y otra información pública",
+  "txt_main_menu": "Menú principal"
 }
