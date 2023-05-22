@@ -3,7 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: any, size: any, minWidth: any) => {
+const customStyles = (
+  isBorder: any,
+  plColor: any,
+  arrowColor: any,
+  isDisabled: any,
+  size: any,
+  minWidth: any
+) => {
   return {
     control: (provided: any) => {
       return {
