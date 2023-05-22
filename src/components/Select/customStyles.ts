@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: any, size: any) => {
+const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: any, size: any, minWidth: any) => {
   return {
     control: (provided: any) => {
       return {
@@ -21,6 +21,7 @@ const customStyles = (isBorder: any, plColor: any, arrowColor: any, isDisabled: 
         backgroundColor: isDisabled ? 'var(--input-border-color)' : 'var(--input-backgound-color)',
         cursor: 'pointer',
         width: 'auto',
+        minWidth: minWidth,
       };
     },
 
