@@ -22,7 +22,9 @@ const ThemesContextProvider = ({ children }: { children: React.ReactNode }) => {
     const newThemeValue = theme === 'dark' ? 'light' : 'dark';
     setTheme(newThemeValue);
     localStorage.setItem('theme', newThemeValue);
-    document.documentElement.classList.add(theme);
+
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newThemeValue);
   };
 
   useEffect(() => {
