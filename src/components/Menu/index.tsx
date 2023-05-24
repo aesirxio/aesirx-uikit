@@ -6,7 +6,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useRouteMatch } from 'react-router-dom';
-import { Collapse, Button } from 'react-bootstrap';
+import { Collapse } from 'react-bootstrap';
 import './index.scss';
 import arrow from '../../assets/images/arrow-right.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -93,8 +93,8 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                     </>
                   ) : (
                     <>
-                      <Button
-                        variant=""
+                      <NavLink
+                        to={menuList.submenu[0]?.link}
                         onClick={() => handleOpen(menuListkey)}
                         className={`d-flex align-items-center justify-content-center rounded-0 link_menu text-decoration-none text-break w-100 px-24 py-16 shadow-none text-white ${
                           isOpenCollapse === menuListkey.toString() ||
@@ -125,7 +125,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                             backgroundColor: '#fff',
                           }}
                         ></span>
-                      </Button>
+                      </NavLink>
                       <Collapse
                         in={
                           isOpenCollapse === menuListkey.toString() ||
