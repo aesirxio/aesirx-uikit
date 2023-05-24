@@ -67,7 +67,6 @@ const customStyles = (
         },
       };
     },
-    indicatorSeparator: () => ({ display: 'none' }),
 
     dropdownIndicator: (base: any) => ({
       ...base,

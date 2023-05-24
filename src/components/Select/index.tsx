@@ -26,6 +26,7 @@ class AesirXSelect extends React.Component<any, any> {
       size,
       minWidth,
       t,
+      isClearable = false,
     }: any = this.props;
 
     const styles = customStyles(isBorder, plColor, arrowColor, isDisabled, size, minWidth);
@@ -35,7 +36,7 @@ class AesirXSelect extends React.Component<any, any> {
         <AsyncSelect {...this.props} placeholder={placeholder ?? t('txt_select')} styles={styles} />
       );
     }
-    const { ValueContainer, Placeholder } = components;
+    const { ValueContainer, Placeholder, IndicatorSeparator } = components;
     const CustomValueContainer = ({ children, ...props }: any) => {
       return (
         <ValueContainer {...props} className="valueContainerCustom ps-16 pe-14">
@@ -51,13 +52,15 @@ class AesirXSelect extends React.Component<any, any> {
         </ValueContainer>
       );
     };
-
     return (
       <Select
         {...this.props}
         components={{
           ValueContainer: CustomValueContainer,
+          IndicatorSeparator:
+            isClearable && this.props?.defaultValue ? IndicatorSeparator : () => null,
         }}
+        isClearable={isClearable}
         placeholder={placeholder ?? t('txt_select')}
         styles={styles}
       />
