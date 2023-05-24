@@ -65,6 +65,12 @@
   }
   #wr_list_menu {
     & > .item_menu {
+      #wr_list_submenu {
+        height: auto !important;
+        &.show {
+          display: none;
+        }
+      }
       &:hover {
         #wr_list_submenu {
           display: block;
