@@ -70,6 +70,14 @@
         &.show {
           display: none;
         }
+        .mini-text-wrapper {
+          .text {
+            display: none;
+          }
+          .mini-text {
+            display: inline-block;
+          }
+        }
       }
       &:hover {
         #wr_list_submenu {
@@ -97,10 +105,6 @@
     }
     .icon.arrow {
       display: none !important;
-    }
-
-    .text {
-      display: none;
     }
   }
 

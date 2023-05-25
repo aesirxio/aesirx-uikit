@@ -147,7 +147,14 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                     className={`d-block px-24 py-16 link_menu text-white text-decoration-none`}
                                     activeClassName={`active`}
                                   >
-                                    <span className="text d-inline-block">{t(value.text)}</span>
+                                    {value?.mini_text ? (
+                                      <span className="mini-text-wrapper">
+                                        <span className="mini-text">{t(value?.mini_text)}</span>
+                                        <span className="text">{t(value.text)}</span>
+                                      </span>
+                                    ) : (
+                                      <span className="text d-inline-block">{t(value.text)}</span>
+                                    )}
                                   </NavLink>
                                 )}
                               </li>
