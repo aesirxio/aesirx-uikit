@@ -279,12 +279,12 @@ $nav-tabs-border-color: $gray-300 !default;
 $nav-tabs-link-active-border-color: transparent transparent $success !default;
 $grid-gutter-width: 1.25rem;
 
-$form-check-input-checked-color: $success;
+$form-check-input-checked-color: $white;
 $form-check-input-checked-bg-color: $white;
 $form-check-input-checked-border-color: $success;
 $form-check-radio-checked-color: $success;
 $form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !default;
-$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>") !default;
+$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-radio-checked-color}'/></svg>") !default;
 
 .light {
   // for react-select

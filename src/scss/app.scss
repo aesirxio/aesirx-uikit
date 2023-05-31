@@ -490,12 +490,34 @@ textarea {
     border: 1px solid rgba(0, 0, 0, 0.15);
   }
 }
+.form-switch {
+  .form-check-input {
+    &:checked {
+      background-color: $success;
+    }
+  }
+}
 .form-check {
+  &.form-switch {
+    .form-check-input {
+      width: 2.5em;
+      height: 1.5em;
+      margin-left: -3em;
+      margin-top: 0;
+    }
+  }
   .form-check-input {
     width: 16px;
     height: 16px;
     margin-left: -25px;
     margin-top: 4px;
+  }
+}
+.form-check-input {
+  &[type='checkbox'] {
+    &:checked {
+      background-color: $success;
+    }
   }
 }
 .form-control {
