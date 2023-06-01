@@ -1,21 +1,23 @@
+import { ORGANISATION_MEMBER_FIELD } from 'aesirx-lib';
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
 import { makeAutoObservable } from 'mobx';
-import { notify } from 'aesirx-uikit';
-import { PIM_CATEGORY_DETAIL_FIELD_KEY } from 'aesirx-lib';
 import { PAGE_STATUS } from 'constant';
 import { MemberStore } from '../store';
+import { notify } from 'components';
 class MemberDetailViewModel {
   memberStore: MemberStore;
   formStatus = PAGE_STATUS.READY;
   memberDetailViewModel = { formPropsData: [{}] };
   aliasChange = '';
+  roleList = [];
   successResponse = {
     state: true,
     content_id: '',
+    filters: {},
   };
 
   constructor(memberStore: MemberStore) {
@@ -30,9 +32,18 @@ class MemberDetailViewModel {
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.memberStore.getDetail(
-      this.memberDetailViewModel.formPropsData[PIM_CATEGORY_DETAIL_FIELD_KEY.ID],
+      this.memberDetailViewModel.formPropsData[ORGANISATION_MEMBER_FIELD.ID],
       this.callbackOnGetMemberSuccessHandler,
       this.callbackOnErrorHandler
+    );
+  };
+
+  getRoleList = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.memberStore.getRoleList(
+      this.callbackOnGetRoleListSuccessHandler,
+      this.callbackOnErrorHandler,
+      this.successResponse.filters
     );
   };
 
@@ -74,16 +85,23 @@ class MemberDetailViewModel {
     if (result) {
       this.memberDetailViewModel.formPropsData = {
         ...this.memberDetailViewModel.formPropsData,
-        ...Object.keys(PIM_CATEGORY_DETAIL_FIELD_KEY)
+        ...Object.keys(ORGANISATION_MEMBER_FIELD)
           .map((index) => {
             return {
-              [PIM_CATEGORY_DETAIL_FIELD_KEY[index]]: result[PIM_CATEGORY_DETAIL_FIELD_KEY[index]],
+              [ORGANISATION_MEMBER_FIELD[index]]: result[ORGANISATION_MEMBER_FIELD[index]],
             };
           })
           .reduce((prev, cur) => ({ ...prev, ...cur })),
       };
     }
 
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnGetRoleListSuccessHandler = (result: any) => {
+    if (result) {
+      this.roleList = result;
+    }
     this.formStatus = PAGE_STATUS.READY;
   };
 

@@ -3,23 +3,13 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { MemberStore } from '../store';
-import MemberViewModel from './MemberViewModel';
 import React from 'react';
-interface IMemberContext {
-  model: MemberViewModel;
-}
 
-const memberStore = new MemberStore();
-const memberModel = new MemberViewModel(memberStore);
+export const MemberViewModelContext = React.createContext();
 
-export const MemberViewModelContext = React.createContext<IMemberContext>({ model: memberModel });
-
-export const MemberViewModelContextProvider = ({ children }: { children: React.ReactNode }) => {
+export const MemberViewModelContextProvider = ({ children, viewModel }: any) => {
   return (
-    <MemberViewModelContext.Provider value={{ model: memberModel }}>
-      {children}
-    </MemberViewModelContext.Provider>
+    <MemberViewModelContext.Provider value={viewModel}>{children}</MemberViewModelContext.Provider>
   );
 };
 

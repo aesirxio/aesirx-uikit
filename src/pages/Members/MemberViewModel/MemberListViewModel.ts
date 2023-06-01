@@ -4,16 +4,16 @@
  */
 
 import { makeAutoObservable, runInAction } from 'mobx';
-import { notify } from 'aesirx-uikit';
 import { ORGANISATION_MEMBER_FIELD } from 'aesirx-lib';
 import { PAGE_STATUS } from 'constant';
 import { MemberStore } from '../store';
 import moment from 'moment';
+import { notify } from 'components';
 
 class MemberListViewModel {
   memberStore: MemberStore;
   formStatus = PAGE_STATUS.READY;
-  memberListViewModel = null;
+  memberListViewModel = {};
   items = [];
   filter = {};
   successResponse = {
@@ -24,7 +24,7 @@ class MemberListViewModel {
     filters: {
       'list[limit]': 10,
     },
-    listCategories: [],
+    listMembers: [],
     pagination: null,
   };
 
@@ -72,7 +72,7 @@ class MemberListViewModel {
 
   callbackOnSuccessHandler = (result: any, message: any) => {
     if (result?.listItems) {
-      this.successResponse.listCategories = this.transform(result.listItems);
+      this.successResponse.listMembers = this.transform(result.listItems);
       this.successResponse.pagination = result.pagination;
       // Need improve response
       this.items = result.listItems;
@@ -95,6 +95,9 @@ class MemberListViewModel {
           id: o[ORGANISATION_MEMBER_FIELD.ID],
           name: o[ORGANISATION_MEMBER_FIELD.MEMBER_NAME],
         },
+        memberEmail: o[ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL],
+        memberRole: o[ORGANISATION_MEMBER_FIELD.MEMBER_ROLE],
+        organisation: o[ORGANISATION_MEMBER_FIELD.ORGANISATION],
         lastModified: {
           status: o[ORGANISATION_MEMBER_FIELD.MEMBER_STATE],
           dateTime: date ?? '',
@@ -105,6 +108,24 @@ class MemberListViewModel {
           id: o[ORGANISATION_MEMBER_FIELD.ID],
         },
       };
+    });
+  };
+
+  deleteMembers = async (arr: any) => {
+    const res = await this.memberStore.delete(
+      arr,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    if (res) {
+      await this.memberStore.getList(
+        this.callbackOnSuccessHandler,
+        this.callbackOnErrorHandler,
+        this.successResponse.filters
+      );
+    }
+    runInAction(() => {
+      this.successResponse.state = true;
     });
   };
 

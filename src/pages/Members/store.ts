@@ -1,10 +1,37 @@
-import { OrganizationMemberApiService, OrganizationMemberItemModel } from 'aesirx-lib';
+import {
+  OrganizationMemberApiService,
+  OrganizationMemberItemModel,
+  OrganizationRoleApiService,
+} from 'aesirx-lib';
 import { runInAction } from 'mobx';
 
 class MemberStore {
   async getList(callbackOnSuccess: any, callbackOnError: any, filters: any) {
     try {
       const getListAPIService = new OrganizationMemberApiService();
+      const respondedData = await getListAPIService.getList(filters);
+      if (respondedData) {
+        runInAction(() => {
+          callbackOnSuccess(respondedData);
+        });
+      } else {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      }
+      return respondedData;
+    } catch (error: any) {
+      runInAction(() => {
+        callbackOnError(error?.response?.data);
+      });
+    }
+
+    return false;
+  }
+
+  async getRoleList(callbackOnSuccess: any, callbackOnError: any, filters: any) {
+    try {
+      const getListAPIService = new OrganizationRoleApiService();
       const respondedData = await getListAPIService.getList(filters);
       if (respondedData) {
         runInAction(() => {
@@ -58,10 +85,10 @@ class MemberStore {
       const convertedUpdateGeneralData =
         OrganizationMemberItemModel.__transformItemToApiOfCreation(createFieldData);
       let resultOnSave: { result: '' };
-      const createFieldApiService = new OrganizationMemberApiService();
+      const createOrganizationApiService = new OrganizationMemberApiService();
 
       // eslint-disable-next-line prefer-const
-      resultOnSave = await createFieldApiService.create(convertedUpdateGeneralData);
+      resultOnSave = await createOrganizationApiService.create(convertedUpdateGeneralData);
       if (resultOnSave?.result) {
         runInAction(() => {
           callbackOnSuccess(resultOnSave?.result, 'Created successfully');
@@ -86,9 +113,9 @@ class MemberStore {
         OrganizationMemberItemModel.__transformItemToApiOfUpdation(updateFieldData);
 
       let resultOnSave: { result: '' };
-      const updateFieldApiService = new OrganizationMemberApiService();
+      const updateOrganizationApiService = new OrganizationMemberApiService();
       // eslint-disable-next-line prefer-const
-      resultOnSave = await updateFieldApiService.update(convertedUpdateGeneralData);
+      resultOnSave = await updateOrganizationApiService.update(convertedUpdateGeneralData);
       if (resultOnSave?.result) {
         runInAction(() => {
           callbackOnSuccess(resultOnSave?.result, 'Updated successfully');
@@ -105,6 +132,23 @@ class MemberStore {
       });
       return 0;
     }
+  }
+
+  async delete(arr: any, callbackOnSuccess: any, callbackOnError: any) {
+    try {
+      const aesirxOrganizationApiService = new OrganizationMemberApiService();
+      const respondedData = await aesirxOrganizationApiService.delete(arr);
+      runInAction(() => {
+        callbackOnSuccess(respondedData, 'Deleted successfully');
+      });
+      return respondedData;
+    } catch (error: any) {
+      runInAction(() => {
+        callbackOnError(error?.response?.data);
+      });
+    }
+
+    return false;
   }
 }
 

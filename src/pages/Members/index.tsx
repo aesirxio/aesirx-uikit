@@ -1,7 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { MemberViewModelContextProvider } from './MemberViewModel/MemberViewModelContextProvider';
-import { ListMember } from './ListMember';
+import { MemberStore } from './store';
+import MemberViewModel from './MemberViewModel/MemberViewModel';
+import ListMember from './ListMember';
+const memberStore = new MemberStore();
+const memberViewModel = new MemberViewModel(memberStore);
 
 const MembersPage = observer(
   class MembersPage extends React.Component {
@@ -12,7 +16,7 @@ const MembersPage = observer(
     render() {
       return (
         <div className="px-3 py-4">
-          <MemberViewModelContextProvider>
+          <MemberViewModelContextProvider viewModel={memberViewModel}>
             <ListMember />
           </MemberViewModelContextProvider>
         </div>

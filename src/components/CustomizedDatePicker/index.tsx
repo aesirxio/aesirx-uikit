@@ -3,29 +3,52 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import { FORMAT_DATE_TIME_UPDATE_POST } from 'constant';
+import ComponentSVG from 'components/ComponentSVG';
 
-const CustomizedDatePicker = ({ handleOnChange, defaultDate }: any) => {
-  const [startDate, setStartDate] = useState(defaultDate ? new Date(defaultDate) : null);
+const CustomizedDatePicker = ({
+  handleOnChange,
+  defaultDate,
+  dateFormat,
+  isDisabled,
+  showTimeSelect,
+  placeholderText,
+  isUTC,
+}: any) => {
+  const [startDate, setStartDate] = useState<Date>();
+  useEffect(() => {
+    defaultDate &&
+      setStartDate(
+        isUTC
+          ? new Date(moment(defaultDate).utc().format(FORMAT_DATE_TIME_UPDATE_POST))
+          : new Date(moment(defaultDate).format(FORMAT_DATE_TIME_UPDATE_POST))
+      );
+  }, [defaultDate]);
   return (
-    <DatePicker
-      dateFormat={'MMM d, yyyy'}
-      selected={startDate}
-      showYearDropdown
-      maxDate={moment().subtract(10, 'y').startOf('year').toDate()}
-      wrapperClassName="w-100"
-      scrollableYearDropdown
-      yearDropdownItemNumber={15}
-      onChange={(date: any) => {
-        handleOnChange(date);
-        setStartDate(date);
-      }}
-      adjustDateOnChange
-      className="m-0 p-0 border-0 outline-none"
-    />
+    <div className="d-flex align-items-center bg-white position-relative date-picker">
+      <div className="calendar-icon calendar-icon-start position-absolute top-50 translate-middle-y">
+        <ComponentSVG url="/assets/images/clock.svg" color="#C0C0C0" />
+      </div>
+      <DatePicker
+        dateFormat={dateFormat ?? 'MMM d, yyyy'}
+        selected={startDate}
+        wrapperClassName="w-100"
+        onChange={(date: any) => {
+          handleOnChange(date);
+          setStartDate(date);
+        }}
+        showTimeSelect={showTimeSelect}
+        adjustDateOnChange
+        className={`ps-40 m-0 border-0 outline-none position-relative border-1 rounded-1 ${
+          isDisabled ? 'bg-gray-300 text-body' : 'bg-white text-body'
+        }`}
+        readOnly={isDisabled}
+        placeholderText={placeholderText ?? dateFormat ?? null}
+      />
+    </div>
   );
 };
-
 export { CustomizedDatePicker };

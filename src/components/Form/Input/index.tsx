@@ -27,6 +27,7 @@ const Input = ({ field }: any) => {
               : 'text'
             : 'text'
         }
+        autoComplete={field.autoComplete === false ? 'new-password' : ''}
         required={field.required ?? false}
         id={field.key}
         onChange={(e) => handleChange(e)}
@@ -36,7 +37,6 @@ const Input = ({ field }: any) => {
         placeholder={field.placeholder ?? undefined}
         readOnly={field.readOnly}
         disabled={field.disabled}
-        autoComplete=""
       />
     </>
   );
