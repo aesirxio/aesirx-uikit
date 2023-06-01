@@ -99,12 +99,12 @@ class MemberListViewModel {
         memberRole: o[ORGANISATION_MEMBER_FIELD.MEMBER_ROLE],
         organisation: o[ORGANISATION_MEMBER_FIELD.ORGANISATION],
         lastModified: {
-          status: o[ORGANISATION_MEMBER_FIELD.MEMBER_STATE],
+          status: o[ORGANISATION_MEMBER_FIELD.PUBLISHED],
           dateTime: date ?? '',
           author: o[ORGANISATION_MEMBER_FIELD.CREATED_USER_NAME],
         },
         published: {
-          state: o[ORGANISATION_MEMBER_FIELD.MEMBER_STATE],
+          state: o[ORGANISATION_MEMBER_FIELD.PUBLISHED],
           id: o[ORGANISATION_MEMBER_FIELD.ID],
         },
       };

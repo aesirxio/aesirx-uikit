@@ -64,8 +64,7 @@ const EditMember = observer(
     }, 300);
 
     render() {
-      const { t }: any = this.props;
-      let history = this.props.history;
+      const { t, history }: any = this.props;
       // eslint-disable-next-line no-console
       console.log('rerender Member');
 
