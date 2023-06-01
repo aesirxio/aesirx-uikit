@@ -16,7 +16,7 @@ class MemberListViewModel {
   memberListViewModel = {};
   items = [];
   filter = {};
-  successResponse = {
+  successResponse: { [key: string]: any } = {
     state: false,
     content_id: '',
     listPublishStatus: [],
@@ -41,6 +41,39 @@ class MemberListViewModel {
     runInAction(() => {
       this.successResponse.state = false;
     });
+    await this.memberStore.getList(
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler,
+      this.successResponse.filters
+    );
+
+    runInAction(() => {
+      this.successResponse.state = true;
+    });
+  };
+
+  getListByFilter = async (key: any, value: any) => {
+    value ? (this.successResponse.filters[key] = value) : delete this.successResponse.filters[key];
+
+    //pagination
+    if (key != 'list[limitstart]' && key != 'list[limit]') {
+      delete this.successResponse.filters['list[limitstart]'];
+    } else {
+      if (
+        key == 'list[limit]' &&
+        value * this.successResponse.pagination.page >= this.successResponse.pagination.totalItems
+      ) {
+        this.successResponse.filters['list[limitstart]'] =
+          Math.ceil(this.successResponse.pagination.totalItems / value - 1) * value;
+      } else if (
+        key == 'list[limit]' &&
+        value * this.successResponse.pagination.page < this.successResponse.pagination.totalItems
+      ) {
+        this.successResponse.filters['list[limitstart]'] =
+          (this.successResponse.pagination.page - 1) * value;
+      }
+    }
+
     await this.memberStore.getList(
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler,
