@@ -16,7 +16,7 @@ const MemberInformation = observer(
 
     render() {
       this.viewModel = this.context.memberDetailViewModel;
-      const { t, validator, isEdit }: any = this.props;
+      const { t, validator }: any = this.props;
       const generateFormSetting = [
         {
           fields: [

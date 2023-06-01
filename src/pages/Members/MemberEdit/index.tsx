@@ -102,7 +102,7 @@ const EditMember = observer(
                         const result = this.isEdit
                           ? await this.memberDetailViewModel.update()
                           : await this.memberDetailViewModel.create();
-                        if (result !== 0) {
+                        if (!result?.error) {
                           history.push(`/members`);
                         }
                       } else {
@@ -121,8 +121,8 @@ const EditMember = observer(
                           this.forceUpdate();
                         } else {
                           let result = await this.memberDetailViewModel.create();
-                          if (result !== 0) {
-                            history.push(`/members/edit/${result}`);
+                          if (!result?.error) {
+                            history.push(`/members/edit/${result?.response}`);
                           }
                         }
                       } else {

@@ -4,7 +4,7 @@ import { ORGANISATION_MEMBER_FIELD } from 'aesirx-lib';
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { PAGE_STATUS } from 'constant';
 import { MemberStore } from '../store';
 import { notify } from 'components';
@@ -31,41 +31,61 @@ class MemberDetailViewModel {
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.memberStore.getDetail(
-      this.memberDetailViewModel.formPropsData[ORGANISATION_MEMBER_FIELD.ID],
-      this.callbackOnGetMemberSuccessHandler,
-      this.callbackOnErrorHandler
+    const data = await this.memberStore.getDetail(
+      this.memberDetailViewModel.formPropsData[ORGANISATION_MEMBER_FIELD.ID]
     );
+
+    runInAction(() => {
+      if (!data?.error) {
+        this.onGetMemberSuccessHandler(data?.response);
+      } else {
+        this.onErrorHandler(data?.response);
+      }
+    });
   };
 
   getRoleList = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.memberStore.getRoleList(
-      this.callbackOnGetRoleListSuccessHandler,
-      this.callbackOnErrorHandler,
-      this.successResponse.filters
-    );
+    const data = await this.memberStore.getRoleList(this.successResponse.filters);
+
+    runInAction(() => {
+      if (!data?.error) {
+        this.onGetRoleListSuccessHandler(data?.response);
+      } else {
+        this.onErrorHandler(data?.response);
+      }
+    });
   };
 
-  create = () => {
+  create = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    return this.memberStore.create(
-      this.memberDetailViewModel.formPropsData,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    const data = await this.memberStore.create(this.memberDetailViewModel.formPropsData);
+
+    runInAction(() => {
+      if (!data?.error) {
+        this.onSuccessHandler(data?.response, 'Created successfully');
+      } else {
+        this.onErrorHandler(data?.response);
+      }
+    });
+    return data;
   };
 
   update = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    return await this.memberStore.update(
-      this.memberDetailViewModel.formPropsData,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    const data = await this.memberStore.update(this.memberDetailViewModel.formPropsData);
+
+    runInAction(() => {
+      if (!data?.error) {
+        this.onSuccessHandler(data?.response, 'Updated successfully');
+      } else {
+        this.onErrorHandler(data?.response);
+      }
+    });
+    return data;
   };
 
-  callbackOnErrorHandler = (error: any) => {
+  onErrorHandler = (error: any) => {
     error._messages[0]?.message
       ? notify(error._messages[0]?.message, 'error')
       : error.message && notify(error.message, 'error');
@@ -74,14 +94,14 @@ class MemberDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnSuccessHandler = (result: any, message: any) => {
+  onSuccessHandler = (result: any, message: any) => {
     if (result && message) {
       notify(message, 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnGetMemberSuccessHandler = (result: any) => {
+  onGetMemberSuccessHandler = (result: any) => {
     if (result) {
       this.memberDetailViewModel.formPropsData = {
         ...this.memberDetailViewModel.formPropsData,
@@ -98,7 +118,7 @@ class MemberDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnGetRoleListSuccessHandler = (result: any) => {
+  onGetRoleListSuccessHandler = (result: any) => {
     if (result) {
       this.roleList = result;
     }

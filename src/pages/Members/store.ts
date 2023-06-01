@@ -6,54 +6,28 @@ import {
 import { runInAction } from 'mobx';
 
 class MemberStore {
-  async getList(callbackOnSuccess: any, callbackOnError: any, filters: any) {
+  async getList(filters: any) {
     try {
       const getListAPIService = new OrganizationMemberApiService();
       const respondedData = await getListAPIService.getList(filters);
-      if (respondedData) {
-        runInAction(() => {
-          callbackOnSuccess(respondedData);
-        });
-      } else {
-        callbackOnError({
-          message: 'Something went wrong from Server response',
-        });
-      }
-      return respondedData;
+      return { error: false, response: respondedData };
     } catch (error: any) {
-      runInAction(() => {
-        callbackOnError(error?.response?.data);
-      });
+      return { error: true, response: error?.response?.data };
     }
-
-    return false;
   }
 
-  async getRoleList(callbackOnSuccess: any, callbackOnError: any, filters: any) {
+  async getRoleList(filters: any) {
     try {
       const getListAPIService = new OrganizationRoleApiService();
       const respondedData = await getListAPIService.getList(filters);
-      if (respondedData) {
-        runInAction(() => {
-          callbackOnSuccess(respondedData);
-        });
-      } else {
-        callbackOnError({
-          message: 'Something went wrong from Server response',
-        });
-      }
-      return respondedData;
+      return { error: false, response: respondedData };
     } catch (error: any) {
-      runInAction(() => {
-        callbackOnError(error?.response?.data);
-      });
+      return { error: true, response: error?.response?.data };
     }
-
-    return false;
   }
 
-  async getDetail(id: any, callbackOnSuccess: any, callbackOnError: any) {
-    if (!id) return false;
+  async getDetail(id: any) {
+    if (!id) return { error: false, response: false };
 
     try {
       const results = true;
@@ -63,24 +37,14 @@ class MemberStore {
 
         const respondedData = await getDetailInfoAPIService.getDetail(id);
 
-        if (respondedData) {
-          runInAction(() => {
-            callbackOnSuccess(respondedData);
-          });
-        } else {
-          callbackOnError({
-            message: 'Something went wrong from Server response',
-          });
-        }
+        return { error: false, response: respondedData };
       }
     } catch (error: any) {
-      runInAction(() => {
-        callbackOnError(error?.response?.data);
-      });
+      return { error: true, response: error?.response?.data };
     }
   }
 
-  async create(createFieldData: any, callbackOnSuccess: any, callbackOnError: any) {
+  async create(createFieldData: any) {
     try {
       const convertedUpdateGeneralData =
         OrganizationMemberItemModel.__transformItemToApiOfCreation(createFieldData);
@@ -89,25 +53,13 @@ class MemberStore {
 
       // eslint-disable-next-line prefer-const
       resultOnSave = await createOrganizationApiService.create(convertedUpdateGeneralData);
-      if (resultOnSave?.result) {
-        runInAction(() => {
-          callbackOnSuccess(resultOnSave?.result, 'Created successfully');
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError(resultOnSave);
-        });
-      }
-      return resultOnSave?.result;
+      return { error: false, response: resultOnSave?.result };
     } catch (error: any) {
-      runInAction(() => {
-        callbackOnError(error?.response?.data);
-      });
-      return 0;
+      return { error: true, response: error?.response?.data };
     }
   }
 
-  async update(updateFieldData: any, callbackOnSuccess: any, callbackOnError: any) {
+  async update(updateFieldData: any) {
     try {
       const convertedUpdateGeneralData =
         OrganizationMemberItemModel.__transformItemToApiOfUpdation(updateFieldData);
@@ -116,39 +68,20 @@ class MemberStore {
       const updateOrganizationApiService = new OrganizationMemberApiService();
       // eslint-disable-next-line prefer-const
       resultOnSave = await updateOrganizationApiService.update(convertedUpdateGeneralData);
-      if (resultOnSave?.result) {
-        runInAction(() => {
-          callbackOnSuccess(resultOnSave?.result, 'Updated successfully');
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError(resultOnSave);
-        });
-      }
-      return resultOnSave?.result;
+      return { error: false, response: resultOnSave?.result };
     } catch (error: any) {
-      runInAction(() => {
-        callbackOnError(error?.response?.data);
-      });
-      return 0;
+      return { error: true, response: error?.response?.data };
     }
   }
 
-  async delete(arr: any, callbackOnSuccess: any, callbackOnError: any) {
+  async delete(arr: any) {
     try {
       const aesirxOrganizationApiService = new OrganizationMemberApiService();
       const respondedData = await aesirxOrganizationApiService.delete(arr);
-      runInAction(() => {
-        callbackOnSuccess(respondedData, 'Deleted successfully');
-      });
-      return respondedData;
+      return { error: false, response: respondedData };
     } catch (error: any) {
-      runInAction(() => {
-        callbackOnError(error?.response?.data);
-      });
+      return { error: true, response: error?.response?.data };
     }
-
-    return false;
   }
 }
 

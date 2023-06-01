@@ -41,13 +41,14 @@ class MemberListViewModel {
     runInAction(() => {
       this.successResponse.state = false;
     });
-    await this.memberStore.getList(
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler,
-      this.successResponse.filters
-    );
+    const data = await this.memberStore.getList(this.successResponse.filters);
 
     runInAction(() => {
+      if (!data?.error) {
+        this.onSuccessHandler(data?.response, '');
+      } else {
+        this.onErrorHandler(data?.response);
+      }
       this.successResponse.state = true;
     });
   };
@@ -74,49 +75,37 @@ class MemberListViewModel {
       }
     }
 
-    await this.memberStore.getList(
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler,
-      this.successResponse.filters
-    );
-
+    const data = await this.memberStore.getList(this.successResponse.filters);
     runInAction(() => {
+      if (!data?.error) {
+        this.onSuccessHandler(data?.response, '');
+      } else {
+        this.onErrorHandler(data?.response);
+      }
       this.successResponse.state = true;
     });
   };
 
-  callbackOnSuccessHandlerCustom = (result: any) => {
-    this.items = result.listItems;
-    this.formStatus = PAGE_STATUS.READY;
+  onSuccessHandler = (result: any, message: any) => {
+    if (result && message) {
+      notify(message, 'success');
+    }
+    if (result?.listItems) {
+      this.successResponse.listMembers = this.transform(result?.listItems);
+      this.successResponse.pagination = result?.pagination;
+      this.items = result?.listItems;
+    }
+    if (result?.listPublishStatus) {
+      this.successResponse.listPublishStatus = result?.listPublishStatus;
+    }
   };
 
-  handleFilter = (filter: any) => {
-    this.filter = { ...this.filter, ...filter };
-  };
-
-  callbackOnErrorHandler = (error: any) => {
+  onErrorHandler = (error: any) => {
     error._messages[0]?.message
       ? notify(error._messages[0]?.message, 'error')
       : error.message && notify(error.message, 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnSuccessHandler = (result: any, message: any) => {
-    if (result?.listItems) {
-      this.successResponse.listMembers = this.transform(result.listItems);
-      this.successResponse.pagination = result.pagination;
-      // Need improve response
-      this.items = result.listItems;
-    }
-
-    if (result?.listPublishStatus) {
-      this.successResponse.listPublishStatus = result.listPublishStatus;
-    }
-    if (result && message) {
-      notify(message, 'success');
-    }
     this.formStatus = PAGE_STATUS.READY;
   };
 
@@ -145,19 +134,14 @@ class MemberListViewModel {
   };
 
   deleteMembers = async (arr: any) => {
-    const res = await this.memberStore.delete(
-      arr,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-    if (res) {
-      await this.memberStore.getList(
-        this.callbackOnSuccessHandler,
-        this.callbackOnErrorHandler,
-        this.successResponse.filters
-      );
-    }
-    runInAction(() => {
+    const data = await this.memberStore.delete(arr);
+    runInAction(async () => {
+      if (!data?.error) {
+        await this.initializeData();
+        this.onSuccessHandler(data?.response, 'Deleted successfully');
+      } else {
+        this.onErrorHandler(data?.response);
+      }
       this.successResponse.state = true;
     });
   };
