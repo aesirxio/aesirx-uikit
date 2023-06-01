@@ -6,3 +6,4 @@ declare module '*.module.scss' {
 declare module '*.png';
 declare module '*.svg';
 declare module 'aesirx-dam-app';
+declare const VERSION: string;
