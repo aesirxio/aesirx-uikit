@@ -15,6 +15,14 @@ const SbarLeft = () => {
   const match = useRouteMatch();
   const has = settingRoutes?.find((router: any) => router.path === match.path);
   const { t } = useTranslation();
+
+  let version = '';
+  try {
+    version = VERSION;
+  } catch (error) {
+    /* empty */
+  }
+
   return (
     <aside
       className={`sidebar w-248 mt-0 position-relative bg-dark mh-100 h-100 d-flex flex-column z-index-100 justify-content-between`}
@@ -39,6 +47,11 @@ const SbarLeft = () => {
       )}
 
       {componentBottomMenu}
+      {version && (
+        <span className="ms-3 mb-3 text text-white fs-14">
+          {t('txt_version')} {version}
+        </span>
+      )}
     </aside>
   );
 };

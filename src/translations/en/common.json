@@ -85,5 +85,6 @@
   "txt_password": "Password",
   "txt_role": "Role",
   "txt_metamask_wallet": "Metamask Wallet",
-  "txt_concordium_wallet": "Concordium Wallet"
+  "txt_concordium_wallet": "Concordium Wallet",
+  "txt_version": "Version:"
 }

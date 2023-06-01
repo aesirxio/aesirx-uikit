@@ -3,7 +3,6 @@ import {
   OrganizationMemberItemModel,
   OrganizationRoleApiService,
 } from 'aesirx-lib';
-import { runInAction } from 'mobx';
 
 class MemberStore {
   async getList(filters: any) {
