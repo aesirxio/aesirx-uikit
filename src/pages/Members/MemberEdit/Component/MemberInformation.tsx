@@ -14,15 +14,10 @@ const MemberInformation = observer(
 
     constructor(props: any) {
       super(props);
-      this.state = {
-        data: this.props.validator.fields,
-      };
     }
 
     render() {
       this.viewModel = this.context.model.memberDetailViewModel;
-      console.log(this.state.data);
-      console.log('rerender MemberInformation', this.props);
       const { t, validator, isEdit }: any = this.props;
       const generateFormSetting = [
         {
