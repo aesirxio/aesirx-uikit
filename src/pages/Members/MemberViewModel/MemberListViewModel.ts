@@ -57,20 +57,20 @@ class MemberListViewModel {
     value ? (this.successResponse.filters[key] = value) : delete this.successResponse.filters[key];
 
     //pagination
-    if (key != 'list[limitstart]' && key != 'list[limit]') {
-      delete this.successResponse.filters['list[limitstart]'];
+    if (key != 'list[start]' && key != 'list[limit]') {
+      delete this.successResponse.filters['list[start]'];
     } else {
       if (
         key == 'list[limit]' &&
         value * this.successResponse.pagination.page >= this.successResponse.pagination.totalItems
       ) {
-        this.successResponse.filters['list[limitstart]'] =
+        this.successResponse.filters['list[start]'] =
           Math.ceil(this.successResponse.pagination.totalItems / value - 1) * value;
       } else if (
         key == 'list[limit]' &&
         value * this.successResponse.pagination.page < this.successResponse.pagination.totalItems
       ) {
-        this.successResponse.filters['list[limitstart]'] =
+        this.successResponse.filters['list[start]'] =
           (this.successResponse.pagination.page - 1) * value;
       }
     }
@@ -143,6 +143,22 @@ class MemberListViewModel {
         this.onErrorHandler(data?.response);
       }
       this.successResponse.state = true;
+    });
+  };
+
+  setPublished = async ({ id, name }: any, state: any = 0) => {
+    const data = await this.memberStore.update({
+      id: id.toString(),
+      member_name: name,
+      published: state.toString(),
+    });
+    runInAction(async () => {
+      if (!data?.error) {
+        await this.initializeData();
+        this.onSuccessHandler(data?.response, 'Updated successfully');
+      } else {
+        this.onErrorHandler(data?.response);
+      }
     });
   };
 

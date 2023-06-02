@@ -1,9 +1,8 @@
 import ComponentSVG from 'components/ComponentSVG';
-import { PIM_PRODUCT_DETAIL_FIELD_KEY } from 'aesirx-lib';
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Form } from 'react-bootstrap';
-import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
+import { PIM_PRODUCT_DETAIL_FIELD_KEY, AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
 import { observer } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
@@ -15,9 +14,10 @@ import { FormSelection } from 'components/Form/FormSelection';
 
 const PublishOptionsDetail = observer(
   class PublishOptionsDetail extends Component {
+    utilsListViewModel: any = null;
     constructor(props: any) {
       super(props);
-      this.utilsListViewModel = props.viewModel;
+      this.utilsListViewModel = props.model.utilsListViewModel;
     }
 
     async componentDidMount() {
@@ -32,6 +32,7 @@ const PublishOptionsDetail = observer(
         formPropsData,
         isEdit,
         isPublished = true,
+        isPublishedSimple = false,
         isFeatured = true,
         isLastModified = true,
         isCreateBy = true,
@@ -42,7 +43,9 @@ const PublishOptionsDetail = observer(
       const modifiedBy = isEdit
         ? formPropsData[PIM_PRODUCT_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]
         : Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME);
-
+      const listPublishStatus = isPublishedSimple
+        ? this.utilsListViewModel?.listPublishStatusSimple
+        : this.utilsListViewModel?.listPublishStatus;
       return (
         <div className="p-24 bg-white rounded-1 shadow-sm">
           <h5 className="fw-bold text-blue-0 text-uppercase fs-6 border-bottom pb-24 mb-24">
@@ -65,7 +68,7 @@ const PublishOptionsDetail = observer(
                       formPropsData[PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISHED] !== undefined
                         ? {
                             label: t(
-                              `txt_${this.utilsListViewModel?.listPublishStatus
+                              `txt_${listPublishStatus
                                 ?.find(
                                   (x: any) =>
                                     x.value.toString() ===
@@ -77,12 +80,10 @@ const PublishOptionsDetail = observer(
                             value: formPropsData[PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISHED].toString(),
                           }
                         : null,
-                    getDataSelectOptions: this.utilsListViewModel?.listPublishStatus?.map(
-                      (status: any) => ({
-                        label: t(`txt_${status?.label && status.label?.toString().toLowerCase()}`),
-                        value: status.value.toString(),
-                      })
-                    ),
+                    getDataSelectOptions: listPublishStatus?.map((status: any) => ({
+                      label: t(`txt_${status?.label && status.label?.toString().toLowerCase()}`),
+                      value: status.value.toString(),
+                    })),
                     arrowColor: 'var(--dropdown-indicator-color)',
                     handleChange: (data: any) => {
                       detailViewModal.handleFormPropsData(

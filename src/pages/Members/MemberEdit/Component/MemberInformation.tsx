@@ -9,13 +9,15 @@ import { renderingGroupFieldHandler } from 'components';
 const MemberInformation = observer(
   class MemberInformation extends Component {
     static contextType = MemberViewModelContext;
+    declare context: React.ContextType<typeof MemberViewModelContext>;
+    viewModel: any = null;
 
     constructor(props: any) {
       super(props);
     }
 
     render() {
-      this.viewModel = this.context.memberDetailViewModel;
+      this.viewModel = this.context.model.memberDetailViewModel;
       const { t, validator }: any = this.props;
       const generateFormSetting = [
         {

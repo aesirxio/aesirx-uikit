@@ -4,12 +4,23 @@
  */
 
 import React from 'react';
+import UtilsStore from './UtilsStore';
+import UtilsViewModel from './UtilsViewModel';
 
-export const UtilsViewModelContext = React.createContext();
+const utilsStore = new UtilsStore();
+const utilsViewModel = new UtilsViewModel(utilsStore);
 
-export const UtilsViewModelContextProvider = ({ children, viewModel }: any) => {
+interface IUtilsContext {
+  model: UtilsViewModel;
+}
+
+export const UtilsViewModelContext = React.createContext<IUtilsContext>({ model: utilsViewModel });
+
+export const UtilsViewModelContextProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <UtilsViewModelContext.Provider value={viewModel}>{children}</UtilsViewModelContext.Provider>
+    <UtilsViewModelContext.Provider value={{ model: utilsViewModel }}>
+      {children}
+    </UtilsViewModelContext.Provider>
   );
 };
 
@@ -18,7 +29,5 @@ export const useUtilsViewModel = () => React.useContext(UtilsViewModelContext);
 
 /* HOC to inject store to any functional or class component */
 export const withUtilsViewModel = (Component: any) => (props: any) => {
-  return (
-    <Component {...props} parentViewModel={props?.viewModel} viewModel={useUtilsViewModel()} />
-  );
+  return <Component {...props} parentViewModel={props?.viewModel} {...useUtilsViewModel()} />;
 };

@@ -4,12 +4,24 @@
  */
 
 import React from 'react';
+import { MemberStore } from '../store';
+import MemberViewModel from './MemberViewModel';
 
-export const MemberViewModelContext = React.createContext();
+const memberStore = new MemberStore();
+const memberViewModel = new MemberViewModel(memberStore);
 
-export const MemberViewModelContextProvider = ({ children, viewModel }: any) => {
+interface IMemberContext {
+  model: MemberViewModel;
+}
+export const MemberViewModelContext = React.createContext<IMemberContext>({
+  model: memberViewModel,
+});
+
+export const MemberViewModelContextProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <MemberViewModelContext.Provider value={viewModel}>{children}</MemberViewModelContext.Provider>
+    <MemberViewModelContext.Provider value={{ model: memberViewModel }}>
+      {children}
+    </MemberViewModelContext.Provider>
   );
 };
 
@@ -18,5 +30,5 @@ export const useMemberViewModel = () => React.useContext(MemberViewModelContext)
 
 /* HOC to inject store to any functional or class component */
 export const withMemberViewModel = (Component: any) => (props: any) => {
-  return <Component {...props} viewModel={useMemberViewModel()} />;
+  return <Component {...props} {...useMemberViewModel()} />;
 };

@@ -4,7 +4,7 @@
  */
 
 import { PAGE_STATUS } from 'constant';
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import UtilsStore from './UtilsStore';
 import { notify } from 'components';
 class UtilsListViewModel {
@@ -12,6 +12,7 @@ class UtilsListViewModel {
   formStatus = PAGE_STATUS.READY;
   utilsListViewModel = null;
   listPublishStatus = [];
+  listPublishStatusSimple = [];
   listContentType = [];
   listFieldType = [];
   successResponse = {
@@ -30,43 +31,51 @@ class UtilsListViewModel {
 
   getListPublishStatus = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.utilsStore.getListPublishStatus(
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    const data = await this.utilsStore.getListPublishStatus();
+    runInAction(() => {
+      if (!data?.error) {
+        this.callbackOnSuccessHandler(data?.response);
+      } else {
+        this.callbackOnErrorHandler(data?.response);
+      }
+    });
   };
   getListContentType = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.utilsStore.getListContentType(
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    const data = await this.utilsStore.getListContentType();
+    runInAction(() => {
+      if (!data?.error) {
+        this.callbackOnSuccessHandler(data?.response);
+      } else {
+        this.callbackOnErrorHandler(data?.response);
+      }
+    });
   };
   getListFieldType = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.utilsStore.getListFieldType(
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    const data = await this.utilsStore.getListFieldType();
+    runInAction(() => {
+      if (!data?.error) {
+        this.callbackOnSuccessHandler(data?.response);
+      } else {
+        this.callbackOnErrorHandler(data?.response);
+      }
+    });
   };
 
   callbackOnErrorHandler = (error: any) => {
-    notify('Update unsuccessfully', 'error');
+    notify('Something went wrong from Server response', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnCreateSuccessHandler = (result: any) => {
-    if (result) {
-      notify('Create successfully', 'success');
-    }
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result: any) => {
     if (result?.listPublishStatus) {
       this.listPublishStatus = result.listPublishStatus;
+      this.listPublishStatusSimple = result.listPublishStatus.filter((obj: any) => {
+        return obj.value === 0 || obj.value === 1;
+      });
     }
     if (result?.listContentType) {
       this.listContentType = result.listContentType;

@@ -23,24 +23,26 @@ import { Spinner } from 'components';
 
 const EditMember = observer(
   class EditMember extends Component {
-    memberDetailViewModel = null;
+    memberDetailViewModel: any = null;
+    validator: SimpleReactValidator;
     formPropsData = { [ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS]: {} };
     isEdit = false;
     constructor(props: any) {
       super(props);
-      this.viewModel = props.viewModel ? props.viewModel : null;
       this.state = {};
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
-      this.memberDetailViewModel = this.viewModel
-        ? this.viewModel.getMemberDetailViewModel()
+      this.memberDetailViewModel = props.model?.memberDetailViewModel
+        ? props.model?.memberDetailViewModel
         : null;
+
       this.memberDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
+      const { match }: any = this.props;
       if (this.isEdit) {
-        this.formPropsData[ORGANISATION_MEMBER_FIELD.ID] = this.props.match.params?.id;
+        this.formPropsData[ORGANISATION_MEMBER_FIELD.ID] = match.params?.id;
         await this.memberDetailViewModel.initializeData();
       }
       await this.memberDetailViewModel.getRoleList();
@@ -51,7 +53,7 @@ const EditMember = observer(
         this.setState((prevState) => {
           return {
             ...prevState,
-            requiredField: Math.random(1, 200),
+            requiredField: Math.random(),
           };
         });
       }
@@ -90,11 +92,6 @@ const EditMember = observer(
                     },
                     icon: '/assets/images/cancel.svg',
                   },
-                  // {
-                  //   title: t('txt_preview'),
-                  //   handle: () => {},
-                  //   icon: '/assets/images/preview.svg',
-                  // },
                   {
                     title: t('txt_save_close'),
                     handle: async () => {
@@ -120,7 +117,7 @@ const EditMember = observer(
                           await this.memberDetailViewModel.initializeData();
                           this.forceUpdate();
                         } else {
-                          let result = await this.memberDetailViewModel.create();
+                          const result = await this.memberDetailViewModel.create();
                           if (!result?.error) {
                             history.push(`/members/edit/${result?.response}`);
                           }
@@ -183,6 +180,7 @@ const EditMember = observer(
                   formPropsData={this.memberDetailViewModel.memberDetailViewModel.formPropsData}
                   isEdit={this.isEdit}
                   isFeatured={false}
+                  isPublishedSimple={true}
                 />
               </Col>
             </Row>
