@@ -14,11 +14,16 @@ const MemberInformation = observer(
 
     constructor(props: any) {
       super(props);
+      this.state = {
+        data: this.props.validator.fields,
+      };
     }
 
     render() {
       this.viewModel = this.context.model.memberDetailViewModel;
-      const { t, validator }: any = this.props;
+      console.log(this.state.data);
+      console.log('rerender MemberInformation', this.props);
+      const { t, validator, isEdit }: any = this.props;
       const generateFormSetting = [
         {
           fields: [
@@ -33,15 +38,19 @@ const MemberInformation = observer(
                   ORGANISATION_MEMBER_FIELD.PASSWORD
                 ],
               placeholder: t('txt_type'),
-              // ...(!isEdit && {
-              //   required: true,
-              //   validation: 'required',
-              // }),
+              ...(!isEdit && {
+                required: true,
+                validation: 'required',
+              }),
               changed: (data: any) => {
                 this.viewModel.handleFormPropsData(
                   ORGANISATION_MEMBER_FIELD.PASSWORD,
                   data.target.value
                 );
+              },
+              blurred: () => {
+                validator.showMessageFor(t('txt_password'));
+                this.forceUpdate();
               },
               className: 'col-lg-12',
             },
@@ -50,8 +59,8 @@ const MemberInformation = observer(
               key: ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL,
               type: FORM_FIELD_TYPE.INPUT,
               autoComplete: false,
-              // required: true,
-              // validation: 'required',
+              required: true,
+              validation: 'required',
               value:
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL
@@ -64,15 +73,16 @@ const MemberInformation = observer(
                 );
               },
               blurred: () => {
-                validator.showMessageFor('Password');
+                validator.showMessageFor(t('txt_email'));
+                this.forceUpdate();
               },
               className: 'col-lg-12',
             },
             {
               label: t('txt_role'),
               key: ORGANISATION_MEMBER_FIELD.ROLE_ID,
-              // required: true,
-              // validation: 'required',
+              required: true,
+              validation: 'required',
               type: FORM_FIELD_TYPE.SELECTION,
               getValueSelected: this.viewModel.memberDetailViewModel.formPropsData[
                 ORGANISATION_MEMBER_FIELD.ROLE_ID

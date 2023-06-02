@@ -58,7 +58,6 @@ const EditMember = observer(
         });
       }
       this.validator.showMessages();
-      this.forceUpdate();
     }
 
     debouncedChangeHandler = _.debounce((value) => {
@@ -171,7 +170,10 @@ const EditMember = observer(
                 </Form.Group>
                 <MemberInformation
                   validator={this.validator}
+                  messagesShown={this.validator.messagesShown}
+                  isEdit={this.isEdit}
                   formPropsData={this.memberDetailViewModel.memberDetailViewModel.formPropsData}
+                  {...this.props}
                 />
               </Col>
               <Col lg={3}>
