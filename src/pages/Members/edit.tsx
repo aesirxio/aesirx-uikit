@@ -10,7 +10,7 @@ import EditMember from './MemberEdit';
 import { MemberViewModelContextProvider } from './MemberViewModel/MemberViewModelContextProvider';
 
 const EditMemberProvider = observer(
-  class EditCategoMemberer extends Component {
+  class EditMemberProvider extends Component {
     render() {
       return (
         <MemberViewModelContextProvider>
