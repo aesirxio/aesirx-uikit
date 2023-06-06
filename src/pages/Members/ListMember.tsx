@@ -1,12 +1,12 @@
 import { AesirXSelect, Spinner, notify } from 'components';
-import Table from 'components/Table';
+import { Table } from 'components/Table';
 import React, { useEffect } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useTranslation, withTranslation } from 'react-i18next';
 import { observer } from 'mobx-react';
 import { withMemberViewModel } from './MemberViewModel/MemberViewModelContextProvider';
 import { history } from 'routes/history';
-import ActionsBar from 'components/ActionsBar';
+import { ActionsBar } from 'components/ActionsBar';
 
 const ListMember = observer((props: any) => {
   const { t } = useTranslation();
@@ -125,32 +125,20 @@ const ListMember = observer((props: any) => {
         </div>
       ),
     },
-    // {
-    //   Header: t('txt_last_modified'),
-    //   accessor: 'lastModified',
-    //   className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
-    //   Cell: ({ value }: any) => {
-    //     return (
-    //       <div className="pe-2">
-    //         <div className="mb-1">
-    //           {viewModel?.successResponse?.listPublishStatus?.find(
-    //             (o: any) => o?.value == value.status
-    //           )?.label &&
-    //             t(
-    //               'txt_' +
-    //                 viewModel?.successResponse?.listPublishStatus
-    //                   .find((o: any) => o?.value == value.status)
-    //                   ?.label?.toString()
-    //                   .toLowerCase()
-    //             )}
-    //         </div>
-    //         <div>
-    //           {value.dateTime} {t('txt_by')} {value.author}
-    //         </div>
-    //       </div>
-    //     );
-    //   },
-    // },
+    {
+      Header: t('txt_last_modified'),
+      accessor: 'lastModified',
+      className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
+      Cell: ({ value }: any) => {
+        return (
+          <div className="pe-2">
+            <div>
+              {value.dateTime} {t('txt_by')} {value.author}
+            </div>
+          </div>
+        );
+      },
+    },
   ];
 
   const currentSelectHandler = (arr: any) => {

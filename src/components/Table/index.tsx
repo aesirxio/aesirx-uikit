@@ -355,4 +355,6 @@ const Table = ({
   );
 };
 
-export default withTranslation()(Table);
+const A = withTranslation()(Table);
+
+export { A as Table };

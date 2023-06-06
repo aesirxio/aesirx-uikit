@@ -75,5 +75,21 @@
   "txt_error": "Fejl",
   "txt_title_profile_setting": "Profilindstillinger",
   "txt_title_set_information_name": "Indsæt dit navn og andre offentligt tilgængelig information",
-  "txt_main_menu": "Hovedmenu"
+  "txt_main_menu": "Hovedmenu",
+  "txt_member_name": "Medlemsnavn",
+  "txt_member_email": "Medlems e-mail",
+  "txt_member_role": "Medlemsrolle",
+  "txt_organisation": "Organisation",
+  "txt_member": "Medlem",
+  "txt_add_member_name": "Tilføj medlemsnavn",
+  "txt_password": "Adgangskode",
+  "txt_enter_password":"Indtast adgangskode",
+  "txt_enter_member_email":"Indtast medlems e-mail",
+  "txt_select_role":"Vælg rolle",
+  "txt_enter_metamask_address":"Indtast metamaskadresse",
+  "txt_enter_concordium_address":"Indtast Concordium-adresse",
+  "txt_role": "Rolle",
+  "txt_metamask_wallet": "Metamask Wallet",
+  "txt_concordium_wallet": "Concordium tegnebog",
+  "txt_version": "Version:"
 }

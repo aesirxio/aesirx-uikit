@@ -32,7 +32,7 @@ const MemberInformation = observer(
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.PASSWORD
                 ],
-              placeholder: t('txt_type'),
+              placeholder: t('txt_enter_password'),
               ...(!isEdit && {
                 required: true,
                 validation: 'required',
@@ -60,7 +60,7 @@ const MemberInformation = observer(
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL
                 ],
-              placeholder: t('txt_type'),
+              placeholder: t('txt_your_email'),
               changed: (data: any) => {
                 this.viewModel.handleFormPropsData(
                   ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL,
@@ -107,6 +107,7 @@ const MemberInformation = observer(
               handleChange: (data: any) => {
                 this.viewModel.handleFormPropsData(ORGANISATION_MEMBER_FIELD.ROLE_ID, data.value);
               },
+              placeholder: t('txt_select_role'),
               className: 'col-lg-12',
             },
             {
@@ -119,7 +120,7 @@ const MemberInformation = observer(
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS
                 ][ORGANISATION_MEMBER_FIELD.WALLET_METAMASK],
-              placeholder: t('txt_type'),
+              placeholder: t('txt_enter_metamask_address'),
               changed: (data: any) => {
                 this.viewModel.handleFormPropsData(ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS, {
                   [ORGANISATION_MEMBER_FIELD.WALLET_METAMASK]: data.target.value,
@@ -137,7 +138,7 @@ const MemberInformation = observer(
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS
                 ][ORGANISATION_MEMBER_FIELD.WALLET_CONCORDIUM],
-              placeholder: t('txt_type'),
+              placeholder: t('txt_enter_concordium_address'),
               changed: (data: any) => {
                 this.viewModel.handleFormPropsData(ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS, {
                   [ORGANISATION_MEMBER_FIELD.WALLET_CONCORDIUM]: data.target.value,

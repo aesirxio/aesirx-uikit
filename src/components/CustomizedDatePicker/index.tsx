@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { FORMAT_DATE_TIME_UPDATE_POST } from 'constant';
-import ComponentSVG from 'components/ComponentSVG';
+import { ComponentSVG } from 'components/ComponentSVG';
 
 const CustomizedDatePicker = ({
   handleOnChange,

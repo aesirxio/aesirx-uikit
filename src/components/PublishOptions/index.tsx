@@ -17,4 +17,6 @@ const PublishOptions = observer(
     }
   }
 );
-export default withTranslation()(PublishOptions);
+const A = withTranslation()(PublishOptions);
+
+export { A as PublishOptions };

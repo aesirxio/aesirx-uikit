@@ -72,5 +72,21 @@
   "txt_menu_dashboard": "Nadzorna ploča",
   "txt_title_profile_setting": "Postavke profila",
   "txt_title_set_information_name": "Postavite svoje ime i druge podatke za javnost",
-  "txt_main_menu": "Glavni izbornik"
+  "txt_main_menu": "Glavni izbornik",
+  "txt_member_name": "Ime člana",
+  "txt_member_email": "E-pošta člana",
+  "txt_member_role": "Uloga člana",
+  "txt_organisation": "Organizacija",
+  "txt_member": "Član",
+  "txt_add_member_name": "Dodaj ime člana",
+  "txt_password": "Lozinka",
+  "txt_enter_password":"Unesite lozinku",
+  "txt_enter_member_email":"Unesite e-poštu člana",
+  "txt_select_role":"Odaberite ulogu",
+  "txt_enter_metamask_address":"Unesite adresu metamaska",
+  "txt_enter_concordium_address":"Unesite adresu Concordiuma",
+  "txt_role": "Uloga",
+  "txt_metamask_wallet": "Metamask novčanik",
+  "txt_concordium_wallet": "Concordium novčanik",
+  "txt_version": "Verzija:"
 }

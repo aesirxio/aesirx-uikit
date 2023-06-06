@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import ComponentSVG from 'components/ComponentSVG';
+import { ComponentSVG } from 'components/ComponentSVG';
 import React from 'react';
 const EditHeader = ({ props, title, isEdit, redirectUrl }: any) => {
   const { t, history } = props;
@@ -23,4 +23,4 @@ const EditHeader = ({ props, title, isEdit, redirectUrl }: any) => {
     </div>
   );
 };
-export default EditHeader;
+export { EditHeader };
