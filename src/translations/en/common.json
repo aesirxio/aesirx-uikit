@@ -76,5 +76,15 @@
   "txt_title_profile_setting": "Profile Setting",
   "txt_title_set_information_name": "Set your name and other public-facing information",
   "txt_main_menu": "Main Menu",
+  "txt_member_name": "Member Name",
+  "txt_member_email": "Member Email",
+  "txt_member_role": "Member Role",
+  "txt_organisation": "Organisation",
+  "txt_member": "Member",
+  "txt_add_member_name": "Add member name",
+  "txt_password": "Password",
+  "txt_role": "Role",
+  "txt_metamask_wallet": "Metamask Wallet",
+  "txt_concordium_wallet": "Concordium Wallet",
   "txt_version": "Version:"
 }

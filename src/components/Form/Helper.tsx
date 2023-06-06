@@ -58,11 +58,11 @@ const renderField = (field: any, validator: any) => {
 
     case FORM_FIELD_TYPE.SELECTION:
       return (
-        <Form.Group key={Math.random()} className={`mb-3 ${className}`}>
+        <Form.Group key={field.key} className={`mb-3 ${className}`}>
           {field.label && <Label text={field.label} required={field.required ?? false} />}
-          <FormSelection key={Math.random()} field={field} />{' '}
+          <FormSelection key={Math.random()} field={field} />
           {field.validation &&
-            validator.message(field.label, field.value, field.validation, {
+            validator.message(field.label, field.getValueSelected, field.validation, {
               className: 'text-danger',
             })}
         </Form.Group>
