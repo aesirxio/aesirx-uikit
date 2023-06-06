@@ -16,3 +16,4 @@ export * from './CustomizedDatePicker';
 export * from './Button';
 export * from './ButtonNormal';
 export * from './ModalDam';
+export * from './SVGComponent';
