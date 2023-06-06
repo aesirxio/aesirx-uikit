@@ -1,4 +1,4 @@
-import ComponentSVG from 'components/ComponentSVG';
+import { ComponentSVG } from 'components/ComponentSVG';
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Form } from 'react-bootstrap';

@@ -1,8 +1,8 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
-import ComponentSVG from '../ComponentSVG';
+import { ComponentSVG } from '../ComponentSVG';
 import './index.scss';
+import { withTranslation } from 'react-i18next';
 const ActionsBar = ({ t, buttons = [] }: any) => {
   return (
     <div className="d-flex align-items-center">
@@ -31,4 +31,7 @@ const ActionsBar = ({ t, buttons = [] }: any) => {
     </div>
   );
 };
-export default withTranslation()(ActionsBar);
+
+const A = withTranslation()(ActionsBar);
+
+export { A as ActionsBar };

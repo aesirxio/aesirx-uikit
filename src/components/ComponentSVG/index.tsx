@@ -18,4 +18,4 @@ function ComponentSVG({ url, width, height, color, className }: any) {
   );
 }
 
-export default ComponentSVG;
+export { ComponentSVG };

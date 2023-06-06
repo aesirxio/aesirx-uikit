@@ -72,5 +72,21 @@
   "txt_menu_dashboard": "Tablero",
   "txt_title_profile_setting": "Ajustes de perfil",
   "txt_title_set_information_name": "Establezca su nombre y otra información pública",
-  "txt_main_menu": "Menú principal"
+  "txt_main_menu": "Menú principal",
+  "txt_member_name": "Nombre del miembro",
+  "txt_member_email": "Correo electrónico del miembro",
+  "txt_member_role": "Rol del miembro",
+  "txt_organisation": "Organización",
+  "txt_member": "Miembro",
+  "txt_add_member_name": "Agregar nombre de miembro",
+  "txt_password": "Contraseña",
+  "txt_enter_password":"Ingresar contraseña",
+  "txt_enter_member_email":"Ingrese el correo electrónico del miembro",
+  "txt_select_role":"Seleccionar Rol",
+  "txt_enter_metamask_address":"Ingrese la dirección de la metamáscara",
+  "txt_enter_concordium_address":"Ingrese la dirección del concordio",
+  "txt_role": "Rol",
+  "txt_metamask_wallet": "Monedero Metamask",
+  "txt_concordium_wallet": "Cartera Concordio",
+  "txt_version": "Versión:"
 }

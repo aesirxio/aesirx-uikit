@@ -75,5 +75,21 @@
   "txt_select": "Lựa chọn...",
   "txt_title_profile_setting": "Cài đặt hồ sơ",
   "txt_title_set_information_name": "Cài đặt tên và các thông tin khác",
-  "txt_main_menu": "Menu chính"
+  "txt_main_menu": "Menu chính",
+  "txt_member_name": "Tên thành viên",
+  "txt_member_email": "Email thành viên",
+  "txt_member_role": "Vai trò thành viên",
+  "txt_organisation": "Tổ chức",
+  "txt_member": "Thành viên",
+  "txt_add_member_name": "Thêm tên thành viên",
+  "txt_password": "Mật khẩu",
+  "txt_enter_password":"Nhập mật khẩu",
+  "txt_enter_member_email":"Nhập Email thành viên",
+  "txt_select_role":"Chọn vai trò",
+  "txt_enter_metamask_address":"Nhập địa chỉ ví Metamask",
+  "txt_enter_concordium_address":"Nhập địa chỉ ví Concordium",
+  "txt_role": "Vai trò",
+  "txt_metamask_wallet": "Ví Metamask",
+  "txt_concordium_wallet": "Ví Concordium",
+  "txt_version": "Phiên bản:"
 }

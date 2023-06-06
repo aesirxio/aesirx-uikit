@@ -65,5 +65,21 @@
   "txt_apply": "Appliquer",
   "txt_select": "Sélectionner...",
   "txt_video": "Vidéo",
-  "txt_main_menu": "Menu principal"
+  "txt_main_menu": "Menu principal",
+  "txt_member_name": "Nom du membre",
+  "txt_member_email": "Courriel du membre",
+  "txt_member_role": "Rôle de membre",
+  "txt_organisation": "Organisation",
+  "txt_member": "Membre",
+  "txt_add_member_name": "Ajouter un nom de membre",
+  "txt_password": "Mot de passe",
+  "txt_enter_password":"Entrez le mot de passe",
+  "txt_enter_member_email":"Entrez l'adresse e-mail du membre",
+  "txt_select_role":"Sélectionner un rôle",
+  "txt_enter_metamask_address":"Entrez l'adresse du métamasque",
+  "txt_enter_concordium_address":"Entrez l'adresse du Concordium",
+  "txt_role": "Rôle",
+  "txt_metamask_wallet": "Portefeuille Metamask",
+  "txt_concordium_wallet": "Portefeuille Concordium",
+  "txt_version": "Version:"
 }
