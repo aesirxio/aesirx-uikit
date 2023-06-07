@@ -138,13 +138,13 @@ const EditMember = observer(
                 <Form.Group className={`mb-24`}>
                   <Input
                     field={{
-                      value:
+                      getValueSelected:
                         this.memberDetailViewModel.memberDetailViewModel.formPropsData[
                           ORGANISATION_MEMBER_FIELD.MEMBER_NAME
                         ],
                       classNameInput: 'py-10 fs-4',
                       placeholder: t('txt_add_member_name'),
-                      changed: (event: any) => {
+                      handleChange: (event: any) => {
                         this.memberDetailViewModel.handleFormPropsData(
                           ORGANISATION_MEMBER_FIELD.MEMBER_NAME,
                           event.target.value

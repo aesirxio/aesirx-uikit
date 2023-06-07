@@ -38,6 +38,7 @@ class FormSelection extends Component<any, any> {
           placeholder={this.props.field?.placeholder}
           isDisabled={this.props.field?.isDisabled}
           size="large"
+          isClearable={this.props.field?.isClearable}
         />
       </>
     );

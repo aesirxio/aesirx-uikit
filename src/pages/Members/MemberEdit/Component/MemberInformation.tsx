@@ -28,7 +28,7 @@ const MemberInformation = observer(
               type: FORM_FIELD_TYPE.INPUT,
               typeFormat: FORM_FIELD_TYPE.PASSWORD,
               autoComplete: false,
-              value:
+              getValueSelected:
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.PASSWORD
                 ],
@@ -37,7 +37,7 @@ const MemberInformation = observer(
                 required: true,
                 validation: 'required',
               }),
-              changed: (data: any) => {
+              handleChange: (data: any) => {
                 this.viewModel.handleFormPropsData(
                   ORGANISATION_MEMBER_FIELD.PASSWORD,
                   data.target.value
@@ -56,12 +56,12 @@ const MemberInformation = observer(
               autoComplete: false,
               required: true,
               validation: 'required',
-              value:
+              getValueSelected:
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL
                 ],
-              placeholder: t('txt_your_email'),
-              changed: (data: any) => {
+              placeholder: t('txt_enter_member_email'),
+              handleChange: (data: any) => {
                 this.viewModel.handleFormPropsData(
                   ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL,
                   data.target.value
@@ -88,7 +88,7 @@ const MemberInformation = observer(
                         x.id.toString() ===
                         this.viewModel.memberDetailViewModel.formPropsData[
                           ORGANISATION_MEMBER_FIELD.ROLE_ID
-                        ]
+                        ].toString()
                     )?.name,
                     value:
                       this.viewModel.memberDetailViewModel.formPropsData[
@@ -116,12 +116,12 @@ const MemberInformation = observer(
                 ORGANISATION_MEMBER_FIELD.WALLET_METAMASK
               ],
               type: FORM_FIELD_TYPE.INPUT,
-              value:
+              getValueSelected:
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS
                 ][ORGANISATION_MEMBER_FIELD.WALLET_METAMASK],
               placeholder: t('txt_enter_metamask_address'),
-              changed: (data: any) => {
+              handleChange: (data: any) => {
                 this.viewModel.handleFormPropsData(ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS, {
                   [ORGANISATION_MEMBER_FIELD.WALLET_METAMASK]: data.target.value,
                 });
@@ -134,12 +134,12 @@ const MemberInformation = observer(
                 ORGANISATION_MEMBER_FIELD.WALLET_CONCORDIUM
               ],
               type: FORM_FIELD_TYPE.INPUT,
-              value:
+              getValueSelected:
                 this.viewModel.memberDetailViewModel.formPropsData[
                   ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS
                 ][ORGANISATION_MEMBER_FIELD.WALLET_CONCORDIUM],
               placeholder: t('txt_enter_concordium_address'),
-              changed: (data: any) => {
+              handleChange: (data: any) => {
                 this.viewModel.handleFormPropsData(ORGANISATION_MEMBER_FIELD.CUSTOM_FIELDS, {
                   [ORGANISATION_MEMBER_FIELD.WALLET_CONCORDIUM]: data.target.value,
                 });
