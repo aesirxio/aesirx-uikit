@@ -88,5 +88,6 @@
   "txt_role": "Uloga",
   "txt_metamask_wallet": "Metamask novčanik",
   "txt_concordium_wallet": "Concordium novčanik",
-  "txt_version": "Verzija:"
+  "txt_version": "Verzija:",
+  "txt_sign_in_to_getting_started": "Prijavite se da bi ste započeli."
 }
