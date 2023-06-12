@@ -7,4 +7,8 @@ import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 
-export { history };
+const historyPush = (link: any) => {
+  return history.push((process.env.REACT_APP_INTERGRATION ? '/pim' : '') + link);
+};
+
+export { history, historyPush };
