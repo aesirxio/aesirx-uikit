@@ -88,5 +88,6 @@
   "txt_role": "роль",
   "txt_metamask_wallet": "Гаманець Metamask",
   "txt_concordium_wallet": "Гаманець Concordium",
-  "txt_version": "Версія:"
+  "txt_version": "Версія:",
+  "txt_sign_in_to_getting_started": "Увійдіть, щоб почати роботу."
 }

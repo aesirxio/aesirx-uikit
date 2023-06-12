@@ -91,5 +91,6 @@
   "txt_role": "บทบาท",
   "txt_metamask_wallet": "กระเป๋าเงิน Metamask",
   "txt_concordium_wallet": "กระเป๋าเงิน Concordium",
-  "txt_version": "รุ่น:"
+  "txt_version": "รุ่น:",
+  "txt_sign_in_to_getting_started": "ลงชื่อเข้าใช้เพื่อเริ่มต้นใช้งาน"
 }

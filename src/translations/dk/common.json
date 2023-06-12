@@ -91,5 +91,6 @@
   "txt_role": "Rolle",
   "txt_metamask_wallet": "Metamask Wallet",
   "txt_concordium_wallet": "Concordium tegnebog",
-  "txt_version": "Version:"
+  "txt_version": "Version:",
+  "txt_sign_in_to_getting_started": "Log ind for at komme i gang."
 }

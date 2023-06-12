@@ -28,6 +28,23 @@ interface IAppContext {
   settingMenu?: any;
 }
 
+interface AppProviderProps {
+  authRoutes: any;
+  mainRoutes: any;
+  settingRoutes?: any;
+  isLogin: any;
+  componentHeader?: any;
+  rootId?: any;
+  noavatar?: any;
+  integration?: any;
+  leftMenu?: any;
+  profileMenu?: any;
+  componentBottomMenu?: any;
+  settingMenu?: any;
+  appLanguages: any;
+  children: any;
+}
+
 const AppContext = createContext<IAppContext>({
   authRoutes: [],
   mainRoutes: [],
@@ -39,7 +56,7 @@ const AppContext = createContext<IAppContext>({
   profileMenu: [],
 });
 
-const AppProvider: React.FC = ({
+const AppProvider: React.FC<AppProviderProps> = ({
   authRoutes,
   mainRoutes,
   appLanguages,
@@ -54,7 +71,7 @@ const AppProvider: React.FC = ({
   profileMenu,
   settingRoutes,
   settingMenu,
-}: any) => {
+}: AppProviderProps) => {
   const authPath = authRoutes
     .map((item: any) => {
       return item.path;

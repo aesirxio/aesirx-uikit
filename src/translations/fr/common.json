@@ -81,5 +81,6 @@
   "txt_role": "Rôle",
   "txt_metamask_wallet": "Portefeuille Metamask",
   "txt_concordium_wallet": "Portefeuille Concordium",
-  "txt_version": "Version:"
+  "txt_version": "Version:",
+  "txt_sign_in_to_getting_started": "Prijavite se da bi ste započeli."
 }

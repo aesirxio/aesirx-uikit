@@ -88,5 +88,6 @@
   "txt_role": "Rol",
   "txt_metamask_wallet": "Monedero Metamask",
   "txt_concordium_wallet": "Cartera Concordio",
-  "txt_version": "Versión:"
+  "txt_version": "Versión:",
+  "txt_sign_in_to_getting_started": "Inicie sesión para comenzar."
 }
