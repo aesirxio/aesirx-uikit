@@ -33,7 +33,7 @@ const renderField = (field: any, validator: any) => {
           <Label text={field.label} required={field.required ?? false} />
           <Input field={field} />
           {field.validation &&
-            validator.message(field.label, field.value, field.validation, {
+            validator.message(field.label, field.getValueSelected, field.validation, {
               className: 'text-danger',
             })}
         </Form.Group>
@@ -44,7 +44,7 @@ const renderField = (field: any, validator: any) => {
           <Label text={field.label} required={field.required ?? false} />
           <Form.Control
             as="textarea"
-            defaultValue={field.value}
+            defaultValue={field.getValueSelected}
             required={field.required ?? false}
             id={field.key}
             onChange={field.changed ?? undefined}
@@ -74,7 +74,7 @@ const renderField = (field: any, validator: any) => {
           {field.label && <Label text={field.label} required={field.required ?? false} />}
           <FormSelectDropdown field={field} />
           {field.validation &&
-            validator.message(field.label, field.value, field.validation, {
+            validator.message(field.label, field.getValueSelected, field.validation, {
               className: 'text-danger',
             })}
         </Form.Group>
@@ -85,7 +85,7 @@ const renderField = (field: any, validator: any) => {
           <Label text={field.label} required={field.required ?? false} />
           <FormRadio field={field} />
           {field.validation &&
-            validator.message(field.label, field.value, field.validation, {
+            validator.message(field.label, field.getValueSelected, field.validation, {
               className: 'text-danger',
             })}
         </Form.Group>
@@ -98,7 +98,7 @@ const renderField = (field: any, validator: any) => {
           <div className="form-control w-full">
             <CustomizedDatePicker
               handleOnChange={(date: any) => field.changed(date)}
-              defaultDate={field.value ? field.value.split(' ')[0] : null}
+              defaultDate={field.getValueSelected ? field.getValueSelected.split(' ')[0] : null}
             />
           </div>
         </Form.Group>
@@ -110,7 +110,7 @@ const renderField = (field: any, validator: any) => {
           <Label text={field.label} required={field.required ?? false} />
           <FormAgeField field={field} />{' '}
           {field.validation &&
-            validator.message(field.label, field.value, field.validation, {
+            validator.message(field.label, field.getValueSelected, field.validation, {
               className: 'text-danger',
             })}
         </Form.Group>
