@@ -8,6 +8,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from 'providers';
 import avatar from '../../assets/images/avatar.png';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const { profileMenu } = useAppContext();
@@ -58,11 +59,8 @@ const Profile = () => {
                   {profileMenu?.map((value: any, index: any) => {
                     return (
                       <li key={index}>
-                        <Dropdown.Item
-                          href={value.link}
-                          className="text-blue-0 d-block rounded-1 text-decoration-none p-16"
-                        >
-                          {t(value.text)}
+                        <Dropdown.Item className="text-blue-0 d-block rounded-1 text-decoration-none p-16">
+                          <Link to={value.link}>{t(value.text)}</Link>
                         </Dropdown.Item>
                       </li>
                     );
