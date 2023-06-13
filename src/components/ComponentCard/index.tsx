@@ -1,8 +1,9 @@
 import React from 'react';
 import './index.scss';
-import { PulseLoaderComponent, history } from 'aesirx-uikit';
 
 import { PAGE_STATUS } from 'constant';
+import { PulseLoaderComponent } from 'components/Spinner';
+import { history } from 'routes/history';
 
 const ComponentCard = ({
   title,
