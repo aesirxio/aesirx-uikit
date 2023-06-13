@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.scss';
-import { PulseLoaderComponent } from 'aesirx-uikit';
+import { PulseLoaderComponent, history } from 'aesirx-uikit';
 
-import { historyPush } from 'routes/history';
+
 import { PAGE_STATUS } from 'constant';
 
 const ComponentCard = ({
@@ -76,7 +76,7 @@ const ComponentCard = ({
       <a
         className="mb-0 fs-6 w-100 text-uppercase text-body fw-semibold d-flex align-items-center text-decoration-none cursor-pointer"
         onClick={() => {
-          historyPush(link);
+          history.push(link);
         }}
       >
         {titleLink}
