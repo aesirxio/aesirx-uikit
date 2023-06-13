@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.scss';
 
-import { historyPush } from 'routes/history';
 import { PAGE_STATUS } from 'constant';
 import { PulseLoaderComponent } from 'components/Spinner';
+import { history } from 'routes/history';
 
 const ComponentCard = ({
   title,
@@ -76,7 +76,7 @@ const ComponentCard = ({
       <a
         className="mb-0 fs-6 w-100 text-uppercase text-body fw-semibold d-flex align-items-center text-decoration-none cursor-pointer"
         onClick={() => {
-          historyPush(link);
+          history.push(link);
         }}
       >
         {titleLink}
