@@ -31,8 +31,10 @@ class ProfileModel {
     const data = await this.profileStore.getMember(id);
 
     runInAction(() => {
-      this.data = data;
-      this.formStatus = PAGE_STATUS.READY;
+      if (data) {
+        this.data = data;
+        this.formStatus = PAGE_STATUS.READY;
+      }
     });
   };
 
