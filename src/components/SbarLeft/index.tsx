@@ -5,7 +5,7 @@
 
 import { useAppContext } from 'providers';
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { useTranslation } from 'react-i18next';
@@ -30,15 +30,15 @@ const SbarLeft = () => {
       {has ? (
         <nav>
           <div className="py-1 px-3 item_menu item_menu_home">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="d-block text-white p-3 link_menu rounded-2 text-decoration-none  "
             >
               <i>
                 <FontAwesomeIcon icon={faArrowLeft} />
               </i>
               <span className="ms-3 text text-white">{t('txt_back_to_dashboard')}</span>
-            </a>
+            </Link>
           </div>
           {settingMenu}
         </nav>
