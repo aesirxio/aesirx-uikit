@@ -102,7 +102,7 @@ class MemberDetailViewModel {
   };
 
   onGetMemberSuccessHandler = (result: any) => {
-    if (result) {
+    if (result && result[ORGANISATION_MEMBER_FIELD.ID]) {
       this.memberDetailViewModel.formPropsData = {
         ...this.memberDetailViewModel.formPropsData,
         ...Object.keys(ORGANISATION_MEMBER_FIELD)
@@ -113,9 +113,8 @@ class MemberDetailViewModel {
           })
           .reduce((prev, cur) => ({ ...prev, ...cur })),
       };
+      this.formStatus = PAGE_STATUS.READY;
     }
-
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   onGetRoleListSuccessHandler = (result: any) => {

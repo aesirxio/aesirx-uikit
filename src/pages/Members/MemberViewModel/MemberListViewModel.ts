@@ -49,7 +49,6 @@ class MemberListViewModel {
       } else {
         this.onErrorHandler(data?.response);
       }
-      this.successResponse.state = true;
     });
   };
 
@@ -76,6 +75,7 @@ class MemberListViewModel {
     }
 
     const data = await this.memberStore.getList(this.successResponse.filters);
+
     runInAction(() => {
       if (!data?.error) {
         this.onSuccessHandler(data?.response, '');
@@ -90,10 +90,12 @@ class MemberListViewModel {
     if (result && message) {
       notify(message, 'success');
     }
+
     if (result?.listItems) {
       this.successResponse.listMembers = this.transform(result?.listItems);
       this.successResponse.pagination = result?.pagination;
       this.items = result?.listItems;
+      this.successResponse.state = true;
     }
     if (result?.listPublishStatus) {
       this.successResponse.listPublishStatus = result?.listPublishStatus;
