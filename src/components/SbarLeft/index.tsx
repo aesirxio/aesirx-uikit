@@ -46,12 +46,14 @@ const SbarLeft = () => {
         leftMenu
       )}
 
-      {componentBottomMenu}
-      {version && (
-        <span className="ms-3 mb-3 text text-white fs-14">
-          {t('txt_version')} {version}
-        </span>
-      )}
+      <div>
+        {componentBottomMenu}
+        {version && (
+          <span className="ms-3 mb-3 text text-white fs-14">
+            {t('txt_version')} {version}
+          </span>
+        )}
+      </div>
     </aside>
   );
 };
