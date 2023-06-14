@@ -124,13 +124,13 @@ const AppProvider: React.FC<AppProviderProps> = ({
                 ) : (
                   <Router history={history}>
                     <Switch>
-                      <Route exact path={authPath}>
+                      <Route path={authPath}>
                         <AuthLayout />
                       </Route>
-                      <Route exact path={mainPath}>
+                      <Route path={mainPath}>
                         <MainLayout />
                       </Route>
-                      <Route exact path={settingPath}>
+                      <Route path={settingPath}>
                         <SettingLayout />
                       </Route>
                       <Route path="*">
