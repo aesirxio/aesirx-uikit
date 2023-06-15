@@ -17,6 +17,11 @@ const CustomizedDatePicker = ({
   showTimeSelect,
   placeholderText,
   isUTC,
+  disablePast = false,
+  changeYear = false,
+  minDate,
+  maxDate,
+  isClearable = false,
 }: any) => {
   const [startDate, setStartDate] = useState<Date>();
   useEffect(() => {
@@ -47,6 +52,11 @@ const CustomizedDatePicker = ({
         }`}
         readOnly={isDisabled}
         placeholderText={placeholderText ?? dateFormat ?? null}
+        minDate={disablePast ? moment().toDate() : minDate ? minDate : null}
+        maxDate={maxDate ? maxDate : null}
+        showYearDropdown={changeYear}
+        dropdownMode="select"
+        isClearable={isClearable}
       />
     </div>
   );
