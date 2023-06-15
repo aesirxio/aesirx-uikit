@@ -75,5 +75,22 @@
   "txt_error": "ข้อผิดพลาด",
   "txt_title_profile_setting": "ตั้งค่าโปรไฟล์",
   "txt_title_set_information_name": "ตั้งชื่อของคุณและเปิดเผยข้อมูลอื่นๆ ต่อสาธารณะ",
-  "txt_main_menu": "เมนูหลัก"
+  "txt_main_menu": "เมนูหลัก",
+  "txt_member_name": "ชื่อสมาชิก",
+  "txt_member_email": "อีเมล์สมาชิก",
+  "txt_member_role": "บทบาทของสมาชิก",
+  "txt_organisation": "องค์กร",
+  "txt_member": "สมาชิก",
+  "txt_add_member_name": "เพิ่มชื่อสมาชิก",
+  "txt_password": "รหัสผ่าน",
+  "txt_enter_password":"ใส่รหัสผ่าน",
+  "txt_enter_member_email":"ใส่อีเมลสมาชิก",
+  "txt_select_role":"เลือกบทบาท",
+  "txt_enter_metamask_address":"ป้อนที่อยู่ Metamask",
+  "txt_enter_concordium_address":"ป้อนที่อยู่คอนคอร์เดียม",
+  "txt_role": "บทบาท",
+  "txt_metamask_wallet": "กระเป๋าเงิน Metamask",
+  "txt_concordium_wallet": "กระเป๋าเงิน Concordium",
+  "txt_version": "รุ่น:",
+  "txt_sign_in_to_getting_started": "ลงชื่อเข้าใช้เพื่อเริ่มต้นใช้งาน"
 }

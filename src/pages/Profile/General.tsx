@@ -35,6 +35,8 @@ const ProfileGeneral = observer(() => {
     [MEMBER_FIELD_KEY.STATE]: memberInfo[MEMBER_GET_FIELD_KEY.STATE],
     [MEMBER_FIELD_KEY.COUNTRY]: memberInfo[MEMBER_GET_FIELD_KEY.COUNTRY],
     [MEMBER_FIELD_KEY.TIMEZONE]: memberInfo[MEMBER_GET_FIELD_KEY.TIMEZONE],
+    [MEMBER_FIELD_KEY.WALLET_METAMASK]: memberInfo[MEMBER_GET_FIELD_KEY.WALLET_METAMASK],
+    [MEMBER_FIELD_KEY.WALLET_CONCORDIUM]: memberInfo[MEMBER_GET_FIELD_KEY.WALLET_CONCORDIUM],
   };
 
   const formSetting = [
@@ -42,7 +44,7 @@ const ProfileGeneral = observer(() => {
       label: t('txt_username'),
       key: MEMBER_FIELD_KEY.USERNAME,
       type: FORM_FIELD_TYPE.INPUT,
-      value: formPropsData[MEMBER_FIELD_KEY.USERNAME],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.USERNAME],
       className: 'col-6',
       inputClassName: 'border',
       readOnly: true,
@@ -51,7 +53,7 @@ const ProfileGeneral = observer(() => {
       label: t('txt_email'),
       key: MEMBER_FIELD_KEY.EMAIL,
       type: FORM_FIELD_TYPE.INPUT,
-      value: formPropsData[MEMBER_FIELD_KEY.EMAIL],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.EMAIL],
       className: 'col-6',
       inputClassName: 'border',
       readOnly: true,
@@ -61,12 +63,12 @@ const ProfileGeneral = observer(() => {
       label: t('txt_fullname'),
       key: MEMBER_FIELD_KEY.FULL_NAME,
       type: FORM_FIELD_TYPE.INPUT,
-      value: formPropsData[MEMBER_FIELD_KEY.FULL_NAME],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.FULL_NAME],
       className: 'col-6',
       required: true,
       validation: 'required',
       inputClassName: 'border',
-      changed: (event: any) => {
+      handleChange: (event: any) => {
         formPropsData[MEMBER_FIELD_KEY.FULL_NAME] = event.target.value;
       },
     },
@@ -74,11 +76,33 @@ const ProfileGeneral = observer(() => {
       label: t('txt_phone'),
       key: MEMBER_FIELD_KEY.PHONE,
       type: FORM_FIELD_TYPE.INPUT,
-      value: formPropsData[MEMBER_FIELD_KEY.PHONE],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.PHONE],
       className: 'col-6',
       inputClassName: 'border',
-      changed: (event: any) => {
+      handleChange: (event: any) => {
         formPropsData[MEMBER_FIELD_KEY.PHONE] = event.target.value;
+      },
+    },
+    {
+      label: t('txt_metamask_wallet'),
+      key: MEMBER_FIELD_KEY.WALLET_METAMASK,
+      type: FORM_FIELD_TYPE.INPUT,
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.WALLET_METAMASK],
+      className: 'col-6',
+      inputClassName: 'border',
+      handleChange: (event: any) => {
+        formPropsData[MEMBER_FIELD_KEY.WALLET_METAMASK] = event.target.value;
+      },
+    },
+    {
+      label: t('txt_concordium_wallet'),
+      key: MEMBER_FIELD_KEY.WALLET_CONCORDIUM,
+      type: FORM_FIELD_TYPE.INPUT,
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.WALLET_CONCORDIUM],
+      className: 'col-6',
+      inputClassName: 'border',
+      handleChange: (event: any) => {
+        formPropsData[MEMBER_FIELD_KEY.WALLET_CONCORDIUM] = event.target.value;
       },
     },
   ];
