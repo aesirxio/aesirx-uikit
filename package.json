@@ -56,7 +56,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "aesirx-dam-app": "^1.2.11",
+    "aesirx-dam-app": "^1.3.0",
     "aesirx-lib": "^1.10.0",
     "aesirx-sso": "^1.0.11",
     "bootstrap": "^5.2.3",
