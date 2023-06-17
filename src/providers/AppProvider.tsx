@@ -73,7 +73,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
   settingMenu,
 }: AppProviderProps) => {
   const authPath = authRoutes
-    .map((item: any) => {
+    ?.map((item: any) => {
       return item.path;
     })
     .reduce((arr: any, el: any) => {
@@ -81,7 +81,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
     }, []);
 
   const mainPath = mainRoutes
-    .map((item: any) => {
+    ?.map((item: any) => {
       return item.path;
     })
     .reduce((arr: any, el: any) => {
@@ -124,15 +124,21 @@ const AppProvider: React.FC<AppProviderProps> = ({
                 ) : (
                   <Router history={history}>
                     <Switch>
-                      <Route exact path={authPath}>
-                        <AuthLayout />
-                      </Route>
-                      <Route exact path={settingPath}>
-                        <SettingLayout />
-                      </Route>
-                      <Route path={mainPath}>
-                        <MainLayout />
-                      </Route>
+                      {authPath && (
+                        <Route exact path={authPath}>
+                          <AuthLayout />
+                        </Route>
+                      )}
+                      {settingPath && (
+                        <Route exact path={settingPath}>
+                          <SettingLayout />
+                        </Route>
+                      )}
+                      {mainPath && (
+                        <Route path={mainPath}>
+                          <MainLayout />
+                        </Route>
+                      )}
                       <Route path="*">
                         <NotFound />
                       </Route>
