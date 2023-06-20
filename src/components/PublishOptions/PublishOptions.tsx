@@ -90,10 +90,6 @@ const PublishOptionsDetail = observer(
                         PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISHED,
                         data.value
                       );
-                      console.log(
-                        'formPropsData[PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISHED]',
-                        formPropsData[PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISHED]
-                      );
                     },
                   }}
                 />
