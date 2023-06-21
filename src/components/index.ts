@@ -19,3 +19,4 @@ export * from './ModalDam';
 export * from './SVGComponent';
 export * from './ComponentCard';
 export * from './PublishOptions';
+export * from './Table';
