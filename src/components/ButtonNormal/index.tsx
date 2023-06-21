@@ -20,14 +20,14 @@ class ButtonNormal extends React.Component {
           disabled={disabled}
         >
           {iconStart && (
-            <i className="me-14">
+            <i className="me-2">
               <FontAwesomeIcon icon={iconStart} />
             </i>
           )}
           <span>{t(text)}</span>
 
           {iconEnd && (
-            <i className="ms-14">
+            <i className="ms-2">
               <FontAwesomeIcon icon={iconEnd} />
             </i>
           )}
