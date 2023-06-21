@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { FORMAT_DATE_TIME_UPDATE_POST } from 'constant';
 import { ComponentSVG } from 'components/ComponentSVG';
+import './index.scss';
 
 const CustomizedDatePicker = ({
   handleOnChange,
@@ -34,7 +35,7 @@ const CustomizedDatePicker = ({
   }, [defaultDate]);
   return (
     <div className="d-flex align-items-center bg-white position-relative date-picker">
-      <div className="calendar-icon calendar-icon-start position-absolute top-50 translate-middle-y">
+      <div className="calendar-icon calendar-icon-start position-absolute top-50 translate-middle-y d-flex align-items-center">
         <ComponentSVG url="/assets/images/clock.svg" color="#C0C0C0" />
       </div>
       <DatePicker
