@@ -23,11 +23,19 @@ class FormSelection extends Component<any, any> {
     }
   };
   render() {
+    const dataSelected =
+      this.props.field?.isMulti && this.state.field?.length
+        ? this.props.field?.getDataSelectOptions?.filter((item: any) => {
+            return !this.state.field?.find(
+              (o: any) => item?.value?.toString() === o?.value?.toString()
+            );
+          })
+        : this.props.field?.getDataSelectOptions;
     return (
       <>
         <AesirXSelect
           value={this.state.field ?? null}
-          options={this.props.field?.getDataSelectOptions}
+          options={dataSelected}
           className="fs-14"
           isBorder={true}
           //onFocus={this.props.field.changed}
