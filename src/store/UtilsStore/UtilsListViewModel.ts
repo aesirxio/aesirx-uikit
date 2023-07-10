@@ -53,7 +53,7 @@ class UtilsListViewModel {
   };
   getListFieldType = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    const data = await this.utilsStore.getListFieldType();
+    const data: any = await this.utilsStore.getListFieldType();
     runInAction(() => {
       if (!data?.error) {
         this.callbackOnSuccessHandler(data?.response);
