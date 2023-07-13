@@ -59,7 +59,7 @@
     "@types/react-color": "^3.0.6",
     "aesirx-dam-app": "^1.3.0",
     "aesirx-lib": "^1.10.0",
-    "aesirx-sso": "^1.0.11",
+    "aesirx-sso": "1.0.11",
     "bootstrap": "^5.2.3",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.1.0",

@@ -7,11 +7,10 @@ import React, { useState } from 'react';
 import { Button, Col, Ratio, Row } from 'react-bootstrap';
 import { withTranslation } from 'react-i18next';
 
-import { Image as ComponentImage } from 'aesirx-uikit';
-
 import './index.scss';
 import { SVGComponent } from 'components/SVGComponent';
 import { ModalDAMComponent } from 'components/ModalDam';
+import { Image } from 'components/Image';
 const FormImage = ({ field, ...props }: any) => {
   const { t } = props;
   const [file, setFile] = useState(
@@ -72,7 +71,7 @@ const FormImage = ({ field, ...props }: any) => {
                         >
                           <SVGComponent url="/assets/images/delete.svg" className={'bg-danger'} />
                         </div>
-                        <ComponentImage
+                        <Image
                           src={
                             typeof item === 'object' && item !== null
                               ? item?.download_url
