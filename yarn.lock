@@ -2052,25 +2052,12 @@ aesirx-dam-app@^1.3.0:
     simple-react-validator "^1.6.2"
     web-vitals "^3.3.1"
 
-aesirx-lib@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-1.10.0.tgz#65df3101dfb48e6b922ea5bf38d9800ecd6efedf"
-  integrity sha512-h9IijQH+s+Rs6bkYoS7jKW+iy76CxMZ4eRpUXRziP8RhR89tIstTxGA77bXb6BsC5QAs1yVhsgy2jMYdqX+pjw==
+aesirx-lib@^1.10.0, aesirx-lib@^1.11.0, aesirx-lib@^1.9.6, aesirx-lib@^1.9.7:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-1.11.0.tgz#cc947976e834b0d857b8575ed94559f0d6468b74"
+  integrity sha512-r/3xTIVbSvbl/Un+fnvXNYXQ8V+mUmXRzMir1puK8fOk7e103dCFaT8YxyIk4DfEkbWS8+3j8ekIeO4eYRLd2Q==
   dependencies:
-    axios "^1.3.5"
-    axios-auth-refresh "^3.3.6"
-    date-fns "^2.30.0"
-    date-fns-tz "^2.0.0"
-    moment "^2.29.4"
-    query-string "7"
-    react-secure-storage "^1.2.2"
-
-aesirx-lib@^1.9.6, aesirx-lib@^1.9.7:
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-1.9.7.tgz#3a41257b6f4cfda4cb7a5a75efaed23a82c27a8c"
-  integrity sha512-guXs/uAN5wW+xKr9UjyMv5/u9fYXEp8xQVGFA10XIBy/19/j+JJnUOas1A82zHWOawN7LfbZIRHq8gL11n1B+g==
-  dependencies:
-    axios "^1.3.5"
+    axios "^1.4.0"
     axios-auth-refresh "^3.3.6"
     date-fns "^2.30.0"
     date-fns-tz "^2.0.0"
@@ -2276,7 +2263,7 @@ axios-auth-refresh@^3.3.6:
   resolved "https://registry.yarnpkg.com/axios-auth-refresh/-/axios-auth-refresh-3.3.6.tgz#a879f6296a889d6616e51069c2a8135b697966e7"
   integrity sha512-2CeBUce/SxIfFxow5/n8vApJ97yYF6qoV4gh1UrswT7aEOnlOdBLxxyhOI4IaxGs6BY0l8YujU2jlc4aCmK17Q==
 
-axios@^1.3.5:
+axios@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
   integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
