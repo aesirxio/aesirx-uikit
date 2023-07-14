@@ -42,7 +42,7 @@ interface AppProviderProps {
   componentBottomMenu?: any;
   settingMenu?: any;
   appLanguages: any;
-  children: any;
+  children?: any;
 }
 
 const AppContext = createContext<IAppContext>({

@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { AesirXDam } from 'aesirx-dam-app';
+import 'aesirx-dam-app/dist/index.css';
 
 function DigitalAssetsPage() {
   return (
