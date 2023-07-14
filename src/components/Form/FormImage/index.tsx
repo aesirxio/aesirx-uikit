@@ -126,7 +126,7 @@ const FormImage = ({ field, ...props }: any) => {
                     >
                       <SVGComponent url="/assets/images/delete.svg" className={'bg-danger'} />
                     </div>
-                    <ComponentImage
+                    <Image
                       src={
                         typeof file[0] === 'object' && file[0] !== null
                           ? file[0]?.download_url
