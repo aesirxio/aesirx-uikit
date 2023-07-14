@@ -2,8 +2,7 @@
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
  */
-
-import { ModalDAMComponent } from 'aesirx-uikit';
+import { ModalDAMComponent } from 'components/ModalDam';
 import React, { useState } from 'react';
 import { Button, Col, Ratio, Row } from 'react-bootstrap';
 

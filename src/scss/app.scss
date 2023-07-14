@@ -602,6 +602,16 @@ form {
 .ChartWrapper {
   min-height: 200px;
 }
+
+.input-format {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  width: 60px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 :root {
   --body-color: #0a083b;
   --body-bg: #f5f8fa;
