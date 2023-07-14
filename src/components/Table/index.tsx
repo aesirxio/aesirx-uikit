@@ -268,7 +268,7 @@ const Table = ({
                       key={row.getRowProps().key}
                       {...row.getRowProps()}
                       onContextMenu={(e) => {
-                        onRightClickItem(e, row.original);
+                        onRightClickItem && onRightClickItem(e, row.original);
                       }}
                     >
                       {row.cells.map((cell: any, index: any) => {

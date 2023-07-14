@@ -5,7 +5,8 @@
 
 import React, { Component } from 'react';
 
-import { AesirXSelect } from '../../Select';
+import { CreatableComponent } from 'components/Select/Creatable';
+import { AesirXSelect } from 'components/Select';
 
 class FormSelection extends Component<any, any> {
   constructor(props: any) {
@@ -25,21 +26,34 @@ class FormSelection extends Component<any, any> {
   render() {
     return (
       <>
-        <AesirXSelect
-          value={this.state.field ?? null}
-          options={this.props.field?.getDataSelectOptions}
-          className="fs-14"
-          isBorder={true}
-          //onFocus={this.props.field.changed}
-          onBlur={this.props.field?.blurred}
-          isMulti={this.props.field?.isMulti}
-          onChange={this.handleChange}
-          arrowColor={this.props.field?.arrowColor}
-          placeholder={this.props.field?.placeholder}
-          isDisabled={this.props.field?.isDisabled}
-          size="large"
-          isClearable={this.props.field?.isClearable}
-        />
+        {this.props.field.creatable ? (
+          <CreatableComponent
+            defaultValue={this.props.field.getValueSelected}
+            isBorder={true}
+            arrowColor={this.props.field.arrowColor}
+            placeholder={this.props.field.placeholder}
+            className="fs-14"
+            onChange={this.props.field.handleChange}
+          />
+        ) : (
+          <>
+            <AesirXSelect
+              value={this.state.field ?? null}
+              options={this.props.field?.getDataSelectOptions}
+              className="fs-14"
+              isBorder={true}
+              //onFocus={this.props.field.changed}
+              onBlur={this.props.field?.blurred}
+              isMulti={this.props.field?.isMulti}
+              onChange={this.handleChange}
+              arrowColor={this.props.field?.arrowColor}
+              placeholder={this.props.field?.placeholder}
+              isDisabled={this.props.field?.isDisabled}
+              size="large"
+              isClearable={this.props.field?.isClearable}
+            />
+          </>
+        )}
       </>
     );
   }

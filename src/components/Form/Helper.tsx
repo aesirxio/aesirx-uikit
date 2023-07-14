@@ -26,6 +26,8 @@ const renderingGroupFieldHandler = (group: any, validator: any) =>
 const renderField = (field: any, validator: any) => {
   const className = field.className ?? '';
 
+  field.getValueSelected = field?.value ?? field?.getValueSelected;
+
   switch (field.type) {
     case FORM_FIELD_TYPE.INPUT:
       return (

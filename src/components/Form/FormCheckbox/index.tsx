@@ -6,17 +6,24 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const FormRadio = ({ field }: any) => {
-  const [selectedValue, setSelectedValue] = useState(field.getValueSelected?.value);
+const FormCheckbox = ({ field }: any) => {
+  const [selectedValue, setSelectedValue] = useState(field.getValueSelected?.value ?? []);
   useEffect(() => {
     if (field.getValueSelected?.value) {
       setSelectedValue(field.getValueSelected?.value);
     }
   }, [field.getValueSelected?.value]);
 
+  useEffect(() => {
+    field.handleChange(selectedValue);
+  }, [selectedValue]);
+
   const handleChange = (data: any) => {
-    setSelectedValue(data.target?.value);
-    field.handleChange(data);
+    if (data.target.checked) {
+      setSelectedValue((current: any) => [...current, data.target.value]);
+    } else {
+      setSelectedValue((current: any) => current.filter((item: any) => item !== data.target.value));
+    }
   };
   return (
     <div className="d-flex align-items-center w-100 flex-wrap">
@@ -30,21 +37,30 @@ const FormRadio = ({ field }: any) => {
               label={option.label}
               value={option.value}
               name={field.key}
-              type={'radio'}
+              type={'checkbox'}
               id={`inline-radio-${field.key}-${option.value}`}
               onChange={handleChange}
               onBlur={field?.blurred}
-              checked={selectedValue === option.value}
+              checked={selectedValue?.includes(option.value)}
             />
           )
       )}
-      {field.isClearable && (
+      {field?.isCheckAll && (
         <div className="d-flex align-items-center w-100 mt-2">
+          <Button
+            variant="success"
+            className="mx-1 py-1"
+            onClick={() => {
+              setSelectedValue(field.getDataSelectOptions.map((item: any) => item?.value));
+            }}
+          >
+            Check All
+          </Button>
           <Button
             variant="danger"
             className="mx-1 py-1"
             onClick={() => {
-              handleChange('');
+              setSelectedValue('');
             }}
           >
             Clear All
@@ -55,4 +71,4 @@ const FormRadio = ({ field }: any) => {
   );
 };
 
-export { FormRadio };
+export { FormCheckbox };
