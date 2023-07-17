@@ -101,26 +101,26 @@ const AppProvider: React.FC<AppProviderProps> = ({
     }, []);
 
   return (
-    <div className="aesirx">
-      <AppContext.Provider
-        value={{
-          authRoutes,
-          mainRoutes,
-          settingRoutes,
-          isLogin,
-          componentHeader,
-          componentBottomMenu,
-          rootId,
-          noavatar,
-          integration,
-          leftMenu,
-          profileMenu,
-          settingMenu,
-          noHeader,
-        }}
-      >
-        <ThemesContextProvider>
-          <ErrorBoundary>
+    <div className="aesirxui">
+      <ErrorBoundary>
+        <AppContext.Provider
+          value={{
+            authRoutes,
+            mainRoutes,
+            settingRoutes,
+            isLogin,
+            componentHeader,
+            componentBottomMenu,
+            rootId,
+            noavatar,
+            integration,
+            leftMenu,
+            profileMenu,
+            settingMenu,
+            noHeader,
+          }}
+        >
+          <ThemesContextProvider>
             <AesirXI18nextProvider appLanguages={appLanguages}>
               <SSOContextProvider>
                 <Toast />
@@ -154,9 +154,9 @@ const AppProvider: React.FC<AppProviderProps> = ({
                 </BrowserRouter>
               </SSOContextProvider>
             </AesirXI18nextProvider>
-          </ErrorBoundary>
-        </ThemesContextProvider>
-      </AppContext.Provider>
+          </ThemesContextProvider>
+        </AppContext.Provider>
+      </ErrorBoundary>
     </div>
   );
 };

@@ -5,7 +5,7 @@
 
 @import './utils/bootstrap.scss';
 
-.aesirx {
+.aesirxui {
 
   @import 'bootstrap/scss/root';
   @import 'bootstrap/scss/reboot';
@@ -612,6 +612,12 @@
     width: 60px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  .btn{
+    svg{
+      max-width: 16px;
+    }
   }
   
   :root {
