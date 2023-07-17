@@ -613,6 +613,12 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+  .btn{
+    svg{
+      max-width: 16px;
+    }
+  }
   
   :root {
     --body-color: #0a083b;
