@@ -101,7 +101,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
     }, []);
 
   return (
-    <div className="aesirx">
+    <div className="aesirxui">
       <AppContext.Provider
         value={{
           authRoutes,
