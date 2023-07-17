@@ -1,7 +1,7 @@
 import 'scss/app.scss';
 import 'fonts/fontface.css';
 
-export * from './layouts/ErrorBoundary';
+export * from './layouts';
 export * from './components';
 export * from './constant';
 export * from './providers';

@@ -17,7 +17,7 @@ const MainLayout = ({ children }: any) => {
     <div className="container-fluid">
       <div className="row">
         <main className="p-0">
-          {!noHeader && <Header>{componentHeader}</Header>}
+          {!noHeader && <Header>{componentHeader && componentHeader}</Header>}
           <div
             className={`main_content vh-100 main_content_dashboard d-flex ${
               !noHeader && 'pd-t-80'
