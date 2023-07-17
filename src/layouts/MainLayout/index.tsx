@@ -12,13 +12,17 @@ import { useAppContext } from 'providers/AppProvider';
 import { SbarLeft } from 'components';
 
 const MainLayout = ({ children }: any) => {
-  const { mainRoutes, isLogin, componentHeader, integration } = useAppContext();
+  const { mainRoutes, isLogin, componentHeader, integration, noHeader } = useAppContext();
   return isLogin() ? (
     <div className="container-fluid">
       <div className="row">
         <main className="p-0">
-          <Header>{componentHeader}</Header>
-          <div className="main_content vh-100 main_content_dashboard pd-t-80 d-flex">
+          {!noHeader && <Header>{componentHeader}</Header>}
+          <div
+            className={`main_content vh-100 main_content_dashboard d-flex ${
+              !noHeader && 'pd-t-80'
+            }`}
+          >
             <SbarLeft />
             <div className="flex-1 bg-body mh-100 overflow-hidden overflow-y-auto position-relative main-content">
               <Suspense fallback={<Spinner />}>
