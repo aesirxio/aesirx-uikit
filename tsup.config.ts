@@ -8,7 +8,6 @@ const env = process.env.NODE_ENV;
 export const tsup: Options = {
   clean: env !== 'development',
   format: ['esm'],
-  minify: env === 'development' ? false : 'terser',
   watch: env === 'development',
   outDir: 'dist',
   entry: ['src/index.{ts,tsx}', 'src/**/*.{ts,tsx}', '!src/**/*.test.{ts,tsx}', '!src/**/*.d.ts'],
@@ -23,9 +22,6 @@ export const tsup: Options = {
     return {
       js: `.js`,
     };
-  },
-  terserOptions: {
-    compress: { drop_console: true },
   },
   publicDir: 'src/scss',
 };
