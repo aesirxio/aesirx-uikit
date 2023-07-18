@@ -39,7 +39,7 @@
     "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.4",
     "sass": "^1.62.1",
-    "tsup": "^6.7.0",
+    "tsup": "^7.1.0",
     "typescript": "^5.0.2",
     "typescript-plugin-css-modules": "^5.0.1"
   },
