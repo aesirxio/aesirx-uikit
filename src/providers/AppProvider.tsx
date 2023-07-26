@@ -101,63 +101,61 @@ const AppProvider: React.FC<AppProviderProps> = ({
     }, []);
 
   return (
-    <div className="aesirxui">
-      <ErrorBoundary>
-        <AppContext.Provider
-          value={{
-            authRoutes,
-            mainRoutes,
-            settingRoutes,
-            isLogin,
-            componentHeader,
-            componentBottomMenu,
-            rootId,
-            noavatar,
-            integration,
-            leftMenu,
-            profileMenu,
-            settingMenu,
-            noHeader,
-          }}
-        >
-          <ThemesContextProvider>
-            <AesirXI18nextProvider appLanguages={appLanguages}>
-              <SSOContextProvider>
-                <Toast />
-                <BrowserRouter>
-                  {integration ? (
-                    <MainLayout>{children}</MainLayout>
-                  ) : (
-                    <Router history={history}>
-                      <Switch>
-                        {authPath && (
-                          <Route exact path={authPath}>
-                            <AuthLayout />
-                          </Route>
-                        )}
-                        {settingPath && (
-                          <Route exact path={settingPath}>
-                            <SettingLayout />
-                          </Route>
-                        )}
-                        {mainPath && (
-                          <Route path={mainPath}>
-                            <MainLayout />
-                          </Route>
-                        )}
-                        <Route path="*">
-                          <NotFound />
+    <ErrorBoundary>
+      <AppContext.Provider
+        value={{
+          authRoutes,
+          mainRoutes,
+          settingRoutes,
+          isLogin,
+          componentHeader,
+          componentBottomMenu,
+          rootId,
+          noavatar,
+          integration,
+          leftMenu,
+          profileMenu,
+          settingMenu,
+          noHeader,
+        }}
+      >
+        <ThemesContextProvider>
+          <AesirXI18nextProvider appLanguages={appLanguages}>
+            <SSOContextProvider>
+              <Toast />
+              <BrowserRouter>
+                {integration ? (
+                  <MainLayout>{children}</MainLayout>
+                ) : (
+                  <Router history={history}>
+                    <Switch>
+                      {authPath && (
+                        <Route exact path={authPath}>
+                          <AuthLayout />
                         </Route>
-                      </Switch>
-                    </Router>
-                  )}
-                </BrowserRouter>
-              </SSOContextProvider>
-            </AesirXI18nextProvider>
-          </ThemesContextProvider>
-        </AppContext.Provider>
-      </ErrorBoundary>
-    </div>
+                      )}
+                      {settingPath && (
+                        <Route exact path={settingPath}>
+                          <SettingLayout />
+                        </Route>
+                      )}
+                      {mainPath && (
+                        <Route path={mainPath}>
+                          <MainLayout />
+                        </Route>
+                      )}
+                      <Route path="*">
+                        <NotFound />
+                      </Route>
+                    </Switch>
+                  </Router>
+                )}
+              </BrowserRouter>
+            </SSOContextProvider>
+          </AesirXI18nextProvider>
+        </ThemesContextProvider>
+      </AppContext.Provider>
+    </ErrorBoundary>
   );
 };
 

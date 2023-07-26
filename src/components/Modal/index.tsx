@@ -7,7 +7,6 @@ import React from 'react';
 
 import { withTranslation } from 'react-i18next';
 
-import './index.scss';
 import { Modal } from 'react-bootstrap';
 
 const ModalComponent = ({
@@ -25,21 +24,23 @@ const ModalComponent = ({
 }: any) => {
   return (
     <Modal
-        show={show}
-        onShow={onShow}
-        onHide={onHide}
-        centered
-        dialogClassName={dialogClassName ?? ''}
-        contentClassName={contentClassName ?? ''}
-        className={`aesirxui ${modalClassname}`}
-      >
-        <Modal.Header className="px-4 border-bottom-0 text-blue-0">
-          {header && <Modal.Title>{header}</Modal.Title>}
-          {closeButton && <span onClick={onHide} className="close"></span>}
-        </Modal.Header>
-        <Modal.Body className={`${bodyClassName ?? 'px-4 pt-2 pb-0'} `}>{body}</Modal.Body>
-        {footer && <Modal.Footer className="px-4">{footer}</Modal.Footer>}
-      </Modal>
+      show={show}
+      onShow={onShow}
+      onHide={onHide}
+      centered
+      dialogClassName={dialogClassName ?? ''}
+      contentClassName={contentClassName ?? ''}
+      className={`${modalClassname}`}
+    >
+      <Modal.Header className="px-4 border-bottom-0 text-blue-0">
+        {header && <Modal.Title>{header}</Modal.Title>}
+        {closeButton && (
+          <button onClick={onHide} type="button" className="btn-close" aria-label="Close"></button>
+        )}
+      </Modal.Header>
+      <Modal.Body className={`${bodyClassName ?? 'px-4 pt-2 pb-0'} `}>{body}</Modal.Body>
+      {footer && <Modal.Footer className="px-4">{footer}</Modal.Footer>}
+    </Modal>
   );
 };
 
