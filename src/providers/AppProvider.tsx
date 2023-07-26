@@ -10,7 +10,6 @@ import { AuthLayout } from 'layouts/AuthLayout';
 import { MainLayout } from 'layouts/MainLayout';
 import { NotFound } from 'layouts/NotFound';
 
-import { SSOContextProvider } from 'aesirx-sso';
 import { SettingLayout } from 'layouts/SettingLayout';
 
 interface IAppContext {
@@ -121,37 +120,35 @@ const AppProvider: React.FC<AppProviderProps> = ({
       >
         <ThemesContextProvider>
           <AesirXI18nextProvider appLanguages={appLanguages}>
-            <SSOContextProvider>
-              <Toast />
-              <BrowserRouter>
-                {integration ? (
-                  <MainLayout>{children}</MainLayout>
-                ) : (
-                  <Router history={history}>
-                    <Switch>
-                      {authPath && (
-                        <Route exact path={authPath}>
-                          <AuthLayout />
-                        </Route>
-                      )}
-                      {settingPath && (
-                        <Route exact path={settingPath}>
-                          <SettingLayout />
-                        </Route>
-                      )}
-                      {mainPath && (
-                        <Route path={mainPath}>
-                          <MainLayout />
-                        </Route>
-                      )}
-                      <Route path="*">
-                        <NotFound />
+            <Toast />
+            <BrowserRouter>
+              {integration ? (
+                <MainLayout>{children}</MainLayout>
+              ) : (
+                <Router history={history}>
+                  <Switch>
+                    {authPath && (
+                      <Route exact path={authPath}>
+                        <AuthLayout />
                       </Route>
-                    </Switch>
-                  </Router>
-                )}
-              </BrowserRouter>
-            </SSOContextProvider>
+                    )}
+                    {settingPath && (
+                      <Route exact path={settingPath}>
+                        <SettingLayout />
+                      </Route>
+                    )}
+                    {mainPath && (
+                      <Route path={mainPath}>
+                        <MainLayout />
+                      </Route>
+                    )}
+                    <Route path="*">
+                      <NotFound />
+                    </Route>
+                  </Switch>
+                </Router>
+              )}
+            </BrowserRouter>
           </AesirXI18nextProvider>
         </ThemesContextProvider>
       </AppContext.Provider>

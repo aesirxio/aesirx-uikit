@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import './index.scss';
@@ -13,11 +13,15 @@ import { AesirxAuthenticationApiService, Storage } from 'aesirx-lib';
 import { notify } from 'components/Toast';
 import { env } from 'aesirx-lib';
 import welcome from '../../assets/images/logo/welcome-logo.png';
+import { Spinner } from 'components/Spinner';
 
 const LoginPage = ({ text }: any) => {
   const { t } = useTranslation();
 
+  const [loading, setLoading] = useState(false);
+
   const onGetData = async (response: any) => {
+    setLoading(true);
     if (response.error) {
       notify(response.error_description, 'error');
     } else {
@@ -26,6 +30,8 @@ const LoginPage = ({ text }: any) => {
       Storage.setItem('auth', true);
       window.location.reload();
     }
+
+    setLoading(false);
   };
 
   return (
@@ -46,14 +52,19 @@ const LoginPage = ({ text }: any) => {
             <p className="fs-2 fw-semibold text-center text-blue-5">
               {t('txt_sign_in_to_getting_started')}
             </p>
-
-            <SSOButton
-              className="btn-primary btn w-100 fw-bold position-relative d-flex align-item-center justify-content-center my-3  px-6"
-              text={t('txt_sign_in_with_sso')}
-              onGetData={onGetData}
-              demoUser={env.REACT_APP_DEMO_USER ?? ''}
-              demoPassword={env.REACT_APP_DEMO_PASSWORD ?? ''}
-            />
+            <div className="position-relative mt-5">
+              {loading ? (
+                <Spinner />
+              ) : (
+                <SSOButton
+                  className="btn-primary btn w-100 fw-bold position-relative d-flex align-item-center justify-content-center my-3  px-6"
+                  text={t('txt_sign_in_with_sso')}
+                  onGetData={onGetData}
+                  demoUser={env.REACT_APP_DEMO_USER ?? ''}
+                  demoPassword={env.REACT_APP_DEMO_PASSWORD ?? ''}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
