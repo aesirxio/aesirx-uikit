@@ -28,10 +28,9 @@ const LoginPage = ({ text }: any) => {
       const authService = new AesirxAuthenticationApiService();
       await authService.setTokenUser(response, false);
       Storage.setItem('auth', true);
+      setLoading(false);
       window.location.reload();
     }
-
-    setLoading(false);
   };
 
   return (
