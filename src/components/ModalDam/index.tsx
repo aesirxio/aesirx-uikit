@@ -11,11 +11,7 @@ function ModalDAMComponent({ show, onHide, onSelect, type = '', accept = '*' }: 
       onHide={onHide}
       centered
       autoFocus={false}
-      body={
-        <div className="modal-class">
-          <AesirXDam onSelect={onSelect} toolbar={false} type={type} accept={accept} />
-        </div>
-      }
+      body={<AesirXDam onSelect={onSelect} toolbar={false} type={type} accept={accept} />}
     />
   );
 }
