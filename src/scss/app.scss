@@ -5,7 +5,7 @@
 
 @import './utils/bootstrap.scss';
 @import 'bootstrap/scss/root';
-
+@import './themes/index.scss';
 .aesirxui {
   @import 'bootstrap/scss/reboot';
   @import 'bootstrap/scss/type';
@@ -26,10 +26,9 @@
   @import '~bootstrap/scss/modal';
   @import '~bootstrap/scss/close';
   @import '~bootstrap/scss/spinners';
-  
+
   @import 'bootstrap/scss/helpers';
   @import 'bootstrap/scss/utilities/api';
-  @import './themes/index.scss';
 
   img {
     max-width: 100%;
@@ -688,4 +687,3 @@
   --dropdown-indicator-color: #1ab394;
   --datepicker-range-bg-color: #ebf3f6;
 }
-
