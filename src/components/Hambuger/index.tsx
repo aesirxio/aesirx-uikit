@@ -4,11 +4,12 @@
  */
 
 import React from 'react';
+import './index.scss';
 
 const Hambuger = ({ handleAction, className }: any) => {
   return (
     <div
-      className={`wrapper_hambuger d-none cursor-pointer ps-3 pe-2 ${className}`}
+      className={`wrapper_hambuger d-xl-none cursor-pointer ps-3 pe-2 ${className}`}
       onClick={handleAction}
     >
       <div className="item_hambuger"></div>

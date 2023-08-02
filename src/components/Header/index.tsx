@@ -43,7 +43,7 @@ const Header = ({ children }: any) => {
         <span
           className="
               item_collap
-              d-flex
+              d-xl-flex
               position-absolute
               text-green
               bg-blue-1
