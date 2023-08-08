@@ -61,8 +61,10 @@ const Profile = () => {
                   {profileMenu?.map((value: any, index: any) => {
                     return (
                       <li key={index}>
-                        <Dropdown.Item className="text-blue-0 d-block rounded-1 text-decoration-none p-16">
-                          <Link to={value.link}>{t(value.text)}</Link>
+                        <Dropdown.Item className="text-blue-0 d-block rounded-1 text-decoration-none p-0">
+                          <Link className="d-block p-16 text-decoration-none" to={value.link}>
+                            {t(value.text)}
+                          </Link>
                         </Dropdown.Item>
                       </li>
                     );
