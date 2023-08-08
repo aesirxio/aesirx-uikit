@@ -26,7 +26,9 @@ const Profile = () => {
     >
       <Image
         src={
-          Helper.isValidUrl(String(Storage.getItem(AUTHORIZATION_KEY.AVATAR)))
+          preregistration?.objForm?.avatar
+            ? preregistration?.objForm?.avatar
+            : Helper.isValidUrl(String(Storage.getItem(AUTHORIZATION_KEY.AVATAR)))
             ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
             : avatar
         }
