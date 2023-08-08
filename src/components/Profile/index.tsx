@@ -14,7 +14,7 @@ const Profile = () => {
   const { profileMenu } = useAppContext();
 
   const { t } = useTranslation();
-
+  const preregistration: any = Storage.getItem('preregistration') ?? '';
   const CustomToggleAvatar = React.forwardRef(({ onClick }: any, ref: any) => (
     <div
       ref={ref}
@@ -35,7 +35,7 @@ const Profile = () => {
       />
       <div className="text ps-16 pe-2">
         <p className="mb-0 text-blue-0 fs-14 fw-bold">
-          <>{Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
+          <>{preregistration?.objForm?.id ?? Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
         </p>
       </div>
       <i className="icons text-green">

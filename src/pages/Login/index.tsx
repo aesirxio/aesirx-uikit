@@ -14,11 +14,26 @@ import { notify } from 'components/Toast';
 import { env } from 'aesirx-lib';
 import welcome from '../../assets/images/logo/welcome-logo.png';
 import { Spinner } from 'components/Spinner';
+import axios from 'axios';
 
 const LoginPage = ({ text }: any) => {
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
+
+  const getPreregistration = async (jwt: any) => {
+    return await axios.get(
+      `${
+        env.REACT_APP_WEB3_API_ENDPOINT ?? 'https://web3id.backend.aesirx.io:8001'
+      }/preregistration/aesirx`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + jwt,
+        },
+      }
+    );
+  };
 
   const onGetData = async (response: any) => {
     setLoading(true);
@@ -27,6 +42,12 @@ const LoginPage = ({ text }: any) => {
     } else {
       const authService = new AesirxAuthenticationApiService();
       await authService.setTokenUser(response, false);
+      try {
+        const preregistration = response?.jwt && (await getPreregistration(response?.jwt));
+        Storage.setItem('preregistration', preregistration?.data);
+      } catch (error: any) {
+        console.error(error);
+      }
       Storage.setItem('auth', true);
       setLoading(false);
       window.location.reload();
