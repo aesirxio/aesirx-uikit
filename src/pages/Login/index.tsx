@@ -46,6 +46,7 @@ const LoginPage = ({ text }: any) => {
         const preregistration = response?.jwt && (await getPreregistration(response?.jwt));
         Storage.setItem('preregistration', preregistration?.data);
       } catch (error: any) {
+        // eslint-disable-next-line no-console
         console.error(error);
       }
       Storage.setItem('auth', true);
