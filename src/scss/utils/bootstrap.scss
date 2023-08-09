@@ -9,6 +9,9 @@
 @import './mixin';
 
 @import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/mixins/alert';
+@import 'bootstrap/scss/mixins/list-group';
 @import './utilities';
+@import 'bootstrap/scss/_variables-dark';
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/utilities';
