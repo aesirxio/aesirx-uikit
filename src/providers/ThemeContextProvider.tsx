@@ -24,12 +24,12 @@ const ThemesContextProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem('theme', newThemeValue);
 
     document.documentElement.setAttribute('data-bs-theme', newThemeValue);
-};
+  };
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
     document.documentElement.setAttribute('data-bs-theme', theme);
-}, [theme]);
+  }, [theme]);
 
   return <ThemesContext.Provider value={{ theme, toggleTheme }}>{children}</ThemesContext.Provider>;
 };
