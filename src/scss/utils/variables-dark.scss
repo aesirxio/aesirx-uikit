@@ -40,7 +40,6 @@ $pink: #d63384 !default;
 $red: #cb222c !default;
 $orange: #f78464 !default;
 $yellow: #ff9e01 !default;
-$green: #1ab394 !default;
 $green-light: rgba(#1ab394, 0.15) !default;
 $teal: #20c997 !default;
 $cyan: #1a73e8 !default;
@@ -137,7 +136,7 @@ $theme-colors: (
 //
 // Settings for the `<body>` element.
 
-$body-bg: $color-blue-4 !default;
+$body-bg: #101529 !default;
 $body-color: #0a083b !default;
 $body-text-align: null !default;
 

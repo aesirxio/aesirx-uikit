@@ -5,7 +5,7 @@
 
 @import './utils/bootstrap.scss';
 @import 'bootstrap/scss/root';
-@import './themes/index.scss';
+// @import './themes/index.scss';
 .aesirxui {
   @import 'bootstrap/scss/reboot';
   @import 'bootstrap/scss/type';
@@ -26,7 +26,6 @@
   @import '~bootstrap/scss/modal';
   @import '~bootstrap/scss/close';
   @import '~bootstrap/scss/spinners';
-
   @import 'bootstrap/scss/helpers';
   @import 'bootstrap/scss/utilities/api';
 

@@ -23,14 +23,13 @@ const ThemesContextProvider = ({ children }: { children: React.ReactNode }) => {
     setTheme(newThemeValue);
     localStorage.setItem('theme', newThemeValue);
 
-    document.documentElement.classList.remove(theme);
-    document.documentElement.classList.add(newThemeValue);
-  };
+    document.documentElement.setAttribute('data-bs-theme', newThemeValue);
+};
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
-    document.documentElement.classList.add(theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-bs-theme', theme);
+}, [theme]);
 
   return <ThemesContext.Provider value={{ theme, toggleTheme }}>{children}</ThemesContext.Provider>;
 };
