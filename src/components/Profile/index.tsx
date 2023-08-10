@@ -14,7 +14,7 @@ const Profile = () => {
   const { profileMenu } = useAppContext();
 
   const { t } = useTranslation();
-
+  const preregistration: any = Storage.getItem('preregistration') ?? '';
   const CustomToggleAvatar = React.forwardRef(({ onClick }: any, ref: any) => (
     <div
       ref={ref}
@@ -26,7 +26,9 @@ const Profile = () => {
     >
       <Image
         src={
-          Helper.isValidUrl(String(Storage.getItem(AUTHORIZATION_KEY.AVATAR)))
+          preregistration?.objForm?.avatar
+            ? preregistration?.objForm?.avatar
+            : Helper.isValidUrl(String(Storage.getItem(AUTHORIZATION_KEY.AVATAR)))
             ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
             : avatar
         }
@@ -35,7 +37,7 @@ const Profile = () => {
       />
       <div className="text ps-16 pe-2">
         <p className="mb-0 text-blue-0 fs-14 fw-bold">
-          <>{Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
+          <>{preregistration?.objForm?.id ?? Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
         </p>
       </div>
       <i className="icons text-green">
@@ -59,8 +61,10 @@ const Profile = () => {
                   {profileMenu?.map((value: any, index: any) => {
                     return (
                       <li key={index}>
-                        <Dropdown.Item className="text-blue-0 d-block rounded-1 text-decoration-none p-16">
-                          <Link to={value.link}>{t(value.text)}</Link>
+                        <Dropdown.Item className="text-blue-0 d-block rounded-1 text-decoration-none p-0">
+                          <Link className="d-block p-16 text-decoration-none" to={value.link}>
+                            {t(value.text)}
+                          </Link>
                         </Dropdown.Item>
                       </li>
                     );
