@@ -36,7 +36,7 @@ const Profile = () => {
         className="img-avatar rounded-circle object-fit-cover h-45"
       />
       <div className="text ps-16 pe-2">
-        <p className="mb-0 text-blue-0 fs-14 fw-bold">
+        <p className="mb-0 fs-14 fw-bold">
           <>{preregistration?.objForm?.id ?? Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
         </p>
       </div>
