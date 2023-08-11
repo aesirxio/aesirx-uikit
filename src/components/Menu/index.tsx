@@ -68,7 +68,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                         <NavLink
                           exact={true}
                           to={menuList.link}
-                          className={`d-block px-24 py-16 link_menu text-white text-decoration-none`}
+                          className={`d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none`}
                           activeClassName={`active`}
                           onClick={() => setIsOpenCollapse(null)}
                         >
@@ -144,7 +144,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                   <NavLink
                                     exact={true}
                                     to={value.link}
-                                    className={`d-block px-24 py-16 link_menu text-white text-decoration-none`}
+                                    className={`d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none`}
                                     activeClassName={`active`}
                                   >
                                     {value?.mini_text ? (

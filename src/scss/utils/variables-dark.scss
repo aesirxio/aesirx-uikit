@@ -1,2 +1,23 @@
 $body-bg-dark: #101529 !default;
 $body-color: white !default;
+[data-bs-theme=dark] {
+  color-scheme: dark;
+  --bs-body-color: $body-color;
+  --bs-body-bg: $body-bg-dark;
+
+  .wrapper_calendar_full{
+    .rbc-time-header {
+      background-color: #171E3A;
+    }
+    .css-1w2sb4u-singleValue {
+      color: $body-color;
+    }
+    .rbc-day-slot.rbc-today {
+      background-color: #1E4284;
+  }
+  .rbc-today {
+    background-color: #1E4284;
+}
+  }
+
+}
