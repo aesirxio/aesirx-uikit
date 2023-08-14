@@ -622,6 +622,9 @@
     }
   }
 }
+.dropdown-toggle::after {
+  display:none !important;
+}
 
 :root {
   --box-shadow-color: rgb(0 0 0 / 15%);
