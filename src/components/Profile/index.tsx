@@ -54,7 +54,10 @@ const Profile = () => {
           <Dropdown.Menu className="shadow border-0">
             <div className="text px-16 pe-2">
               <p className="mb-0 fs-14 px-3 pb-2 pt-3 fw-bold">
-                <>{preregistration?.objForm?.id ?? Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
+                <>
+                  {preregistration?.objForm?.id ??
+                    Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}
+                </>
               </p>
             </div>
             {profileMenu && (

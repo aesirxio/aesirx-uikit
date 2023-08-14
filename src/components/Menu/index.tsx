@@ -87,7 +87,9 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                             ></span>
                           )}
 
-                          <span className="ms-16 text d-inline-block text-body">{t(menuList.text)}</span>
+                          <span className="ms-16 text d-inline-block text-body">
+                            {t(menuList.text)}
+                          </span>
                         </NavLink>
                       )}
                     </>
@@ -116,7 +118,9 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                             backgroundColor: '#fff',
                           }}
                         ></span>
-                        <span className="ms-16 text d-inline-block text-body">{t(menuList.text)}</span>
+                        <span className="ms-16 text d-inline-block text-body">
+                          {t(menuList.text)}
+                        </span>
                         <span
                           className="icon arrow d-inline-block align-text-bottom ms-auto"
                           style={{
