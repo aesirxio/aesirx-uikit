@@ -26,7 +26,7 @@ const LanguagesSwitcher = () => {
             <span>{options.label}</span>
           </div>
         )}
-        className="shadow-none select-bg-white"
+        className="shadow-none"
         onChange={(data: any) => {
           i18n.changeLanguage(data.value);
         }}

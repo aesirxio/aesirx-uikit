@@ -1,8 +1,8 @@
 import { Hambuger } from 'components/Hambuger';
-// import { Logo } from 'components/Logo';
-import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { Logo } from 'components/Logo';
+import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
 import './index.scss';
 
@@ -13,22 +13,22 @@ import { useAppContext } from 'providers/AppProvider';
 
 const Header = ({ children }: any) => {
   const { noavatar, integration, rootId } = useAppContext();
-  // const [isMini, setMini] = useState(integration);
+  const [isMini, setMini] = useState(integration);
 
-  // useEffect(() => {
-  //   if (isMini) {
-  //     document.querySelector(rootId).classList.add('mini_left');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (isMini) {
+      document.querySelector(rootId).classList.add('mini_left');
+    }
+  }, []);
 
   const handleMenuLeft = () => {
     document.querySelector(rootId).classList.toggle('show_menu_left');
   };
 
-  // const handleCollap = () => {
-  //   document.querySelector(rootId).classList.toggle('mini_left');
-  //   setMini(!isMini);
-  // };
+  const handleCollap = () => {
+    document.querySelector(rootId).classList.toggle('mini_left');
+    setMini(!isMini);
+  };
 
   return (
     <div
@@ -38,9 +38,9 @@ const Header = ({ children }: any) => {
       }`}
     >
       <Hambuger handleAction={handleMenuLeft} />
-      {/* <Logo isMini={isMini} /> */}
+      <Logo isMini={isMini} />
       <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100 bg-blue-5">
-        {/* <span
+        <span
           className="
               item_collap
               d-xl-flex
@@ -56,7 +56,7 @@ const Header = ({ children }: any) => {
           onClick={handleCollap}
         >
           <FontAwesomeIcon icon={faChevronLeft} />
-        </span> */}
+        </span>
         <div className="d-flex justify-content-end flex-1 align-items-center">
           {children}
           <LanguagesSwitcher />
