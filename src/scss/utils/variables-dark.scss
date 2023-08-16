@@ -7,6 +7,7 @@ $border-color-dark:#1E4284 !default;
   color-scheme: dark;
   --bs-body-color: $body-color;
   --bs-body-bg: $body-bg-dark;
+  
 
 .bg-body{
  background-color:$body-bg-dark !important;
@@ -43,11 +44,10 @@ background-color: $body-bg-white !important;
 .border-end-1 ,.border-end{
   border-right: 1px solid $border-color-dark;
 }
-.btn:hover {
-  color: white;
-  text-decoration: none;
-  background-color: transparent;
+.border-1 {
+  border: 1px solid $border-color-dark;
 }
+
 .text-body {
   color: white;
 }
@@ -67,6 +67,27 @@ background-color: $body-bg-white !important;
 .css-yglbo7-control {
   border-color: $border-color-dark;
 }
+
+}
+.btn{
+  &:active{
+    color: white !important;
+    background-color: $border-color-dark !important;
+    border-color: $border-color-dark !important;
+  }
+  &:hover {
+  color: white !important;
+  text-decoration: none;
+  background-color: $border-color-dark !important;
+  }
+&:disabled{
+  border-color: $border-color-dark !important;
+}
+}
+.btn.active{
+  color: white !important;
+  background-color: $border-color-dark !important;
+  border-color: $border-color-dark !important;
 }
 //Calendar
   .wrapper_calendar_full{

@@ -643,7 +643,21 @@
     width: 100%;
  }
 }
-
+.btn.active{
+  color: white !important ;
+  background-color: #3C3B50 !important ;
+  border-color: #3C3B50 !important ;
+}
+.btn{
+  &:disabled{
+    border-color: var(--border-color) !important;
+  }
+  &:hover{
+    color: white !important ;
+    background-color: #3C3B50 !important ;
+    border-color: #3C3B50 !important ;
+  }
+}
 :root {
   --box-shadow-color: rgb(0 0 0 / 15%);
   --nav-bg: #fff;
