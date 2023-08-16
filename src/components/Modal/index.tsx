@@ -32,7 +32,7 @@ const ModalComponent = ({
       contentClassName={contentClassName}
       className={`aesirxui-modal ${modalClassname}`}
     >
-      <Modal.Header className="px-4 border-bottom-0 text-blue-0">
+      <Modal.Header className="px-4 border-bottom-0 text-body">
         {header && <Modal.Title>{header}</Modal.Title>}
         {closeButton && (
           <button onClick={onHide} type="button" className="btn-close" aria-label="Close"></button>

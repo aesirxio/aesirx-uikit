@@ -39,8 +39,8 @@ const Header = ({ children }: any) => {
     >
       <Hambuger handleAction={handleMenuLeft} />
       <Logo isMini={isMini} />
-      <div className="content_header h-80 border-start-1 border-gray-300 flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100">
-        <span
+      <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100 bg-blue-5">
+        {/* <span
           className="
               item_collap
               d-xl-flex
@@ -56,7 +56,7 @@ const Header = ({ children }: any) => {
           onClick={handleCollap}
         >
           <FontAwesomeIcon icon={faChevronLeft} />
-        </span>
+        </span> */}
         <div className="d-flex justify-content-end flex-1 align-items-center">
           {children}
           <LanguagesSwitcher />

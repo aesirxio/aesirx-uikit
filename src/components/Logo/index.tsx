@@ -10,7 +10,7 @@ import logoWhiteMini from '../../assets/images/logo/logo-white-mini.svg';
 
 const Logo = ({ isMini }: any) => {
   return (
-    <div className="wrapper_header_logo d-xl-flex d-none bg-dark w-248 h-80 align-items-center">
+    <div className="wrapper_header_logo bg-menu d-xl-flex d-none  w-248 h-80 align-items-center">
       <a
         href={window.location.href}
         className={`header_logo d-block ${isMini ? 'mx-auto' : 'mx-3'}`}
