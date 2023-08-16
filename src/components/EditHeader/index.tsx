@@ -9,7 +9,7 @@ const EditHeader = ({ props, title, isEdit, redirectUrl }: any) => {
   const { t, history } = props;
   return (
     <div className="position-relative">
-      <h2 className="text-blue-0 fw-bold mb-8px d-flex align-items-center">
+      <h2 className="text-body fw-bold mb-8px d-flex align-items-center">
         <div
           className="p-sm ps-0 cursor-pointer d-flex"
           onClick={() => {

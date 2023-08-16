@@ -13,13 +13,14 @@ const Logo = ({ isMini }: any) => {
     <div className="wrapper_header_logo bg-menu d-xl-flex d-none  w-248 h-80 align-items-center">
       <a
         href={window.location.href}
-        className={`header_logo d-block ${isMini ? 'mx-auto' : 'mx-3'}`}
+        className={`header_logo d-block  ${isMini ? 'mx-auto my-auto' : 'mx-3 mt-4'}`}
       >
         <Image
           className={`logo_white ${isMini ? 'pe-0' : 'pe-3 pe-lg-6'}`}
           src={`${isMini ? logoWhiteMini : logoWhite}`}
           alt="AesirX"
         />
+        <p className='fs-sm py-2 text-white'>Digital Marketing Automation</p>
       </a>
     </div>
   );

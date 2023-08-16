@@ -20,7 +20,8 @@ const Menu = ({ dataMenu, title = '' }: any) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState<any>('default');
 
   const { t } = useTranslation();
-
+  
+  
   useEffect(() => {
     checkActiveMenu();
   }, []);
@@ -51,7 +52,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
   return (
     <>
       {dataMenu && (
-        <nav className="main-menu py-24 mt-0">
+        <nav className="main-menu py-24 mt-0"> 
           <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
             {t(title ? title : has ? 'txt_menu_setting' : 'txt_main_menu')}
           </p>
@@ -168,9 +169,6 @@ const Menu = ({ dataMenu, title = '' }: any) => {
               );
             })}
           </ul>
-          <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
-            {t(title ? title : has ? 'txt_menu_setting' : '')}
-          </p>
         </nav>
       )}
     </>

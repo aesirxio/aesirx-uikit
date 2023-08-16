@@ -8,7 +8,7 @@ import { Form } from 'react-bootstrap';
 
 const Label = ({ text, required }: any) => {
   return (
-    <Form.Label className="mb-3 w-100 text-blue-0">
+    <Form.Label className="mb-3 w-100 text-body">
       {text}
       {required && <span className="text-red-1">*</span>}
     </Form.Label>
