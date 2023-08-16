@@ -20,7 +20,7 @@ const Logo = ({ isMini }: any) => {
           src={`${isMini ? logoWhiteMini : logoWhite}`}
           alt="AesirX"
         />
-        <p className='fs-sm py-2 text-white'>Digital Marketing Automation</p>
+        <p className="fs-sm py-2 text-white">Digital Marketing Automation</p>
       </a>
     </div>
   );

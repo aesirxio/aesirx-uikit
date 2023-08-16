@@ -12,7 +12,7 @@ const ProfilePage = () => {
       <div>
         <div className="d-flex flex-row justify-content-between py-4 px-3">
           <div>
-            <h2 className='text-body'>{t('txt_title_profile_setting')}</h2>
+            <h2 className="text-body">{t('txt_title_profile_setting')}</h2>
             <span className="text-body">{t('txt_title_set_information_name')}</span>
           </div>
         </div>
