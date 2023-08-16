@@ -111,6 +111,12 @@
     min-width: 45px;
     max-width: 45px;
   }
+  .img-avatar-full {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 183px;
+    border-radius: 5px;
+  }
 
   .w-80 {
     width: 80px;
@@ -623,6 +629,19 @@
 }
 .dropdown-toggle::after {
   display:none !important;
+}
+.is-list{
+  .project-name-logo{
+    display: none;
+  }
+  .column-header-shortDescription , .cell-shortDescription{
+    display: none;
+  }
+}
+.project-name-logo{
+ .lazy-load-image-loaded{
+    width: 100%;
+ }
 }
 
 :root {
