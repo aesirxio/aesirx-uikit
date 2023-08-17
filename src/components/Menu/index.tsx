@@ -11,6 +11,7 @@ import './index.scss';
 import arrow from '../../assets/images/arrow-right.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAppContext } from 'providers';
+import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 
 const Menu = ({ dataMenu, title = '' }: any) => {
   const { settingRoutes } = useAppContext();
@@ -56,11 +57,13 @@ const Menu = ({ dataMenu, title = '' }: any) => {
           </p>
           <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
             {dataMenu?.map((menuList: any, menuListkey: any) => {
+           
               return (
                 <li
                   key={menuListkey}
                   className={`item_menu ${menuList.className ? menuList.className : ''}`}
                 >
+
                   {!menuList.submenu ? (
                     <>
                       {menuList.link && (
@@ -167,6 +170,31 @@ const Menu = ({ dataMenu, title = '' }: any) => {
               );
             })}
           </ul>
+          {/* Secondary "Setup" menu */}
+          <div className="setup-menu">
+            <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
+              {t('Setup')}
+            </p>
+            <ul className="list-unstyled mb-0 pt-md-1">
+              {/* Add your "Setting" menu items here */}
+              {/* Example menu item */}
+              <li className="item_menu">
+                <NavLink
+                  exact={true}
+                  to="/settings"
+                  className="d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none"
+                  activeClassName="active"
+                  onClick={() => setIsOpenCollapse(null)}
+                >
+                  <i>
+                    <FontAwesomeIcon icon={faGear} width={24} height={24} /> {/* Assuming 'cog' is the icon name for settings */}
+                  </i>
+                  <span className="ms-16 text d-inline-block">{t('Settings')}</span>
+                </NavLink>
+              </li>
+              {/* Add more "Setting" menu items if needed */}
+            </ul>
+          </div>
         </nav>
       )}
     </>

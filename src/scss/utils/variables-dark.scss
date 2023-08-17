@@ -7,10 +7,10 @@ $border-color-dark:#1E4284 !default;
   color-scheme: dark;
   --bs-body-color: $body-color;
   --bs-body-bg: $body-bg-dark;
-  
+  --bs-border-color: $border-color-dark;
 
 .aesirxui{
-  .border-bottom{
+.border-bottom{
   border-bottom: 1px solid $border-color-dark;
 }
 .border-start{
@@ -24,6 +24,9 @@ $border-color-dark:#1E4284 !default;
 }
 .border-1 {
   border: 1px solid $border-color-dark;
+}
+.border-bottom-2{
+  border-bottom: 2px solid $border-color-dark;
 }
 
 .text-body {
