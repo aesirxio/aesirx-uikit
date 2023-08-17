@@ -33,7 +33,7 @@ const NoData = ({
         <Image className={`${iconColor}`} src={icons} alt={icons} />
       </div>
       <h5>{title}</h5>
-      {text && <p className={`my-2 fs-14 text-black-50 w-100 mx-auto ${width}`}>{text}</p>}
+      {text && <p className={`my-2 fs-14 text-body w-100 mx-auto ${width}`}>{text}</p>}
 
       {isBtn && (
         <Link

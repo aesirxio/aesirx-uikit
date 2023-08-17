@@ -24,7 +24,7 @@ const MainLayout = ({ children }: any) => {
             }`}
           >
             <SbarLeft />
-            <div className="flex-1 bg-body mh-100 overflow-hidden overflow-y-auto position-relative main-content">
+            <div className="flex-1 mh-100 overflow-hidden overflow-y-auto position-relative main-content">
               <Suspense fallback={<Spinner />}>
                 {integration
                   ? children

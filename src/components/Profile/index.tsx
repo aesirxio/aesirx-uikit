@@ -2,9 +2,6 @@ import React from 'react';
 import { logout, Helper, Storage, AUTHORIZATION_KEY } from 'aesirx-lib';
 import { Dropdown } from 'react-bootstrap';
 import { Image } from 'components/Image';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from 'providers';
 import avatar from '../../assets/images/avatar.png';
@@ -35,14 +32,14 @@ const Profile = () => {
         alt=""
         className="img-avatar rounded-circle object-fit-cover h-45"
       />
-      <div className="text ps-16 pe-2">
-        <p className="mb-0 text-blue-0 fs-14 fw-bold">
+      {/* <div className="text ps-16 pe-2">
+        <p className="mb-0 fs-14 fw-bold">
           <>{preregistration?.objForm?.id ?? Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}</>
         </p>
       </div>
       <i className="icons text-green">
         <FontAwesomeIcon icon={faChevronDown} />
-      </i>
+      </i> */}
     </div>
   ));
 
@@ -55,13 +52,21 @@ const Profile = () => {
             id="dropdown-custom-components position-relative"
           ></Dropdown.Toggle>
           <Dropdown.Menu className="shadow border-0">
+            <div className="text px-16 pe-2">
+              <p className="mb-0 fs-14 px-3 pb-2 pt-3 fw-bold">
+                <>
+                  {preregistration?.objForm?.id ??
+                    Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME)}
+                </>
+              </p>
+            </div>
             {profileMenu && (
               <div className="px-16">
                 <ul className="list-unstyled ps-0 mb-0 list_menu_avatar">
                   {profileMenu?.map((value: any, index: any) => {
                     return (
                       <li key={index}>
-                        <Dropdown.Item className="text-blue-0 d-block rounded-1 text-decoration-none p-0">
+                        <Dropdown.Item className="text-body d-block rounded-1 text-decoration-none p-0">
                           <Link className="d-block p-16 text-decoration-none" to={value.link}>
                             {t(value.text)}
                           </Link>

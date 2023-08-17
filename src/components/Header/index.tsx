@@ -33,13 +33,13 @@ const Header = ({ children }: any) => {
   return (
     <div
       id="all_header"
-      className={`wrapper_header d-flex position-fixed w-100 left-0 right-0 pr-3 align-items-center shadow-sm z-index-100 bg-white ${
+      className={`wrapper_header d-flex position-fixed w-100 left-0 right-0 pr-3 align-items-center shadow-sm z-index-100  ${
         integration ? 'top-30px' : 'top-0'
       }`}
     >
       <Hambuger handleAction={handleMenuLeft} />
       <Logo isMini={isMini} />
-      <div className="content_header h-80 border-start-1 border-gray-300 flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100">
+      <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100 bg-blue-5">
         <span
           className="
               item_collap

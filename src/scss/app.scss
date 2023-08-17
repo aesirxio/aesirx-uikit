@@ -3,10 +3,11 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-@import './utils/bootstrap.scss';
-@import 'bootstrap/scss/root';
-@import './themes/index.scss';
+
+
 .aesirxui {
+  @import './utils/bootstrap.scss';
+  @import 'bootstrap/scss/root';
   @import 'bootstrap/scss/reboot';
   @import 'bootstrap/scss/type';
   @import 'bootstrap/scss/dropdown';
@@ -26,7 +27,6 @@
   @import '~bootstrap/scss/modal';
   @import '~bootstrap/scss/close';
   @import '~bootstrap/scss/spinners';
-
   @import 'bootstrap/scss/helpers';
   @import 'bootstrap/scss/utilities/api';
 
@@ -110,6 +110,12 @@
   .img-avatar {
     min-width: 45px;
     max-width: 45px;
+  }
+  .img-avatar-full {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 183px;
+    border-radius: 5px;
   }
 
   .w-80 {
@@ -552,7 +558,6 @@
   }
   .react-datepicker-wrapper {
     .form-control {
-      border: 0;
       &:focus {
         box-shadow: none;
         border: 1px solid $color-blue;
@@ -622,11 +627,38 @@
     }
   }
 }
-
+.dropdown-toggle::after {
+  display:none !important;
+}
+.is-list{
+  .project-name-logo{
+    display: none;
+  }
+  .column-header-shortDescription , .cell-shortDescription{
+    display: none;
+  }
+}
+.project-name-logo{
+ .lazy-load-image-loaded{
+    width: 100%;
+ }
+}
+.btn.active{
+  color: white !important ;
+  background-color: #3C3B50 !important ;
+  border-color: #3C3B50 !important ;
+}
+.btn{
+  &:disabled{
+    border-color: var(--border-color) !important;
+  }
+  &:hover{
+    color: white !important ;
+    background-color: #3C3B50 !important ;
+    border-color: #3C3B50 !important ;
+  }
+}
 :root {
-  --body-color: #0a083b;
-  --body-bg: #f5f8fa;
-
   --box-shadow-color: rgb(0 0 0 / 15%);
   --nav-bg: #fff;
 
@@ -671,19 +703,4 @@
 
   --event-bg: #cfe2ff;
   --event-color: #0d6efd;
-}
-
-.light {
-  --sidebar-submenu-bg: #0c1215;
-  --dropdown-item-hover-color: #1ab394;
-  --dropdown-item-hover-bg: #e8e9ec;
-  --view-active-bg: #e8e9ec;
-  --text-title-color: #081240;
-  --dropdown-bg: #fff;
-  --dropdown-item-color: #081240;
-  --input-border-color: #e3e3e3;
-  --input-placeholder-color: #c0c0c0;
-  --dropdown-multi-bg: #ebebeb;
-  --dropdown-indicator-color: #1ab394;
-  --datepicker-range-bg-color: #ebf3f6;
 }

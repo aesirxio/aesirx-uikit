@@ -48,7 +48,7 @@ const PublishOptionsDetail = observer(
         : this.utilsListViewModel?.listPublishStatus;
       return (
         <div className="p-24 bg-white rounded-1 shadow-sm">
-          <h5 className="fw-bold text-blue-0 text-uppercase fs-6 border-bottom pb-24 mb-24">
+          <h5 className="fw-bold text-body text-uppercase fs-6 border-bottom pb-24 mb-24">
             {t('txt_publish_options')}
           </h5>
           {isPublished && (

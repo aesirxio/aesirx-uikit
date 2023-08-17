@@ -1,0 +1,131 @@
+$body-bg-dark:#101529!default;
+$body-bg-white: #171E3A !default;
+$bg-blue-5: #0C1124 !default;
+$body-color: white !default;
+$border-color-dark:#1E4284 !default;
+[data-bs-theme=dark] {
+  color-scheme: dark;
+  --bs-body-color: $body-color;
+  --bs-body-bg: $body-bg-dark;
+  
+
+.bg-body{
+ background-color:$body-bg-dark !important;
+}
+.bg-white{
+background-color: $body-bg-white !important;
+}
+.bg-blue-5{
+  background-color:$bg-blue-5 !important;
+}
+.bg-menu{
+  background-color:$bg-blue-5 !important;
+}
+
+
+.text-blue-0{
+  color: $body-color !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+.aesirxui{
+  .border-bottom{
+  border-bottom: 1px solid $border-color-dark;
+}
+.border-start{
+  border-top: 1px solid $border-color-dark; ;
+}
+.border-top , .border-top-1{
+  border-top: 1px solid $border-color-dark;
+}
+.border-end-1 ,.border-end{
+  border-right: 1px solid $border-color-dark;
+}
+.border-1 {
+  border: 1px solid $border-color-dark;
+}
+
+.text-body {
+  color: white;
+}
+.text-white{
+  color: white;
+}
+.bg-blue-3{
+  background-color: $body-bg-white ;
+}
+.wrapper_tabs {
+  .nav-tabs {
+    .nav-link{
+     color: white;
+    }
+  }
+}
+.css-yglbo7-control {
+  border-color: $border-color-dark;
+}
+
+}
+.btn{
+  &:active{
+    color: white !important;
+    background-color: $border-color-dark !important;
+    border-color: $border-color-dark !important;
+  }
+  &:hover {
+  color: white !important;
+  text-decoration: none;
+  background-color: $border-color-dark !important;
+  }
+&:disabled{
+  border-color: $border-color-dark !important;
+}
+}
+.btn.active{
+  color: white !important;
+  background-color: $border-color-dark !important;
+  border-color: $border-color-dark !important;
+}
+//Calendar
+  .wrapper_calendar_full{
+    .rbc-time-header {
+      background-color: #171E3A;
+    }
+    .css-1w2sb4u-singleValue {
+      color: $body-color;
+    }
+    .rbc-day-slot.rbc-today {
+      background-color: rgba(30, 66, 132, 0.3);
+    }
+    .rbc-today {
+      background-color: $border-color-dark;
+    }
+    .rbc-time-view {
+      border: 1px solid $border-color-dark;
+  }
+    .rbc-time-content {
+      border-top: 2px solid $border-color-dark;
+    }
+    .rbc-time-content > * + * > * {
+    border-left: 1px solid $border-color-dark;
+    }
+    .rbc-time-header-content {
+      border-left: 1px solid $border-color-dark;
+  }
+  .rbc-timeslot-group {
+    border-bottom: 1px solid $border-color-dark;
+  }
+  }
+  .icon-filter{
+    span{
+      background-color:$body-color
+    }
+  }
+  .css-1as508d-placeholder {
+    color: white ;
+  }
+//
+}
