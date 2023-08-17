@@ -9,28 +9,6 @@ $border-color-dark:#1E4284 !default;
   --bs-body-bg: $body-bg-dark;
   
 
-.bg-body{
- background-color:$body-bg-dark !important;
-}
-.bg-white{
-background-color: $body-bg-white !important;
-}
-.bg-blue-5{
-  background-color:$bg-blue-5 !important;
-}
-.bg-menu{
-  background-color:$bg-blue-5 !important;
-}
-
-
-.text-blue-0{
-  color: $body-color !important;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
-  opacity: 1; /* Firefox */
-}
 .aesirxui{
   .border-bottom{
   border-bottom: 1px solid $border-color-dark;
@@ -67,6 +45,28 @@ background-color: $body-bg-white !important;
 .css-yglbo7-control {
   border-color: $border-color-dark;
 }
+.bg-body{
+  background-color:$body-bg-dark !important;
+ }
+ .bg-white{
+ background-color: $body-bg-white !important;
+ }
+ .bg-blue-5{
+   background-color:$bg-blue-5 !important;
+ }
+ .bg-menu{
+   background-color:$bg-blue-5 !important;
+ }
+ 
+ 
+ .text-blue-0{
+   color: $body-color !important;
+ }
+ 
+ ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+   color: white;
+   opacity: 1; /* Firefox */
+ }
 
 }
 .btn{

@@ -20,7 +20,6 @@ const Menu = ({ dataMenu, title = '' }: any) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState<any>('default');
 
   const { t } = useTranslation();
-
   useEffect(() => {
     checkActiveMenu();
   }, []);
