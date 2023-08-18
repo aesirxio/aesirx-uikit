@@ -39,7 +39,7 @@ const Header = ({ children }: any) => {
     >
       <Hambuger handleAction={handleMenuLeft} />
       <Logo isMini={isMini} />
-      <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100 bg-blue-5">
+      <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100">
         <span
           className="
               item_collap

@@ -76,7 +76,7 @@
       .icon {
         width: 24px;
         height: 24px;
-        background-color: var(--sidebar-menu-item-color);
+        background-color: var(--aesirxui-sidebar-menu-item-color);
         &.arrow {
           width: 16px;
           height: 17px;
@@ -85,7 +85,7 @@
     }
   }
   #wr_list_submenu {
-    background-color: var(--sidebar-submenu-bg);
+    background-color: var(--aesirxui-sidebar-submenu-bg);
     .item_menu {
       margin-bottom: 8px;
       &:first-child {
@@ -98,11 +98,11 @@
       .link_menu {
         &:hover,
         &.active {
-          background-color: transparent;
-          color: $color-blue-1;
+          background-color: var(--aesirxui-sidebar-menu-item-hover-bg);
+          color: var(--aesirxui-sidebar-menu-item-color);
           i,
           span {
-            color: $color-blue-1;
+            color: var(--aesirxui-sidebar-menu-item-color);
           }
         }
       }
@@ -127,12 +127,12 @@
 
   .sidebar {
     overflow-y: auto;
-    background-color: #0C1124;
+    background-color: var(--aesirxui-sidebar-bg);
     .menu_title {
       padding: 0 24px;
     }
     .data-stream {
-      background-color: var(--sidebar-submenu-bg);
+      background-color: var(--aesirxui-sidebar-submenu-bg);
       &-text {
         color: $dark-blue;
       }

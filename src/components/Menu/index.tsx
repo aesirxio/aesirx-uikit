@@ -94,9 +94,9 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                   ) : (
                     <>
                       <NavLink
-                        to={menuList.submenu[0]?.link}
+                        to={menuList.link}
                         onClick={() => handleOpen(menuListkey)}
-                        className={`d-flex align-items-center justify-content-center rounded-0 link_menu text-decoration-none text-break w-100 px-24 py-16 shadow-none text-white ${
+                        className={`d-flex align-items-center  rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-white ${
                           isOpenCollapse === menuListkey.toString() ||
                           isOpenCollapse?.includes(menuListkey + '-')
                             ? 'active'
@@ -153,7 +153,9 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                         <span className="text">{t(value.text)}</span>
                                       </span>
                                     ) : (
-                                      <span className="text d-inline-block">{t(value.text)}</span>
+                                      <span className="text ms-16 d-inline-block">
+                                        {t(value.text)}
+                                      </span>
                                     )}
                                   </NavLink>
                                 )}
@@ -168,8 +170,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
               );
             })}
           </ul>
-          {/* Secondary "Setup" menu */}
-          <div className="setup-menu">
+          {/* <div className="setup-menu">
             <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('Setup')}</p>
             <ul className="list-unstyled mb-0 pt-md-1">
               <li className="item_menu">
@@ -187,7 +188,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                 </NavLink>
               </li>
             </ul>
-          </div>
+          </div> */}
         </nav>
       )}
     </>

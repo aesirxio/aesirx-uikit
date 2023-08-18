@@ -86,7 +86,6 @@ $colors: (
   'cyan': $cyan,
   'white': $white,
   'gray': $gray-600,
-  'gray-100': $gray-100,
   'gray-dark': $gray-800,
 ) !default;
 // scss-docs-end colors-map
@@ -132,6 +131,14 @@ $theme-colors: (
   'black': $black,
 ) !default;
 // scss-docs-end theme-colors-map
+$custom-colors: (
+  'custom-color': #712cf9,
+  'purple': $purple,
+  'gray-100': $gray-100,
+  'gray-400': $gray-400,
+  'gray-500': $gray-500,
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 // Body
 //
