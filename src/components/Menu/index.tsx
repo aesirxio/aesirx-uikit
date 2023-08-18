@@ -11,7 +11,7 @@ import './index.scss';
 import arrow from '../../assets/images/arrow-right.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAppContext } from 'providers';
-import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
+// import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 
 const Menu = ({ dataMenu, title = '' }: any) => {
   const { settingRoutes } = useAppContext();
