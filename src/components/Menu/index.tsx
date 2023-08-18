@@ -172,8 +172,6 @@ const Menu = ({ dataMenu, title = '' }: any) => {
           <div className="setup-menu">
             <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('Setup')}</p>
             <ul className="list-unstyled mb-0 pt-md-1">
-              {/* Add your "Setting" menu items here */}
-              {/* Example menu item */}
               <li className="item_menu">
                 <NavLink
                   exact={true}
@@ -184,12 +182,10 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                 >
                   <i>
                     <FontAwesomeIcon icon={faGear} width={24} height={24} />{' '}
-                    {/* Assuming 'cog' is the icon name for settings */}
                   </i>
                   <span className="ms-16 text d-inline-block">{t('Settings')}</span>
                 </NavLink>
               </li>
-              {/* Add more "Setting" menu items if needed */}
             </ul>
           </div>
         </nav>
