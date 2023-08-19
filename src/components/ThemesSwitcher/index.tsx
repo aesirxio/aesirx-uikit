@@ -3,7 +3,7 @@ import React from 'react';
 // import { ThemeMode } from './ThemeMode';
 
 import { Form } from 'react-bootstrap';
-import { getStoredTheme, setStoredTheme, setTheme } from 'scss/utils/darkmode';
+import { getStoredTheme, setStoredTheme, setTheme } from 'theme/darkmode';
 const ThemesSwitcher = () => {
   // const { theme, toggleTheme } = useThemeContext();
 
@@ -11,7 +11,7 @@ const ThemesSwitcher = () => {
 
   return (
     <div className="py-2 ps-0 mb-6px d-flex align-items-center justify-content-between">
-      <div className="mode-switcher">
+      <div className="mode-switcher px-3">
         <Form.Check
           type="switch"
           id="switcher-mobile"
