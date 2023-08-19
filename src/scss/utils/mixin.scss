@@ -127,12 +127,10 @@
 
   .sidebar {
     overflow-y: auto;
-    background-color: var(--aesirxui-sidebar-bg);
     .menu_title {
       padding: 0 24px;
     }
     .data-stream {
-      background-color: var(--aesirxui-sidebar-submenu-bg);
       &-text {
         color: $dark-blue;
       }

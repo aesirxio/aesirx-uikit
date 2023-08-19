@@ -11,7 +11,7 @@ const ThemesSwitcher = () => {
 
   return (
     <div className="py-2 ps-0 mb-6px d-flex align-items-center justify-content-between">
-      <div className="mode-switcher px-3">
+      <div className="mode-switcher px-3 mx-2">
         <Form.Check
           type="switch"
           id="switcher-mobile"

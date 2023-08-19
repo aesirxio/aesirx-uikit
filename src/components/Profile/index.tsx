@@ -44,7 +44,7 @@ const Profile = () => {
   ));
 
   return (
-    <div className="pe-3">
+    <div className="pe-4 me-2">
       <div className="wrapper_avatar position-relative">
         <Dropdown>
           <Dropdown.Toggle
