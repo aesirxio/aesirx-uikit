@@ -60,7 +60,9 @@ const customStyles = (
       return {
         ...provided,
         color: state.isSelected ? 'var(--aesirxui-menu-lang-color)' : 'var(--aesirxui-body-color)',
-        backgroundColor: state.isSelected ? 'var(--aesirxui-menu-lang-hover-bg)' : 'var(--aesirxui-white)',
+        backgroundColor: state.isSelected
+          ? 'var(--aesirxui-menu-lang-hover-bg)'
+          : 'var(--aesirxui-white)',
         '&:hover': {
           color: 'var(--aesirxui-menu-lang-color)',
           backgroundColor: 'var(--aesirxui-menu-lang-hover-bg)',
