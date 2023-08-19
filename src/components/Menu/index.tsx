@@ -11,6 +11,7 @@ import './index.scss';
 import arrow from '../../assets/images/arrow-right.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAppContext } from 'providers';
+// import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 
 const Menu = ({ dataMenu, title = '' }: any) => {
   const { settingRoutes } = useAppContext();
@@ -20,7 +21,6 @@ const Menu = ({ dataMenu, title = '' }: any) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState<any>('default');
 
   const { t } = useTranslation();
-
   useEffect(() => {
     checkActiveMenu();
   }, []);
@@ -94,9 +94,9 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                   ) : (
                     <>
                       <NavLink
-                        to={menuList.submenu[0]?.link}
+                        to={menuList.link}
                         onClick={() => handleOpen(menuListkey)}
-                        className={`d-flex align-items-center justify-content-center rounded-0 link_menu text-decoration-none text-break w-100 px-24 py-16 shadow-none text-white ${
+                        className={`d-flex align-items-center  rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-white ${
                           isOpenCollapse === menuListkey.toString() ||
                           isOpenCollapse?.includes(menuListkey + '-')
                             ? 'active'
@@ -153,7 +153,9 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                         <span className="text">{t(value.text)}</span>
                                       </span>
                                     ) : (
-                                      <span className="text d-inline-block">{t(value.text)}</span>
+                                      <span className="text ms-16 d-inline-block">
+                                        {t(value.text)}
+                                      </span>
                                     )}
                                   </NavLink>
                                 )}
@@ -168,6 +170,25 @@ const Menu = ({ dataMenu, title = '' }: any) => {
               );
             })}
           </ul>
+          {/* <div className="setup-menu">
+            <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('Setup')}</p>
+            <ul className="list-unstyled mb-0 pt-md-1">
+              <li className="item_menu">
+                <NavLink
+                  exact={true}
+                  to="/settings"
+                  className="d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none"
+                  activeClassName="active"
+                  onClick={() => setIsOpenCollapse(null)}
+                >
+                  <i>
+                    <FontAwesomeIcon icon={faGear} width={24} height={24} />{' '}
+                  </i>
+                  <span className="ms-16 text d-inline-block">{t('Settings')}</span>
+                </NavLink>
+              </li>
+            </ul>
+          </div> */}
         </nav>
       )}
     </>
