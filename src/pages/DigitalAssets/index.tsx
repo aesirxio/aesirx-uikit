@@ -8,7 +8,7 @@ import { AesirXDam } from 'aesirx-dam-app';
 
 function DigitalAssetsPage() {
   return (
-    <div className="py-4 px-3 h-100 bg-body ">
+    <div className="py-4 px-3 h-100">
       <AesirXDam />
     </div>
   );

@@ -1,7 +1,6 @@
 $body-bg-dark:#101529!default;
 $body-bg-white: #171E3A !default;
 $link-color-dark: $white !default;
-$bg-blue-5: #0C1124 !default;
 $body-color: white !default;
 $primary-text-emphasis-dark: $white !default;
 $secondary-text-emphasis-dark: $white !default;
@@ -9,4 +8,10 @@ $primary-bg-subtle-dark: $white !default;
 $dark-text-emphasis-dark: $gray-300 !default;
 $light-bg-subtle-dark: #0c1124 !default;
 $light-text-emphasis-dark: $white !default;
-$border-color-dark: #1e4284 !default;
+[data-bs-theme=dark] {
+    --aesirxui-color-blue-6: #171E3A;
+    --aesirxui-gray-dark:rgba(30, 66, 132, 0.3);
+    --aesirxui-gray-800:#132342;
+    --aesirxui-white:#0c1124;
+    --aesirxui-border-color: rgba(30, 66, 132, 0.3):
+}

@@ -704,6 +704,77 @@
   .wrapper_header_logo {
     background-color: var(--aesirxui-sidebar-bg);
   }
+
+
+
+  @mixin color-mode($mode) {
+    @if $mode == dark {
+      .bg-blue-5 {
+        background-color: var(--#{$prefix}white) !important;
+      }
+      .text-body {
+        color: var(--aesirxui-body-color);
+      }
+      .bg-white{
+        background-color: var(--#{$prefix}color-blue-6);
+      }
+
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: var(--aesirxui-body-color);
+        opacity: 1; /* Firefox */
+      }
+      .border-bottom{
+        border-bottom: 1px solid var(--#{$prefix}gray-dark);
+      }
+      .border-start{
+        border-top: 1px solid var(--#{$prefix}gray-dark);
+      }
+      .border-top , .border-top-1{
+        border-top: 1px solid var(--#{$prefix}gray-dark);
+      }
+      .border-end-1 ,.border-end{
+        border-right: 1px solid var(--#{$prefix}gray-dark);
+      }
+      .border-1 {
+        border: 1px solid var(--#{$prefix}gray-dark);
+      }
+
+      .btn-outline-secondary:not(:hover) {
+        background-color: var(--#{$prefix}color-blue-6);
+      }
+      //Calendar
+      .wrapper_calendar_full{
+        .rbc-time-header {
+          background-color: var(--#{$prefix}color-blue-6);
+        }
+        .css-1w2sb4u-singleValue {
+          color: $body-color;
+        }
+        .rbc-day-slot.rbc-today {
+          background-color: var(--#{$prefix}gray-800);
+        }
+        .rbc-today {
+          background-color: var(--#{$prefix}color-blue-6);
+        }
+        .rbc-time-view {
+          border: 1px solid var(--#{$prefix}gray-dark);
+        }
+        .rbc-time-content {
+          border-top: 2px solid var(--#{$prefix}gray-dark);
+        }
+        .rbc-time-content > * + * > * {
+        border-left: 1px solid var(--#{$prefix}gray-dark);
+        }
+        .rbc-time-header-content {
+          border-left: 1px solid var(--#{$prefix}gray-dark);
+        }
+        .rbc-timeslot-group {
+          border-bottom: 1px solid var(--#{$prefix}gray-dark);
+        }
+      }
+    }
+  }
+  @include color-mode(dark);
 }
 
 :root {
