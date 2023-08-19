@@ -3,11 +3,8 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-
-
 .aesirxui {
   @import './utils/bootstrap.scss';
-  @import './utils/color-mode.scss';
   @import 'bootstrap/scss/root';
   @import 'bootstrap/scss/reboot';
   @import 'bootstrap/scss/type';
@@ -628,34 +625,35 @@
     }
   }
   .dropdown-toggle::after {
-    display:none !important;
+    display: none !important;
   }
-  .is-list{
-    .project-name-logo{
+  .is-list {
+    .project-name-logo {
       display: none;
     }
-    .column-header-shortDescription , .cell-shortDescription{
+    .column-header-shortDescription,
+    .cell-shortDescription {
       display: none;
     }
   }
-  .project-name-logo{
-   .lazy-load-image-loaded{
+  .project-name-logo {
+    .lazy-load-image-loaded {
       width: 100%;
-   }
+    }
   }
-  .btn.active{
+  .btn.active {
     color: white !important ;
-    background-color: #3C3B50 !important ;
-    border-color: #3C3B50 !important ;
+    background-color: #3c3b50 !important ;
+    border-color: #3c3b50 !important ;
   }
-  .btn{
-    &:disabled{
+  .btn {
+    &:disabled {
       border-color: var(--border-color) !important;
     }
-    &:hover{
+    &:hover {
       color: white !important ;
-      background-color: #3C3B50 !important ;
-      border-color: #3C3B50 !important ;
+      background-color: #3c3b50 !important ;
+      border-color: #3c3b50 !important ;
     }
   }
   .mode-switcher {
@@ -663,57 +661,54 @@
       .form-check-input {
         width: 60px;
         height: 30px;
-        background-color: #F0F3FB;
+        background-color: #f0f3fb;
         border: 0;
-        background-image: url(../../src/assets/images/light-mode.svg);
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNiAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjA3NzEgMjUuNDIwNEMyMC4wODY4IDI1LjQyMDQgMjUuNzY5NCAxOS43Mzc4IDI1Ljc2OTQgMTIuNzI4MUMyNS43Njk0IDUuNzE4MzEgMjAuMDg2OCAwLjAzNTc2NjYgMTMuMDc3MSAwLjAzNTc2NjZDNi4wNjczMSAwLjAzNTc2NjYgMC4zODQ3NjYgNS43MTgzMSAwLjM4NDc2NiAxMi43MjgxQzAuMzg0NzY2IDE5LjczNzggNi4wNjczMSAyNS40MjA0IDEzLjA3NzEgMjUuNDIwNFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xMy4zODQ0IDYuMDM1NzdDMTMuNzM1OSA2LjAzNTc3IDE0LjAyMDggNi4zMjA2OSAxNC4wMjA4IDYuNjcyMTJWNy45NDQ4NkMxNC4wMjA4IDguMjk2MzEgMTMuNzM1OSA4LjU4MTIxIDEzLjM4NDQgOC41ODEyMUMxMy4wMzI5IDguNTgxMjEgMTIuNzQ4IDguMjk2MjkgMTIuNzQ4IDcuOTQ0ODZWNi42NzIxMkMxMi43NDggNi4zMjA2OSAxMy4wMzI5IDYuMDM1NzcgMTMuMzg0NCA2LjAzNTc3WiIgZmlsbD0iIzVGNUU3MCIvPgo8cGF0aCBkPSJNMTMuMzg0MSA5LjUwNTM3QzExLjQzNDMgOS41MDUzNyA5Ljg1Mzc2IDExLjA4NTkgOS44NTM3NiAxMy4wMzU3QzkuODUzNzYgMTQuOTg1NCAxMS40MzQzIDE2LjU2NiAxMy4zODQxIDE2LjU2NkMxNS4zMzM4IDE2LjU2NiAxNi45MTQ0IDE0Ljk4NTQgMTYuOTE0NCAxMy4wMzU3QzE2LjkxNDQgMTEuMDg1OSAxNS4zMzM4IDkuNTA1MzcgMTMuMzg0MSA5LjUwNTM3WiIgZmlsbD0iIzVGNUU3MCIvPgo8cGF0aCBkPSJNOS4zNDk1MiA4LjEwMDgyQzkuMTAxIDcuODUyMyA4LjY5ODA3IDcuODUyMyA4LjQ0OTU3IDguMTAwODJDOC4yMDEwNSA4LjM0OTM0IDguMjAxMDUgOC43NTIyNyA4LjQ0OTU3IDkuMDAwNzlMOS4zNTg2NyA5LjkwOTg4QzkuNjA3MTkgMTAuMTU4NCAxMC4wMTAxIDEwLjE1ODQgMTAuMjU4NiA5LjkwOTg4QzEwLjUwNzEgOS42NjEzNiAxMC41MDcxIDkuMjU4NDMgMTAuMjU4NiA5LjAwOTkxTDkuMzQ5NTIgOC4xMDA4MloiIGZpbGw9IiM1RjVFNzAiLz4KPHBhdGggZD0iTTYuMzg0NzcgMTMuMDM1OEM2LjM4NDc3IDEyLjY4NDMgNi42Njk2OSAxMi4zOTk0IDcuMDIxMTIgMTIuMzk5NEg4LjI5Mzg1QzguNjQ1MzEgMTIuMzk5NCA4LjkzMDIxIDEyLjY4NDMgOC45MzAyMSAxMy4wMzU4QzguOTMwMjEgMTMuMzg3MiA4LjY0NTMxIDEzLjY3MjEgOC4yOTM4NSAxMy42NzIxSDcuMDIxMTJDNi42Njk2OSAxMy42NzIxIDYuMzg0NzcgMTMuMzg3MyA2LjM4NDc3IDEzLjAzNThaIiBmaWxsPSIjNUY1RTcwIi8+CjxwYXRoIGQ9Ik0xMC4yNTg2IDE3LjA2MTVDMTAuNTA3MSAxNi44MTMgMTAuNTA3MSAxNi40MTAyIDEwLjI1ODYgMTYuMTYxNkMxMC4wMTAxIDE1LjkxMzEgOS42MDcxNiAxNS45MTMxIDkuMzU4NjcgMTYuMTYxNkw4LjQ0OTU3IDE3LjA3MDdDOC4yMDEwNSAxNy4zMTkyIDguMjAxMDUgMTcuNzIyMiA4LjQ0OTU3IDE3Ljk3MDZDOC42OTgwOSAxOC4yMTkxIDkuMTAxIDE4LjIxOTEgOS4zNDk1MiAxNy45NzA2TDEwLjI1ODYgMTcuMDYxNVoiIGZpbGw9IiM1RjVFNzAiLz4KPHBhdGggZD0iTTEzLjM4NDQgMTcuNDkwNEMxMy43MzU5IDE3LjQ5MDQgMTQuMDIwOCAxNy43NzUzIDE0LjAyMDggMTguMTI2N1YxOS4zOTk0QzE0LjAyMDggMTkuNzUwOSAxMy43MzU5IDIwLjAzNTggMTMuMzg0NCAyMC4wMzU4QzEzLjAzMjkgMjAuMDM1OCAxMi43NDggMTkuNzUwOSAxMi43NDggMTkuMzk5NFYxOC4xMjY3QzEyLjc0OCAxNy43NzUzIDEzLjAzMjkgMTcuNDkwNCAxMy4zODQ0IDE3LjQ5MDRaIiBmaWxsPSIjNUY1RTcwIi8+CjxwYXRoIGQ9Ik0xNy40MTA2IDE2LjE2MTZDMTcuMTYyIDE1LjkxMzEgMTYuNzU5MSAxNS45MTMxIDE2LjUxMDYgMTYuMTYxNkMxNi4yNjIxIDE2LjQxMDIgMTYuMjYyMSAxNi44MTMgMTYuNTEwNiAxNy4wNjE1TDE3LjQxOTcgMTcuOTcwNkMxNy42NjgzIDE4LjIxOTEgMTguMDcxMSAxOC4yMTkxIDE4LjMxOTYgMTcuOTcwNkMxOC41NjgyIDE3LjcyMjIgMTguNTY4MiAxNy4zMTkyIDE4LjMxOTYgMTcuMDcwN0wxNy40MTA2IDE2LjE2MTZaIiBmaWxsPSIjNUY1RTcwIi8+CjxwYXRoIGQ9Ik0xNy44MzkxIDEzLjAzNThDMTcuODM5MSAxMi42ODQzIDE4LjEyNCAxMi4zOTk0IDE4LjQ3NTUgMTIuMzk5NEgxOS43NDgyQzIwLjA5OTcgMTIuMzk5NCAyMC4zODQ2IDEyLjY4NDMgMjAuMzg0NiAxMy4wMzU4QzIwLjM4NDYgMTMuMzg3MiAyMC4wOTk3IDEzLjY3MjEgMTkuNzQ4MiAxMy42NzIxSDE4LjQ3NTVDMTguMTI0IDEzLjY3MjEgMTcuODM5MSAxMy4zODczIDE3LjgzOTEgMTMuMDM1OFoiIGZpbGw9IiM1RjVFNzAiLz4KPHBhdGggZD0iTTE4LjMxOTYgOS4wMDA3OUMxOC41NjgyIDguNzUyMjcgMTguNTY4MiA4LjM0OTM0IDE4LjMxOTYgOC4xMDA4MkMxOC4wNzExIDcuODUyMyAxNy42NjgzIDcuODUyMyAxNy40MTk3IDguMTAwODJMMTYuNTEwNiA5LjAwOTkxQzE2LjI2MjEgOS4yNTg0MyAxNi4yNjIxIDkuNjYxMzYgMTYuNTEwNiA5LjkwOTg4QzE2Ljc1OTEgMTAuMTU4NCAxNy4xNjIgMTAuMTU4NCAxNy40MTA2IDkuOTA5ODhMMTguMzE5NiA5LjAwMDc5WiIgZmlsbD0iIzVGNUU3MCIvPgo8L3N2Zz4K);
         background-size: 26px;
         background-position: 2px center;
         &:focus {
           box-shadow: none;
         }
         &:checked {
-          background-image: url(../../src/assets/images/dark-mode.svg);
+          background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNiAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjA3NzEgMjUuNDIwNEMyMC4wODY4IDI1LjQyMDQgMjUuNzY5NCAxOS43Mzc4IDI1Ljc2OTQgMTIuNzI4MUMyNS43Njk0IDUuNzE4MzEgMjAuMDg2OCAwLjAzNTc2NjYgMTMuMDc3MSAwLjAzNTc2NjZDNi4wNjczMSAwLjAzNTc2NjYgMC4zODQ3NjYgNS43MTgzMSAwLjM4NDc2NiAxMi43MjgxQzAuMzg0NzY2IDE5LjczNzggNi4wNjczMSAyNS40MjA0IDEzLjA3NzEgMjUuNDIwNFoiIGZpbGw9IiMwQzExMjQiLz4KPHBhdGggZD0iTTIwLjI0NzYgMTQuNzcxNkMyMC4xODUxIDE0LjcwOTMgMjAuMTA2MyAxNC42NjYgMjAuMDIwMyAxNC42NDY2QzE5LjkzNDIgMTQuNjI3MyAxOS44NDQ0IDE0LjYzMjggMTkuNzYxNCAxNC42NjI0QzE4LjY0NDkgMTUuMDYwNSAxNy40Mzg0IDE1LjEzMzUgMTYuMjgyIDE0Ljg3MzJDMTUuMTI1NyAxNC42MTI4IDE0LjA2NyAxNC4wMjk3IDEzLjIyODggMTMuMTkxNUMxMi4zOTA3IDEyLjM1MzMgMTEuODA3NiAxMS4yOTQ2IDExLjU0NzMgMTAuMTM4MkMxMS4yODcgOC45ODE4MyAxMS4zNjAyIDcuNzc1MzQgMTEuNzU4MyA2LjY1ODg5QzExLjc4NzkgNi41NzU4IDExLjc5MzMgNi40ODYwMiAxMS43NzQgNi4zOTk5N0MxMS43NTQ2IDYuMzEzOTIgMTEuNzExMyA2LjIzNTExIDExLjY0ODkgNi4xNzI3QzExLjU4NjYgNi4xMTAyOCAxMS41MDc5IDYuMDY2OCAxMS40MjE5IDYuMDQ3MzFDMTEuMzM1OCA2LjAyNzgxIDExLjI0NjEgNi4wMzMxIDExLjE2MjkgNi4wNjI1NUMxMC4xNTY0IDYuNDE3OTkgOS4yNDI5MiA2Ljk5NTg1IDguNDkwNTcgNy43NTMxMkM3LjE0MTg2IDkuMTAyODYgNi4zODQ0MSAxMC45MzMgNi4zODQ3NyAxMi44NDExQzYuMzg1MTMgMTQuNzQ5MiA3LjE0MzI3IDE2LjU3OSA4LjQ5MjUgMTcuOTI4MkM5Ljg0MTcyIDE5LjI3NzQgMTEuNjcxNiAyMC4wMzU2IDEzLjU3OTYgMjAuMDM2QzE1LjQ4NzcgMjAuMDM2MyAxNy4zMTc5IDE5LjI3ODkgMTguNjY3NiAxNy45MzAxQzE5LjQyNDkgMTcuMTc3NyAyMC4wMDI4IDE2LjI2NDEgMjAuMzU4MiAxNS4yNTczQzIwLjM4NzUgMTUuMTc0MiAyMC4zOTI3IDE1LjA4NDQgMjAuMzczMSAxNC45OTg1QzIwLjM1MzUgMTQuOTEyNSAyMC4zMSAxNC44MzM4IDIwLjI0NzYgMTQuNzcxNloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=);
           background-position: 30px center;
-          background-color:#181F3D;
+          background-color: #181f3d;
         }
       }
     }
   }
-  a{
-    &:hover{
+  a {
+    &:hover {
       text-decoration: none !important;
     }
   }
   .table-border {
+    & thead th:first-child {
+      border-top-left-radius: 10px;
+    }
 
-  & thead th:first-child {
-    border-top-left-radius: 10px;
-  }
+    & thead th:last-child {
+      border-top-right-radius: 10px;
+    }
 
-  & thead th:last-child {
-    border-top-right-radius: 10px;
+    & tbody tr:first-child td {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
-
-  & tbody tr:first-child td {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  }
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: $body-color;
     opacity: 1; /* Firefox */
   }
-  .wrapper_header_logo{
-    background-color: var(--aesirxui-sidebar-bg) ;
+  .wrapper_header_logo {
+    background-color: var(--aesirxui-sidebar-bg);
   }
-
 }
 
-
 :root {
-  --aesirxui-sidebar-bg: #0C1124;
-  --aesirxui-sidebar-submenu-bg: #0C1124;
+  --aesirxui-sidebar-bg: #0c1124;
+  --aesirxui-sidebar-submenu-bg: #0c1124;
   --aesirxui-sidebar-menu-item-color: #fff;
-  --aesirxui-sidebar-menu-item-hover-bg: #0A5AFF;
-
+  --aesirxui-sidebar-menu-item-hover-bg: #0a5aff;
 }
