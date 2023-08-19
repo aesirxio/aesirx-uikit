@@ -718,10 +718,17 @@
       .bg-white{
         background-color: var(--#{$prefix}color-blue-6);
       }
-
+      .css-yglbo7-control{
+        border: 1px solid var(--#{$prefix}gray-dark);
+      }
       ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--aesirxui-body-color);
         opacity: 1; /* Firefox */
+      }
+      .accordion-button:not(.collapsed) {
+        color: var(--#{$prefix}body-color);
+        background-color: var(--#{$prefix}color-blue-6);
+        box-shadow: none;
       }
       .border-bottom{
         border-bottom: 1px solid var(--#{$prefix}gray-dark);
