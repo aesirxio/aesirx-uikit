@@ -3,6 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
+
  @import './utils/bootstrap.scss';
  @import 'bootstrap/scss/root';
 .aesirxui {
@@ -105,12 +106,17 @@
     height: 196px;
   }
   .img-avatar-35 {
-    width: 35px;
+    width: 32px;
   }
-
+  .img-avatar-32 {
+    min-width: 32px;
+    max-width: 32px;
+    height: auto;
+  }
   .img-avatar {
     min-width: 45px;
     max-width: 45px;
+    
   }
   .img-avatar-full {
     min-width: 100%;
@@ -743,9 +749,6 @@
       }
       .bg-filter{
         background-color: var(--#{$prefix}filter-bg);
-      }
-      .css-yglbo7-control{
-        border: 1px solid var(--#{$prefix}gray-dark);
       }
       ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--aesirxui-body-color);
