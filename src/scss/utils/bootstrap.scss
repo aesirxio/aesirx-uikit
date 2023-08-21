@@ -5,15 +5,10 @@
 
 @import 'bootstrap/scss/functions';
 @import './variables';
-@import './variables-dark';
 @import 'bootstrap/scss/variables';
+@import './variables-dark';
 @import 'bootstrap/scss/variables-dark';
-@import './mixin';
-
-@import 'bootstrap/scss/mixins';
-@import 'bootstrap/scss/mixins/alert';
-@import 'bootstrap/scss/mixins/list-group';
-@import './utilities';
-@import 'bootstrap/scss/_variables-dark';
 @import 'bootstrap/scss/maps';
-@import 'bootstrap/scss/utilities';
+@import './mixin';
+@import 'bootstrap/scss/mixins';
+@import './utilities';
