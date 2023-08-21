@@ -47,7 +47,7 @@ const ComponentCard = ({
             size="10px"
           />
         )}
-        <h3 className="mb-0 fw-bold fs-1 text-color">{value}</h3>
+        <h3 className="mb-0 fw-bold fs-1">{value}</h3>
         <div className="d-flex flex-wrap align-item-center">
           {percent && (
             <div className="d-flex w-100 mb-sm justify-content-end">
