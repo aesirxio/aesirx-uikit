@@ -25,7 +25,7 @@ const SbarLeft = () => {
 
   return (
     <aside
-      className={`sidebar w-260 mt-0 mh-100 h-100 d-flex flex-column z-index-100 justify-content-between bg-menu`}
+      className={`sidebar w-260 mt-0 mh-100 h-100 d-flex flex-column z-index-100 justify-content-between bg-menu overflow-y-auto`}
     >
       {has ? (
         <nav>
