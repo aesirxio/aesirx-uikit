@@ -52,7 +52,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
     <>
       {dataMenu && (
         <nav className="main-menu py-24 mt-0">
-          <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
+          <p className="menu_title text-white fs-14 mb-0 text-uppercase pb-2">
             {t(title ? title : has ? 'txt_menu_setting' : 'txt_main_menu')}
           </p>
           <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">

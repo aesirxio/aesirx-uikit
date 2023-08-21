@@ -25,7 +25,7 @@ const SbarLeft = () => {
 
   return (
     <aside
-      className={`sidebar w-248 mt-0 mh-100 h-100 d-flex flex-column z-index-100 justify-content-between bg-menu`}
+      className={`sidebar w-260 mt-0 mh-100 h-100 d-flex flex-column z-index-100 justify-content-between bg-menu`}
     >
       {has ? (
         <nav>
@@ -46,7 +46,7 @@ const SbarLeft = () => {
         leftMenu
       )}
 
-      <div>
+      <div className="mx-3">
         {componentBottomMenu}
         {version && (
           <span className="version ms-3 mb-3 text text-white fs-14">
