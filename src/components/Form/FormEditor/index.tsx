@@ -3,7 +3,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import React, { useState } from 'react';
 
-import styles from './index.module.scss';
+import styles from 'styles.module.scss';
 import './index.scss';
 import { ModalDAMComponent } from 'components/ModalDam';
 import { SVGComponent } from 'components/SVGComponent';
@@ -41,7 +41,7 @@ const FormEditor = ({ field }: any) => {
           'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
         }}
       />
-      <div className={styles['custom-editor']}>
+      <div className={`${styles['custom-editor']} haha`}>
         <CKEditor
           editor={ClassicEditor}
           data={field?.getValueSelected ?? ''}

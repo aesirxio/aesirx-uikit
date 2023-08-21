@@ -22,9 +22,9 @@ const customStyles = (
         borderColor: isBorder ? 'var(--aesirxui-gray-dark)' : 'transparent',
         '&:hover': {
           // borderColor: isBorder ? '#8bdcbc' : 'transparent',
-          // borderRight: '1px solid var(input-border-color)',
+          // borderRight: '1px solid var(--aesirxui-border-color)',
         },
-        // borderRight: '1px solid var(input-border-color)',
+        // borderRight: '1px solid var(--aesirxui-border-color)',
         backgroundColor: isDisabled ? 'var(--aesirxui-white)' : 'var(--aesirxui-white)',
         cursor: 'pointer',
         width: 'auto',

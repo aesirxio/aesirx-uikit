@@ -3,9 +3,8 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-
- @import './utils/bootstrap.scss';
- @import 'bootstrap/scss/root';
+@import './utils/bootstrap.scss';
+@import 'bootstrap/scss/root';
 .aesirxui {
   @import 'bootstrap/scss/reboot';
   @import 'bootstrap/scss/type';
@@ -71,7 +70,7 @@
   .w-35 {
     width: 35%;
   }
-  .w-45{
+  .w-45 {
     width: 45%;
   }
   .w-350 {
@@ -116,7 +115,6 @@
   .img-avatar {
     min-width: 45px;
     max-width: 45px;
-    
   }
   .img-avatar-full {
     min-width: 100%;
@@ -538,7 +536,7 @@
     }
   }
   .form-control {
-    background-color: var(--bs-white);
+    background-color: var(--#{$prefix}white);
     &::placeholder {
       color: var(--input-placeholder-color);
     }
@@ -548,18 +546,18 @@
       padding: 10px 16px;
       line-height: 18px;
       font-size: 14px;
-      background-color: var(--bs-white);
+      background-color: var(--#{$prefix}white);
       &::placeholder {
         color: var(--input-placeholder-color);
       }
       &:focus {
         box-shadow: none;
         border: 1px solid $color-blue;
-        background-color: var(--bs-white);
+        background-color: var(--#{$prefix}white);
       }
       &:-webkit-autofill:focus {
-        background-color: var(--bs-white) !important;
-        -webkit-box-shadow: 0 0 0px 1000px var(--bs-white) inset;
+        background-color: var(--#{$prefix}white) !important;
+        -webkit-box-shadow: 0 0 0px 1000px var(--#{$prefix}white) inset;
       }
     }
   }
@@ -568,7 +566,7 @@
       &:focus {
         box-shadow: none;
         border: 1px solid $color-blue;
-        background-color: var(--bs-white);
+        background-color: var(--#{$prefix}white);
       }
     }
   }
@@ -610,7 +608,7 @@
       color: var(--bs-body-color);
       &.active {
         color: var(--bs-success);
-        background-color: var(--bs-white);
+        background-color: var(--#{$prefix}white);
         font-weight: 600;
       }
     }
@@ -702,27 +700,28 @@
     background-color: var(--aesirxui-sidebar-bg);
   }
   .dam-integrate-layout {
-    .damstorage{
+    .damstorage {
       .progress-bar {
-        background-color:#0A5AFF;
+        background-color: #0a5aff;
       }
-       .progress {
-          background-color: #1d55a9a9;
+      .progress {
+        background-color: #1d55a9a9;
       }
-      .dam-integrate-layout{
+      .dam-integrate-layout {
         padding-left: 20px;
       }
-      a{
+      a {
         color: white;
       }
-    } 
+    }
   }
-  .accordion-item{
-    &:first-of-type{
+  .accordion-item {
+    &:first-of-type {
       .accordion-button {
         border-top-left-radius: var(--aesirxui-border-radius-lg);
         border-top-right-radius: var(--aesirxui-border-radius-lg);
-    } 
+      }
+    }
   }
 }
 .sub-cell-status{
@@ -731,36 +730,40 @@
 
   @mixin color-mode($mode) {
     @if $mode == dark {
-      
       .bg-blue-5 {
         background-color: var(--#{$prefix}white) !important;
       }
-      .bg-menu{
+      .bg-menu {
         background-color: var(--aesirxui-sidebar-bg);
       }
-      .bg-blue-2{
+      .bg-blue-2 {
         background-color: var(--#{$prefix}bg-blue-2) !important;
       }
-      .bg-accordion-button{
+      .bg-accordion-button {
         background-color: var(--#{$prefix}accordion-button-bg) !important;
       }
       .text-body {
         color: var(--aesirxui-body-color);
       }
-      .bg-body{
+      .bg-body {
         background-color: var(--#{$prefix}body-bg);
       }
+<<<<<<< HEAD
       .bg-gray{
+=======
+      .bg-white {
+>>>>>>> 3d8c38e5d8960569be986ba229958cca2f1e657c
         background-color: var(--#{$prefix}color-blue-6);
       }
-      .bg-filter{
+      .bg-filter {
         background-color: var(--#{$prefix}filter-bg);
       }
-      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--aesirxui-body-color);
         opacity: 1; /* Firefox */
       }
-      .accordion-button{
+      .accordion-button {
         &:not(.collapsed) {
           color: var(--#{$prefix}body-color);
           background-color: var(--#{$prefix}accordion-button-bg);
@@ -768,28 +771,30 @@
         }
       }
       .accordion {
-      --aesirxui-accordion-bg: transparent ;
+        --aesirxui-accordion-bg: transparent;
       }
-      .border-bottom{
+      .border-bottom {
         border-bottom: 1px solid var(--#{$prefix}gray-dark);
       }
-      .border-bottom-2{
+      .border-bottom-2 {
         border-bottom: 2px solid var(--#{$prefix}gray-dark);
       }
-      .border-start{
+      .border-start {
         border-top: 1px solid var(--#{$prefix}gray-dark);
       }
-      .border-top , .border-top-1{
+      .border-top,
+      .border-top-1 {
         border-top: 1px solid var(--#{$prefix}gray-dark);
       }
-      .border-end-1 ,.border-end{
+      .border-end-1,
+      .border-end {
         border-right: 1px solid var(--#{$prefix}gray-dark);
       }
       .border-1 {
         border: 1px solid var(--#{$prefix}gray-dark);
       }
 
-      .btn-outline-secondary{
+      .btn-outline-secondary {
         &:not(:hover) {
           background-color: var(--#{$prefix}btn-light-bg);
         }
@@ -800,25 +805,25 @@
         }
         &:hover,
         &:active {
-          color: var(--#{$prefix}body-color); ;
-          background-color: var(--#{$prefix}color-blue-6) ;
+          color: var(--#{$prefix}body-color);
+          background-color: var(--#{$prefix}color-blue-6);
           border-color: var(--#{$prefix}color-blue-6);
-
         }
-        }
-        .btn{
-          &.active{
-          color: var(--#{$prefix}body-color); ;
-          background-color: var(--#{$prefix}color-blue-6) ;
+      }
+      .btn {
+        &.active {
+          color: var(--#{$prefix}body-color);
+          background-color: var(--#{$prefix}color-blue-6);
           border-color: var(--#{$prefix}gray-dark);
-          }
         }
-        
-      .btn-success{
+      }
+
+      .btn-success {
         &:disabled {
           border-color: var(--#{$prefix}btn-light-bg);
         }
-        &:hover, &:active {
+        &:hover,
+        &:active {
           color: var(--#{$prefix}btn-hover-color);
           text-decoration: none;
           background-color: var(--#{$prefix}btn-hover-bg);
@@ -832,17 +837,17 @@
             &.active {
               color: var(--#{$prefix}item-menu-social-active);
             }
-            &:hover{
+            &:hover {
               color: var(--#{$prefix}item-menu-social-active);
             }
-            &::before{
+            &::before {
               background-color: $success;
             }
           }
         }
       }
       //Calendar
-      .wrapper_calendar_full{
+      .wrapper_calendar_full {
         .rbc-time-header {
           background-color: var(--#{$prefix}color-blue-6);
         }
@@ -862,13 +867,26 @@
           border-top: 2px solid var(--#{$prefix}gray-dark);
         }
         .rbc-time-content > * + * > * {
-        border-left: 1px solid var(--#{$prefix}gray-dark);
+          border-left: 1px solid var(--#{$prefix}gray-dark);
         }
         .rbc-time-header-content {
           border-left: 1px solid var(--#{$prefix}gray-dark);
         }
         .rbc-timeslot-group {
           border-bottom: 1px solid var(--#{$prefix}gray-dark);
+        }
+      }
+      .nav-tabs {
+        --#{$prefix}nav-tabs-link-active-color: $white;
+      }
+      .date-picker {
+        .react-datepicker__input-container {
+          input {
+            &:read-only {
+              background-color: var(--#{$prefix}body-bg);
+              border-color: var(--#{$prefix}body-bg);
+            }
+          }
         }
       }
     }
@@ -886,8 +904,7 @@
   --aesirxui-btn-light-bg: white;
   --aesirxui-filter-bg: white;
   --aesirxui-bg-blue-2: #0c1124;
-  --aesirxui-accordion-button-bg: #F0F3FB;
-  --aesirxui-item-menu-social-color: #A5A4B5;
+  --aesirxui-accordion-button-bg: #f0f3fb;
+  --aesirxui-item-menu-social-color: #a5a4b5;
   --aesirxui-item-menu-social-active: #132342;
-  
 }

@@ -1,0 +1,48 @@
+.image-upload-button {
+  width: 30px;
+  height: 30px;
+}
+.custom-editor {
+  --ck-custom-background: transparent;
+  --ck-custom-border: var(--aesirxui-border-color);
+
+  --ck-color-base-foreground: var(--ck-custom-background);
+  --ck-color-text: var(--aesirxui-body-color);
+
+  --ck-color-button-default-background: var(--ck-custom-background);
+  --ck-color-button-default-hover-background: var(--aesirxui-body-bg);
+  --ck-color-button-default-active-background: var(--aesirxui-gray-500);
+  --ck-color-button-default-disabled-background: var(--ck-custom-background);
+
+  --ck-color-button-on-background: var(--aesirxui-green-light);
+  --ck-color-button-on-hover-background: var(--aesirxui-gray-500);
+  --ck-color-button-on-active-background: var(--aesirxui-gray-500);
+  --ck-color-button-on-disabled-background: var(--ck-custom-foreground);
+
+  --ck-color-button-on-color: var(--aesirxui-success);
+  --ck-color-toolbar-background: transparent;
+  --ck-color-base-background: var(--aesirxui-body-bg);
+  --ck-color-toolbar-border: var(--aesirxui-border-color);
+  --ck-color-base-border: var(--aesirxui-border-color);
+
+  --ck-color-list-background: var(--aesirxui-white);
+  --ck-color-list-button-on-background: var(--aesirxui-white);
+  --ck-color-list-button-on-text: var(--aesirxui-success);
+  --ck-color-list-button-hover-text: var(--aesirxui-success);
+  --ck-color-list-button-hover-background: var(--aesirxui-green-light);
+  --ck-color-list-button-on-background-focus: var(--aesirxui-green-light);
+
+  --ck-color-dropdown-panel-background: var(--aesirxui-white);
+  --ck-color-dropdown-panel-border: var(--aesirxui-border-color);
+
+  --ck-color-image-caption-background: transparent;
+  --ck-color-image-caption-text: var(--aesirxui-body-color);
+  --ck-color-widget-editable-focus-background: transparent;
+
+  --ck-color-input-background: var(--aesirxui-white);
+  --ck-color-input-border: var(--aesirxui-border-color);
+  --ck-color-input-text: var(--aesirxui-body-color);
+
+  --ck-color-split-button-hover-background: var(--aesirxui-green-light);
+  --ck-color-split-button-hover-border: var(--aesirxui-border-color);
+}

@@ -96,7 +96,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                       <NavLink
                         to={menuList.link}
                         onClick={() => handleOpen(menuListkey)}
-                        className={`d-flex align-items-center  rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-white ${
+                        className={`d-flex align-items-center justify-content-center rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-white ${
                           isOpenCollapse === menuListkey.toString() ||
                           isOpenCollapse?.includes(menuListkey + '-')
                             ? 'active'
