@@ -156,6 +156,11 @@ $theme-colors: (
   'danger': $danger,
   'light': $light,
   'dark': $dark,
+  'noti-error': $noti-error,
+  'noti-warn': $noti-warn,
+  'noti-bg-error': $noti-bg-error,
+  'noti-bg-warn': $noti-bg-warn,
+  'noti-bg-success': $noti-bg-success,
 ) !default;
 // scss-docs-end theme-colors-map
 $custom-colors: (
