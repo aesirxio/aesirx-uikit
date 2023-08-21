@@ -671,6 +671,9 @@
       }
     }
   }
+  .accordion-button::after {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIuNzE5OTEgNi40NzM2M0w3LjA2NjU3IDEwLjc5NDlDNy41Nzk5MSAxMS4zMDUyIDguNDE5OTEgMTEuMzA1MiA4LjkzMzI0IDEwLjc5NDlMMTMuMjc5OSA2LjQ3MzYzIiBzdHJva2U9IiMxQUIzOTQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==);;
+  }
   a {
     &:hover {
       text-decoration: none !important;
@@ -722,6 +725,9 @@
     } 
   }
 }
+.sub-cell-status{
+  text-align: end;
+}
 
   @mixin color-mode($mode) {
     @if $mode == dark {
@@ -744,7 +750,7 @@
       .bg-body{
         background-color: var(--#{$prefix}body-bg);
       }
-      .bg-white{
+      .bg-gray{
         background-color: var(--#{$prefix}color-blue-6);
       }
       .bg-filter{
