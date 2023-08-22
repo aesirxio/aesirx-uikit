@@ -209,6 +209,10 @@ $link-shade-percentage: 20% !default;
 $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
 $link-hover-decoration: underline !default;
 
+$btn-active-color: #0a083b !default;
+$btn-active-bg: $color-blue-6;
+$btn-active-border-color: $color-blue-6;
+
 $component-active-bg: $success !default;
 
 $form-check-input-width: 1.5em !default;
