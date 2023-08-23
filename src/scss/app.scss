@@ -878,7 +878,8 @@
     --aesirxui-item-menu-social-active: white;
     --aesirxui-menu-lang-hover-bg: #0a5aff;
     --aesirxui-menu-lang-color: white;
-
+    --datepicker-color: white;
+    --datepicker-range-bg-color: #0c1124;
     .bg-white {
       background-color: var(--#{$prefix}color-blue-6);
     }
@@ -895,6 +896,13 @@
           }
         }
       }
+    }
+    .react-datepicker {
+      background-color: var(--#{prefix}body-bg);
+    }
+    .daterange-picker .react-datepicker__day.react-datepicker__day--in-range:hover,
+    .daterange-picker .react-datepicker__day.react-datepicker__day--in-selecting-range:hover {
+      background-color: #0c1124;
     }
   }
 }
@@ -913,4 +921,5 @@
   --#{$prefix}item-menu-social-color: #a5a4b5;
   --#{$prefix}item-menu-social-active: #132342;
   --#{$prefix}input-placeholder-color: #c0c0c0;
+  --datepicker-range-bg-color: #ebf3f6;
 }

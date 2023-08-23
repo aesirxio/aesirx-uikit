@@ -11,7 +11,7 @@ import { ThemesSwitcher } from 'components/ThemesSwitcher';
 import { Profile } from 'components/Profile';
 import { useAppContext } from 'providers/AppProvider';
 
-const Header = ({ children }: any) => {
+const Header = ({ children, logo }: any) => {
   const { noavatar, integration, rootId } = useAppContext();
   const [isMini, setMini] = useState(integration);
 
@@ -38,7 +38,7 @@ const Header = ({ children }: any) => {
       }`}
     >
       <Hambuger handleAction={handleMenuLeft} />
-      <Logo isMini={isMini} />
+      <Logo isMini={isMini} logo={logo} />
       <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100 bg-blue-5">
         <span
           className="

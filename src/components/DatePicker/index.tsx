@@ -75,8 +75,8 @@ const AesirXDatePicker = ({
       >
         <div className={`${className}`}>{children}</div>
         {startDate && (
-          <div className="d-flex align-items-center justify-content-end border-top-1 pt-2 px-2 text-color">
-            <p className="fs-14 color-blue-0 opacity-75 mb-0">
+          <div className="d-flex align-items-center justify-content-end border-top-1 pt-2 px-2">
+            <p className="fs-14 opacity-75 mb-0">
               {startDate ? moment(startDate).format('LL') : ''} -{' '}
               {endDate ? moment(endDate).format('LL') : ''}
             </p>

@@ -84,7 +84,7 @@ const customStyles = (
     placeholder: (defaultStyles: any) => {
       return {
         ...defaultStyles,
-        color: plColor ? plColor : 'var(--input-placeholder-color)',
+        color: plColor ? plColor : 'var(--aesirxui-input-placeholder-color)',
       };
     },
     multiValue: (styles: any) => {

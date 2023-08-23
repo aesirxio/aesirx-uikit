@@ -11,13 +11,13 @@ import { Header } from 'components/Header';
 import { useAppContext } from 'providers/AppProvider';
 import { SbarLeft } from 'components';
 
-const MainLayout = ({ children }: any) => {
+const MainLayout = ({ children, logo }: any) => {
   const { mainRoutes, isLogin, componentHeader, integration, noHeader } = useAppContext();
   return isLogin() ? (
     <div className="container-fluid">
       <div className="row">
         <main className="p-0">
-          {!noHeader && <Header>{componentHeader && componentHeader}</Header>}
+          {!noHeader && <Header logo={logo}>{componentHeader && componentHeader}</Header>}
           <div
             className={`main_content vh-100 main_content_dashboard d-flex ${
               !noHeader && 'pd-t-80'
