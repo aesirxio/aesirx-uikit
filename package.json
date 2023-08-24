@@ -7,7 +7,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "lint": "eslint \"src/**/*/*.ts*\"",
-    "dev": "NODE_ENV=development tsup --watch --onSuccess 'yalc push  --no-scripts'",
+    "dev": "NODE_ENV=development tsup --watch",
     "build": "NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 tsup",
     "prepublishOnly": "yarn run build --dts",
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
