@@ -9,7 +9,6 @@ import logoWhite from '../../assets/images/logo/logo-company.svg';
 import logoWhiteMini from '../../assets/images/logo/logo-white-mini.svg';
 
 const Logo = ({ isMini, logo }: any) => {
-  console.log('logo', logo);
   return (
     <div className="wrapper_header_logo d-xl-flex d-none  w-260 h-80 align-items-center bg-menu">
       <a
