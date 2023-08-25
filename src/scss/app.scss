@@ -880,6 +880,7 @@
     --aesirxui-menu-lang-color: white;
     --datepicker-color: white;
     --datepicker-range-bg-color: #0c1124;
+    --aesirxui-input-disabled-bg: #171e3a;
     .bg-white {
       background-color: var(--#{$prefix}color-blue-6);
     }
@@ -921,5 +922,6 @@
   --#{$prefix}item-menu-social-color: #a5a4b5;
   --#{$prefix}item-menu-social-active: #132342;
   --#{$prefix}input-placeholder-color: #c0c0c0;
+  --#{$prefix}input-disabled-bg: #e9e9e9;
   --datepicker-range-bg-color: #ebf3f6;
 }
