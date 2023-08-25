@@ -25,7 +25,7 @@ const customStyles = (
           // borderRight: '1px solid var(--aesirxui-border-color)',
         },
         // borderRight: '1px solid var(--aesirxui-border-color)',
-        backgroundColor: isDisabled ? 'var(--aesirxui-white)' : 'var(--aesirxui-white)',
+        backgroundColor: isDisabled ? 'var(--aesirxui-gray-dark)' : 'var(--aesirxui-white)',
         cursor: 'pointer',
         width: 'auto',
         minWidth: minWidth,
