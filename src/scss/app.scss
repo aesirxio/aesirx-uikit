@@ -33,7 +33,7 @@
   }
 
   textarea {
-    resize: none;
+    resize: vertical;
   }
 
   .lcl {
@@ -65,7 +65,6 @@
     width: 260px;
     transition: all 0.4s ease;
   }
-
   .w-35 {
     width: 35%;
   }
@@ -176,7 +175,7 @@
   }
 
   .bg-posted {
-    background-color: rgba($color: $color-green-2 , $alpha : 0.15);
+    background-color: $color-green-2;
     color: $green !important;
   }
 
@@ -186,7 +185,7 @@
   }
 
   .bg-schedule {
-    background-color: rgba($color: $yellow, $alpha: 0.15);
+    background-color: rgba($color: $yellow, $alpha: 0.4);
     color: $yellow !important;
   }
 
@@ -206,12 +205,12 @@
   }
 
   .bg-processing {
-    background-color: rgba($color: $color-blue-7, $alpha: 0.15);
+    background-color: rgba($color: $color-blue-7, $alpha: 0.4);
     color: $color-blue-7 !important;
   }
 
   .bg-failed {
-    background-color: rgba($red, $alpha: 0.15);
+    background-color: rgba($red, $alpha: 0.4);
     color: $red !important;
   }
 
