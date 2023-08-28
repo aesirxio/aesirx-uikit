@@ -26,6 +26,7 @@ interface IAppContext {
   componentBottomMenu?: any;
   settingMenu?: any;
   noHeader: boolean;
+  logo?: any;
 }
 
 interface AppProviderProps {
@@ -44,6 +45,7 @@ interface AppProviderProps {
   appLanguages: any;
   children?: any;
   noHeader: boolean;
+  logo?: any;
 }
 
 const AppContext = createContext<IAppContext>({
@@ -74,6 +76,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
   settingRoutes,
   settingMenu,
   noHeader,
+  logo,
 }: AppProviderProps) => {
   const authPath = authRoutes
     ?.map((item: any) => {
@@ -116,6 +119,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
           profileMenu,
           settingMenu,
           noHeader,
+          logo,
         }}
       >
         <ThemesContextProvider>
@@ -123,7 +127,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
             <Toast />
             <BrowserRouter>
               {integration ? (
-                <MainLayout>{children}</MainLayout>
+                <MainLayout logo={logo}>{children}</MainLayout>
               ) : (
                 <Router history={history}>
                   <Switch>
@@ -134,12 +138,12 @@ const AppProvider: React.FC<AppProviderProps> = ({
                     )}
                     {settingPath && (
                       <Route exact path={settingPath}>
-                        <SettingLayout />
+                        <SettingLayout logo={logo} />
                       </Route>
                     )}
                     {mainPath && (
                       <Route path={mainPath}>
-                        <MainLayout />
+                        <MainLayout logo={logo} />
                       </Route>
                     )}
                     <Route path="*">

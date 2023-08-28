@@ -118,6 +118,26 @@ const renderField = (field: any, validator: any) => {
         </Form.Group>
       );
 
+    case FORM_FIELD_TYPE.NUMBER:
+      return (
+        <Form.Group key={field.key} ref={field.ref} className={`mb-24 ${className}`}>
+          {field.label && (
+            <div className="d-flex align-item-center">
+              <Label
+                text={field.label}
+                isLabelHTML={field.isLabelHTML}
+                required={field.required ?? false}
+              />
+            </div>
+          )}
+          <Input field={field} />
+          {field.validation &&
+            validator.message(field.label, field.getValueSelected, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+
     default:
       return <></>;
   }
