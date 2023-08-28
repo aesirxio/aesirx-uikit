@@ -25,7 +25,7 @@ const customStyles = (
           // borderRight: '1px solid var(--aesirxui-border-color)',
         },
         // borderRight: '1px solid var(--aesirxui-border-color)',
-        backgroundColor: isDisabled ? 'var(--aesirxui-white)' : 'var(--aesirxui-white)',
+        backgroundColor: isDisabled ? 'var(--aesirxui-input-disabled-bg)' : 'var(--aesirxui-white)',
         cursor: 'pointer',
         width: 'auto',
         minWidth: minWidth,
@@ -84,7 +84,7 @@ const customStyles = (
     placeholder: (defaultStyles: any) => {
       return {
         ...defaultStyles,
-        color: plColor ? plColor : 'var(--input-placeholder-color)',
+        color: plColor ? plColor : 'var(--aesirxui-input-placeholder-color)',
       };
     },
     multiValue: (styles: any) => {

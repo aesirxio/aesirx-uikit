@@ -8,7 +8,7 @@ import { Image } from '../Image';
 import logoWhite from '../../assets/images/logo/logo-company.svg';
 import logoWhiteMini from '../../assets/images/logo/logo-white-mini.svg';
 
-const Logo = ({ isMini }: any) => {
+const Logo = ({ isMini, logo }: any) => {
   return (
     <div className="wrapper_header_logo d-xl-flex d-none  w-260 h-80 align-items-center bg-menu">
       <a
@@ -17,7 +17,7 @@ const Logo = ({ isMini }: any) => {
       >
         <Image
           className={`logo_white ${isMini ? 'pe-0' : 'pe-3'}`}
-          src={`${isMini ? logoWhiteMini : logoWhite}`}
+          src={`${isMini ? logoWhiteMini : logo ? logo : logoWhite}`}
           alt="AesirX"
         />
         {/* <p className="fs-sm py-2 text-white">Digital Marketing Automation</p> */}

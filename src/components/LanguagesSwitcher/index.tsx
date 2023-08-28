@@ -2,19 +2,18 @@ import React from 'react';
 import i18n from 'i18next';
 import { AesirXSelect } from 'components/Select';
 import { useI18nextContext } from 'providers/I18nextProvider';
-import language from '../../assets/images/language-icon-light.svg';
-import languageDark from '../../assets/images/language-icon-dark.svg';
-import { useThemeContext } from 'providers';
-
+import { ComponentSVG } from 'components/ComponentSVG';
 const LanguagesSwitcher = () => {
   const { listLanguages } = useI18nextContext();
-  const { theme } = useThemeContext();
 
   const currentLanguage = listLanguages.filter((lang: any) => lang.value == i18n.language);
 
   return (
     <div className="ms-auto d-flex align-items-center">
-      <img width={24} height={24} alt="language" src={theme === 'dark' ? languageDark : language} />
+      <ComponentSVG
+        url="/assets/images/language-icon-light.svg"
+        color="var(--aesirxui-body-color)"
+      />
       <AesirXSelect
         isClearable={false}
         isSearchable={false}
