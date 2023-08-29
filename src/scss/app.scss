@@ -870,12 +870,16 @@
   .bg-gray {
     background-color: var(--#{$prefix}color-blue-6);
   }
+  .icon-check {
+    padding: 1px;
+  }
 }
 
 @include color-mode(dark) {
   .aesirxui {
     --aesirxui-body-bg: #101529;
     --aesirxui-color-blue-6: #171e3a;
+    --aesirxui-color-blue-9: #181f3d;
     --aesirxui-gray-dark: #1e4284;
     --aesirxui-gray-800: #132342;
     --aesirxui-white: #0c1124;
@@ -893,7 +897,9 @@
     .bg-white {
       background-color: var(--#{$prefix}color-blue-6);
     }
-
+    .bg-color-blue-9 {
+      background-color: var(--#{$prefix}color-blue-9);
+    }
     .nav-tabs {
       --#{$prefix}nav-tabs-link-active-color: $white;
     }
