@@ -72,9 +72,9 @@ const customStyles = (
 
     dropdownIndicator: (base: any) => ({
       ...base,
-      color: arrowColor ? arrowColor : 'var(--bs-success)',
+      color: arrowColor ? arrowColor : 'var(--aesirxui-success)',
       '&:hover': {
-        color: 'var(--bs-success)',
+        color: 'var(--aesirxui-success)',
       },
     }),
     singleValue: (provided: any) => ({

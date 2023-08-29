@@ -538,6 +538,9 @@
     &::placeholder {
       color: var(--aesirxui-input-placeholder-color);
     }
+    &:disabled {
+      background-color: var(--#{$prefix}white);
+    }
   }
   form {
     .form-control {
@@ -694,22 +697,22 @@
   .wrapper_header_logo {
     background-color: var(--aesirxui-sidebar-bg);
   }
-  .dam-integrate-layout {
-    .damstorage {
-      .progress-bar {
-        background-color: #0a5aff;
-      }
-      .progress {
-        background-color: #1d55a9a9;
-      }
-      .dam-integrate-layout {
-        padding-left: 20px;
-      }
-      a {
-        color: white;
-      }
+
+  .damstorage {
+    .progress-bar {
+      background-color: #0a5aff;
+    }
+    .progress {
+      background-color: #1d55a9a9;
+    }
+    .dam-integrate-layout {
+      padding-left: 20px;
+    }
+    a {
+      color: white;
     }
   }
+
   .accordion-item {
     &:first-of-type {
       .accordion-button {
@@ -718,6 +721,13 @@
       }
     }
   }
+  .modal-center {
+    width: 1608px;
+    max-width: none;
+    height: 1058px;
+    margin: 0;
+  }
+
   .bg-blue-5 {
     background-color: var(--#{$prefix}white) !important;
   }
