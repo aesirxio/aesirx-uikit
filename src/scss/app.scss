@@ -727,7 +727,7 @@
     height: 1058px;
     margin: 0;
   }
-  .form-control-dam{
+  .form-control-dam {
     background-color: transparent;
   }
   .bg-blue-5 {
@@ -875,6 +875,15 @@
   }
   .icon-check {
     padding: 1px;
+  }
+  .file_type,
+  .file_size,
+  .last_modified,.dimension {
+    input {
+      border: 0;
+      padding-left: 0;
+      color: $gray-600 ;
+    }
   }
 }
 
