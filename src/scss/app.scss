@@ -727,7 +727,9 @@
     height: 1058px;
     margin: 0;
   }
-
+  .form-control-dam{
+    background-color: transparent;
+  }
   .bg-blue-5 {
     background-color: var(--#{$prefix}white) !important;
   }
@@ -788,6 +790,7 @@
   .btn-outline-secondary {
     &:not(:hover) {
       background-color: var(--#{$prefix}btn-light-bg);
+      border-color: var(--#{$prefix}gray-dark);
     }
   }
   .btn {
@@ -798,7 +801,7 @@
     &:active {
       color: var(--#{$prefix}body-color);
       background-color: var(--#{$prefix}color-blue-6);
-      border-color: var(--#{$prefix}color-blue-6);
+      border-color: var(--#{$prefix}gray-dark);
     }
   }
   .btn {
@@ -919,6 +922,21 @@
     .daterange-picker .react-datepicker__day.react-datepicker__day--in-range:hover,
     .daterange-picker .react-datepicker__day.react-datepicker__day--in-selecting-range:hover {
       background-color: #0c1124;
+    }
+    #contextMenuItem {
+      > div:not(:last-child) {
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+        .stroke-dark {
+          path {
+            stroke: #fff;
+            fill: transparent;
+          }
+        }
+      }
     }
   }
 }
