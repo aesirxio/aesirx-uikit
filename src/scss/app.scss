@@ -878,12 +878,17 @@
   }
   .file_type,
   .file_size,
-  .last_modified,.dimension {
+  .last_modified,
+  .dimension {
     input {
       border: 0;
       padding-left: 0;
-      color: $gray-600 ;
+      color: $gray-600;
     }
+  }
+  .modal-80w {
+    max-width: none !important;
+    width: 80%;
   }
 }
 
