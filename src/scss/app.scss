@@ -890,6 +890,9 @@
     max-width: none !important;
     width: 80%;
   }
+  .border-select-item{
+    border-color: $success;
+  }
 }
 
 @include color-mode(dark) {
@@ -951,6 +954,9 @@
           }
         }
       }
+    }
+    .border-select-item{
+      border-color: var(--#{$prefix}gray-dark);;
     }
   }
 }
