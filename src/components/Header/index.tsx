@@ -1,8 +1,6 @@
 import { Hambuger } from 'components/Hambuger';
 import { Logo } from 'components/Logo';
-import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import React from 'react';
 
 import './index.scss';
 
@@ -13,21 +11,9 @@ import { useAppContext } from 'providers/AppProvider';
 
 const Header = ({ children, logo }: any) => {
   const { noavatar, integration, rootId } = useAppContext();
-  const [isMini, setMini] = useState(integration);
-
-  useEffect(() => {
-    if (isMini) {
-      document.querySelector(rootId).classList.add('mini_left');
-    }
-  }, []);
 
   const handleMenuLeft = () => {
     document.querySelector(rootId).classList.toggle('show_menu_left');
-  };
-
-  const handleCollap = () => {
-    document.querySelector(rootId).classList.toggle('mini_left');
-    setMini(!isMini);
   };
 
   return (
@@ -38,25 +24,8 @@ const Header = ({ children, logo }: any) => {
       }`}
     >
       <Hambuger handleAction={handleMenuLeft} />
-      <Logo isMini={isMini} logo={logo} />
+      <Logo logo={logo} />
       <div className="content_header h-80 b flex-1 d-flex align-items-center ps-2 ps-lg-4 position-relative w-50 w-lg-100 bg-blue-5">
-        <span
-          className="
-              item_collap
-              d-xl-flex
-              position-absolute
-              text-green
-              bg-blue-1
-              rounded-circle
-              align-items-center
-              justify-content-center
-              fs-12
-              cursor-pointer
-            "
-          onClick={handleCollap}
-        >
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </span>
         <div className="d-flex justify-content-end flex-1 align-items-center">
           {children}
           <LanguagesSwitcher />

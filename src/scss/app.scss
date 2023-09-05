@@ -890,8 +890,21 @@
     max-width: none !important;
     width: 80%;
   }
-  .border-select-item{
+  .border-select-item {
     border-color: $success;
+  }
+  .field_tags,
+  .field_keywords {
+    svg {
+      display: none;
+    }
+  }
+  .wr_input_search {
+    .form-control {
+      &:focus {
+        box-shadow: none;
+      }
+    }
   }
 }
 
@@ -955,8 +968,8 @@
         }
       }
     }
-    .border-select-item{
-      border-color: var(--#{$prefix}gray-dark);;
+    .border-select-item {
+      border-color: var(--#{$prefix}gray-dark);
     }
   }
 }
