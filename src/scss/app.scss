@@ -732,7 +732,9 @@
     height: 1058px;
     margin: 0;
   }
-
+  .form-control-dam {
+    background-color: transparent;
+  }
   .bg-blue-5 {
     background-color: var(--#{$prefix}white) !important;
   }
@@ -793,6 +795,7 @@
   .btn-outline-secondary {
     &:not(:hover) {
       background-color: var(--#{$prefix}btn-light-bg);
+      border-color: var(--#{$prefix}gray-dark);
     }
   }
   .btn {
@@ -803,7 +806,7 @@
     &:active {
       color: var(--#{$prefix}body-color);
       background-color: var(--#{$prefix}color-blue-6);
-      border-color: var(--#{$prefix}color-blue-6);
+      border-color: var(--#{$prefix}gray-dark);
     }
   }
   .btn {
@@ -875,12 +878,46 @@
   .bg-gray {
     background-color: var(--#{$prefix}color-blue-6);
   }
+  .icon-check {
+    padding: 1px;
+  }
+  .file_type,
+  .file_size,
+  .last_modified,
+  .dimension {
+    input {
+      border: 0;
+      padding-left: 0;
+      color: $gray-600;
+    }
+  }
+  .modal-80w {
+    max-width: none !important;
+    width: 80%;
+  }
+  .border-select-item {
+    border-color: $success;
+  }
+  .field_tags,
+  .field_keywords {
+    svg {
+      display: none;
+    }
+  }
+  .wr_input_search {
+    .form-control {
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
 }
 
 @include color-mode(dark) {
   .aesirxui {
     --aesirxui-body-bg: #101529;
     --aesirxui-color-blue-6: #171e3a;
+    --aesirxui-color-blue-9: #181f3d;
     --aesirxui-gray-dark: #1e4284;
     --aesirxui-gray-800: #132342;
     --aesirxui-white: #0c1124;
@@ -898,7 +935,9 @@
     .bg-white {
       background-color: var(--#{$prefix}color-blue-6);
     }
-
+    .bg-color-blue-9 {
+      background-color: var(--#{$prefix}color-blue-9);
+    }
     .nav-tabs {
       --#{$prefix}nav-tabs-link-active-color: $white;
     }
@@ -971,6 +1010,24 @@
     .daterange-picker .react-datepicker__day.react-datepicker__day--in-range:hover,
     .daterange-picker .react-datepicker__day.react-datepicker__day--in-selecting-range:hover {
       background-color: #0c1124;
+    }
+    #contextMenuItem {
+      > div:not(:last-child) {
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+        .stroke-dark {
+          path {
+            stroke: #fff;
+            fill: transparent;
+          }
+        }
+      }
+    }
+    .border-select-item {
+      border-color: var(--#{$prefix}gray-dark);
     }
   }
 }
