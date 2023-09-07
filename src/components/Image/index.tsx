@@ -6,6 +6,14 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-const Image = (props: any) => <LazyLoadImage {...props} effect="blur" />;
+const Image = (props: any) => (
+  <LazyLoadImage
+    placeholderSrc={
+      props?.placeholderSrc ? props?.placeholderSrc : '/assets/images/default_channel_image.png'
+    }
+    {...props}
+    effect="blur"
+  />
+);
 
 export { Image };
