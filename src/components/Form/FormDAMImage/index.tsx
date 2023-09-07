@@ -46,9 +46,8 @@ const FormDAMImage = ({ current, onChoose }: any) => {
 
         {image != '' ? (
           <Image
-            className={`rounded-circle h-196 w-196 object-fit-cover mb-1 h-196 transition ${
-              isHovered ? 'opacity-50' : 'opacity-100'
-            }`}
+            className={`rounded-circle h-196 w-196 object-fit-cover mb-1 h-196 transition ${isHovered ? 'opacity-50' : 'opacity-100'
+              }`}
             src={image}
             style={{ width: 196 }}
           />
@@ -61,9 +60,8 @@ const FormDAMImage = ({ current, onChoose }: any) => {
           </div>
         )}
         <div
-          className={`position-absolute w-100 h-100 d-flex align-items-center top-0 start-0 align-content-center text-white text-center transition ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`position-absolute w-100 h-100 d-flex align-items-center top-0 start-0 align-content-center text-white text-center ${isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
           onMouseOver={() => {
             setIsHovered(true);
           }}
