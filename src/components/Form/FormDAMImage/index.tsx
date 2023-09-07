@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { Image } from 'components/Image';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ModalDAMComponent } from 'components/ModalDam';
 
@@ -28,15 +28,6 @@ const FormDAMImage = ({ current, onChoose }: any) => {
     setShow(false);
   };
 
-  useEffect(() => {
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    console.log(prefersDark)
-
-  }, []);
-
   return (
     <>
       <div
@@ -55,7 +46,9 @@ const FormDAMImage = ({ current, onChoose }: any) => {
 
         {image != '' ? (
           <Image
-            className={`rounded-circle h-196 w-196 object-fit-cover mb-1 h-196 transition ${isHovered ? 'opacity-50' : 'opacity-100'}`}
+            className={`rounded-circle h-196 w-196 object-fit-cover mb-1 h-196 transition ${
+              isHovered ? 'opacity-50' : 'opacity-100'
+            }`}
             src={image}
             style={{ width: 196 }}
           />
@@ -67,7 +60,10 @@ const FormDAMImage = ({ current, onChoose }: any) => {
             <span className="text-white" style={{ fontSize: '9rem' }}></span>
           </div>
         )}
-        <div className={`position-absolute w-100 h-100 d-flex align-items-center top-0 start-0 align-content-center text-white text-center transition ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+        <div
+          className={`position-absolute w-100 h-100 d-flex align-items-center top-0 start-0 align-content-center text-white text-center transition ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
           onMouseOver={() => {
             setIsHovered(true);
           }}
