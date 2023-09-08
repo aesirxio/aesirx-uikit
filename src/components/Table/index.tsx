@@ -53,6 +53,7 @@ const Table = ({
   pagination,
   selectPage,
   currentSelect,
+  textNodata,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -294,7 +295,11 @@ const Table = ({
 
         {rows.length === 0 ? (
           <div style={{ height: '50vh' }}>
-            <NoData icons="/assets/images/ic_project.svg" title={t('txt_nodata')} width="w-50" />
+            <NoData
+              icons="/assets/images/ic_project.svg"
+              title={textNodata ? textNodata : t('txt_nodata')}
+              width="w-50"
+            />
           </div>
         ) : null}
       </div>
