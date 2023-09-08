@@ -59,8 +59,8 @@ $utilities: (
           'blue-5': $white,
           'gray-2': rgba($color-gray-2, 0.7),
           'gray-3': $color-gray-3,
-          'gray-4':$gray-300,
-          'transparent':transparent,
+          'gray-4': $gray-300,
+          'transparent': transparent,
         )
       ),
   ),
@@ -164,7 +164,7 @@ $utilities: (
       auto: auto,
       150px: 150px,
       40px: 40px,
-      145px:145px,
+      145px: 145px,
     ),
   ),
   'height': (
@@ -179,6 +179,8 @@ $utilities: (
       40px: 40px,
       48px: 48px,
       80vh: 80vh,
+      465px: 465px,
+      680px: 680px,
     ),
   ),
   'object-fit': (
