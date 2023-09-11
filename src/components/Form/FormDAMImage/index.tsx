@@ -11,6 +11,8 @@ const FormDAMImage = ({ current, onChoose }: any) => {
 
   const [show, setShow] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+
   const onSelect = (data: any) => {
     const imgUrl = data[0]?.download_url;
 
@@ -44,8 +46,11 @@ const FormDAMImage = ({ current, onChoose }: any) => {
 
         {image != '' ? (
           <Image
-            className={`rounded-circle h-196 w-196 object-fit-cover opacity-50 mb-1`}
+            className={`rounded-circle h-196 w-196 object-fit-cover mb-1 h-196 ${
+              isHovered ? 'opacity-50' : 'opacity-100'
+            }`}
             src={image}
+            style={{ width: 196 }}
           />
         ) : (
           <div
@@ -55,7 +60,17 @@ const FormDAMImage = ({ current, onChoose }: any) => {
             <span className="text-white" style={{ fontSize: '9rem' }}></span>
           </div>
         )}
-        <div className="position-absolute w-100 h-100 d-flex align-items-center top-0 start-0 align-content-center text-white text-center">
+        <div
+          className={`position-absolute w-100 h-100 d-flex align-items-center top-0 start-0 align-content-center text-white text-center ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
+          onMouseOver={() => {
+            setIsHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+          }}
+        >
           <div className="w-100 px-1">
             <FontAwesomeIcon icon={faCloudUploadAlt} className={`fs-3 mb-1`} />
             <div>{t('txt_click_to_change_image')}</div>
