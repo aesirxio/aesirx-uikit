@@ -1,4 +1,5 @@
-const getStoredTheme = () => typeof window !== 'undefined' && localStorage.getItem('theme');
+const getStoredTheme = () =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 const setStoredTheme = (theme: any) =>
   typeof window !== 'undefined' && localStorage.setItem('theme', theme);
 const setTheme = (theme: any) => {
