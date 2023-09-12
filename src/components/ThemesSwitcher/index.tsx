@@ -3,7 +3,7 @@ import React from 'react';
 // import { ThemeMode } from './ThemeMode';
 
 import { Form } from 'react-bootstrap';
-import { getStoredTheme, setStoredTheme, setTheme } from 'theme/darkmode';
+import { setStoredTheme, setTheme } from 'theme/darkmode';
 const ThemesSwitcher = () => {
   // const { theme, toggleTheme } = useThemeContext();
 
