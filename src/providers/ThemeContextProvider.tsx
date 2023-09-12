@@ -16,7 +16,7 @@ const ThemesContext = createContext<IContext>({
 });
 
 const ThemesContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<any>(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState<any>(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
   const toggleTheme = () => {
     const newThemeValue = theme === 'dark' ? 'light' : 'dark';

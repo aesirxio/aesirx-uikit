@@ -3,7 +3,7 @@ const setStoredTheme = (theme: any) =>
   typeof window !== 'undefined' && localStorage.setItem('theme', theme);
 const setTheme = (theme: any) => {
   if (
-    theme === 'auto' &&
+    theme === 'dark' &&
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-color-scheme: dark)').matches
   ) {
