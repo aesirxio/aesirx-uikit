@@ -534,6 +534,9 @@
       &:checked {
         background-color: $success;
       }
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
   .form-control {
