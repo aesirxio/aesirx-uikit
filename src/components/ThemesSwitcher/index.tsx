@@ -15,7 +15,7 @@ const ThemesSwitcher = () => {
         <Form.Check
           type="switch"
           id="switcher-mobile"
-          defaultChecked={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
+          defaultChecked={window.matchMedia('(prefers-color-scheme: dark)').matches ? true : false}
           onChange={(e) => {
             if (e.target.checked) {
               setStoredTheme('dark');
