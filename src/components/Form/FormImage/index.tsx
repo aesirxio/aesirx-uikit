@@ -150,7 +150,7 @@ const FormImage = ({ field, ...props }: any) => {
         accept={{
           'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
         }}
-        isMulti={true}
+        isMulti={field.isMulti}
       />
     </>
   );
