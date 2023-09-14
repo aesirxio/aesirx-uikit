@@ -9,7 +9,7 @@ function ModalDAMComponent({
   onSelect,
   type = '',
   accept = '*',
-  isMutil = false,
+  isMulti = false,
 }: any) {
   return (
     <ModalComponent
@@ -24,7 +24,7 @@ function ModalDAMComponent({
           toolbar={false}
           type={type}
           accept={accept}
-          isMutil={isMutil}
+          isMulti={isMulti}
         />
       }
     />
