@@ -124,8 +124,8 @@ const Table = ({
 
                 dataList
                   ? (newHeaderGroup = headerGroup.headers.filter(
-                    (item: any) => !dataList.some((other: any) => item.id === other)
-                  ))
+                      (item: any) => !dataList.some((other: any) => item.id === other)
+                    ))
                   : (newHeaderGroup = headerGroup.headers);
 
                 return (
@@ -148,26 +148,27 @@ const Table = ({
                                 : columnInside && columnInside.getSortByToggleProps()
                             ),
                           })}
-                          className={`${column.className} ${sortAPI && sortParams !== 'number' && sortParams !== 'selection'
-                            ? 'cursor-pointer'
-                            : ''
-                            } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
+                          className={`${column.className} ${
+                            sortAPI && sortParams !== 'number' && sortParams !== 'selection'
+                              ? 'cursor-pointer'
+                              : ''
+                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
                           {...(sortAPI &&
                             sortParams !== 'number' &&
                             sortParams !== 'selection' && {
-                            onClick: async () => {
-                              setLoading(true);
-                              if (store.sortBy.id === sortParams && store.sortBy.desc) {
-                                store.sortBy = { desc: true };
-                              } else if (store.sortBy.id !== sortParams) {
-                                store.sortBy = { id: sortParams, desc: false };
-                              } else {
-                                store.sortBy = { id: sortParams, desc: !store.sortBy.desc };
-                              }
-                              await store.getItems();
-                              setLoading(false);
-                            },
-                          })}
+                              onClick: async () => {
+                                setLoading(true);
+                                if (store.sortBy.id === sortParams && store.sortBy.desc) {
+                                  store.sortBy = { desc: true };
+                                } else if (store.sortBy.id !== sortParams) {
+                                  store.sortBy = { id: sortParams, desc: false };
+                                } else {
+                                  store.sortBy = { id: sortParams, desc: !store.sortBy.desc };
+                                }
+                                await store.getItems();
+                                setLoading(false);
+                              },
+                            })}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
                           {column.render('Header')}
@@ -218,7 +219,7 @@ const Table = ({
                       onContextMenu={(e) => {
                         onRightClickItem && onRightClickItem(e, row.original);
                       }}
-                      className={`${isGrayRow ? " " : "bg-blue-5"}`}
+                      className={`${isGrayRow ? ' ' : 'bg-blue-5'}`}
                     >
                       {row.cells.map((cell: any, index: any) => {
                         if (cell.isRowSpanned) return null;
