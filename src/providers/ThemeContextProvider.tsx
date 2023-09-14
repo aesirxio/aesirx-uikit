@@ -15,10 +15,16 @@ const ThemesContext = createContext<IContext>({
   toggleTheme: () => {},
 });
 
+const themeDefault = () => {
+  if (localStorage.getItem('theme')) {
+    return localStorage.getItem('theme');
+  } else {
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+};
+
 const ThemesContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<any>(
-    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  );
+  const [theme, setTheme] = useState<any>(themeDefault());
 
   const toggleTheme = () => {
     const newThemeValue = theme === 'dark' ? 'light' : 'dark';
