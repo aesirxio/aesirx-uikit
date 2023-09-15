@@ -1,9 +1,15 @@
-const getStoredTheme = () => typeof window !== 'undefined' && localStorage.getItem('theme');
+const getStoredTheme = () => {
+  if (typeof window !== 'undefined' && localStorage.getItem('theme')) {
+    return localStorage.getItem('theme');
+  } else {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+};
 const setStoredTheme = (theme: any) =>
   typeof window !== 'undefined' && localStorage.setItem('theme', theme);
 const setTheme = (theme: any) => {
   if (
-    theme === 'auto' &&
+    theme === 'dark' &&
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-color-scheme: dark)').matches
   ) {
