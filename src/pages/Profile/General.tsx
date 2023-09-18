@@ -44,7 +44,7 @@ const ProfileGeneral = observer(() => {
       label: 'ID',
       key: MEMBER_FIELD_KEY.ID,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: preregistration?.objForm?.id ?? formPropsData[MEMBER_FIELD_KEY.ID],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.ID],
       className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
@@ -53,9 +53,7 @@ const ProfileGeneral = observer(() => {
       label: t('txt_first_name'),
       key: MEMBER_FIELD_KEY.FIRST_NAME,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected:
-        preregistration?.objForm?.first_name ??
-        formPropsData[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[0],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.FIRST_NAME],
       className: 'col-6',
       inputClassName: 'border',
     },
@@ -63,9 +61,7 @@ const ProfileGeneral = observer(() => {
       label: t('txt_last_name'),
       key: MEMBER_FIELD_KEY.LAST_NAME,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected:
-        preregistration?.objForm?.sur_name ??
-        formPropsData[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[1],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.LAST_NAME],
       className: 'col-6',
       inputClassName: 'border',
     },
@@ -74,8 +70,7 @@ const ProfileGeneral = observer(() => {
       label: t('txt_description'),
       key: MEMBER_FIELD_KEY.DESCRIPTION,
       type: FORM_FIELD_TYPE.TEXTAREA,
-      getValueSelected:
-        preregistration?.objForm?.description ?? formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
       className: 'col-12',
       inputClassName: 'border',
     },
@@ -83,8 +78,7 @@ const ProfileGeneral = observer(() => {
       label: t('txt_organization'),
       key: MEMBER_FIELD_KEY.ORGANIZATION,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected:
-        preregistration?.objForm?.organization ?? formPropsData[MEMBER_FIELD_KEY.ORGANIZATION],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.ORGANIZATION],
       className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
