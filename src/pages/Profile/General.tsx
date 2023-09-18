@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { faUserCog } from '@fortawesome/free-solid-svg-icons/faUserCog';
-import { MEMBER_FIELD_KEY, MEMBER_GET_FIELD_KEY } from 'aesirx-lib';
+import { MEMBER_FIELD_KEY, MEMBER_GET_FIELD_KEY, Storage } from 'aesirx-lib';
 import { observer } from 'mobx-react';
 import { useProfileContext } from './model';
 import { PAGE_STATUS } from 'constant/PageStatus';
@@ -19,91 +19,75 @@ const ProfileGeneral = observer(() => {
   const { t } = useTranslation();
   const { model } = useProfileContext();
   const memberInfo = model.getData();
+  const preregistration: any = Storage.getItem('preregistration') ?? '';
+  // eslint-disable-next-line no-console
+  console.log(preregistration?.objForm, 'log');
 
   const formPropsData = {
-    [MEMBER_FIELD_KEY.ID]: memberInfo[MEMBER_GET_FIELD_KEY.ID],
-    [MEMBER_FIELD_KEY.USERNAME]: memberInfo[MEMBER_GET_FIELD_KEY.USERNAME],
-    [MEMBER_FIELD_KEY.AVATAR_DAM]: memberInfo[MEMBER_GET_FIELD_KEY.AVATAR_DAM],
-    [MEMBER_FIELD_KEY.FULL_NAME]: memberInfo[MEMBER_GET_FIELD_KEY.FULL_NAME],
-    [MEMBER_FIELD_KEY.EMAIL]: memberInfo[MEMBER_GET_FIELD_KEY.EMAIL],
-    [MEMBER_FIELD_KEY.BIRTHDAY]: memberInfo[MEMBER_GET_FIELD_KEY.BIRTHDAY],
-    [MEMBER_FIELD_KEY.PHONE]: memberInfo[MEMBER_GET_FIELD_KEY.PHONE],
-    [MEMBER_FIELD_KEY.ADDRESS]: memberInfo[MEMBER_GET_FIELD_KEY.ADDRESS],
-    [MEMBER_FIELD_KEY.ADDRESS_2]: memberInfo[MEMBER_GET_FIELD_KEY.ADDRESS_2],
-    [MEMBER_FIELD_KEY.ZIP_CODE]: memberInfo[MEMBER_GET_FIELD_KEY.ZIP_CODE],
-    [MEMBER_FIELD_KEY.CITY]: memberInfo[MEMBER_GET_FIELD_KEY.CITY],
-    [MEMBER_FIELD_KEY.STATE]: memberInfo[MEMBER_GET_FIELD_KEY.STATE],
-    [MEMBER_FIELD_KEY.COUNTRY]: memberInfo[MEMBER_GET_FIELD_KEY.COUNTRY],
-    [MEMBER_FIELD_KEY.TIMEZONE]: memberInfo[MEMBER_GET_FIELD_KEY.TIMEZONE],
-    [MEMBER_FIELD_KEY.WALLET_METAMASK]: memberInfo[MEMBER_GET_FIELD_KEY.WALLET_METAMASK],
-    [MEMBER_FIELD_KEY.WALLET_CONCORDIUM]: memberInfo[MEMBER_GET_FIELD_KEY.WALLET_CONCORDIUM],
+    [MEMBER_FIELD_KEY.ID]: preregistration?.objForm?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
+    [MEMBER_FIELD_KEY.AVATAR_DAM]:
+      preregistration?.objForm?.avatar ?? memberInfo[MEMBER_GET_FIELD_KEY.AVATAR_DAM],
+    [MEMBER_FIELD_KEY.FIRST_NAME]:
+      preregistration?.objForm?.first_name ??
+      memberInfo[MEMBER_GET_FIELD_KEY.FULL_NAME].split(' ')[0],
+    [MEMBER_FIELD_KEY.LAST_NAME]:
+      preregistration?.objForm?.sur_name ??
+      memberInfo[MEMBER_GET_FIELD_KEY.FULL_NAME].split(' ')[1],
+    [MEMBER_FIELD_KEY.DESCRIPTION]:
+      preregistration?.objForm?.description ?? memberInfo[MEMBER_GET_FIELD_KEY.DESCRIPTION],
+    [MEMBER_FIELD_KEY.ORGANIZATION]:
+      preregistration?.objForm?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
   };
 
   const formSetting = [
     {
-      label: t('txt_username'),
-      key: MEMBER_FIELD_KEY.USERNAME,
+      label: 'ID',
+      key: MEMBER_FIELD_KEY.ID,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.USERNAME],
-      className: 'col-6',
+      getValueSelected: preregistration?.objForm?.id ?? formPropsData[MEMBER_FIELD_KEY.ID],
+      className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
     },
     {
-      label: t('txt_email'),
-      key: MEMBER_FIELD_KEY.EMAIL,
+      label: t('txt_first_name'),
+      key: MEMBER_FIELD_KEY.FIRST_NAME,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.EMAIL],
+      getValueSelected:
+        preregistration?.objForm?.first_name ??
+        formPropsData[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[0],
       className: 'col-6',
       inputClassName: 'border',
-      readOnly: true,
+    },
+    {
+      label: t('txt_last_name'),
+      key: MEMBER_FIELD_KEY.LAST_NAME,
+      type: FORM_FIELD_TYPE.INPUT,
+      getValueSelected:
+        preregistration?.objForm?.sur_name ??
+        formPropsData[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[1],
+      className: 'col-6',
+      inputClassName: 'border',
     },
 
     {
-      label: t('txt_fullname'),
-      key: MEMBER_FIELD_KEY.FULL_NAME,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.FULL_NAME],
-      className: 'col-6',
-      required: true,
-      validation: 'required',
+      label: t('txt_description'),
+      key: MEMBER_FIELD_KEY.DESCRIPTION,
+      type: FORM_FIELD_TYPE.TEXTAREA,
+      getValueSelected:
+        preregistration?.objForm?.description ?? formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
+      className: 'col-12',
       inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.FULL_NAME] = event.target.value;
-      },
     },
     {
-      label: t('txt_phone'),
-      key: MEMBER_FIELD_KEY.PHONE,
+      label: t('txt_organization'),
+      key: MEMBER_FIELD_KEY.ORGANIZATION,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.PHONE],
-      className: 'col-6',
+      getValueSelected:
+        preregistration?.objForm?.organization ?? formPropsData[MEMBER_FIELD_KEY.ORGANIZATION],
+      className: 'col-12',
       inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.PHONE] = event.target.value;
-      },
-    },
-    {
-      label: t('txt_metamask_wallet'),
-      key: MEMBER_FIELD_KEY.WALLET_METAMASK,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.WALLET_METAMASK],
-      className: 'col-6',
-      inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.WALLET_METAMASK] = event.target.value;
-      },
-    },
-    {
-      label: t('txt_concordium_wallet'),
-      key: MEMBER_FIELD_KEY.WALLET_CONCORDIUM,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.WALLET_CONCORDIUM],
-      className: 'col-6',
-      inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.WALLET_CONCORDIUM] = event.target.value;
-      },
+      readOnly: true,
     },
   ];
 

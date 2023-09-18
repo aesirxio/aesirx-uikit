@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ProfileGeneral } from './General';
 import { ProfileContextProvider } from './model';
-import { ProfilePassword } from './Password';
 
 const ProfilePage = () => {
   const { t } = useTranslation();
@@ -21,8 +20,6 @@ const ProfilePage = () => {
           <div className="w-80-percent">
             <h2 className="text-body mb-3">{t('txt_general_information')}</h2>
             <ProfileGeneral />
-
-            <ProfilePassword />
           </div>
         </div>
       </div>

@@ -83,14 +83,17 @@
   "txt_member": "สมาชิก",
   "txt_add_member_name": "เพิ่มชื่อสมาชิก",
   "txt_password": "รหัสผ่าน",
-  "txt_enter_password":"ใส่รหัสผ่าน",
-  "txt_enter_member_email":"ใส่อีเมลสมาชิก",
-  "txt_select_role":"เลือกบทบาท",
-  "txt_enter_metamask_address":"ป้อนที่อยู่ Metamask",
-  "txt_enter_concordium_address":"ป้อนที่อยู่คอนคอร์เดียม",
+  "txt_enter_password": "ใส่รหัสผ่าน",
+  "txt_enter_member_email": "ใส่อีเมลสมาชิก",
+  "txt_select_role": "เลือกบทบาท",
+  "txt_enter_metamask_address": "ป้อนที่อยู่ Metamask",
+  "txt_enter_concordium_address": "ป้อนที่อยู่คอนคอร์เดียม",
   "txt_role": "บทบาท",
   "txt_metamask_wallet": "กระเป๋าเงิน Metamask",
   "txt_concordium_wallet": "กระเป๋าเงิน Concordium",
   "txt_version": "รุ่น:",
-  "txt_sign_in_to_getting_started": "ลงชื่อเข้าใช้เพื่อเริ่มต้นใช้งาน"
+  "txt_sign_in_to_getting_started": "ลงชื่อเข้าใช้เพื่อเริ่มต้นใช้งาน",
+  "txt_first_name": "ชื่อ",
+  "txt_last_name": "นามสกุล",
+  "txt_organization": "องค์กร"
 }

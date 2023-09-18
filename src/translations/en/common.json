@@ -92,5 +92,8 @@
   "txt_metamask_wallet": "Metamask Wallet",
   "txt_concordium_wallet": "Concordium Wallet",
   "txt_version": "Version:",
-  "txt_sign_in_to_getting_started": "Sign In to getting started."
+  "txt_sign_in_to_getting_started": "Sign In to getting started.",
+  "txt_first_name": "First Name",
+  "txt_last_name": "Last Name",
+  "txt_organization": "Organization"
 }
