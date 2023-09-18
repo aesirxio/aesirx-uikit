@@ -19,6 +19,7 @@
   @import 'bootstrap/scss/button-group';
   @import 'bootstrap/scss/buttons';
   @import 'bootstrap/scss/progress';
+  @import '~bootstrap/scss/tooltip';
 
   @import 'bootstrap/scss/transitions';
   @import 'bootstrap/scss/nav';
@@ -28,6 +29,8 @@
   @import '~bootstrap/scss/spinners';
   @import 'bootstrap/scss/helpers';
   @import 'bootstrap/scss/utilities/api';
+
+  overflow: hidden;
   img {
     max-width: 100%;
   }
@@ -530,6 +533,9 @@
     &[type='checkbox'] {
       &:checked {
         background-color: $success;
+      }
+      &:focus {
+        box-shadow: none;
       }
     }
   }

@@ -16,10 +16,9 @@ import { withTranslation } from 'react-i18next';
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faSortDown,
-  faSortUp,
   faChevronRight,
   faChevronLeft,
+  faArrowRightArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { NoData } from 'components/NoData';
 
@@ -45,14 +44,13 @@ const Table = ({
   store,
   setLoading,
   dataList,
-  selection = true,
+  selection = false,
   classNameTable,
   onRightClickItem,
-  sortAPI,
-  canSort,
   pagination,
   selectPage,
   currentSelect,
+  textNodata,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -98,7 +96,7 @@ const Table = ({
               </div>
             ),
             Cell: ({ row }: any) => (
-              <div className="wrapper_checkbox ms-8px">
+              <div className="wrapper_checkbox">
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),
@@ -117,10 +115,10 @@ const Table = ({
   const { t } = props;
   return (
     <>
-      <div className="fs-14 text-color position-relative">
+      <div className="fs-14 text-color position-relative pt-3 px-3 rounded-3 is-list">
         {rows.length ? (
-          <table {...getTableProps()} className={`w-100 ${classNameTable}`}>
-            <thead className="fs-6">
+          <table {...getTableProps()} className={`${classNameTable}`}>
+            <thead className="fs-6 bg-blue-5 border-bottom-2">
               {headerGroups.map((headerGroup: any, index: any) => {
                 let newHeaderGroup = [];
 
@@ -133,7 +131,9 @@ const Table = ({
                 return (
                   <tr key={index} {...headerGroup.getHeaderGroupProps()}>
                     {newHeaderGroup.map((column: any, index: any) => {
-                      const sortParams = column.sortParams ?? column.id;
+                      const canSort = column.canFilter;
+                      const sortAPI = column.sortType;
+                      const sortParams = canSort ?? column.id;
                       let columnInside: any;
                       if (column.rowSpanHeader && canSort && !sortAPI) {
                         columnInside = column.columns[0];
@@ -152,7 +152,7 @@ const Table = ({
                             sortAPI && sortParams !== 'number' && sortParams !== 'selection'
                               ? 'cursor-pointer'
                               : ''
-                          }`}
+                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
                           {...(sortAPI &&
                             sortParams !== 'number' &&
                             sortParams !== 'selection' && {
@@ -172,64 +172,12 @@ const Table = ({
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
                           {column.render('Header')}
-                          {canSort && (
-                            <span className="position-relative">
-                              {sortAPI ? (
-                                store?.sortBy?.id === sortParams &&
-                                sortParams !== 'number' &&
-                                sortParams !== 'selection' ? (
-                                  store?.sortBy?.desc ? (
-                                    <FontAwesomeIcon
-                                      className="sort-icon sort-icon-down ms-sm"
-                                      icon={faSortDown}
-                                    />
-                                  ) : (
-                                    <FontAwesomeIcon
-                                      className="sort-icon sort-icon-up ms-sm mb-nsm"
-                                      icon={faSortUp}
-                                    />
-                                  )
-                                ) : (
-                                  ''
-                                )
-                              ) : !column.rowSpanHeader ? (
-                                column.isSorted &&
-                                sortParams !== 'number' &&
-                                sortParams !== 'selection' ? (
-                                  column.isSortedDesc ? (
-                                    <FontAwesomeIcon
-                                      className="sort-icon sort-icon-down ms-sm"
-                                      icon={faSortDown}
-                                    />
-                                  ) : (
-                                    <FontAwesomeIcon
-                                      className="sort-icon sort-icon-up ms-sm mb-nsm"
-                                      icon={faSortUp}
-                                    />
-                                  )
-                                ) : (
-                                  ''
-                                )
-                              ) : columnInside.isSorted &&
-                                // Column have rowSpan
-                                sortParams !== 'number' &&
-                                sortParams !== 'selection' ? (
-                                columnInside.isSortedDesc ? (
-                                  <FontAwesomeIcon
-                                    className="sort-icon sort-icon-down ms-sm"
-                                    icon={faSortDown}
-                                  />
-                                ) : (
-                                  <FontAwesomeIcon
-                                    className="sort-icon sort-icon-up ms-sm mb-nsm"
-                                    icon={faSortUp}
-                                  />
-                                )
-                              ) : (
-                                ''
-                              )}
-                            </span>
-                          )}
+                          <span className="position-relative">
+                            <FontAwesomeIcon
+                              className="px-2 arrow-right-left"
+                              icon={faArrowRightArrowLeft}
+                            />
+                          </span>
                         </th>
                       );
                     })}
@@ -262,7 +210,8 @@ const Table = ({
                 return null;
               })}
               {rows.length > 0 &&
-                rows.map((row: any) => {
+                rows.map((row: any, rowIndex: number) => {
+                  const isGrayRow = rowIndex % 2 === 0;
                   return (
                     <tr
                       key={row.getRowProps().key}
@@ -270,6 +219,7 @@ const Table = ({
                       onContextMenu={(e) => {
                         onRightClickItem && onRightClickItem(e, row.original);
                       }}
+                      className={`${isGrayRow ? ' ' : 'bg-blue-5'}`}
                     >
                       {row.cells.map((cell: any, index: any) => {
                         if (cell.isRowSpanned) return null;
@@ -279,7 +229,7 @@ const Table = ({
                               key={index}
                               rowSpan={cell.rowSpan}
                               {...cell.getCellProps({ style: { width: cell.column.width } })}
-                              className="py-16 fs-14 align-middle border-bottom-0"
+                              className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
                             >
                               {cell.render('Cell')}
                             </td>
@@ -294,7 +244,11 @@ const Table = ({
 
         {rows.length === 0 ? (
           <div style={{ height: '50vh' }}>
-            <NoData icons="/assets/images/ic_project.svg" title={t('txt_nodata')} width="w-50" />
+            <NoData
+              icons="/assets/images/ic_project.svg"
+              title={textNodata ? textNodata : t('txt_nodata')}
+              width="w-50"
+            />
           </div>
         ) : null}
       </div>
