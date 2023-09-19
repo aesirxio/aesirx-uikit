@@ -83,13 +83,16 @@
   "txt_member": "Thành viên",
   "txt_add_member_name": "Thêm tên thành viên",
   "txt_password": "Mật khẩu",
-  "txt_enter_password":"Nhập mật khẩu",
-  "txt_enter_member_email":"Nhập Email thành viên",
-  "txt_select_role":"Chọn vai trò",
-  "txt_enter_metamask_address":"Nhập địa chỉ ví Metamask",
-  "txt_enter_concordium_address":"Nhập địa chỉ ví Concordium",
+  "txt_enter_password": "Nhập mật khẩu",
+  "txt_enter_member_email": "Nhập Email thành viên",
+  "txt_select_role": "Chọn vai trò",
+  "txt_enter_metamask_address": "Nhập địa chỉ ví Metamask",
+  "txt_enter_concordium_address": "Nhập địa chỉ ví Concordium",
   "txt_role": "Vai trò",
   "txt_metamask_wallet": "Ví Metamask",
   "txt_concordium_wallet": "Ví Concordium",
-  "txt_version": "Phiên bản:"
+  "txt_version": "Phiên bản:",
+  "txt_first_name": "Tên",
+  "txt_last_name": "Họ",
+  "txt_ Organisation": "Tổ chức"
 }

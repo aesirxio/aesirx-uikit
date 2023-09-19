@@ -80,14 +80,17 @@
   "txt_member": "Член",
   "txt_add_member_name": "Додати ім'я учасника",
   "txt_password": "Пароль",
-  "txt_enter_password":"Введіть пароль",
-  "txt_enter_member_email":"Введіть електронну адресу учасника",
-  "txt_select_role":"Виберіть Роль",
-  "txt_enter_metamask_address":"Введіть адресу метамаски",
-  "txt_enter_concordium_address":"Введіть адресу Concordium",
+  "txt_enter_password": "Введіть пароль",
+  "txt_enter_member_email": "Введіть електронну адресу учасника",
+  "txt_select_role": "Виберіть Роль",
+  "txt_enter_metamask_address": "Введіть адресу метамаски",
+  "txt_enter_concordium_address": "Введіть адресу Concordium",
   "txt_role": "роль",
   "txt_metamask_wallet": "Гаманець Metamask",
   "txt_concordium_wallet": "Гаманець Concordium",
   "txt_version": "Версія:",
-  "txt_sign_in_to_getting_started": "Увійдіть, щоб почати роботу."
+  "txt_sign_in_to_getting_started": "Увійдіть, щоб почати роботу.",
+  "txt_first_name": "Ім'я",
+  "txt_last_name": "Прізвище",
+  "txt_organization": "Організація"
 }

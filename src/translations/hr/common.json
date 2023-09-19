@@ -80,14 +80,17 @@
   "txt_member": "Član",
   "txt_add_member_name": "Dodaj ime člana",
   "txt_password": "Lozinka",
-  "txt_enter_password":"Unesite lozinku",
-  "txt_enter_member_email":"Unesite e-poštu člana",
-  "txt_select_role":"Odaberite ulogu",
-  "txt_enter_metamask_address":"Unesite adresu metamaska",
-  "txt_enter_concordium_address":"Unesite adresu Concordiuma",
+  "txt_enter_password": "Unesite lozinku",
+  "txt_enter_member_email": "Unesite e-poštu člana",
+  "txt_select_role": "Odaberite ulogu",
+  "txt_enter_metamask_address": "Unesite adresu metamaska",
+  "txt_enter_concordium_address": "Unesite adresu Concordiuma",
   "txt_role": "Uloga",
   "txt_metamask_wallet": "Metamask novčanik",
   "txt_concordium_wallet": "Concordium novčanik",
   "txt_version": "Verzija:",
-  "txt_sign_in_to_getting_started": "Prijavite se da bi ste započeli."
+  "txt_sign_in_to_getting_started": "Prijavite se da bi ste započeli.",
+  "txt_first_name": "Ime",
+  "txt_last_name": "Prezime",
+  "txt_organization": "Organizacija"
 }
