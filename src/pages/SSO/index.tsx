@@ -3,14 +3,6 @@ import { Row, Col } from 'react-bootstrap';
 import Email from './AesirX/Email';
 
 function SSO() {
-  const [modalPassword, setModalPassword] = useState(false);
-  interface DeleteModal {
-    show: boolean;
-    data?: {
-      address: string;
-      wallet: string;
-    };
-  }
   return (
     <>
       <div className="bg-white rounded p-4">

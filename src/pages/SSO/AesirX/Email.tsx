@@ -16,7 +16,6 @@ const Email = () => {
   const preregistration: any = Storage.getItem('preregistration') ?? '';
   const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
   const userName = Storage.getItem(AUTHORIZATION_KEY.MEMBER_EMAIL);
-  const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
   console.log(preregistration, 'preregistration');
   console.log(userName);
 
