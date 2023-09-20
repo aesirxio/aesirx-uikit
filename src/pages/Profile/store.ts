@@ -30,6 +30,20 @@ class ProfileStore {
       return error;
     }
   }
+  async checkEmail(data: any) {
+    if (!data) return false;
+
+    try {
+      const CheckEmailAPIService = new AesirxMemberApiService();
+      const respondedData = await CheckEmailAPIService.checkEmail(data);
+
+      return respondedData;
+    } catch (error) {
+      // no error throw
+    }
+
+    return false;
+  }
 }
 
 export { ProfileStore };
