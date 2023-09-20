@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Email from './AesirX/Email';
 
@@ -9,7 +9,6 @@ function SSO() {
         <h3 className="fs-5 d-flex align-items-center fw-medium mb-12px">
           AesirX Account
           <p
-            onClick={() => setModalPassword(true)}
             className="fw-medium fs-7 ms-4 mb-0 text-decoration-underline text-success cursor-pointer"
           >
             Change Password

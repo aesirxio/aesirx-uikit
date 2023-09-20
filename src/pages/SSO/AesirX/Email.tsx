@@ -3,7 +3,6 @@ import { Button, Form } from 'react-bootstrap';
 import ButtonCopy from '../../../components/ButtonCopy';
 import { useFormik } from 'formik';
 import { useState } from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
@@ -13,32 +12,25 @@ import { ProfileStore } from '../../Profile/store';
 const Email = () => {
   const [updating, setUpdating] = useState(false);
   const profileStore = new ProfileStore();
-  const preregistration: any = Storage.getItem('preregistration') ?? '';
   const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
   const userName = Storage.getItem(AUTHORIZATION_KEY.MEMBER_EMAIL);
-  console.log(preregistration, 'preregistration');
-  console.log(userName);
 
   const formik = useFormik({
     initialValues: {
       email: userName,
     },
     onSubmit: async (values: any) => {
-      let updateSuccess = true;
       setUpdating(true);
       try {
         const response: any = await profileStore.checkEmail({ id: userID, ...values });
-        console.log(response, 'sdsd');
 
         if (response?.result?.success) {
           toast.success('Update email sucessfully!');
         } else {
-          updateSuccess = false;
           toast.error('Something when wrong!');
         }
       } catch (error: any) {
         console.log('Error', error);
-        updateSuccess = false;
         toast.error(error?.message);
       }
       setUpdating(false);
