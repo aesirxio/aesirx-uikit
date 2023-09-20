@@ -13,28 +13,25 @@ function SSO() {
   }
   return (
     <>
-    <div className='bg-white rounded p-4'>
-      <h3 className="fs-5 d-flex align-items-center fw-medium mb-12px">
-        AesirX Account
-        <p
-          onClick={() => setModalPassword(true)}
-          className="fw-medium fs-7 ms-4 mb-0 text-decoration-underline text-success cursor-pointer"
-        >
-          Change Password
-        </p>
-      </h3>
-      <Row>
-        <Col md={6} lg={6} xxl={4} className="mb-4">
-          <Email />
-        </Col>
-      </Row>
-    </div>
-     
+      <div className="bg-white rounded p-4">
+        <h3 className="fs-5 d-flex align-items-center fw-medium mb-12px">
+          AesirX Account
+          <p
+            onClick={() => setModalPassword(true)}
+            className="fw-medium fs-7 ms-4 mb-0 text-decoration-underline text-success cursor-pointer"
+          >
+            Change Password
+          </p>
+        </h3>
+        <Row>
+          <Col md={6} lg={6} xxl={4} className="mb-4">
+            <Email />
+          </Col>
+        </Row>
+      </div>
     </>
   );
 }
-
-
 
 // const SSOApp = () => {
 //   const [modal, setModal] = useState<DeleteModal>({ show: false });
@@ -105,4 +102,4 @@ function SSO() {
 //   );
 // };
 
-export {SSO} ;
+export { SSO };

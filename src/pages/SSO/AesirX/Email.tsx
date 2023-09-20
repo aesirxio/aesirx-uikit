@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import { AUTHORIZATION_KEY, Storage  } from 'aesirx-lib';
+import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
 import { ProfileStore } from '../../Profile/store';
 
 const Email = () => {
@@ -17,38 +17,30 @@ const Email = () => {
   const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
   const userName = Storage.getItem(AUTHORIZATION_KEY.MEMBER_EMAIL);
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
-  console.log(preregistration, "preregistration");
+  console.log(preregistration, 'preregistration');
   console.log(userName);
-  
- 
 
   const formik = useFormik({
     initialValues: {
-      email:userName,
+      email: userName,
     },
     onSubmit: async (values: any) => {
       let updateSuccess = true;
       setUpdating(true);
       try {
-        const response: any = await profileStore.checkEmail(
-          { id: userID, ...values }
-        );
-        console.log(response, "sdsd");
-        
+        const response: any = await profileStore.checkEmail({ id: userID, ...values });
+        console.log(response, 'sdsd');
+
         if (response?.result?.success) {
           toast.success('Update email sucessfully!');
         } else {
           updateSuccess = false;
-          toast.error(
-             'Something when wrong!'  
-          );
+          toast.error('Something when wrong!');
         }
       } catch (error: any) {
         console.log('Error', error);
         updateSuccess = false;
-        toast.error(
-          error?.message 
-        );
+        toast.error(error?.message);
       }
       setUpdating(false);
     },
@@ -57,9 +49,7 @@ const Email = () => {
 
   return (
     <div className="py-2rem px-4 border rounded">
-      <h3 className="fw-semibold fs-18 mb-12px">
-        Email
-      </h3>
+      <h3 className="fw-semibold fs-18 mb-12px">Email</h3>
       <Form onSubmit={formik.handleSubmit} className="text-start">
         <Form.Group>
           <Form.Label className="fw-medium mb-12px">
