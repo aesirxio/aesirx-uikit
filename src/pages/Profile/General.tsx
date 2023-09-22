@@ -59,7 +59,6 @@ const ProfileGeneral = observer(() => {
   const fetchData = async () => {
     try {
       const preregistrationData = await getPreregistration(jwt);
-      console.log(preregistrationData);
 
       setFormPropsData({
         [MEMBER_FIELD_KEY.ID]: preregistrationData?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
@@ -82,7 +81,6 @@ const ProfileGeneral = observer(() => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(formPropsData, 'formPropsData');
 
   const formSetting = [
     {
