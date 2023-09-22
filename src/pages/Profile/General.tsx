@@ -36,7 +36,7 @@ const ProfileGeneral = observer(() => {
     [MEMBER_FIELD_KEY.ORGANIZATION]: '',
   });
 
-  const getPreregistration = async (jwt: any) => {
+  const getPreregistration = async (jwt: string) => {
     try {
       const response = await axios.get(
         `${
@@ -154,7 +154,7 @@ const ProfileGeneral = observer(() => {
     setSaving(false);
   };
 
-  const onSelectAvatar = (image: any) => {
+  const onSelectAvatar = (image: string) => {
     setFormPropsData({
       ...formPropsData,
       [MEMBER_FIELD_KEY.AVATAR_DAM]: image,
