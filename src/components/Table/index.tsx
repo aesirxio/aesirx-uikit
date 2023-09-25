@@ -18,7 +18,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronRight,
   faChevronLeft,
-  faArrowRightArrowLeft,
+  faSortDown,
+  faSortUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { NoData } from 'components/NoData';
 
@@ -41,8 +42,9 @@ function useInstance(instance: any) {
 const Table = ({
   columns,
   data,
-  store,
-  setLoading,
+  // store,
+  isDesc,
+  onSort,
   dataList,
   selection = false,
   classNameTable,
@@ -74,7 +76,6 @@ const Table = ({
     headerGroups,
     prepareRow,
     rows,
-
     rowSpanHeaders,
     selectedFlatRows,
   }: any = useTable(
@@ -117,21 +118,21 @@ const Table = ({
     <>
       <div className="fs-14 text-color position-relative pt-3 px-3 rounded-3 is-list">
         {rows.length ? (
-          <table {...getTableProps()} className={`${classNameTable}`}>
+          <table {...getTableProps()} className={`${classNameTable} w-100`}>
             <thead className="fs-6 bg-blue-5 border-bottom-2">
               {headerGroups.map((headerGroup: any, index: any) => {
                 let newHeaderGroup = [];
 
                 dataList
                   ? (newHeaderGroup = headerGroup.headers.filter(
-                      (item: any) => !dataList.some((other: any) => item.id === other)
-                    ))
+                    (item: any) => !dataList.some((other: any) => item.id === other)
+                  ))
                   : (newHeaderGroup = headerGroup.headers);
 
                 return (
                   <tr key={index} {...headerGroup.getHeaderGroupProps()}>
                     {newHeaderGroup.map((column: any, index: any) => {
-                      const canSort = column.canFilter;
+                      const canSort = column.canSort;
                       const sortAPI = column.sortType;
                       const sortParams = canSort ?? column.id;
                       let columnInside: any;
@@ -148,36 +149,73 @@ const Table = ({
                                 : columnInside && columnInside.getSortByToggleProps()
                             ),
                           })}
-                          className={`${column.className} ${
-                            sortAPI && sortParams !== 'number' && sortParams !== 'selection'
-                              ? 'cursor-pointer'
-                              : ''
-                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
-                          {...(sortAPI &&
-                            sortParams !== 'number' &&
-                            sortParams !== 'selection' && {
-                              onClick: async () => {
-                                setLoading(true);
-                                if (store.sortBy.id === sortParams && store.sortBy.desc) {
-                                  store.sortBy = { desc: true };
-                                } else if (store.sortBy.id !== sortParams) {
-                                  store.sortBy = { id: sortParams, desc: false };
-                                } else {
-                                  store.sortBy = { id: sortParams, desc: !store.sortBy.desc };
-                                }
-                                await store.getItems();
-                                setLoading(false);
-                              },
-                            })}
+                          className={`${column.className} ${sortAPI && sortParams !== 'number' && sortParams !== 'selection'
+                            ? 'cursor-pointer'
+                            : ''
+                            } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
+
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
                           {column.render('Header')}
-                          <span className="position-relative">
-                            <FontAwesomeIcon
-                              className="px-2 arrow-right-left"
-                              icon={faArrowRightArrowLeft}
-                            />
-                          </span>
+                          {canSort && (
+                            <span className={`position-relative`}>
+                              {sortAPI ? (
+                                sortParams !== 'number' &&
+                                  sortParams !== 'selection' ? (
+                                  isDesc ? (
+                                    <FontAwesomeIcon
+                                      className="sort-icon sort-icon-down ms-sm"
+                                      icon={faSortDown}
+                                      onClick={() => onSort({ 'ordering': column.id, 'direction': 'desc' })}
+                                    />
+                                  ) : (
+                                    <FontAwesomeIcon
+                                      className="sort-icon sort-icon-up ms-sm mb-nsm"
+                                      icon={faSortUp}
+                                      onClick={() => onSort({ 'ordering': column.id, 'direction': 'asc' })}
+                                    />
+                                  )
+                                ) : (
+                                  ''
+                                )
+                              ) : !column.rowSpanHeader ? (
+                                column.isSorted &&
+                                  sortParams !== 'number' &&
+                                  sortParams !== 'selection' ? (
+                                  isDesc ? (
+                                    <FontAwesomeIcon
+                                      className="sort-icon sort-icon-down ms-sm"
+                                      icon={faSortDown}
+                                    />
+                                  ) : (
+                                    <FontAwesomeIcon
+                                      className="sort-icon sort-icon-up ms-sm mb-nsm"
+                                      icon={faSortUp}
+                                    />
+                                  )
+                                ) : (
+                                  ''
+                                )
+                              ) : columnInside.isSorted &&
+                                // Column have rowSpan
+                                sortParams !== 'number' &&
+                                sortParams !== 'selection' ? (
+                                columnInside.isSortedDesc ? (
+                                  <FontAwesomeIcon
+                                    className="sort-icon sort-icon-down ms-sm"
+                                    icon={faSortDown}
+                                  />
+                                ) : (
+                                  <FontAwesomeIcon
+                                    className="sort-icon sort-icon-up ms-sm mb-nsm"
+                                    icon={faSortUp}
+                                  />
+                                )
+                              ) : (
+                                ''
+                              )}
+                            </span>
+                          )}
                         </th>
                       );
                     })}
@@ -251,7 +289,7 @@ const Table = ({
             />
           </div>
         ) : null}
-      </div>
+      </div >
 
       {pagination && pagination.totalPages > 1 && (
         <div className="d-flex justify-content-between mt-3">
@@ -304,7 +342,8 @@ const Table = ({
             </div>
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 };
