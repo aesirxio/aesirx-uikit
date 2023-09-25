@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Email from './AesirX/Email';
+import Social from './Social';
 
 function SSO() {
   return (
@@ -17,6 +18,18 @@ function SSO() {
         <Row>
           <Col md={6} lg={6} xxl={4} className="mb-4">
             <Email />
+          </Col>
+        </Row>
+        <h3 className="fs-5 fw-medium mb-12px">Social Media</h3>
+        <Row>
+          <Col md={6} lg={6} xxl={4} className="mb-4">
+            <Social typeSocial="google" keySocial={'social_google'} />
+          </Col>
+          <Col md={6} lg={6} xxl={4} className="mb-4">
+            <Social typeSocial="twitter" keySocial={'social_twitter'} />
+          </Col>
+          <Col md={6} lg={6} xxl={4} className="mb-4">
+            <Social typeSocial="facebook" keySocial={'social_facebook'} />
           </Col>
         </Row>
       </div>
