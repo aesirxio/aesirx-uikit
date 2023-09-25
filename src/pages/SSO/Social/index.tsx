@@ -1,18 +1,20 @@
 import React from 'react';
 import { Image } from 'components';
-// import { useUserContext } from '@/providers/user';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import ButtonCopy from '../../../components/ButtonCopy';
 import { useState } from 'react';
-// import { updateMember } from '@/utils/aesirx';
-// import { useGlobalContext } from '@/providers/global';
 import axios from 'axios';
 import { notify } from 'components';
+import logo_google from '../../../assets/images/logo_google.svg';
+import logo_twitter from '../../../assets/images/logo_twitter.svg';
+import logo_facebook from '../../../assets/images/logo_facebook.svg';
 
 import {
   MEMBER_GET_FIELD_KEY,
   AesirxAuthenticationApiService,
-  AesirxMemberApiService,AUTHORIZATION_KEY, Storage
+  AesirxMemberApiService,
+  AUTHORIZATION_KEY,
+  Storage,
 } from 'aesirx-lib';
 import { useProfileContext } from '../../Profile/model';
 const Social = ({ typeSocial, keySocial }: any) => {
@@ -22,7 +24,6 @@ const Social = ({ typeSocial, keySocial }: any) => {
   const request = new AesirxAuthenticationApiService();
   const aesirxData = model.getData();
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
-  
 
   const connectSocial = async () => {
     try {
@@ -53,8 +54,8 @@ const Social = ({ typeSocial, keySocial }: any) => {
           if (e.origin !== process.env.REACT_APP_ENDPOINT_URL) return;
           if (e.data && e.data.socialType) {
             setLoading(false);
-               request.getStore('jwt');
-               Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+            request.getStore('jwt');
+            Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
           } else if (e.data.error) {
             // toast.error(<Toast status={false} message={e.data.error} />);
           }
@@ -88,37 +89,37 @@ const Social = ({ typeSocial, keySocial }: any) => {
     }
     setLoading(false);
     if (updateSuccess) {
-     await request.getStore('jwt');
-     await Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+      await request.getStore('jwt');
+      await Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
     }
   };
 
-  // let logoSocial = logo_google;
-  // switch (typeSocial) {
-  //   case 'facebook':
-  //     logoSocial = logo_facebook;
-  //     break;
-  //   case 'twitter':
-  //     logoSocial = logo_twitter;
-  //     break;
-  // }
+  let logoSocial = logo_google;
+  switch (typeSocial) {
+    case 'facebook':
+      logoSocial = logo_facebook;
+      break;
+    case 'twitter':
+      logoSocial = logo_twitter;
+      break;
+  }
   return (
-    <div className="py-2rem px-4 border rounded">
-      <h3 className="fw-semibold fs-18 mb-12px text-capitalize">
+    <div className="py-5 px-4 border rounded">
+      <div className="d-flex justify-content-start align-items-center mb-2">
         <Image
           quality={100}
-          className="me-14px"
-          // src={logoSocial}
+          className="me-2"
+          src={logoSocial}
           width={40}
           height={40}
           alt="logo social"
         />
-        {typeSocial}
-      </h3>
+        <h3 className="fw-semibold fs-18 mb-12px text-capitalize ms-2">{typeSocial}</h3>
+      </div>
       {aesirxData[keySocial] && (
         <Form.Group>
-          <Form.Label className="fw-medium mb-12px">ID</Form.Label>
-          <div className="position-relative fs-7 mb-12px">
+          <Form.Label className="fw-medium mb-1">ID</Form.Label>
+          <div className="position-relative fs-7 mb-1">
             <Form.Control
               type="email"
               name="email"

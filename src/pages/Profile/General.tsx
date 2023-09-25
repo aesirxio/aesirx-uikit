@@ -21,7 +21,8 @@ const ProfileGeneral = observer(() => {
   const memberInfo = model.getData();
   const preregistration: any = Storage.getItem('preregistration') ?? '';
   // eslint-disable-next-line no-console
-  console.log(preregistration?.objForm, 'log');
+  console.log(model,"model");
+  
 
   const formPropsData = {
     [MEMBER_FIELD_KEY.ID]: preregistration?.objForm?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
