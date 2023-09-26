@@ -19,15 +19,13 @@ type FormPropsData = {
   [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
 };
 
-
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
   const { t } = useTranslation();
   const { model } = useProfileContext();
   const request = new AesirxAuthenticationApiService();
   const memberInfo = model.getData();
-  const jwt = request.getStore('jwt'); 
-  
+  const jwt = request.getStore('jwt');
 
   const [formPropsData, setFormPropsData] = useState<FormPropsData>({
     [MEMBER_FIELD_KEY.ID]: '',
