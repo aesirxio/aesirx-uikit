@@ -16,8 +16,9 @@ import SimpleReactValidator from 'simple-react-validator';
 import axios from 'axios';
 
 type FormPropsData = {
-  [key in MEMBER_FIELD_KEY]: string;
+  [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
 };
+
 
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
@@ -25,7 +26,8 @@ const ProfileGeneral = observer(() => {
   const { model } = useProfileContext();
   const request = new AesirxAuthenticationApiService();
   const memberInfo = model.getData();
-  const jwt = request.getStore('jwt');
+  const jwt = request.getStore('jwt'); 
+  
 
   const [formPropsData, setFormPropsData] = useState<FormPropsData>({
     [MEMBER_FIELD_KEY.ID]: '',
@@ -51,6 +53,7 @@ const ProfileGeneral = observer(() => {
       );
       return response.data.objForm;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       throw error;
     }
@@ -74,6 +77,7 @@ const ProfileGeneral = observer(() => {
           preregistrationData?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   };
