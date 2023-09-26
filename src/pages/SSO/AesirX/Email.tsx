@@ -16,21 +16,44 @@ import mail_logo from '../../../assets/images/mail_logo.png';
 import { notify } from 'components';
 import { useProfileContext } from '../../Profile/model';
 
+type User = {
+  id : number;
+  email : string;
+};
 const Email = () => {
   const [updating, setUpdating] = useState(false);
   const member = new AesirxMemberApiService();
   const { model } = useProfileContext();
+  const [user, setUser] = useState<User>({
+    id: 0,
+    email: '',
+  });
   const aesirxData = model.getData();
   const aesirxEmai = aesirxData[MEMBER_GET_FIELD_KEY.EMAIL];
   const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
-  
+
+  const fetchData = async () => {
+    try {
+      const User = await member.getMemberInfo(userID);
+
+      setUser(User);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+ console.log(user , "sss");
 
   const formik = useFormik({
     initialValues: {
       email: aesirxEmai,
     },
     onSubmit: async (values: any) => {
+      let updateSuccess = true;
       setUpdating(true);
       try {
         const response: any = await member.updateEmailMember(
@@ -40,16 +63,21 @@ const Email = () => {
         if (response?.result?.success) {
           notify('Update email sucessfully!', 'success');
         } else {
+          updateSuccess = false;
           notify('Something when wrong!', 'error');
         }
       } catch (error: any) {
+        updateSuccess = false;
         notify(error?.message, 'error');
       }
       setUpdating(false);
+      if (updateSuccess) {
+        await member.getMemberInfo(userID, accessToken);
+      }
     },
     validateOnMount: true,
   });
-  console.log(formik.values, 'sss11');
+  
 
   return (
     <div className="py-5 px-4 border rounded">
