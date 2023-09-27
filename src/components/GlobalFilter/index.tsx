@@ -19,12 +19,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { useAsyncDebounce } from 'react-table';
 
 interface GlobalFilterProps {
-  setGlobalFilter: (keyword: any) => void;
+  setGlobalFilter: any;
   searchText: string;
   filter: {
     searchText: string;
   };
-  setFilter?: (value: any) => void;
+  setFilter?: any;
 }
 
 const GlobalFilter: React.FC<GlobalFilterProps> = ({
