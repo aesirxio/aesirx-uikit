@@ -5,11 +5,12 @@ import Social from './Social';
 import MetaMask from './MetaMask';
 import Concordium from './Concordium';
 import DeleteModal from './DeleteModal';
-import { useGlobalContext ,GlobalContextProvider} from '../../providers/global';
+import { useGlobalContext, GlobalContextProvider } from '../../providers/global';
 import { useUserContext, UserContextProvider } from '../../providers/user';
 import { AesirxMemberApiService } from 'aesirx-lib';
 import { notify } from 'components';
 import Web3ContextProvider from '../../providers/web3';
+import { ProfileContextProvider } from '../Profile/model';
 const SSO = () => {
   return (
     <GlobalContextProvider>
@@ -104,7 +105,9 @@ const SSOApp = () => {
             </Web3ContextProvider>
           </Col>
           <Col md={6} lg={6} xxl={4} className="mb-4">
-            <MetaMask setShow={setModal} connectWallet={connectWeb3Wallet} />
+            <Web3ContextProvider autoLoad={false}>
+              <MetaMask setShow={setModal} connectWallet={connectWeb3Wallet} />
+            </Web3ContextProvider>
           </Col>
         </Row>
         <h3 className="fs-5 d-flex align-items-center fw-medium mb-12px">
@@ -118,7 +121,9 @@ const SSOApp = () => {
         </h3>
         <Row>
           <Col md={6} lg={6} xxl={4} className="mb-4">
-            <Email />
+            <ProfileContextProvider>
+              <Email />
+            </ProfileContextProvider>
           </Col>
         </Row>
         <h3 className="fs-5 fw-medium mb-12px">Social Media</h3>

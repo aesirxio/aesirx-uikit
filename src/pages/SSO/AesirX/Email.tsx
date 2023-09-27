@@ -1,100 +1,82 @@
-import React from 'react';
-import { useUserContext } from '../../../providers/user';
+import React, { useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ButtonCopy from '../../../components/ButtonCopy';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { useState } from 'react';
-import {AesirxMemberApiService} from 'aesirx-lib';
-import { useGlobalContext } from '../../../providers/global';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { debounce } from 'lodash';
-import { validateEmail } from '../../../store/UtilsStore/web3';
-import { useCallback } from 'react';
+import {
+  AUTHORIZATION_KEY,
+  Storage,
+  AesirxMemberApiService,
+  MEMBER_GET_FIELD_KEY,
+} from 'aesirx-lib';
 import { Image } from 'components';
 import mail_logo from '../../../assets/images/mail_logo.png';
 import { notify } from 'components';
+import { useProfileContext } from '../../Profile/model';
+
 const Email = () => {
   const [updating, setUpdating] = useState(false);
-  const { aesirxData, getData } = useUserContext();
-  const { accessToken, jwt } = useGlobalContext();
-  console.log(aesirxData,"sss");
-  
+  const member = new AesirxMemberApiService();
+  const { model } = useProfileContext();
+  const aesirxData = model.getData();
+  const aesirxEmai = aesirxData[MEMBER_GET_FIELD_KEY.EMAIL];
+  const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
+  const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedCheckEmail: any = useCallback(debounce(validateEmail, 200), []);
 
   const formik = useFormik({
     initialValues: {
-      email: aesirxData?.email,
+      email: aesirxEmai,
     },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email('Invalid email address')
-        .required('Please enter your email')
-        .test('unique', 'This Email is already taken', async (value) => {
-          if (value != aesirxData?.email) {
-            return await debouncedCheckEmail(value);
-          } else {
-            return true;
-          }
-        }),
-    }),
     onSubmit: async (values: any) => {
-      let updateSuccess = true;
       setUpdating(true);
       try {
-        const aesirxMember = new  AesirxMemberApiService();
-        const response: any = await aesirxMember.updateMember(
-          { id: aesirxData?.member_id, ...values },
+        const response: any = await member.updateEmailMember(
+          { id: userID, ...values },
           accessToken
         );
         if (response?.result?.success) {
-          notify('Update email successfully!', 'success');
+          notify('Update email sucessfully!', 'success');
         } else {
-          updateSuccess = false;
-          notify(response?._messages?.[0]?.message || 'Something when wrong!', 'error');
+          notify('Something when wrong!', 'error');
         }
       } catch (error: any) {
-        console.log('Error', error);
-        updateSuccess = false;
-        notify(error?.response?.data?._messages?.[0]?.message || error?.message, 'error');
+        notify(error?.message, 'error');
       }
       setUpdating(false);
-      if (updateSuccess) {
-        await getData(jwt, accessToken);
-      }
     },
     validateOnMount: true,
   });
 
   return (
-    <div className="py-2rem px-4 border rounded">
-      <h3 className="fw-semibold fs-18 mb-12px">
+    <div className="py-5 px-4 border rounded">
+      <div className="d-flex justify-content-start align-items-center mb-2">
         <Image
           quality={100}
-          className="me-14px"
+          className="me-2"
           src={mail_logo}
           width={40}
           height={40}
           alt="logo ethereum"
         />
-        Email
-      </h3>
+        <h3 className="fw-semibold fs-18 mb-2 ms-2"> Email</h3>
+      </div>
+
       <Form onSubmit={formik.handleSubmit} className="text-start">
         <Form.Group>
-          <Form.Label className="fw-medium mb-12px">
+          <Form.Label className="fw-medium mb-2">
             Email address<span className="text-danger">*</span>
           </Form.Label>
-          <div className="position-relative fs-7 mb-12px">
+          <div className="position-relative fs-7 mb-2">
             <Form.Control
               type="email"
               name="email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values['email']}
-              className={`py-13px fs-7 ${
+              className={`py-2 fs-7 ${
                 formik.touched['email'] && formik.errors['email'] ? 'border-danger' : ''
               }`}
             />
@@ -114,11 +96,11 @@ const Email = () => {
         </Form.Group>
         <Button
           type="submit"
-          disabled={!formik.isValid || formik.values['email'] == aesirxData?.email || updating}
+          disabled={!formik.isValid || formik.values['email'] == aesirxEmai || updating}
           variant="success"
           className="fw-semibold py-12px py-12px w-100"
         >
-          {formik.values['email'] != aesirxData?.email ? 'Update Email' : 'Connected'}
+          {formik.values['email'] != aesirxEmai ? 'Update Email' : 'Connected'}
         </Button>
       </Form>
     </div>

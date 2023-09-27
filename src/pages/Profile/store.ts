@@ -10,6 +10,15 @@ class ProfileStore {
       return false;
     }
   }
+  async updatePreregistration(jwt: any, data: any) {
+    try {
+      const updateGeneralApiService = new AesirxMemberApiService();
+
+      return await updateGeneralApiService.updatePreregistration(jwt, data);
+    } catch (error) {
+      return false;
+    }
+  }
 
   async getMember(id: number) {
     if (!id) return null;
@@ -17,6 +26,14 @@ class ProfileStore {
     try {
       const getMemberInfoAPIService = new AesirxMemberApiService();
       return await getMemberInfoAPIService.getMemberInfo(id);
+    } catch (error) {
+      return null;
+    }
+  }
+  async getMemberWeb3(jwt: any) {
+    try {
+      const getMemberInfoAPIService = new AesirxMemberApiService();
+      return await getMemberInfoAPIService.getPreregistration(jwt);
     } catch (error) {
       return null;
     }
@@ -44,7 +61,6 @@ class ProfileStore {
 
     return false;
   }
-  
 }
 
 export { ProfileStore };

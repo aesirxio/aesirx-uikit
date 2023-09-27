@@ -31,7 +31,6 @@ const ProfileGeneral = observer(() => {
   const request = new AesirxAuthenticationApiService();
   const memberInfo = model.getData();
   const jwt = request.getStore('jwt');
-  
 
   const [formPropsData, setFormPropsData] = useState<FormPropsData>({
     [MEMBER_FIELD_KEY.ID]: '',
@@ -42,7 +41,7 @@ const ProfileGeneral = observer(() => {
     [MEMBER_FIELD_KEY.ORGANIZATION]: '',
   });
 
-  const getPreregistration = async (jwt: any) => {
+  const getPreregistration = async (jwt: string) => {
     try {
       const response = await axios.get(
         `${

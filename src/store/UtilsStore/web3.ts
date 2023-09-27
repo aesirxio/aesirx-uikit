@@ -89,7 +89,7 @@ const getNonceAesirX = async (accountAddress: any, connection: any) => {
   try {
     const nonce = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=getWalletNonce&webserviceClient=site&webserviceVersion=1.0.0`,
+        `${process.env.REACT_APP_ENDPOINT_URL}/index.php?api=hal&option=member&task=getWalletNonce&webserviceClient=site&webserviceVersion=1.0.0`,
         {
           publicAddress: accountAddress,
           wallet: 'concordium',
@@ -119,7 +119,7 @@ const getNonceAesirX = async (accountAddress: any, connection: any) => {
 const loginAesirXAccount = async (accountAddress: any, signedNonce: any) => {
   try {
     return await axios.post(
-      `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
+      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
       {
         publicAddress: accountAddress,
         wallet: 'concordium',
@@ -140,7 +140,7 @@ const createAesirXAccount = async (accountAddress: any, connection: any, email: 
   try {
     const nonce = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&api=hal`,
+        `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&api=hal`,
         {
           public_address: accountAddress,
           wallet: 'concordium',
@@ -161,7 +161,7 @@ const createAesirXAccount = async (accountAddress: any, connection: any, email: 
 
     const aesirXID = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&task=validateSignature&api=hal`,
+        `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&task=validateSignature&api=hal`,
         {
           public_address: accountAddress,
           wallet: 'concordium',
@@ -332,7 +332,7 @@ const walletLogin = async (wallet: any, accountAddress: any, signedNonce: any) =
   try {
     const data = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
+        `${process.env.REACT_APP_ENDPOINT_URL}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
         {
           wallet: wallet,
           publicAddress: accountAddress,
@@ -474,7 +474,7 @@ const validateEmail = async (email: any) => {
       ).data.result,
       !(
         await axios.post(
-          `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=checkEmailIsUsed&api=hal`,
+          `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=checkEmailIsUsed&api=hal`,
           {
             email: email,
           }
@@ -611,6 +611,7 @@ const verifyProof = async (challenge: any, proof: any) => {
     throw error;
   }
 };
+
 
 export {
   createPreregistration,

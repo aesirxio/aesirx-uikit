@@ -41,11 +41,13 @@ class ProfileModel {
   save = async (data: any) => {
     await notify(this.profileStore.updateProfile(data), 'promise');
   };
+  savePreregistration = async (jwt: any, data: any) => {
+    await this.profileStore.updatePreregistration(jwt, data);
+  };
 
   getData = () => {
     return this.data;
   };
-
   savePassword = async (data: any) => {
     const rs = await this.profileStore.updatePassword(data);
 
@@ -72,7 +74,7 @@ const ProfileContext = createContext<IProfileContext>({ model: profileModel });
 
 const ProfileContextProvider = ({ children }: { children: React.ReactNode }) => {
   profileModel.init(parseInt(String(Storage.getItem('member_id'))));
-    
+
   return (
     <ProfileContext.Provider value={{ model: profileModel }}>{children}</ProfileContext.Provider>
   );
