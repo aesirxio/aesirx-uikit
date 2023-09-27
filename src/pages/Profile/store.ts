@@ -44,6 +44,7 @@ class ProfileStore {
 
     return false;
   }
+  
 }
 
 export { ProfileStore };

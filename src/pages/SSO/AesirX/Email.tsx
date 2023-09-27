@@ -16,68 +16,37 @@ import mail_logo from '../../../assets/images/mail_logo.png';
 import { notify } from 'components';
 import { useProfileContext } from '../../Profile/model';
 
-type User = {
-  id : number;
-  email : string;
-};
 const Email = () => {
   const [updating, setUpdating] = useState(false);
   const member = new AesirxMemberApiService();
   const { model } = useProfileContext();
-  const [user, setUser] = useState<User>({
-    id: 0,
-    email: '',
-  });
   const aesirxData = model.getData();
-  const aesirxEmai = aesirxData[MEMBER_GET_FIELD_KEY.EMAIL];
+  const aesirxEmail = aesirxData[MEMBER_GET_FIELD_KEY.EMAIL];
   const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
 
-  const fetchData = async () => {
-    try {
-      const User = await member.getMemberInfo(userID);
-
-      setUser(User);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
- console.log(user , "sss");
-
   const formik = useFormik({
     initialValues: {
-      email: aesirxEmai,
+      email: aesirxEmail,
     },
     onSubmit: async (values: any) => {
-      let updateSuccess = true;
-      setUpdating(true);
       try {
-        const response: any = await member.updateEmailMember(
-          { id: userID, ...values },
-          accessToken
-        );
+        setUpdating(true);
+        const response: any = await member.updateEmailMember({ id: userID, ...values }, accessToken);
         if (response?.result?.success) {
-          notify('Update email sucessfully!', 'success');
+          notify('Update email successfully!', 'success');
+          await member.getMemberInfo(userID);
         } else {
-          updateSuccess = false;
-          notify('Something when wrong!', 'error');
+          notify('Something went wrong!', 'error');
         }
       } catch (error: any) {
-        updateSuccess = false;
         notify(error?.message, 'error');
-      }
-      setUpdating(false);
-      if (updateSuccess) {
-        await member.getMemberInfo(userID, accessToken);
+      } finally {
+        setUpdating(false);
       }
     },
     validateOnMount: true,
   });
-  
 
   return (
     <div className="py-5 px-4 border rounded">
@@ -90,7 +59,7 @@ const Email = () => {
           height={40}
           alt="logo ethereum"
         />
-        <h3 className="fw-semibold fs-18 mb-2 ms-2"> Email</h3>
+        <h3 className="fw-semibold fs-18 mb-2 ms-2">Email</h3>
       </div>
 
       <Form onSubmit={formik.handleSubmit} className="text-start">
@@ -104,32 +73,32 @@ const Email = () => {
               name="email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values['email']}
+              value={formik.values.email}
               className={`py-2 fs-7 ${
-                formik.touched['email'] && formik.errors['email'] ? 'border-danger' : ''
+                formik.touched.email && formik.errors.email ? 'border-danger' : ''
               }`}
             />
             <ButtonCopy
-              content={formik.values['email']}
+              content={formik.values.email}
               className="border-0 top-0 bottom-0 p-0 px-2 m-1 bg-gray-100 position-absolute end-0"
             />
           </div>
-          {formik.touched['email'] && formik.errors['email'] ? (
+          {formik.touched.email && formik.errors.email ? (
             <p className="mt-2 fs-7 mb-12px p-0 bg-white border-0 text-danger d-flex align-items-center">
               <FontAwesomeIcon icon={faCircleExclamation} width={14} height={14} />
               <span className="fs-7 fw-semibold ms-2 lh-1">
-                {formik.errors['email'].toString()}
+                {formik.errors.email.toString()}
               </span>
             </p>
           ) : null}
         </Form.Group>
         <Button
           type="submit"
-          disabled={!formik.isValid || formik.values['email'] == aesirxEmai || updating}
+          disabled={!formik.isValid || formik.values.email === aesirxEmail || updating}
           variant="success"
           className="fw-semibold py-12px py-12px w-100"
         >
-          {formik.values['email'] != aesirxEmai ? 'Update Email' : 'Connected'}
+          {formik.values.email !== aesirxEmail ? 'Update Email' : 'Connected'}
         </Button>
       </Form>
     </div>
