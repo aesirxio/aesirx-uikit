@@ -17,7 +17,7 @@ const Concordium = ({ connectWallet, setShow }: Props) => {
 
   const { aesirxData } = useUserContext();
   const [connecting, setConnecting] = useState(false);
- console.log( aesirxData, " aesirxData");
+ 
  
   const walletAddress = aesirxData?.wallet_concordium ? aesirxData?.wallet_concordium : account;
 
