@@ -1,8 +1,7 @@
 import { Image } from 'components';
-import React from 'react';
+import React ,{ useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 // import warning_icon from '@/public/images/warning_icon.png';
-import { useState } from 'react';
 const DeleteModal = ({ show, action, setShow, data }: any) => {
   const [loading, setLoading] = useState(false);
   const handleDelete = async () => {

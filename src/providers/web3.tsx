@@ -1,11 +1,11 @@
-import React , { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { BROWSER_WALLET, WALLET_CONNECT } from '../store/UtilsStore/config';
 
 // import { toast } from 'react-toastify';
 // import Toast from '@/components/Toast';
 import { checkNetwork } from '../store/UtilsStore/concordium';
-// import { useUserContext } from './user';
+import { useUserContext } from './user';
 import secureLocalStorage from 'react-secure-storage';
 import {
   WithWalletConnector,
@@ -20,6 +20,7 @@ import {
   BrowserWalletConnector,
 } from '@concordium/react-components';
 import { isMobile } from 'react-device-detect';
+import { log } from 'console';
 interface Web3ContextType {
   account?: string;
   setActiveConnectorType?: any;
@@ -66,6 +67,8 @@ const Web3ContextProvider: React.FC<Props> = ({ children, autoLoad }) => {
 };
 
 const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
+  console.log(props ,"11");
+  
   const {
     activeConnectorError,
     network,

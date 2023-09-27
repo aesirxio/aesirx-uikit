@@ -28,11 +28,14 @@ const userContext = createContext<UserContextType>({
 
 const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false }) => {
   const { jwt, onLogout, accessToken } = useGlobalContext();
+
   const [preregistration, setPreregistration] = useState<any>(null);
   const [aesirxData, setAesirxData] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   // const router = useRouter();
+  console.log(aesirxData,"222");
+  
   const listNotRedirect = [
     '/licenses',
     '/support',
@@ -63,15 +66,17 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt, accessToken]);
 
-  const getData = useCallback(async (jwt: string, accessToken: string) => {
+  const getData = useCallback(async (jwt: string, accessToken: string , id : number) => {
     setLoading(true);
     let _preregistration: { id?: string } = {};
     let aesirxData: any = {};
 
     if (jwt) {
       try {
-        const aesirxMember = new  AesirxMemberApiService()
-        const member = await aesirxMember.getMember(accessToken);
+        const aesirxMember = new AesirxMemberApiService();
+        const member = await aesirxMember.getMemberInfo(id);
+       
+        
         aesirxData = { ...member };
 
         const preregistrationData = (await getPreregistration(jwt)).data?.objForm;
@@ -105,7 +110,8 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
         // }
       }
     }
-
+    console.log(aesirxData ,"aesirxData");
+    
     setAesirxData(aesirxData);
     setPreregistration(_preregistration);
     setLoading(false);

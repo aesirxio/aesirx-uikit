@@ -6,6 +6,8 @@ import { Image } from 'components';
 // import concordium_logo from '@/public/concordium.png';
 
 const Connect = (props: any) => {
+  console.log(props ,"tee");
+  
   return (
     <div>
       {isDesktop && (

@@ -1,6 +1,6 @@
-import { useWeb3Context } from '../../../providers/web3';
 import React, { useState } from 'react';
 // import concordium_logo from '@/public/concordium_black.png';
+import { useWeb3Context } from '../../../providers/web3';
 import { Image } from 'components';
 import { useUserContext } from '../../../providers/user';
 import Connect from './Connect';
@@ -14,8 +14,10 @@ interface Props {
 
 const Concordium = ({ connectWallet, setShow }: Props) => {
   const { account, setActiveConnectorType } = useWeb3Context();
+ 
   const { aesirxData } = useUserContext();
   const [connecting, setConnecting] = useState(false);
+  
 
   const walletAddress = aesirxData?.wallet_concordium ? aesirxData?.wallet_concordium : account;
 
@@ -30,7 +32,7 @@ const Concordium = ({ connectWallet, setShow }: Props) => {
       <h3 className="fw-semibold fs-18 mb-12px">
         <Image
           className="me-14px"
-        //   src={concordium_logo}
+          //   src={concordium_logo}
           width={40}
           height={40}
           alt="logo concordium"
