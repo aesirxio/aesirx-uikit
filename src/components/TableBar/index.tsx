@@ -20,9 +20,9 @@ import { useTranslation } from 'react-i18next';
 
 interface TableBarType {
   dataFilter: { searchText: string };
-  setFilter: (filter: string) => void;
+  setFilter: () => void;
   tableRowHeader: { Header: string }[];
-  setGlobalFilters: (value: { keyword: string }) => void;
+  setGlobalFilters: () => void;
   onAction: () => void;
   isList: boolean;
 }

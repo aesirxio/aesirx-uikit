@@ -13,18 +13,18 @@
  * @param {Function} props.setFilter - Function to set the filter
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { useAsyncDebounce } from 'react-table';
 
 interface GlobalFilterProps {
-  setGlobalFilter: (value: { keyword: string }) => void;
+  setGlobalFilter: (keyword: any) => void;
   searchText: string;
   filter: {
     searchText: string;
   };
-  setFilter?: (value: string) => void;
+  setFilter?: (value: any) => void;
 }
 
 const GlobalFilter: React.FC<GlobalFilterProps> = ({
