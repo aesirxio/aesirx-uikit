@@ -4,40 +4,85 @@ import { FormDAMImage } from 'components/Form/FormDAMImage';
 import { Label } from 'components/Form/FormLabel';
 import { FORM_FIELD_TYPE } from 'constant/FormFieldType';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { faUserCog } from '@fortawesome/free-solid-svg-icons/faUserCog';
-import { MEMBER_FIELD_KEY, MEMBER_GET_FIELD_KEY, Storage } from 'aesirx-lib';
+import { MEMBER_FIELD_KEY, MEMBER_GET_FIELD_KEY, AesirxAuthenticationApiService } from 'aesirx-lib';
 import { observer } from 'mobx-react';
 import { useProfileContext } from './model';
 import { PAGE_STATUS } from 'constant/PageStatus';
 import SimpleReactValidator from 'simple-react-validator';
+import axios from 'axios';
+
+type FormPropsData = {
+  [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
+};
 
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
   const { t } = useTranslation();
   const { model } = useProfileContext();
+  const request = new AesirxAuthenticationApiService();
   const memberInfo = model.getData();
-  const preregistration: any = Storage.getItem('preregistration') ?? '';
-  // eslint-disable-next-line no-console
-  console.log(preregistration?.objForm, 'log');
+  const jwt = request.getStore('jwt');
 
-  const formPropsData = {
-    [MEMBER_FIELD_KEY.ID]: preregistration?.objForm?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
-    [MEMBER_FIELD_KEY.AVATAR_DAM]:
-      preregistration?.objForm?.avatar ?? memberInfo[MEMBER_GET_FIELD_KEY.AVATAR_DAM],
-    [MEMBER_FIELD_KEY.FIRST_NAME]:
-      preregistration?.objForm?.first_name ??
-      memberInfo[MEMBER_GET_FIELD_KEY.FULL_NAME].split(' ')[0],
-    [MEMBER_FIELD_KEY.LAST_NAME]:
-      preregistration?.objForm?.sur_name ??
-      memberInfo[MEMBER_GET_FIELD_KEY.FULL_NAME].split(' ')[1],
-    [MEMBER_FIELD_KEY.DESCRIPTION]:
-      preregistration?.objForm?.description ?? memberInfo[MEMBER_GET_FIELD_KEY.DESCRIPTION],
-    [MEMBER_FIELD_KEY.ORGANIZATION]:
-      preregistration?.objForm?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
+  const [formPropsData, setFormPropsData] = useState<FormPropsData>({
+    [MEMBER_FIELD_KEY.ID]: '',
+    [MEMBER_FIELD_KEY.AVATAR_DAM]: '',
+    [MEMBER_FIELD_KEY.FIRST_NAME]: '',
+    [MEMBER_FIELD_KEY.LAST_NAME]: '',
+    [MEMBER_FIELD_KEY.DESCRIPTION]: '',
+    [MEMBER_FIELD_KEY.ORGANIZATION]: '',
+  });
+
+  const getPreregistration = async (jwt: string) => {
+    try {
+      const response = await axios.get(
+        `${
+          process.env.REACT_APP_WEB3_API_ENDPOINT || 'https://web3id.backend.aesirx.io:8001'
+        }/preregistration/aesirx`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + jwt,
+          },
+        }
+      );
+      return response.data.objForm;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      throw error;
+    }
   };
+
+  const fetchData = async () => {
+    try {
+      const preregistrationData = await getPreregistration(jwt);
+
+      setFormPropsData({
+        [MEMBER_FIELD_KEY.ID]: preregistrationData?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
+        [MEMBER_FIELD_KEY.AVATAR_DAM]:
+          preregistrationData?.avatar ?? memberInfo[MEMBER_GET_FIELD_KEY.AVATAR_DAM],
+        [MEMBER_FIELD_KEY.FIRST_NAME]:
+          preregistrationData?.first_name ?? memberInfo[MEMBER_GET_FIELD_KEY.FIRST_NAME],
+        [MEMBER_FIELD_KEY.LAST_NAME]:
+          preregistrationData?.sur_name ?? memberInfo[MEMBER_GET_FIELD_KEY.LAST_NAME],
+        [MEMBER_FIELD_KEY.DESCRIPTION]:
+          preregistrationData?.description ?? memberInfo[MEMBER_GET_FIELD_KEY.DESCRIPTION],
+        [MEMBER_FIELD_KEY.ORGANIZATION]:
+          preregistrationData?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const formSetting = [
     {
@@ -56,6 +101,12 @@ const ProfileGeneral = observer(() => {
       getValueSelected: formPropsData[MEMBER_FIELD_KEY.FIRST_NAME],
       className: 'col-6',
       inputClassName: 'border',
+      handleChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormPropsData({
+          ...formPropsData,
+          [MEMBER_FIELD_KEY.FIRST_NAME]: event.target.value,
+        });
+      },
     },
     {
       label: t('txt_last_name'),
@@ -64,8 +115,13 @@ const ProfileGeneral = observer(() => {
       getValueSelected: formPropsData[MEMBER_FIELD_KEY.LAST_NAME],
       className: 'col-6',
       inputClassName: 'border',
+      handleChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormPropsData({
+          ...formPropsData,
+          [MEMBER_FIELD_KEY.LAST_NAME]: event.target.value,
+        });
+      },
     },
-
     {
       label: t('txt_description'),
       key: MEMBER_FIELD_KEY.DESCRIPTION,
@@ -73,6 +129,12 @@ const ProfileGeneral = observer(() => {
       getValueSelected: formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
       className: 'col-12',
       inputClassName: 'border',
+      changed: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormPropsData({
+          ...formPropsData,
+          [MEMBER_FIELD_KEY.DESCRIPTION]: event.target.value,
+        });
+      },
     },
     {
       label: t('txt_organization'),
@@ -89,14 +151,16 @@ const ProfileGeneral = observer(() => {
 
   const save = async () => {
     setSaving(true);
-
     await model.save(formPropsData);
-
+    await model.savePreregistration(jwt, formPropsData);
     setSaving(false);
   };
 
-  const onSelectAvatar = (image: any) => {
-    formPropsData[MEMBER_FIELD_KEY.AVATAR_DAM] = image;
+  const onSelectAvatar = (image: string) => {
+    setFormPropsData({
+      ...formPropsData,
+      [MEMBER_FIELD_KEY.AVATAR_DAM]: image,
+    });
   };
 
   return (
