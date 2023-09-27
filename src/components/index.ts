@@ -21,3 +21,5 @@ export * from './ComponentCard';
 export * from './PublishOptions';
 export * from './Table';
 export * from './ActionsBar';
+export * from './GlobalFilter';
+export * from './TableBar';
