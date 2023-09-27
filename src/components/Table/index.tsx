@@ -125,8 +125,8 @@ const Table = ({
 
                 dataList
                   ? (newHeaderGroup = headerGroup.headers.filter(
-                    (item: any) => !dataList.some((other: any) => item.id === other)
-                  ))
+                      (item: any) => !dataList.some((other: any) => item.id === other)
+                    ))
                   : (newHeaderGroup = headerGroup.headers);
 
                 return (
@@ -149,30 +149,33 @@ const Table = ({
                                 : columnInside && columnInside.getSortByToggleProps()
                             ),
                           })}
-                          className={`${column.className} ${sortAPI && sortParams !== 'number' && sortParams !== 'selection'
-                            ? 'cursor-pointer'
-                            : ''
-                            } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
-
+                          className={`${column.className} ${
+                            sortAPI && sortParams !== 'number' && sortParams !== 'selection'
+                              ? 'cursor-pointer'
+                              : ''
+                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
                           {column.render('Header')}
                           {canSort && (
                             <span className={`position-relative`}>
                               {sortAPI ? (
-                                sortParams !== 'number' &&
-                                  sortParams !== 'selection' ? (
+                                sortParams !== 'number' && sortParams !== 'selection' ? (
                                   isDesc ? (
                                     <FontAwesomeIcon
                                       className="sort-icon sort-icon-down ms-sm"
                                       icon={faSortDown}
-                                      onClick={() => onSort({ 'ordering': column.id, 'direction': 'desc' })}
+                                      onClick={() =>
+                                        onSort({ ordering: column.id, direction: 'desc' })
+                                      }
                                     />
                                   ) : (
                                     <FontAwesomeIcon
                                       className="sort-icon sort-icon-up ms-sm mb-nsm"
                                       icon={faSortUp}
-                                      onClick={() => onSort({ 'ordering': column.id, 'direction': 'asc' })}
+                                      onClick={() =>
+                                        onSort({ ordering: column.id, direction: 'asc' })
+                                      }
                                     />
                                   )
                                 ) : (
@@ -180,8 +183,8 @@ const Table = ({
                                 )
                               ) : !column.rowSpanHeader ? (
                                 column.isSorted &&
-                                  sortParams !== 'number' &&
-                                  sortParams !== 'selection' ? (
+                                sortParams !== 'number' &&
+                                sortParams !== 'selection' ? (
                                   isDesc ? (
                                     <FontAwesomeIcon
                                       className="sort-icon sort-icon-down ms-sm"
@@ -289,7 +292,7 @@ const Table = ({
             />
           </div>
         ) : null}
-      </div >
+      </div>
 
       {pagination && pagination.totalPages > 1 && (
         <div className="d-flex justify-content-between mt-3">
@@ -342,8 +345,7 @@ const Table = ({
             </div>
           </div>
         </div>
-      )
-      }
+      )}
     </>
   );
 };
