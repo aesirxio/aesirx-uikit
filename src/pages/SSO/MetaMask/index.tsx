@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useWeb3Modal } from '@web3modal/react';
 import { Image } from 'components';
 import ButtonCopy from '../../../components/ButtonCopy';
-// import ethereum_logo from '@/public/images/ethereum_icon.png';
+import ethereum_logo from '../../../assets/images/ethereum_icon.png';
 import { useUserContext } from '../../../providers/user';
 import { Button } from 'react-bootstrap';
 import { shortenString } from '../../../store/UtilsStore/web3';
@@ -56,13 +56,13 @@ const MetaMaskApp = ({ connectWallet, setShow }: Props) => {
   };
 
   return (
-    <div className="py-2rem px-4 border rounded">
-      <h3 className="fw-semibold fs-18 mb-12px">
-        {/* <Image className="me-14px" src={ethereum_logo} width={25} height={40} alt="logo ethereum" /> */}
-        Ethereum
-      </h3>
+    <div className="py-4 px-4 border rounded">
+      <div className="d-flex justify-content-start align-items-center mb-3">
+        <Image className="me-14px" src={ethereum_logo} width={25} height={40} alt="logo ethereum" />
+        <p className="fw-semibold fs-18 mb-0 ms-2">Ethereum</p>
+      </div>
       <p className="fw-medium mb-12px">Address</p>
-      <div className="position-relative overflow-hidden fs-7 mb-12px py-12px px-3 bg-gray-100 rounded border border-gray-stoke-1">
+      <div className="position-relative overflow-hidden fs-7 mb-3 py-2 px-3 bg-gray-100 rounded border border-gray-stoke-1">
         <span className="fw-normal">
           {!walletAddress ? 'Not Connect!' : shortenString(walletAddress, 20, 6)}
         </span>

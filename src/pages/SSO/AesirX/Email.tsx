@@ -25,7 +25,6 @@ const Email = () => {
   const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
 
-
   const formik = useFormik({
     initialValues: {
       email: aesirxEmai,
@@ -51,8 +50,8 @@ const Email = () => {
   });
 
   return (
-    <div className="py-5 px-4 border rounded">
-      <div className="d-flex justify-content-start align-items-center mb-2">
+    <div className="py-4 px-4 border rounded">
+      <div className="d-flex justify-content-start align-items-center mb-3">
         <Image
           quality={100}
           className="me-2"
@@ -61,7 +60,7 @@ const Email = () => {
           height={40}
           alt="logo ethereum"
         />
-        <h3 className="fw-semibold fs-18 mb-2 ms-2"> Email</h3>
+        <p className="fw-semibold fs-18 mb-0 ms-2"> Email</p>
       </div>
 
       <Form onSubmit={formik.handleSubmit} className="text-start">

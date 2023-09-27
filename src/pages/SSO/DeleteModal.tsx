@@ -1,5 +1,5 @@
 import { Image } from 'components';
-import React ,{ useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 // import warning_icon from '@/public/images/warning_icon.png';
 const DeleteModal = ({ show, action, setShow, data }: any) => {
@@ -14,7 +14,7 @@ const DeleteModal = ({ show, action, setShow, data }: any) => {
   return (
     <Modal show={show} onHide={() => setShow({ show: false })} centered>
       <Modal.Body className="py-4 px-2rem text-center">
-        <Image  alt="warning icon" className="mb-3" />
+        <Image alt="warning icon" className="mb-3" />
         <h3 className="text-center mb-2 fs-18 fw-semibold">
           Are you sure you want to disconnect your wallet?
         </h3>

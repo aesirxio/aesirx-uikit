@@ -612,7 +612,6 @@ const verifyProof = async (challenge: any, proof: any) => {
   }
 };
 
-
 export {
   createPreregistration,
   activation,

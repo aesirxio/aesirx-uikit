@@ -67,8 +67,8 @@ const Web3ContextProvider: React.FC<Props> = ({ children, autoLoad }) => {
 };
 
 const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
-  console.log(props ,"11");
-  
+  console.log(props, '11');
+
   const {
     activeConnectorError,
     network,

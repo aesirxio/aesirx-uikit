@@ -12,7 +12,7 @@ const Connect = (props: any) => {
         <>
           <Button
             type="button"
-            className={`fw-semibold text-white w-100 py-12px d-flex align-items-center justify-content-center mb-2`}
+            className={`fw-semibold text-white w-100  d-flex align-items-center justify-content-center `}
             variant={'success'}
             onClick={() => props.setActiveConnectorType(BROWSER_WALLET)}
           >

@@ -104,8 +104,8 @@ const Social = ({ typeSocial, keySocial }: any) => {
       break;
   }
   return (
-    <div className="py-5 px-4 border rounded">
-      <div className="d-flex justify-content-start align-items-center mb-2">
+    <div className="py-4 px-4 border rounded">
+      <div className="d-flex justify-content-start align-items-center mb-3">
         <Image
           quality={100}
           className="me-2"
@@ -114,7 +114,7 @@ const Social = ({ typeSocial, keySocial }: any) => {
           height={40}
           alt="logo social"
         />
-        <h3 className="fw-semibold fs-18 mb-12px text-capitalize ms-2">{typeSocial}</h3>
+        <p className="fw-semibold fs-18  text-capitalize ms-2 mb-0">{typeSocial}</p>
       </div>
       {aesirxData[keySocial] && (
         <Form.Group>

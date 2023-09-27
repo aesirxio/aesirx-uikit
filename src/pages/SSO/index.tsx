@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Email from './AesirX/Email';
+import Password from './AesirX/Password';
 import Social from './Social';
 import MetaMask from './MetaMask';
 import Concordium from './Concordium';
@@ -94,8 +95,8 @@ const SSOApp = () => {
           show={modal?.show}
         />
       )}
-      {/* {modalPassword && <Password setShow={setModalPassword} show={modal} />} */}
-      <h2 className="fs-4 fw-semibold mb-2rem">Single Sign-On Management</h2>
+      {modalPassword && <Password setShow={setModalPassword} show={modal} />}
+      <h2 className="fs-24 fw-semibold mb-3 p-4">Single Sign-On Management</h2>
       <div className="bg-white rounded p-4">
         <h3 className="fs-5 fw-medium mb-12px">WEB3</h3>
         <Row>
@@ -114,7 +115,7 @@ const SSOApp = () => {
           AesirX Account
           <p
             onClick={() => setModalPassword(true)}
-            className="fw-medium fs-7 ms-4 mb-0 text-decoration-underline text-success cursor-pointer"
+            className="fw-medium fs-14 ms-4 mb-0 text-decoration-underline text-success cursor-pointer"
           >
             Change Password
           </p>

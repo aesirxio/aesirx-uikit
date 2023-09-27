@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import concordium_logo from '@/public/concordium_black.png';
+import concordium_logo from '../../../assets/images/concordium_bg_black.png';
 import { useWeb3Context } from '../../../providers/web3';
 import { Image } from 'components';
 import { useUserContext } from '../../../providers/user';
@@ -17,8 +17,7 @@ const Concordium = ({ connectWallet, setShow }: Props) => {
 
   const { aesirxData } = useUserContext();
   const [connecting, setConnecting] = useState(false);
- 
- 
+
   const walletAddress = aesirxData?.wallet_concordium ? aesirxData?.wallet_concordium : account;
 
   const hanleConnect = async (address: string, walletType: string) => {
@@ -28,19 +27,19 @@ const Concordium = ({ connectWallet, setShow }: Props) => {
   };
 
   return (
-    <div className="py-2rem px-4 border rounded">
-      <h3 className="fw-semibold fs-18 mb-12px">
+    <div className="py-4 px-4 border rounded">
+      <div className="d-flex justify-content-start align-items-center mb-3">
         <Image
           className="me-14px"
-          //   src={concordium_logo}
+          src={concordium_logo}
           width={40}
           height={40}
           alt="logo concordium"
         />
-        Concordium
-      </h3>
+        <p className="fw-semibold fs-18 mb-0 ms-2">Concordium</p>
+      </div>
       <p className="fw-medium mb-12px">Address</p>
-      <div className="position-relative overflow-hidden fs-7 mb-12px py-12px px-3 bg-gray-100 rounded border border-gray-stoke-1">
+      <div className="position-relative overflow-hidden fs-7 mb-3 py-2 px-3 bg-gray-100 rounded border border-gray-stoke-1">
         <span className="fw-normal">
           {!walletAddress ? 'Not Connect!' : shortenString(walletAddress, 20, 6)}
         </span>
@@ -58,7 +57,7 @@ const Concordium = ({ connectWallet, setShow }: Props) => {
                 !account ? open() : hanleConnect(account, 'concordium');
               }}
               variant="success"
-              className="fw-semibold py-12px py-12px w-100"
+              className="fw-semibold  w-100"
             >
               {account ? 'Connect this address' : 'Connect to Ethereum wallets'}
             </Button>
@@ -79,7 +78,7 @@ const Concordium = ({ connectWallet, setShow }: Props) => {
             })
           }
           variant="danger"
-          className="fw-semibold py-12px py-12px w-100"
+          className="fw-semibold  w-100"
         >
           Disconnect
         </Button>
