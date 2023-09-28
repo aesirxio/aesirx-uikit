@@ -85,8 +85,6 @@ const removeWallet = async (
   }
 };
 
-
-
 const activeWallet = async (wallet: any, username: any) => {
   try {
     return await axios.post(`/api/activewallet`, { wallet, username });
@@ -130,11 +128,4 @@ const resetPassword = async (data: any) => {
   }
 };
 
-export {
-  getMember,
-  connectWallet,
-  activeWallet,
-  removeWallet,
-  forgotPassword,
-  resetPassword,
-};
+export { getMember, connectWallet, activeWallet, removeWallet, forgotPassword, resetPassword };

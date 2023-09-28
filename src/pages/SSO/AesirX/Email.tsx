@@ -1,4 +1,4 @@
-import React, { useCallback ,useState ,useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ButtonCopy from '../../../components/ButtonCopy';
 import { useFormik } from 'formik';
@@ -22,7 +22,7 @@ const Email = () => {
   const member = new AesirxMemberApiService();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedCheckEmail: any = useCallback(debounce(validateEmail, 200), []);
- 
+
   const formik = useFormik({
     initialValues: {
       email: aesirxData?.email,
@@ -69,7 +69,6 @@ const Email = () => {
     formik.setFieldValue('email', aesirxData?.email);
   }, [aesirxData?.email]);
 
- 
   return (
     <div className="py-4 px-4 border rounded">
       <div className="d-flex justify-content-start align-items-center mb-3">

@@ -11,10 +11,7 @@ import { useGlobalContext } from './global';
 import secureLocalStorage from 'react-secure-storage';
 import { notify } from 'components';
 import { getMember } from '../store/UtilsStore/wallet';
-import {
-  AUTHORIZATION_KEY,
-  Storage,
-} from 'aesirx-lib';
+import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
 import axios from 'axios';
 interface UserContextType {
   preregistration?: any;
@@ -41,8 +38,6 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
   const [aesirxData, setAesirxData] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-
- 
 
   useEffect(() => {
     if (jwt && accessToken) {
@@ -93,7 +88,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
     setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
- 
+
   return (
     <userContext.Provider
       value={{

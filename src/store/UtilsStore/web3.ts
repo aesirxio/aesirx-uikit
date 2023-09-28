@@ -50,7 +50,6 @@ const getPreregistration = async (jwt: any) => {
   });
 };
 
-
 const linkAccount = async (web3Id: any, accountAddress: any, signedNonce: any) => {
   await axios.put(
     `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/id/${web3Id}/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.REACT_PUBLIC_CONCORDIUM_NETWORK}`

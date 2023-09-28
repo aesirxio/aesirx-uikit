@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import {  isDesktop } from 'react-device-detect';
+import { isDesktop } from 'react-device-detect';
 import { BROWSER_WALLET } from '../../../store/UtilsStore/config';
 import { Image } from 'components';
 import concordium_logo from '../../../assets/images/concordium.png';
