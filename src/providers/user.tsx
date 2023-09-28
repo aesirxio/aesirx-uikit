@@ -12,7 +12,6 @@ import secureLocalStorage from 'react-secure-storage';
 import { notify } from 'components';
 import { getMember } from '../store/UtilsStore/wallet';
 import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
-import axios from 'axios';
 interface UserContextType {
   preregistration?: any;
   userLoading: any;
@@ -31,12 +30,11 @@ const userContext = createContext<UserContextType>({
   getData: undefined,
 });
 
-const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false }) => {
+const UserContextProvider: React.FC<Props> = ({ children }) => {
   const { jwt, onLogout } = useGlobalContext();
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
   const [preregistration, setPreregistration] = useState<any>(null);
   const [aesirxData, setAesirxData] = useState<any>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +47,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
         notify(error.message, 'error');
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [jwt, accessToken]);
 
   const getData = useCallback(async (jwt: string, accessToken: string) => {
@@ -86,7 +84,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
     setAesirxData(aesirxData);
     setPreregistration(_preregistration);
     setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -94,7 +92,6 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
       value={{
         preregistration: preregistration,
         aesirxData: aesirxData,
-        isAdmin: isAdmin,
         userLoading: loading,
         getData: getData,
       }}

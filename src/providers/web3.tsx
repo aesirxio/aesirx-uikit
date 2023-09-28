@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { BROWSER_WALLET, WALLET_CONNECT } from '../store/UtilsStore/config';
+import { BROWSER_WALLET } from '../store/UtilsStore/config';
 
 import { notify } from 'components';
 import { checkNetwork } from '../store/UtilsStore/concordium';
@@ -71,7 +71,6 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
     genesisHashes,
     activeConnector,
     setActiveConnectorType,
-    activeConnectorType,
     autoLoad = true,
   } = props;
 
@@ -110,7 +109,7 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
     } else if (connection === 'walletconnect') {
       // setActiveConnectorType(WALLET_CONNECT);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

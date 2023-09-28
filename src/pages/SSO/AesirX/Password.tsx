@@ -71,6 +71,7 @@ const Password = ({ show, setShow }: any) => {
           };
         }
       } catch (error: any) {
+        // eslint-disable-next-line no-console
         console.log('Error', error);
         notify('Something when wrong!', 'error');
       }

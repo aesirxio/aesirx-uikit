@@ -63,6 +63,7 @@ const Social = ({ typeSocial, keySocial }: any) => {
         false
       );
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   };
@@ -83,6 +84,7 @@ const Social = ({ typeSocial, keySocial }: any) => {
         notify(`${response?._messages?.[0]?.message || 'Something when wrong!'} , "error"`);
       }
     } catch (error: any) {
+      // eslint-disable-next-line no-console
       console.log('Error', error);
       updateSuccess = false;
       notify(`${error?.response?.data?._messages?.[0]?.message || error?.message} , "error"`);

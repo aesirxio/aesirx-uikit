@@ -9,6 +9,7 @@ const createPreregistration = async (data: any, jwt: any) => {
       },
     });
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log(error);
     throw error;
   }
@@ -37,6 +38,8 @@ const getNonce = async (accountAddress: any, connection: any, text: string = '')
 
     return signedNonce;
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw error;
   }
 };
@@ -85,6 +88,8 @@ const loginAesirXAccount = async (accountAddress: any, signedNonce: any) => {
       }
     );
   } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw Error(error);
   }
 };
@@ -105,6 +110,7 @@ const savePreregistration = async (jwt: any, data: any) => {
       },
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     throw error;
   }
@@ -123,6 +129,8 @@ const joinTestnet = async (accountAddress: any, signedNonce: any, jwt: any) => {
       }
     );
   } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw Error(error?.response?.data?.error);
   }
 };
@@ -147,6 +155,8 @@ const walletLogin = async (wallet: any, accountAddress: any, signedNonce: any) =
 
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw error;
   }
 };
@@ -169,6 +179,8 @@ const acceptConsent = async (jwt: any, web3id: any) => {
       }
     );
   } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw error;
   }
 };
@@ -181,6 +193,8 @@ const checkAccountAvailable = async (accountAddress: any) => {
       )
     ).data.result;
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     return true;
   }
 };
@@ -191,6 +205,8 @@ const validateWeb3Id = async (id: any) => {
       await axios.get(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkid/${id}`)
     ).data.result;
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     return false;
   }
 };
@@ -214,6 +230,8 @@ const validateEmail = async (email: any) => {
     ]);
     return validateOnWeb3id && validateOnAesirx;
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     return false;
   }
 };

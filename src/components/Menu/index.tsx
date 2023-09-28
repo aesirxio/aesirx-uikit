@@ -66,18 +66,17 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                     <>
                       {menuList.link && (
                         <NavLink
-                        exact={true}
-                        to={menuList.link}
-                        className={`d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none`}
-                        activeClassName={`active`}
-                        onClick={() => setIsOpenCollapse(null)}
-                      >
-                        {menuList.icons_fa ? (
-                          <i>
-                            <FontAwesomeIcon icon={menuList.icons_fa} />
-                          </i>
-                        ) : (
-                          menuList.icons_color ? (
+                          exact={true}
+                          to={menuList.link}
+                          className={`d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none`}
+                          activeClassName={`active`}
+                          onClick={() => setIsOpenCollapse(null)}
+                        >
+                          {menuList.icons_fa ? (
+                            <i>
+                              <FontAwesomeIcon icon={menuList.icons_fa} />
+                            </i>
+                          ) : menuList.icons_color ? (
                             <span
                               className="icon d-inline-block align-text-bottom"
                               style={{
@@ -86,13 +85,13 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                 backgroundColor: '#fff',
                               }}
                             ></span>
-                          ) : (
-                            null
-                          )
-                        )}
-                        <span className={`text d-inline-block ${menuList.icons_fa ? 'ms-16' : ''}`}>{t(menuList.text)}</span>
-
-                      </NavLink>
+                          ) : null}
+                          <span
+                            className={`text d-inline-block ${menuList.icons_fa ? 'ms-16' : ''}`}
+                          >
+                            {t(menuList.text)}
+                          </span>
+                        </NavLink>
                       )}
                     </>
                   ) : (

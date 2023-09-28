@@ -18,12 +18,12 @@ async function waitForFinalizedTransaction(transactionHash: any, connection: any
   while (transactionStatus !== TransactionStatusEnum.Finalized) {
     txnStatus = await client.getTransactionStatus(transactionHash);
     transactionStatus = txnStatus?.status;
-
+    // eslint-disable-next-line no-console
     console.info(`txn : ${transactionHash}, status: ${txnStatus?.status}`);
 
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
   }
-
+  // eslint-disable-next-line no-console
   console.log('Transaction has been finalized', txnStatus);
   return ensureValidOutcome(txnStatus?.outcomes);
 }
@@ -79,6 +79,8 @@ const updateSmartContract = async (
 
     return await waitForFinalizedTransaction(txnHash, connection);
   } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw Error(error);
   }
 };
@@ -108,11 +110,12 @@ const invokeSmartContract = async (
       method,
       SchemaVersion.V2
     );
-
+    // eslint-disable-next-line no-console
     console.log('invokeSmartContract', returnValue);
 
     return returnValue;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('invokeSmartContract error', error);
     return null;
   }
@@ -128,7 +131,7 @@ const checkPaid = async (account: any, connection: any, web3id: any) => {
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_RAWSCHEMA,
     'view'
   );
-
+  // eslint-disable-next-line no-console
   console.log('checkPaid', web3id, data, data?.paid_web3ids.includes(web3id));
 
   if (data) {
@@ -154,6 +157,8 @@ const pay = async (account: any, connection: any, web3id: any) => {
 
     return outcomes;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw error;
   }
 };
@@ -174,6 +179,8 @@ const mintWeb3IDNFT = async (account: any, connection: any, web3id: any) => {
       }
     );
   } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.log(error);
     throw Error(error);
   }
 };
@@ -188,6 +195,7 @@ const checkMintWeb3IDNFT = async (account: any, connection: any) => {
     process.env.NEXT_PUBLIC_SMARTCONTRACT_NFT_WEBE3ID_RAWSCHEMA,
     'view'
   );
+  // eslint-disable-next-line no-console
   console.log(
     'checkMintWeb3IDNFT',
     account,

@@ -20,7 +20,7 @@ const Email = () => {
   const { jwt } = useGlobalContext();
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
   const member = new AesirxMemberApiService();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line
   const debouncedCheckEmail: any = useCallback(debounce(validateEmail, 200), []);
 
   const formik = useFormik({
@@ -54,6 +54,7 @@ const Email = () => {
           notify('Something when wrong!', 'error');
         }
       } catch (error: any) {
+        // eslint-disable-next-line no-console
         console.log('Error', error);
         updateSuccess = false;
         notify(error?.message, 'error');

@@ -39,6 +39,7 @@ const GlobalContextApp: React.FC<Props> = ({ children }) => {
 
   const onSSOData = useCallback(async (response: any) => {
     if (response.error) {
+      // eslint-disable-next-line no-console
       console.log('ee', response);
     } else {
       secureLocalStorage.setItem('jwt', response?.jwt);
