@@ -6,6 +6,10 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import {
+  AUTHORIZATION_KEY,
+  Storage,
+} from 'aesirx-lib';
 import secureLocalStorage from 'react-secure-storage';
 
 interface GlobalContextType {
@@ -41,7 +45,7 @@ const GlobalContextApp: React.FC<Props> = ({ children }) => {
       console.log('ee', response);
     } else {
       secureLocalStorage.setItem('jwt', response?.jwt);
-      secureLocalStorage.setItem('accessToken', response?.access_token);
+      Storage.getItem('accessToken' , AUTHORIZATION_KEY.ACCESS_TOKEN);
 
       setJwt(response?.jwt);
       setAccessToken(response?.access_token);
@@ -50,7 +54,7 @@ const GlobalContextApp: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const jwt: any = secureLocalStorage.getItem('jwt');
-    const accessToken: any = secureLocalStorage.getItem('accessToken');
+    const accessToken: any = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
 
     if (jwt) {
       setJwt(jwt);
@@ -59,7 +63,7 @@ const GlobalContextApp: React.FC<Props> = ({ children }) => {
       setAccessToken(accessToken);
     }
   }, []);
-
+   
   const handleLogout = async () => {
     secureLocalStorage.removeItem('jwt');
     secureLocalStorage.removeItem('accessToken');
@@ -70,7 +74,6 @@ const GlobalContextApp: React.FC<Props> = ({ children }) => {
     setAccessToken('');
   };
 
-  console.log('GlobalContextApp');
 
   return (
     <globalContext.Provider

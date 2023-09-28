@@ -5,7 +5,7 @@ import ButtonCopy from '../../../components/ButtonCopy';
 import ethereum_logo from '../../../assets/images/ethereum_icon.png';
 import { useUserContext } from '../../../providers/user';
 import { Button } from 'react-bootstrap';
-import { shortenString } from '../../../store/UtilsStore/web3';
+import { shortenString } from '../../../components/shortenString';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createConfig, WagmiConfig, useAccount } from 'wagmi';

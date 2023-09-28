@@ -8,15 +8,17 @@ import Concordium from './Concordium';
 import DeleteModal from './DeleteModal';
 import { useGlobalContext, GlobalContextProvider } from '../../providers/global';
 import { useUserContext, UserContextProvider } from '../../providers/user';
-import { AesirxMemberApiService } from 'aesirx-lib';
+import { connectWallet, removeWallet } from '../../store/UtilsStore/wallet';
 import { notify } from 'components';
 import Web3ContextProvider from '../../providers/web3';
-import { ProfileContextProvider } from '../Profile/model';
+import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
 const SSO = () => {
   return (
     <GlobalContextProvider>
       <UserContextProvider>
-        <SSOApp />
+        <Web3ContextProvider autoLoad={true}>
+          <SSOApp />
+        </Web3ContextProvider>
       </UserContextProvider>
     </GlobalContextProvider>
   );
@@ -31,16 +33,16 @@ interface DeleteModal {
 const SSOApp = () => {
   const [modal, setModal] = useState<DeleteModal>({ show: false });
   const [modalPassword, setModalPassword] = useState(false);
-  const memberAesirx = new AesirxMemberApiService();
   const { aesirxData, getData } = useUserContext();
 
-  const { accessToken, jwt } = useGlobalContext();
+  const { jwt } = useGlobalContext();
+  const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
 
   const connectWeb3Wallet = async (address: string, walletType: string) => {
     let connectSuccess = true;
     if (address) {
       try {
-        const response = await memberAesirx.connectWallet(
+        const response = await connectWallet(
           address,
           walletType ?? 'concordium',
           accessToken,
@@ -64,7 +66,7 @@ const SSOApp = () => {
     let removeSuccess = true;
     if (address) {
       try {
-        const response = await memberAesirx.removeWallet(
+        const response = await removeWallet(
           address,
           walletType ?? 'concordium',
           accessToken,
@@ -101,14 +103,10 @@ const SSOApp = () => {
         <h3 className="fs-5 fw-medium mb-12px">WEB3</h3>
         <Row>
           <Col md={6} lg={6} xxl={4} className="mb-4">
-            <Web3ContextProvider autoLoad={false}>
-              <Concordium setShow={setModal} connectWallet={connectWeb3Wallet} />
-            </Web3ContextProvider>
+            <Concordium setShow={setModal} connectWallet={connectWeb3Wallet} />
           </Col>
           <Col md={6} lg={6} xxl={4} className="mb-4">
-            <Web3ContextProvider autoLoad={false}>
-              <MetaMask setShow={setModal} connectWallet={connectWeb3Wallet} />
-            </Web3ContextProvider>
+            <MetaMask setShow={setModal} connectWallet={connectWeb3Wallet} />
           </Col>
         </Row>
         <h3 className="fs-5 d-flex align-items-center fw-medium mb-12px">
@@ -122,9 +120,7 @@ const SSOApp = () => {
         </h3>
         <Row>
           <Col md={6} lg={6} xxl={4} className="mb-4">
-            <ProfileContextProvider>
-              <Email />
-            </ProfileContextProvider>
+            <Email />
           </Col>
         </Row>
         <h3 className="fs-5 fw-medium mb-12px">Social Media</h3>

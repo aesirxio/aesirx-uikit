@@ -1,54 +1,75 @@
-import React, { useEffect } from 'react';
+import React, { useCallback ,useState ,useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ButtonCopy from '../../../components/ButtonCopy';
 import { useFormik } from 'formik';
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import {
-  AUTHORIZATION_KEY,
-  Storage,
-  AesirxMemberApiService,
-  MEMBER_GET_FIELD_KEY,
-} from 'aesirx-lib';
+import { AUTHORIZATION_KEY, Storage, AesirxMemberApiService } from 'aesirx-lib';
 import { Image } from 'components';
 import mail_logo from '../../../assets/images/mail_logo.png';
 import { notify } from 'components';
-import { useProfileContext } from '../../Profile/model';
+import * as Yup from 'yup';
+import { useUserContext } from '../../../providers/user';
+import { useGlobalContext } from '../../../providers/global';
+import { debounce } from 'lodash';
+import { validateEmail } from '../../../store/UtilsStore/web3';
 
 const Email = () => {
   const [updating, setUpdating] = useState(false);
-  const member = new AesirxMemberApiService();
-  const { model } = useProfileContext();
-  const aesirxData = model.getData();
-  const aesirxEmai = aesirxData[MEMBER_GET_FIELD_KEY.EMAIL];
-  const userID = Storage.getItem(AUTHORIZATION_KEY.MEMBER_ID);
+  const { aesirxData, getData } = useUserContext();
+  const { jwt } = useGlobalContext();
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
-
+  const member = new AesirxMemberApiService();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedCheckEmail: any = useCallback(debounce(validateEmail, 200), []);
+ 
   const formik = useFormik({
     initialValues: {
-      email: aesirxEmai,
+      email: aesirxData?.email,
     },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Please enter your email')
+        .test('unique', 'This Email is already taken', async (value) => {
+          if (value != aesirxData?.email) {
+            return await debouncedCheckEmail(value);
+          } else {
+            return true;
+          }
+        }),
+    }),
     onSubmit: async (values: any) => {
+      let updateSuccess = true;
       setUpdating(true);
       try {
         const response: any = await member.updateEmailMember(
-          { id: userID, ...values },
+          { id: aesirxData?.member_id, ...values },
           accessToken
         );
         if (response?.result?.success) {
           notify('Update email sucessfully!', 'success');
         } else {
+          updateSuccess = false;
           notify('Something when wrong!', 'error');
         }
       } catch (error: any) {
+        console.log('Error', error);
+        updateSuccess = false;
         notify(error?.message, 'error');
       }
       setUpdating(false);
+      if (updateSuccess) {
+        await getData(jwt, accessToken);
+      }
     },
     validateOnMount: true,
   });
+  useEffect(() => {
+    formik.setFieldValue('email', aesirxData?.email);
+  }, [aesirxData?.email]);
 
+ 
   return (
     <div className="py-4 px-4 border rounded">
       <div className="d-flex justify-content-start align-items-center mb-3">
@@ -95,11 +116,11 @@ const Email = () => {
         </Form.Group>
         <Button
           type="submit"
-          disabled={!formik.isValid || formik.values['email'] == aesirxEmai || updating}
+          disabled={!formik.isValid || formik.values['email'] == aesirxData?.email || updating}
           variant="success"
           className="fw-semibold py-12px py-12px w-100"
         >
-          {formik.values['email'] != aesirxEmai ? 'Update Email' : 'Connected'}
+          {formik.values['email'] != aesirxData?.email ? 'Update Email' : 'Connected'}
         </Button>
       </Form>
     </div>

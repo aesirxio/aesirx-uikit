@@ -6,7 +6,7 @@ import { useUserContext } from '../../../providers/user';
 import Connect from './Connect';
 import { Button } from 'react-bootstrap';
 import ButtonCopy from '../../../components/ButtonCopy';
-import { shortenString } from '../../../store/UtilsStore/web3';
+import { shortenString } from '../../../components/shortenString';
 interface Props {
   connectWallet: (address: string, walletType: string) => Promise<void>;
   setShow: any;

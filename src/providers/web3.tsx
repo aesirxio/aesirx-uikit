@@ -2,8 +2,7 @@ import React, { createContext, ReactNode, useContext, useEffect, useState } from
 
 import { BROWSER_WALLET, WALLET_CONNECT } from '../store/UtilsStore/config';
 
-// import { toast } from 'react-toastify';
-// import Toast from '@/components/Toast';
+import { notify } from 'components';
 import { checkNetwork } from '../store/UtilsStore/concordium';
 import { useUserContext } from './user';
 import secureLocalStorage from 'react-secure-storage';
@@ -19,8 +18,6 @@ import {
   TESTNET,
   BrowserWalletConnector,
 } from '@concordium/react-components';
-import { isMobile } from 'react-device-detect';
-import { log } from 'console';
 interface Web3ContextType {
   account?: string;
   setActiveConnectorType?: any;
@@ -55,7 +52,7 @@ const Web3Context = createContext<Web3ContextType>({});
 const Web3ContextProvider: React.FC<Props> = ({ children, autoLoad }) => {
   return (
     <WithWalletConnector
-      network={process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK === 'mainnet' ? MAINNET : TESTNET}
+      network={process.env.REACT_PUBLIC_CONCORDIUM_NETWORK === 'mainnet' ? MAINNET : TESTNET}
     >
       {(props) => (
         <Web3ContextApp {...props} autoLoad={autoLoad}>
@@ -67,8 +64,6 @@ const Web3ContextProvider: React.FC<Props> = ({ children, autoLoad }) => {
 };
 
 const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
-  console.log(props, '11');
-
   const {
     activeConnectorError,
     network,
@@ -98,13 +93,13 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
 
   useEffect(() => {
     if (connectError) {
-      // toast.error(<Toast status={false} message={connectError} />);
+      notify(connectError, 'error');
     }
   }, [connectError]);
 
   useEffect(() => {
     if (activeConnectorError) {
-      // toast.error(<Toast status={false} message={activeConnectorError} />);
+      notify(activeConnectorError, 'error');
     }
   }, [activeConnectorError]);
 
@@ -141,7 +136,7 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
         })
         .catch((err) => {
           if (err) {
-            // toast.error(<Toast status={false} message={err.message} />);
+            notify(err.message, 'error');
           }
 
           connection.disconnect();

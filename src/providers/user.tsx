@@ -1,4 +1,4 @@
-import { getDemoData, getPreregistration } from '../store/UtilsStore/web3';
+import { getPreregistration } from '../store/UtilsStore/web3';
 import React, {
   createContext,
   ReactNode,
@@ -7,10 +7,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { AesirxMemberApiService } from 'aesirx-lib';
 import { useGlobalContext } from './global';
-// import { useRouter } from 'next/router';
 import secureLocalStorage from 'react-secure-storage';
+import { notify } from 'components';
+import { getMember } from '../store/UtilsStore/wallet';
+import {
+  AUTHORIZATION_KEY,
+  Storage,
+} from 'aesirx-lib';
 import axios from 'axios';
 interface UserContextType {
   preregistration?: any;
@@ -31,30 +35,14 @@ const userContext = createContext<UserContextType>({
 });
 
 const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false }) => {
-  const { jwt, onLogout, accessToken } = useGlobalContext();
-
+  const { jwt, onLogout } = useGlobalContext();
+  const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
   const [preregistration, setPreregistration] = useState<any>(null);
   const [aesirxData, setAesirxData] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  // const router = useRouter();
 
-  const listNotRedirect = [
-    '/licenses',
-    '/support',
-    '/nfts',
-    '/affiliate2earn',
-    '/sso',
-    '/',
-    '/news/[alias]',
-    '/news',
-    '/connect',
-    '/revoke-consent',
-    '/contribute2earn',
-    '/admin',
-    '/admin/contribute2earn',
-    '/launchpad',
-  ];
+ 
 
   useEffect(() => {
     if (jwt && accessToken) {
@@ -63,7 +51,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
           await getData(jwt, accessToken);
         })();
       } catch (error: any) {
-        // toast.error(<Toast status={false} message={error.message} />);
+        notify(error.message, 'error');
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,22 +64,13 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
 
     if (jwt) {
       try {
-        const memberAesirx = new AesirxMemberApiService();
-        const member = await memberAesirx.getMember(accessToken);
+        const member = await getMember(accessToken);
         aesirxData = { ...member };
 
         const preregistrationData = (await getPreregistration(jwt)).data?.objForm;
-        const demo = (await getDemoData(jwt)).data?.objForm;
-        if (preregistrationData?.aesirXAccount) {
-          const response = await axios.post('/api/member/checkadmin', {
-            username: preregistrationData?.aesirXAccount,
-          });
-          response?.data && setIsAdmin(true);
-        }
         _preregistration = {
           ...preregistrationData,
           ..._preregistration,
-          ...{ demo: demo },
         };
 
         secureLocalStorage.setItem('auth', true);
@@ -106,9 +85,6 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
         ) {
           onLogout();
         }
-        // if (!_preregistration?.id && !listNotRedirect.includes(router.pathname)) {
-        //   router.push('/profile');
-        // }
       }
     }
 
@@ -117,7 +93,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
     setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+ 
   return (
     <userContext.Provider
       value={{
