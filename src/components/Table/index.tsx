@@ -134,7 +134,7 @@ const Table = ({
                 return (
                   <tr key={index} {...headerGroup.getHeaderGroupProps()}>
                     {newHeaderGroup.map((column: any, index: any) => {
-                      canSort = column.canSort ?? canSort;
+                      canSort = canSort ?? column.canSort;
                       sortAPI = sortAPI ?? column.sortType;
                       const sortParams = canSort ?? column.id;
                       let columnInside: any;
