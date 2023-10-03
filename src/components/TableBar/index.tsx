@@ -8,6 +8,7 @@
  * @param {function} props.setGlobalFilters - The function to set the global filters.
  * @param {function} props.onAction - The function to handle the action.
  * @param {boolean} props.isList - Indicates whether the component should be displayed as a list.
+ * @param {function} props.onDetele - The function to handle the delete item
  * @returns {JSX.Element} The rendered component.
  */
 
@@ -21,10 +22,12 @@ import { useTranslation } from 'react-i18next';
 interface TableBarType {
   dataFilter: { searchText: string };
   setFilter: () => void;
-  tableRowHeader: { Header: string }[];
+  tableRowHeader: { Header: string; accessor: string }[];
   setGlobalFilters: () => void;
   onAction: () => void;
   isList: boolean;
+  onDeleteItem: () => void;
+  onShowColumns: (rowHeader: { accessor: string }) => void;
 }
 
 const TableBar: React.FC<TableBarType> = ({
@@ -34,6 +37,8 @@ const TableBar: React.FC<TableBarType> = ({
   setGlobalFilters,
   onAction,
   isList,
+  onDeleteItem,
+  onShowColumns,
 }) => {
   const { t } = useTranslation();
 
@@ -58,14 +63,21 @@ const TableBar: React.FC<TableBarType> = ({
               </i>
             </Dropdown.Toggle>
             <Dropdown.Menu className="w-max">
-              {tableRowHeader.map((rowHeader: { Header: string }, index: number) => (
-                <div key={index} className="p-2 d-flex">
-                  <input type="checkbox" id={`item${index}`} className="form-check-input d-block" />
-                  <label className="ps-2" htmlFor={`item${index}`}>
-                    {rowHeader.Header}
-                  </label>
-                </div>
-              ))}
+              {tableRowHeader.map(
+                (rowHeader: { Header: string; accessor: string }, index: number) => (
+                  <div key={index} className="p-2 d-flex">
+                    <input
+                      type="checkbox"
+                      id={`item${index}`}
+                      className="form-check-input d-block"
+                      onChange={(e) => e.target.checked && onShowColumns(rowHeader.accessor)}
+                    />
+                    <label className="ps-2" htmlFor={`item${index}`}>
+                      {rowHeader.Header}
+                    </label>
+                  </div>
+                )
+              )}
             </Dropdown.Menu>
           </Dropdown>
         </div>
@@ -78,7 +90,7 @@ const TableBar: React.FC<TableBarType> = ({
               </i>
             </Dropdown.Toggle>
             <Dropdown.Menu className="w-max">
-              <div className="p-2 d-flex">
+              <div className="p-2 d-flex" onClick={() => onDeleteItem()}>
                 <input type="checkbox" id="delete_row" className="form-check-input d-block" />
                 <label className="ps-2" htmlFor="delete_row">
                   Delete item

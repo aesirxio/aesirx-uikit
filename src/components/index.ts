@@ -23,3 +23,4 @@ export * from './Table';
 export * from './ActionsBar';
 export * from './GlobalFilter';
 export * from './TableBar';
+export * from './Thumb';

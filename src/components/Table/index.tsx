@@ -53,6 +53,7 @@ const Table = ({
   selectPage,
   currentSelect,
   textNodata,
+  colShow,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -153,7 +154,8 @@ const Table = ({
                             sortAPI && sortParams !== 'number' && sortParams !== 'selection'
                               ? 'cursor-pointer'
                               : ''
-                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
+                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}
+                            `}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
                           {column.render('Header')}
