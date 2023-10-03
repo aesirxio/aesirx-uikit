@@ -49,6 +49,8 @@ const Table = ({
   selection = false,
   classNameTable,
   onRightClickItem,
+  sortAPI,
+  canSort,
   pagination,
   selectPage,
   currentSelect,
@@ -132,8 +134,8 @@ const Table = ({
                 return (
                   <tr key={index} {...headerGroup.getHeaderGroupProps()}>
                     {newHeaderGroup.map((column: any, index: any) => {
-                      const canSort = column.canSort;
-                      const sortAPI = column.sortType;
+                      canSort = canSort ?? column.canSort;
+                      sortAPI = sortAPI ?? column.sortType;
                       const sortParams = canSort ?? column.id;
                       let columnInside: any;
                       if (column.rowSpanHeader && canSort && !sortAPI) {
