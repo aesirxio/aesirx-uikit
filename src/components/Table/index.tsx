@@ -187,7 +187,7 @@ const Table = ({
                                 column.isSorted &&
                                 sortParams !== 'number' &&
                                 sortParams !== 'selection' ? (
-                                  isDesc ? (
+                                  column?.isSortedDesc || isDesc ? (
                                     <FontAwesomeIcon
                                       className="sort-icon sort-icon-down ms-sm"
                                       icon={faSortDown}
