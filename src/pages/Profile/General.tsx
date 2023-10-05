@@ -4,106 +4,146 @@ import { FormDAMImage } from 'components/Form/FormDAMImage';
 import { Label } from 'components/Form/FormLabel';
 import { FORM_FIELD_TYPE } from 'constant/FormFieldType';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { faUserCog } from '@fortawesome/free-solid-svg-icons/faUserCog';
-import { MEMBER_FIELD_KEY, MEMBER_GET_FIELD_KEY } from 'aesirx-lib';
+import { MEMBER_FIELD_KEY, MEMBER_GET_FIELD_KEY, AesirxAuthenticationApiService } from 'aesirx-lib';
 import { observer } from 'mobx-react';
 import { useProfileContext } from './model';
 import { PAGE_STATUS } from 'constant/PageStatus';
 import SimpleReactValidator from 'simple-react-validator';
+import axios from 'axios';
+
+type FormPropsData = {
+  [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
+};
 
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
   const { t } = useTranslation();
   const { model } = useProfileContext();
+  const request = new AesirxAuthenticationApiService();
   const memberInfo = model.getData();
+  const jwt = request.getStore('jwt');
 
-  const formPropsData = {
-    [MEMBER_FIELD_KEY.ID]: memberInfo[MEMBER_GET_FIELD_KEY.ID],
-    [MEMBER_FIELD_KEY.USERNAME]: memberInfo[MEMBER_GET_FIELD_KEY.USERNAME],
-    [MEMBER_FIELD_KEY.AVATAR_DAM]: memberInfo[MEMBER_GET_FIELD_KEY.AVATAR_DAM],
-    [MEMBER_FIELD_KEY.FULL_NAME]: memberInfo[MEMBER_GET_FIELD_KEY.FULL_NAME],
-    [MEMBER_FIELD_KEY.EMAIL]: memberInfo[MEMBER_GET_FIELD_KEY.EMAIL],
-    [MEMBER_FIELD_KEY.BIRTHDAY]: memberInfo[MEMBER_GET_FIELD_KEY.BIRTHDAY],
-    [MEMBER_FIELD_KEY.PHONE]: memberInfo[MEMBER_GET_FIELD_KEY.PHONE],
-    [MEMBER_FIELD_KEY.ADDRESS]: memberInfo[MEMBER_GET_FIELD_KEY.ADDRESS],
-    [MEMBER_FIELD_KEY.ADDRESS_2]: memberInfo[MEMBER_GET_FIELD_KEY.ADDRESS_2],
-    [MEMBER_FIELD_KEY.ZIP_CODE]: memberInfo[MEMBER_GET_FIELD_KEY.ZIP_CODE],
-    [MEMBER_FIELD_KEY.CITY]: memberInfo[MEMBER_GET_FIELD_KEY.CITY],
-    [MEMBER_FIELD_KEY.STATE]: memberInfo[MEMBER_GET_FIELD_KEY.STATE],
-    [MEMBER_FIELD_KEY.COUNTRY]: memberInfo[MEMBER_GET_FIELD_KEY.COUNTRY],
-    [MEMBER_FIELD_KEY.TIMEZONE]: memberInfo[MEMBER_GET_FIELD_KEY.TIMEZONE],
-    [MEMBER_FIELD_KEY.WALLET_METAMASK]: memberInfo[MEMBER_GET_FIELD_KEY.WALLET_METAMASK],
-    [MEMBER_FIELD_KEY.WALLET_CONCORDIUM]: memberInfo[MEMBER_GET_FIELD_KEY.WALLET_CONCORDIUM],
+  const [formPropsData, setFormPropsData] = useState<FormPropsData>({
+    [MEMBER_FIELD_KEY.ID]: '',
+    [MEMBER_FIELD_KEY.AVATAR_DAM]: '',
+    [MEMBER_FIELD_KEY.FIRST_NAME]: '',
+    [MEMBER_FIELD_KEY.LAST_NAME]: '',
+    [MEMBER_FIELD_KEY.DESCRIPTION]: '',
+    [MEMBER_FIELD_KEY.ORGANIZATION]: '',
+  });
+
+  const getPreregistration = async (jwt: string) => {
+    try {
+      const response = await axios.get(
+        `${
+          process.env.REACT_APP_WEB3_API_ENDPOINT || 'https://web3id.backend.aesirx.io:8001'
+        }/preregistration/aesirx`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + jwt,
+          },
+        }
+      );
+      return response.data.objForm;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      throw error;
+    }
   };
+
+  const fetchData = async () => {
+    try {
+      const preregistrationData = await getPreregistration(jwt);
+
+      setFormPropsData({
+        [MEMBER_FIELD_KEY.ID]: preregistrationData?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
+        [MEMBER_FIELD_KEY.AVATAR_DAM]:
+          preregistrationData?.avatar ?? memberInfo[MEMBER_GET_FIELD_KEY.AVATAR_DAM],
+        [MEMBER_FIELD_KEY.FIRST_NAME]:
+          preregistrationData?.first_name ?? memberInfo[MEMBER_GET_FIELD_KEY.FIRST_NAME],
+        [MEMBER_FIELD_KEY.LAST_NAME]:
+          preregistrationData?.sur_name ?? memberInfo[MEMBER_GET_FIELD_KEY.LAST_NAME],
+        [MEMBER_FIELD_KEY.DESCRIPTION]:
+          preregistrationData?.description ?? memberInfo[MEMBER_GET_FIELD_KEY.DESCRIPTION],
+        [MEMBER_FIELD_KEY.ORGANIZATION]:
+          preregistrationData?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const formSetting = [
     {
-      label: t('txt_username'),
-      key: MEMBER_FIELD_KEY.USERNAME,
+      label: 'ID',
+      key: MEMBER_FIELD_KEY.ID,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.USERNAME],
-      className: 'col-6',
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.ID],
+      className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
     },
     {
-      label: t('txt_email'),
-      key: MEMBER_FIELD_KEY.EMAIL,
+      label: t('txt_first_name'),
+      key: MEMBER_FIELD_KEY.FIRST_NAME,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.EMAIL],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.FIRST_NAME],
       className: 'col-6',
+      inputClassName: 'border',
+      handleChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormPropsData({
+          ...formPropsData,
+          [MEMBER_FIELD_KEY.FIRST_NAME]: event.target.value,
+        });
+      },
+    },
+    {
+      label: t('txt_last_name'),
+      key: MEMBER_FIELD_KEY.LAST_NAME,
+      type: FORM_FIELD_TYPE.INPUT,
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.LAST_NAME],
+      className: 'col-6',
+      inputClassName: 'border',
+      handleChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormPropsData({
+          ...formPropsData,
+          [MEMBER_FIELD_KEY.LAST_NAME]: event.target.value,
+        });
+      },
+    },
+    {
+      label: t('txt_description'),
+      key: MEMBER_FIELD_KEY.DESCRIPTION,
+      type: FORM_FIELD_TYPE.TEXTAREA,
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
+      className: 'col-12',
+      inputClassName: 'border',
+      changed: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormPropsData({
+          ...formPropsData,
+          [MEMBER_FIELD_KEY.DESCRIPTION]: event.target.value,
+        });
+      },
+    },
+    {
+      label: t('txt_organization'),
+      key: MEMBER_FIELD_KEY.ORGANIZATION,
+      type: FORM_FIELD_TYPE.INPUT,
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.ORGANIZATION],
+      className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
-    },
-
-    {
-      label: t('txt_fullname'),
-      key: MEMBER_FIELD_KEY.FULL_NAME,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.FULL_NAME],
-      className: 'col-6',
-      required: true,
-      validation: 'required',
-      inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.FULL_NAME] = event.target.value;
-      },
-    },
-    {
-      label: t('txt_phone'),
-      key: MEMBER_FIELD_KEY.PHONE,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.PHONE],
-      className: 'col-6',
-      inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.PHONE] = event.target.value;
-      },
-    },
-    {
-      label: t('txt_metamask_wallet'),
-      key: MEMBER_FIELD_KEY.WALLET_METAMASK,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.WALLET_METAMASK],
-      className: 'col-6',
-      inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.WALLET_METAMASK] = event.target.value;
-      },
-    },
-    {
-      label: t('txt_concordium_wallet'),
-      key: MEMBER_FIELD_KEY.WALLET_CONCORDIUM,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.WALLET_CONCORDIUM],
-      className: 'col-6',
-      inputClassName: 'border',
-      handleChange: (event: any) => {
-        formPropsData[MEMBER_FIELD_KEY.WALLET_CONCORDIUM] = event.target.value;
-      },
     },
   ];
 
@@ -111,14 +151,16 @@ const ProfileGeneral = observer(() => {
 
   const save = async () => {
     setSaving(true);
-
     await model.save(formPropsData);
-
+    await model.savePreregistration(jwt, formPropsData);
     setSaving(false);
   };
 
-  const onSelectAvatar = (image: any) => {
-    formPropsData[MEMBER_FIELD_KEY.AVATAR_DAM] = image;
+  const onSelectAvatar = (image: string) => {
+    setFormPropsData({
+      ...formPropsData,
+      [MEMBER_FIELD_KEY.AVATAR_DAM]: image,
+    });
   };
 
   return (

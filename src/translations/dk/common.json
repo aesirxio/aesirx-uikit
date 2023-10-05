@@ -83,14 +83,17 @@
   "txt_member": "Medlem",
   "txt_add_member_name": "Tilføj medlemsnavn",
   "txt_password": "Adgangskode",
-  "txt_enter_password":"Indtast adgangskode",
-  "txt_enter_member_email":"Indtast medlems e-mail",
-  "txt_select_role":"Vælg rolle",
-  "txt_enter_metamask_address":"Indtast metamaskadresse",
-  "txt_enter_concordium_address":"Indtast Concordium-adresse",
+  "txt_enter_password": "Indtast adgangskode",
+  "txt_enter_member_email": "Indtast medlems e-mail",
+  "txt_select_role": "Vælg rolle",
+  "txt_enter_metamask_address": "Indtast metamaskadresse",
+  "txt_enter_concordium_address": "Indtast Concordium-adresse",
   "txt_role": "Rolle",
   "txt_metamask_wallet": "Metamask Wallet",
   "txt_concordium_wallet": "Concordium tegnebog",
   "txt_version": "Version:",
-  "txt_sign_in_to_getting_started": "Log ind for at komme i gang."
+  "txt_sign_in_to_getting_started": "Log ind for at komme i gang.",
+  "txt_first_name": "Fornavn",
+  "txt_last_name": "Efternavn",
+  "txt_organization": "Organisation"
 }
