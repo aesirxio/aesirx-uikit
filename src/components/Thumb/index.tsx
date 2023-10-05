@@ -1,5 +1,6 @@
 import { toJS } from 'mobx';
 import React from 'react';
+import { Image } from '../Image';
 
 interface ThumbType {
   data: any;
@@ -39,7 +40,10 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
             <div className="col-md-3 mb-4" key={item.id}>
               <div className="bg-white rounded-3 p-3">
                 <p className="rounded-3 overflow-hidden">
-                  <img src={item.logo ? item.logo : './assets/images/annotation.png'} alt="" />
+                  <Image
+                    src={item.logo ? item.logo : './assets/images/annotation.png'}
+                    alt={item.name.props.children}
+                  />
                 </p>
                 <p>
                   <span
