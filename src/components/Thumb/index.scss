@@ -1,0 +1,22 @@
+.failed {
+  color: #c8192e;
+  background-color: rgba(239, 55, 55, 0.15);
+}
+.project {
+  &__status {
+    &-failed {
+      color: #c8192e;
+      background-color: rgba(239, 55, 55, 0.15);
+    }
+
+    &-pending {
+      color: rgba(255, 158, 1, 1);
+      background-color: rgba(255, 158, 1, 0.15);
+    }
+
+    &-inprogress {
+      color: rgba(26, 179, 148, 1);
+      background-color: rgba(26, 179, 148, 0.15);
+    }
+  }
+}
