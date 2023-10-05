@@ -6,7 +6,6 @@ interface ThumbType {
   data: any;
 }
 const Thumb: React.FC<ThumbType> = ({ data }) => {
-  console.log(data);
   return (
     <section className="px-3 pt-3">
       <div className="row">

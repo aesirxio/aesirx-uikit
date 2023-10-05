@@ -55,7 +55,6 @@ const Table = ({
   selectPage,
   currentSelect,
   textNodata,
-  colShow,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {

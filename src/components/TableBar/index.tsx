@@ -27,7 +27,7 @@ interface TableBarType {
   onAction: () => void;
   isList: boolean;
   onDeleteItem: () => void;
-  onShowColumns: (rowHeader: { accessor: string }) => void;
+  onShowColumns: () => void;
 }
 
 const TableBar: React.FC<TableBarType> = ({
