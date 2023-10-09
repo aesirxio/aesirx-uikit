@@ -18,7 +18,7 @@ import { GlobalFilter } from 'components/GlobalFilter';
 import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { AesirXDatePicker } from '../DatePicker'
+import { AesirXDatePicker } from '../DatePicker';
 
 interface TableBarType {
   dataFilter: { searchText: string };
@@ -27,14 +27,15 @@ interface TableBarType {
   setGlobalFilters: () => void;
   onAction: () => void;
   isList: boolean;
-  // onDeleteItem: () => void;
+  onDelete: () => void;
   onShowColumns: () => void;
   isSearch: boolean;
   isColumnSelected: boolean;
   isAction: boolean;
   isDateRange: boolean;
   defaultDate: any;
-  handleOnChange: (date: any) => void;
+  handleOnChange: () => void;
+  onSearch: () => void;
 }
 
 const TableBar: React.FC<TableBarType> = ({
@@ -44,40 +45,41 @@ const TableBar: React.FC<TableBarType> = ({
   setGlobalFilters,
   onAction,
   isList,
-  // onDeleteItem,
+  onDelete,
   onShowColumns,
   isSearch,
   isColumnSelected,
   isAction,
   isDateRange,
-  defaultDate,
-  handleOnChange
+  // defaultDate,
+  // handleOnChange,
+  onSearch,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
   const onTestAction = (action: any) => {
-    console.log(action);
+    // console.log(action);
   };
 
   const setDateFilter = (a: any, b: any) => {
-    console.log(a, b);
-  }
+    // console.log(a, b);
+  };
+
+  onSearch;
 
   return (
     <div className="px-3 d-flex justify-content-between w-100">
       <div className="d-flex">
-        {
-          isSearch &&
+        {isSearch && (
           <GlobalFilter
             setGlobalFilter={setGlobalFilters}
             searchText="Search..."
             filter={dataFilter}
             setFilter={setFilter}
           />
-        }
-        {
-          isColumnSelected &&
+        )}
+        {isColumnSelected && (
           <div className="me-3">
             <Dropdown>
               <Dropdown.Toggle variant="white" className="bg-white">
@@ -108,10 +110,9 @@ const TableBar: React.FC<TableBarType> = ({
               </Dropdown.Menu>
             </Dropdown>
           </div>
-        }
-        {
-          isAction &&
-          <div className='me-3'>
+        )}
+        {isAction && (
+          <div className="me-3">
             <Dropdown>
               <Dropdown.Toggle variant="white" className="bg-white">
                 <span className="ps-2 pe-3">{t('choose_an_action')}</span>
@@ -121,7 +122,12 @@ const TableBar: React.FC<TableBarType> = ({
               </Dropdown.Toggle>
               <Dropdown.Menu className="w-max">
                 <div className="p-2 d-flex">
-                  <input type="checkbox" id="delete_row" className="form-check-input d-block" />
+                  <input
+                    type="checkbox"
+                    id="delete_row"
+                    className="form-check-input d-block"
+                    onChange={(e) => e?.target?.checked && onDelete()}
+                  />
                   <label className="ps-2" htmlFor="delete_row">
                     Delete item
                   </label>
@@ -129,10 +135,9 @@ const TableBar: React.FC<TableBarType> = ({
               </Dropdown.Menu>
             </Dropdown>
           </div>
-        }
-        {
-          isDateRange &&
-          <div className='me-3'>
+        )}
+        {isDateRange && (
+          <div className="me-3">
             <AesirXDatePicker
               placeholder={'Date Range'}
               setIsOpen={setIsOpen}
@@ -144,7 +149,7 @@ const TableBar: React.FC<TableBarType> = ({
               inputClass={'border-0'}
             />
           </div>
-        }
+        )}
       </div>
       <div className="d-flex items-center">
         <button

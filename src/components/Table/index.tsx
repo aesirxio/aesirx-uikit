@@ -55,6 +55,8 @@ const Table = ({
   selectPage,
   currentSelect,
   textNodata,
+  onSelection,
+  listDeleted,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -114,6 +116,13 @@ const Table = ({
     useRowState
   );
 
+  const onSelectionItem = (e: any, rowIndex: number, id: string) => {
+    // if (id === 'selection' && e.target.checked) {
+    //   listDeleted.push([data[rowIndex].id][0])
+    // }
+    // console.log(listDeleted);
+  };
+
   currentSelect && currentSelect(selectedFlatRows);
   const { t } = props;
   return (
@@ -136,7 +145,7 @@ const Table = ({
                     {newHeaderGroup.map((column: any, index: any) => {
                       canSort = canSort ?? column.canSort;
                       sortAPI = sortAPI ?? column.sortType;
-                      const sortParams = canSort ?? column.id;
+                      const sortParams = canSort ? column.id : '';
                       let columnInside: any;
                       if (column.rowSpanHeader && canSort && !sortAPI) {
                         columnInside = column.columns[0];
@@ -274,6 +283,7 @@ const Table = ({
                               rowSpan={cell.rowSpan}
                               {...cell.getCellProps({ style: { width: cell.column.width } })}
                               className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
+                              onChange={(e) => onSelectionItem(e, rowIndex, cell.column.id)}
                             >
                               {cell.render('Cell')}
                             </td>
