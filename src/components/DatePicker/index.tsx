@@ -10,6 +10,8 @@ import th from 'date-fns/locale/th';
 import hr from 'date-fns/locale/hr';
 import { enUS } from 'date-fns/locale';
 import './index.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 registerLocale('vi', vi);
 registerLocale('de', de);
@@ -30,6 +32,8 @@ const AesirXDatePicker = ({
   setDateFilter,
   placeholder,
   classContainer,
+  icon,
+  inputClass,
 }: any) => {
   const { t, i18n } = useTranslation();
 
@@ -142,13 +146,18 @@ const AesirXDatePicker = ({
           isClearable={false}
           className={`${
             isDays ? 'fs-14 fw-semibold mw-120' : 'ps-16 pe-6'
-          } form-control rounded-1 text-body opacity-100 h-100 ${i18n?.language}`}
+          } form-control rounded-1 text-body opacity-100 h-100 ${i18n?.language} ${inputClass}`}
           showPopperArrow={false}
           monthsShown={2}
           open={isOpen}
           locale={i18n.language}
           calendarContainer={MyContainer}
         />
+        {icon && (
+          <i className="text-green">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </i>
+        )}
       </div>
     </div>
   );

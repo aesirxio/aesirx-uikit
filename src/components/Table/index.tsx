@@ -55,6 +55,7 @@ const Table = ({
   selectPage,
   currentSelect,
   textNodata,
+  onSelectionItem,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -136,7 +137,7 @@ const Table = ({
                     {newHeaderGroup.map((column: any, index: any) => {
                       canSort = canSort ?? column.canSort;
                       sortAPI = sortAPI ?? column.sortType;
-                      const sortParams = canSort ?? column.id;
+                      const sortParams = canSort ? column.id : '';
                       let columnInside: any;
                       if (column.rowSpanHeader && canSort && !sortAPI) {
                         columnInside = column.columns[0];
@@ -155,7 +156,8 @@ const Table = ({
                             sortAPI && sortParams !== 'number' && sortParams !== 'selection'
                               ? 'cursor-pointer'
                               : ''
-                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}`}
+                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}
+                            `}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
                           {column.render('Header')}
@@ -273,6 +275,7 @@ const Table = ({
                               rowSpan={cell.rowSpan}
                               {...cell.getCellProps({ style: { width: cell.column.width } })}
                               className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
+                              onChange={(e) => onSelectionItem(e, rowIndex, cell.column.id)}
                             >
                               {cell.render('Cell')}
                             </td>
