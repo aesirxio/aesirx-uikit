@@ -55,7 +55,6 @@ const Table = ({
   selectPage,
   currentSelect,
   textNodata,
-  listDeleted,
   onSelectionItem,
   ...props
 }: any) => {
