@@ -36,9 +36,7 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
           } else {
             status = 'Failed';
           }
-          const classStatus = status
-            .toLowerCase()
-            .replace(/\s/g, '')
+          const classStatus = status.toLowerCase().replace(/\s/g, '');
           return (
             <div className="col-md-3 mb-4 " key={item.id}>
               <div className="bg-white rounded-3 p-3 h-100">
@@ -49,16 +47,12 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
                   />
                 </p>
                 <p>
-                  <span
-                    className={`px-2 rounded-1 d-inline-block project__status-${classStatus}`}
-                  >
+                  <span className={`px-2 rounded-1 d-inline-block project__status-${classStatus}`}>
                     {status}
                   </span>
                 </p>
                 <h3 className="fs-5 fw-bold">{item.name.props.children}</h3>
-                <p>
-                  {item.shortDescription}
-                </p>
+                <p>{item.shortDescription}</p>
               </div>
             </div>
           );
