@@ -33,7 +33,7 @@ const AesirXDatePicker = ({
   placeholder,
   classContainer,
   icon,
-  inputClass
+  inputClass,
 }: any) => {
   const { t, i18n } = useTranslation();
 
@@ -153,13 +153,11 @@ const AesirXDatePicker = ({
           locale={i18n.language}
           calendarContainer={MyContainer}
         />
-        {
-          icon && (
-            <i className="text-green">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </i>
-          )
-        }
+        {icon && (
+          <i className="text-green">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </i>
+        )}
       </div>
     </div>
   );
