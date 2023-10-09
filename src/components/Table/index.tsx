@@ -55,8 +55,8 @@ const Table = ({
   selectPage,
   currentSelect,
   textNodata,
-  onSelection,
   listDeleted,
+  onSelectionItem,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -115,13 +115,6 @@ const Table = ({
     useRowSelect,
     useRowState
   );
-
-  const onSelectionItem = (e: any, rowIndex: number, id: string) => {
-    // if (id === 'selection' && e.target.checked) {
-    //   listDeleted.push([data[rowIndex].id][0])
-    // }
-    // console.log(listDeleted);
-  };
 
   currentSelect && currentSelect(selectedFlatRows);
   const { t } = props;
