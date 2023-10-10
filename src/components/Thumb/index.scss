@@ -1,18 +1,28 @@
 .project {
   &__status {
-    &-failed {
+    &-stop {
       color: #c8192e;
       background-color: rgba(239, 55, 55, 0.15);
     }
 
-    &-pending {
-      color: rgba(255, 158, 1, 1);
-      background-color: rgba(255, 158, 1, 0.15);
+    &-schedule {
+      color: rgb(1, 175, 255);
+      background-color: rgba(1, 149, 255, 0.15);
     }
 
-    &-inprogress {
+    &-running {
       color: rgba(26, 179, 148, 1);
       background-color: rgba(26, 179, 148, 0.15);
     }
   }
+}
+.text-description{
+    line-height: 25px;
+    -webkit-line-clamp: 4;
+   
+}
+.text-name{
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
 }
