@@ -1,6 +1,5 @@
 import { toJS } from 'mobx';
 import React from 'react';
-import { Image } from '../Image';
 import './index.scss';
 
 interface ThumbType {
