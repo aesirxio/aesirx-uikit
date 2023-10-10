@@ -25,7 +25,9 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
               <div className="bg-white rounded-3 p-3 overflow-y-hidden mh-350px">
                 <p>{item.logo}</p>
                 <p>
-                  <span className={`px-2 fs-14 rounded-1 d-inline-block project__status-${classStatus}`}>
+                  <span
+                    className={`px-2 fs-14 rounded-1 d-inline-block project__status-${classStatus}`}
+                  >
                     {status}
                   </span>
                 </p>
