@@ -54,6 +54,12 @@ const LoginPage = ({ text }: any) => {
       window.location.reload();
     }
   };
+  let version = '';
+  try {
+    version = VERSION;
+  } catch (error) {
+    /* empty */
+  }
 
   return (
     <div className="vh-100 bg-blue-9 login-page position-relative">
@@ -88,6 +94,13 @@ const LoginPage = ({ text }: any) => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        {version && (
+          <span className="version ms-1 mb-2 text text-body fs-14 position-absolute bottom-0">
+            {t('txt_version')} {version}
+          </span>
+        )}
       </div>
     </div>
   );
