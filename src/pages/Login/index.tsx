@@ -97,7 +97,7 @@ const LoginPage = ({ text }: any) => {
       </div>
       <div>
         {version && (
-          <span className="version ms-1 mb-2 text text-body fs-14 position-absolute bottom-0">
+          <span className="version mb-2 text text-body fs-14 position-absolute bottom-0 w-100 text-center">
             {t('txt_version')} {version}
           </span>
         )}
