@@ -96,5 +96,8 @@
   "txt_first_name": "First Name",
   "txt_last_name": "Last Name",
   "txt_organization": "Organization",
-  "txt_menu_setting": "Setting"
+  "txt_menu_setting": "Setting",
+  "txt_running": "Running",
+  "txt_schedule": "Schedule",
+  "txt_stop": "Stop"
 }

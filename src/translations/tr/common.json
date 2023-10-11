@@ -92,5 +92,8 @@
   "txt_metamask_wallet": "Metamask Cüzdan",
   "txt_concordium_wallet": "Concordium Cüzdan",
   "txt_version": "Versiyon:",
-  "txt_sign_in_to_getting_started": "Başlamak için Oturum Açın."
+  "txt_sign_in_to_getting_started": "Başlamak için Oturum Açın.",
+  "txt_running": "Başladı",
+  "txt_schedule": "Zamanlandırma",
+  "txt_stop": "İptal"
 }

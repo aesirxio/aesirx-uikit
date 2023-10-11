@@ -1,28 +1,12 @@
-.project {
-  &__status {
-    &-stop {
-      color: #c8192e;
-      background-color: rgba(239, 55, 55, 0.15);
-    }
-
-    &-schedule {
-      color: rgb(1, 175, 255);
-      background-color: rgba(1, 149, 255, 0.15);
-    }
-
-    &-running {
-      color: rgba(26, 179, 148, 1);
-      background-color: rgba(26, 179, 148, 0.15);
-    }
-  }
-}
 .text-description{
-    line-height: 25px;
-    -webkit-line-clamp: 4;
-   
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+ 
 }
 .text-name{
-  overflow: hidden;
-  white-space: nowrap; 
-  text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap; 
+text-overflow: ellipsis;
 }
