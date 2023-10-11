@@ -1,22 +1,23 @@
 import { toJS } from 'mobx';
 import React from 'react';
 import './index.scss';
+import { withTranslation } from 'react-i18next';
 
 interface ThumbType {
   data: any;
 }
-const Thumb: React.FC<ThumbType> = ({ data }) => {
+const Thumb: React.FC<ThumbType> = ({ data,t }) => {
   return (
     <section className="px-3 pt-3">
       <div className="row">
         {toJS(data).map((item: any) => {
           let status = '';
           if (item.status == 1) {
-            status = 'Running';
+            status = t('Running');
           } else if (item.status == 2) {
-            status = 'Schedule';
+            status = t('Schedule');
           } else {
-            status = 'Stop';
+            status = t('Stop');
           }
           const classStatus = status.toLowerCase().replace(/\s/g, '');
           return (
@@ -41,4 +42,4 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
   );
 };
 
-export { Thumb };
+export default withTranslation()(Thumb);
