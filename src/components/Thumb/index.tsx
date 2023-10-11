@@ -40,7 +40,7 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
                   </span>
                 </p>
                 <h3 className=" text-name fs-5 fw-bold">{item.name.props.children}</h3>
-                <p className="text-description">{item.shortDescription}</p>
+                <p className="text-description pt-19px">{item.shortDescription}</p>
               </div>
             </div>
           );
