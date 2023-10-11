@@ -123,20 +123,6 @@ const ProfileGeneral = observer(() => {
       },
     },
     {
-      label: t('txt_description'),
-      key: MEMBER_FIELD_KEY.DESCRIPTION,
-      type: FORM_FIELD_TYPE.TEXTAREA,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
-      className: 'col-12',
-      inputClassName: 'border',
-      changed: (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormPropsData({
-          ...formPropsData,
-          [MEMBER_FIELD_KEY.DESCRIPTION]: event.target.value,
-        });
-      },
-    },
-    {
       label: t('txt_organization'),
       key: MEMBER_FIELD_KEY.ORGANIZATION,
       type: FORM_FIELD_TYPE.INPUT,
