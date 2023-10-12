@@ -290,7 +290,6 @@ const Table = ({
                               rowSpan={cell.rowSpan}
                               {...cell.getCellProps({ style: { width: cell.column.width } })}
                               className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
-                              // onChange={(e) => handleSelectItem(e, rowIndex, cell.column.id)}
                             >
                               {cell.render('Cell')}
                             </td>
