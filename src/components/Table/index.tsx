@@ -119,7 +119,7 @@ const Table = ({
   useEffect(() => {
     const selectedIds = Object.keys(selectedRowIds);
     if (selectedIds.length > 0) {
-      let selectedRowsData = selectedIds
+      const selectedRowsData = selectedIds
         .map((x) => data[x])
         .filter(function (x) {
           return x != null;
