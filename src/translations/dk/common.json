@@ -95,5 +95,8 @@
   "txt_sign_in_to_getting_started": "Log ind for at komme i gang.",
   "txt_first_name": "Fornavn",
   "txt_last_name": "Efternavn",
-  "txt_organization": "Organisation"
+  "txt_organization": "Organisation",
+  "txt_running": "Kører",
+  "txt_schedule": "Planlæg",
+  "txt_stop": "Stop"
 }
