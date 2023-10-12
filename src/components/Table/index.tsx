@@ -81,6 +81,7 @@ const Table = ({
     rows,
     rowSpanHeaders,
     selectedFlatRows,
+    state: { selectedRowIds },
   }: any = useTable(
     {
       columns,
@@ -115,6 +116,20 @@ const Table = ({
     useRowState
   );
 
+  useEffect(() => {
+    const selectedIds = Object.keys(selectedRowIds);
+    if (selectedIds.length > 0) {
+      var selectedRowsData = selectedIds
+        .map((x) => data[x])
+        .filter(function (x) {
+          return x != null;
+        });
+      onSelectionItem(selectedRowsData);
+    } else {
+      onSelectionItem([]);
+    }
+  }, [selectedRowIds, onSelectionItem, data]);
+
   currentSelect && currentSelect(selectedFlatRows);
   const { t } = props;
   return (
@@ -128,8 +143,8 @@ const Table = ({
 
                 dataList
                   ? (newHeaderGroup = headerGroup.headers.filter(
-                      (item: any) => !dataList.some((other: any) => item.id === other)
-                    ))
+                    (item: any) => !dataList.some((other: any) => item.id === other)
+                  ))
                   : (newHeaderGroup = headerGroup.headers);
 
                 return (
@@ -152,11 +167,10 @@ const Table = ({
                                 : columnInside && columnInside.getSortByToggleProps()
                             ),
                           })}
-                          className={`${column.className} ${
-                            sortAPI && sortParams !== 'number' && sortParams !== 'selection'
-                              ? 'cursor-pointer'
-                              : ''
-                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}
+                          className={`${column.className} ${sortAPI && sortParams !== 'number' && sortParams !== 'selection'
+                            ? 'cursor-pointer'
+                            : ''
+                            } fw-normal px-3 py-3 flex-1 column-header-${column.id}
                             `}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
@@ -187,8 +201,8 @@ const Table = ({
                                 )
                               ) : !column.rowSpanHeader ? (
                                 column.isSorted &&
-                                sortParams !== 'number' &&
-                                sortParams !== 'selection' ? (
+                                  sortParams !== 'number' &&
+                                  sortParams !== 'selection' ? (
                                   column?.isSortedDesc || isDesc ? (
                                     <FontAwesomeIcon
                                       className="sort-icon sort-icon-down ms-sm"
@@ -275,7 +289,7 @@ const Table = ({
                               rowSpan={cell.rowSpan}
                               {...cell.getCellProps({ style: { width: cell.column.width } })}
                               className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
-                              onChange={(e) => onSelectionItem(e, rowIndex, cell.column.id)}
+                              // onChange={(e) => handleSelectItem(e, rowIndex, cell.column.id)}
                             >
                               {cell.render('Cell')}
                             </td>
