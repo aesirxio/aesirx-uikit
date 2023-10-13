@@ -57,19 +57,19 @@ const TableBar: React.FC<TableBarType> = ({
   // handleOnChange,
   // setDateFilter,
   // onSearch,
-  onDateFilter
+  onDateFilter,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
-  const testOnchange = () => {}
+  const testOnchange = () => {};
 
   const setDateFilter = (startDate: string, endDate: string) => {
     const dateFilter = {
-      'filterForm': `${startDate}${endDate}`
-    }
-    onDateFilter(dateFilter)
-  }
+      filterForm: `${startDate}${endDate}`,
+    };
+    onDateFilter(dateFilter);
+  };
 
   return (
     <div className="px-3 d-flex justify-content-between w-100">
