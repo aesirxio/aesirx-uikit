@@ -316,11 +316,11 @@ const Table = ({
       {pagination && pagination.totalPages > 1 && (
         <div className="d-flex justify-content-between mt-3">
           <div>
-            {t('txt_totals')}{' '}
+            {/* {t('txt_totals')}{' '}
             {pagination.totalPages > pagination.page
               ? pagination.pageLimit * pagination.page
               : pagination.totalItems}{' '}
-            / {pagination.totalItems}
+            / {pagination.totalItems} */}
           </div>
           <div className="d-flex gap-0">
             <div

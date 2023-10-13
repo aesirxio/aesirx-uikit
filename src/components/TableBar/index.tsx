@@ -37,6 +37,7 @@ interface TableBarType {
   handleOnChange: () => void;
   onSearch: () => void;
   setDateFilter: () => void;
+  onDateFilter: (dateFilter: any) => void;
 }
 
 const TableBar: React.FC<TableBarType> = ({
@@ -54,13 +55,21 @@ const TableBar: React.FC<TableBarType> = ({
   isDateRange,
   // defaultDate,
   // handleOnChange,
-  setDateFilter,
-  onSearch,
+  // setDateFilter,
+  // onSearch,
+  onDateFilter
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
-  onSearch;
+  const testOnchange = () => {}
+
+  const setDateFilter = (startDate: string, endDate: string) => {
+    const dateFilter = {
+      'filterForm': `${startDate}${endDate}`
+    }
+    onDateFilter(dateFilter)
+  }
 
   return (
     <div className="px-3 d-flex justify-content-between w-100">
@@ -140,6 +149,7 @@ const TableBar: React.FC<TableBarType> = ({
               classContainer={'d-flex align-items-center pe-10'}
               icon={true}
               inputClass={'border-0'}
+              onChange={testOnchange}
             />
           </div>
         )}
