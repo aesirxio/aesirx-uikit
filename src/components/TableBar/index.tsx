@@ -37,7 +37,7 @@ interface TableBarType {
   handleOnChange: () => void;
   onSearch: () => void;
   setDateFilter: () => void;
-  onDateFilter: (dateFilter: any) => void;
+  onDateFilter: () => void;
 }
 
 const TableBar: React.FC<TableBarType> = ({
