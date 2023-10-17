@@ -47,6 +47,7 @@ const GlobalFilter: React.FC<GlobalFilterProps> = ({
           }
           setValue(e.target.value);
           onChange(e.target.value);
+          filter.searchText = e.target.value;
         }}
         value={filter.searchText}
         placeholder={searchText}
