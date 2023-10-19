@@ -22,6 +22,7 @@ import {
   faSortUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { NoData } from 'components/NoData';
+import SubRowAsync from './RowSubComponent';
 
 function useInstance(instance: any) {
   const { allColumns } = instance;
@@ -56,6 +57,9 @@ const Table = ({
   currentSelect,
   textNodata,
   onSelectionItem,
+  hasSubRow,
+  idKey,
+  listViewModel,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -73,6 +77,19 @@ const Table = ({
     );
   });
 
+  const renderRowSubComponent = React.useCallback(
+    ({ row, rowProps, visibleColumns }: any) => (
+      <SubRowAsync
+        row={row}
+        rowProps={rowProps}
+        visibleColumns={visibleColumns}
+        listViewModel={listViewModel ? listViewModel : null}
+        idKey={idKey}
+      />
+    ),
+    [listViewModel, idKey]
+  );
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -81,6 +98,7 @@ const Table = ({
     rows,
     rowSpanHeaders,
     selectedFlatRows,
+    visibleColumns,
     state: { selectedRowIds },
   }: any = useTable(
     {
@@ -143,8 +161,8 @@ const Table = ({
 
                 dataList
                   ? (newHeaderGroup = headerGroup.headers.filter(
-                      (item: any) => !dataList.some((other: any) => item.id === other)
-                    ))
+                    (item: any) => !dataList.some((other: any) => item.id === other)
+                  ))
                   : (newHeaderGroup = headerGroup.headers);
 
                 return (
@@ -167,11 +185,10 @@ const Table = ({
                                 : columnInside && columnInside.getSortByToggleProps()
                             ),
                           })}
-                          className={`${column.className} ${
-                            sortAPI && sortParams !== 'number' && sortParams !== 'selection'
-                              ? 'cursor-pointer'
-                              : ''
-                          } fw-normal px-3 py-3 flex-1 column-header-${column.id}
+                          className={`${column.className} ${sortAPI && sortParams !== 'number' && sortParams !== 'selection'
+                            ? 'cursor-pointer'
+                            : ''
+                            } fw-normal px-3 py-3 flex-1 column-header-${column.id}
                             `}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
@@ -202,8 +219,8 @@ const Table = ({
                                 )
                               ) : !column.rowSpanHeader ? (
                                 column.isSorted &&
-                                sortParams !== 'number' &&
-                                sortParams !== 'selection' ? (
+                                  sortParams !== 'number' &&
+                                  sortParams !== 'selection' ? (
                                   column?.isSortedDesc || isDesc ? (
                                     <FontAwesomeIcon
                                       className="sort-icon sort-icon-down ms-sm"
@@ -271,31 +288,41 @@ const Table = ({
               })}
               {rows.length > 0 &&
                 rows.map((row: any, rowIndex: number) => {
+                  prepareRow(row);
+                  const rowProps = row.getRowProps();
                   const isGrayRow = rowIndex % 2 === 0;
                   return (
-                    <tr
-                      key={row.getRowProps().key}
-                      {...row.getRowProps()}
-                      onContextMenu={(e) => {
-                        onRightClickItem && onRightClickItem(e, row.original);
-                      }}
-                      className={`${isGrayRow ? ' ' : 'bg-blue-5'}`}
-                    >
-                      {row.cells.map((cell: any, index: any) => {
-                        if (cell.isRowSpanned) return null;
-                        else
-                          return (
-                            <td
-                              key={index}
-                              rowSpan={cell.rowSpan}
-                              {...cell.getCellProps({ style: { width: cell.column.width } })}
-                              className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
-                            >
-                              {cell.render('Cell')}
-                            </td>
-                          );
-                      })}
-                    </tr>
+                    <React.Fragment key={row.getRowProps().key}>
+                      <tr
+                        key={row.getRowProps().key}
+                        {...row.getRowProps()}
+                        onContextMenu={(e) => {
+                          onRightClickItem && onRightClickItem(e, row.original);
+                        }}
+                        className={`${isGrayRow ? ' ' : 'bg-blue-5'}`}
+                      >
+                        {row.cells.map((cell: any, index: any) => {
+                          if (cell.isRowSpanned) return null;
+                          else
+                            return (
+                              <td
+                                key={index}
+                                rowSpan={cell.rowSpan}
+                                {...cell.getCellProps({ style: { width: cell.column.width } })}
+                                className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
+                              >
+                                {cell.render('Cell')}
+                              </td>
+                            );
+                        })}
+                      </tr>
+                      {
+                        hasSubRow === false
+                          ? null
+                          : row.isExpanded &&
+                          renderRowSubComponent({ row, rowProps, visibleColumns })
+                      }
+                    </React.Fragment>
                   );
                 })}
             </tbody>

@@ -12,3 +12,10 @@
   width: 1rem;
   height: 1rem;
 }
+
+.row_sub_component {
+  .wrapper_checkbox,
+  .icon_expander {
+    display: none;
+  }
+}
