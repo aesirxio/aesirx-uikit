@@ -124,9 +124,9 @@ const Table = ({
         .filter(function (x) {
           return x != null;
         });
-      onSelectionItem(selectedRowsData);
+      onSelectionItem && onSelectionItem(selectedRowsData);
     } else {
-      onSelectionItem([]);
+      onSelectionItem && onSelectionItem([]);
     }
   }, [selectedRowIds, onSelectionItem, data]);
 
