@@ -15,7 +15,13 @@ import React from 'react';
  * @returns The JSX element representing the sub rows.
  */
 
-function SubRows({ row, rowProps, visibleColumns, data, loading }: {
+function SubRows({
+  row,
+  rowProps,
+  visibleColumns,
+  data,
+  loading,
+}: {
   row: any;
   rowProps: any;
   visibleColumns: any[];
@@ -66,14 +72,14 @@ function SubRows({ row, rowProps, visibleColumns, data, loading }: {
 
 /**
  * Renders the sub rows asynchronously.
- * 
+ *
  * @param {object} args - The function arguments.
  * @param {object} args.row - The row object.
  * @param {object} args.rowProps - The row props object.
  * @param {array} args.visibleColumns - The array of visible columns.
  * @param {object} args.listViewModel - The list view model object.
  * @param {string} args.idKey - The ID key string.
- * 
+ *
  * @returns {JSX.Element} - The rendered sub rows.
  */
 
@@ -82,7 +88,7 @@ const SubRowAsync = ({
   rowProps,
   visibleColumns,
   listViewModel,
-  idKey
+  idKey,
 }: {
   row: any;
   rowProps: any;
