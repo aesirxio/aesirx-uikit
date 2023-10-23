@@ -150,7 +150,7 @@ const TableBar: React.FC<TableBarType> = ({
               classContainer={'d-flex align-items-center pe-10'}
               icon={true}
               inputClass={'border-0'}
-              onChange={() => { }}
+              onChange={() => {}}
             />
           </div>
         )}
