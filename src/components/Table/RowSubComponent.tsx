@@ -109,7 +109,7 @@ const SubRowAsync = ({
 
         setLoading(false);
       } catch (e) {
-        console.error(e);
+        // console.error(e);
       }
     })();
   }, [listViewModel, row, idKey]);

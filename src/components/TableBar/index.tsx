@@ -28,7 +28,7 @@ interface TableBarType {
   onAction: () => void;
   isList: boolean;
   onDelete: () => void;
-  onShowColumns: (data: any) => void;
+  onShowColumns: () => void;
   isSearch: boolean;
   isColumnSelected: boolean;
   isAction: boolean;
@@ -37,7 +37,7 @@ interface TableBarType {
   handleOnChange: () => void;
   onSearch: () => void;
   setDateFilter: () => void;
-  onDateFilter: (dateFilter: any) => void;
+  onDateFilter: () => void;
   actionList: true;
 }
 
@@ -150,7 +150,7 @@ const TableBar: React.FC<TableBarType> = ({
               classContainer={'d-flex align-items-center pe-10'}
               icon={true}
               inputClass={'border-0'}
-              onChange={() => {}}
+              onChange={() => { }}
             />
           </div>
         )}
