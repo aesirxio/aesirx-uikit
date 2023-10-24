@@ -95,5 +95,8 @@
   "txt_version": "Phiên bản:",
   "txt_first_name": "Tên",
   "txt_last_name": "Họ",
-  "txt_ Organisation": "Tổ chức"
+  "txt_ Organisation": "Tổ chức",
+  "txt_running": "Đang chạy",
+  "txt_schedule": "Đang chờ",
+  "txt_stop":  "Dừng"
 }

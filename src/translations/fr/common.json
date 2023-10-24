@@ -86,5 +86,8 @@
   "txt_sign_in_to_getting_started": "Prijavite se da bi ste započeli.",
   "txt_first_name": "Prénom",
   "txt_last_name": "Nom",
-  "txt_organization": "Organisation"
+  "txt_organization": "Organisation",
+  "txt_running": "Ràunning",
+  "txt_schedule": "Séance",
+  "txt_stop": "Stop"
 }

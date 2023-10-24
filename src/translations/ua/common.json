@@ -93,5 +93,8 @@
   "txt_sign_in_to_getting_started": "Увійдіть, щоб почати роботу.",
   "txt_first_name": "Ім'я",
   "txt_last_name": "Прізвище",
-  "txt_organization": "Організація"
+  "txt_organization": "Організація",
+  "txt_running": "Запущено",
+  "txt_schedule": "Розклад",
+  "txt_stop": "Зупинити"
 }

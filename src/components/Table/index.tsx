@@ -81,6 +81,7 @@ const Table = ({
     rows,
     rowSpanHeaders,
     selectedFlatRows,
+    state: { selectedRowIds },
   }: any = useTable(
     {
       columns,
@@ -114,6 +115,20 @@ const Table = ({
     useRowSelect,
     useRowState
   );
+
+  useEffect(() => {
+    const selectedIds = Object.keys(selectedRowIds);
+    if (selectedIds.length > 0) {
+      const selectedRowsData = selectedIds
+        .map((x) => data[x])
+        .filter(function (x) {
+          return x != null;
+        });
+      onSelectionItem && onSelectionItem(selectedRowsData);
+    } else {
+      onSelectionItem && onSelectionItem([]);
+    }
+  }, [selectedRowIds, onSelectionItem, data]);
 
   currentSelect && currentSelect(selectedFlatRows);
   const { t } = props;
@@ -275,7 +290,6 @@ const Table = ({
                               rowSpan={cell.rowSpan}
                               {...cell.getCellProps({ style: { width: cell.column.width } })}
                               className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
-                              onChange={(e) => onSelectionItem(e, rowIndex, cell.column.id)}
                             >
                               {cell.render('Cell')}
                             </td>

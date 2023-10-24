@@ -93,5 +93,8 @@
   "txt_sign_in_to_getting_started": "Prijavite se da bi ste započeli.",
   "txt_first_name": "Ime",
   "txt_last_name": "Prezime",
-  "txt_organization": "Organizacija"
+  "txt_organization": "Organizacija",
+  "txt_running": "Pokretanje",
+  "txt_schedule": "Raspored",
+  "txt_stop": "Zaustavi"
 }

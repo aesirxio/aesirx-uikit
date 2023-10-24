@@ -32,11 +32,11 @@
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.59.0",
     "esbuild-plugin-inline-image": "^0.0.9",
-    "esbuild-sass-plugin": "^2.8.0",
+    "esbuild-sass-plugin": "^2.15.0",
     "esbuild-scss-modules-plugin": "^1.1.1",
-    "eslint": "^8.35",
+    "eslint": "^8.50",
     "eslint-plugin-react": "^7.32.2",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.3",
     "sass": "^1.62.1",
     "tsup": "^7.1.0",
     "typescript": "^5.0.2",
@@ -82,6 +82,9 @@
   },
   "resolutions": {
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tough-cookie": "^4",
+    "semver": "^7",
+    "jsdom": "^16"
   }
 }

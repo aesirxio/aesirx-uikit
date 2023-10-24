@@ -72,22 +72,27 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                           activeClassName={`active`}
                           onClick={() => setIsOpenCollapse(null)}
                         >
-                          {menuList.icons_fa ? (
-                            <i>
-                              <FontAwesomeIcon icon={menuList.icons_fa} />
-                            </i>
+                          {menuList.icons_color || menuList.icons_fa ? (
+                            <div>
+                              {menuList.icons_fa ? (
+                                <i>
+                                  <FontAwesomeIcon icon={menuList.icons_fa} />
+                                </i>
+                              ) : (
+                                <span
+                                  className="icon d-inline-block align-text-bottom"
+                                  style={{
+                                    WebkitMaskImage: `url(${menuList.icons_color})`,
+                                    WebkitMaskRepeat: 'no-repeat',
+                                    backgroundColor: '#fff',
+                                  }}
+                                ></span>
+                              )}
+                              <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
+                            </div>
                           ) : (
-                            <span
-                              className="icon d-inline-block align-text-bottom"
-                              style={{
-                                WebkitMaskImage: `url(${menuList.icons_color})`,
-                                WebkitMaskRepeat: 'no-repeat',
-                                backgroundColor: '#fff',
-                              }}
-                            ></span>
+                            <span className="text d-inline-block">{t(menuList.text)}</span>
                           )}
-
-                          <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
                         </NavLink>
                       )}
                     </>
