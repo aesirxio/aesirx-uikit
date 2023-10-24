@@ -38,6 +38,7 @@ interface TableBarType {
   onSearch: () => void;
   setDateFilter: () => void;
   onDateFilter: () => void;
+  actionList: true;
 }
 
 const TableBar: React.FC<TableBarType> = ({
@@ -57,6 +58,7 @@ const TableBar: React.FC<TableBarType> = ({
   // handleOnChange,
   // setDateFilter,
   // onSearch,
+  actionList,
   onDateFilter,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -127,7 +129,7 @@ const TableBar: React.FC<TableBarType> = ({
                   <input
                     type="checkbox"
                     id="delete_row"
-                    className="form-check-input d-block"
+                    className="form-check-input d-none"
                     onChange={(e) => e?.target?.checked && onDelete()}
                   />
                   <label className="ps-2" htmlFor="delete_row">
@@ -141,7 +143,7 @@ const TableBar: React.FC<TableBarType> = ({
         {isDateRange && (
           <div className="me-3">
             <AesirXDatePicker
-              placeholder={'Date Range'}
+              placeholder={'All dates'}
               setIsOpen={setIsOpen}
               isOpen={isOpen}
               setDateFilter={setDateFilter}
@@ -154,26 +156,30 @@ const TableBar: React.FC<TableBarType> = ({
         )}
       </div>
       <div className="d-flex items-center">
-        <button
-          type="button"
-          className={`btn  rounded-0 px-4 shadow-none ${isList ? 'bg-blue-3 text-white' : ''}`}
-          onClick={() => onAction()}
-        >
-          <i>
-            <FontAwesomeIcon icon={faList} />
-          </i>
-          <span className="ms-2 opacity-75">{t('txt_list')}</span>
-        </button>
-        <button
-          type="button"
-          className={`btn  rounded-0 px-4 shadow-none ${isList ? '' : 'bg-blue-3 text-white'}`}
-          onClick={() => onAction()}
-        >
-          <i>
-            <FontAwesomeIcon icon={faTh} />
-          </i>
-          <span className="ms-2 opacity-75">{t('txt_thumb')}</span>
-        </button>
+        {actionList && (
+          <>
+            <button
+              type="button"
+              className={`btn  rounded-0 px-4 shadow-none ${isList ? 'bg-blue-3 text-white' : ''}`}
+              onClick={() => onAction()}
+            >
+              <i>
+                <FontAwesomeIcon icon={faList} />
+              </i>
+              <span className="ms-2 opacity-75">{t('txt_list')}</span>
+            </button>
+            <button
+              type="button"
+              className={`btn  rounded-0 px-4 shadow-none ${isList ? '' : 'bg-blue-3 text-white'}`}
+              onClick={() => onAction()}
+            >
+              <i>
+                <FontAwesomeIcon icon={faTh} />
+              </i>
+              <span className="ms-2 opacity-75">{t('txt_thumb')}</span>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
