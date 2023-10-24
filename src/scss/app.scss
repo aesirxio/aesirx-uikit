@@ -615,14 +615,19 @@
       }
     }
   }
-  .nav-pills {
+  .nav-pills { 
     .nav-link {
       color: var(--bs-body-color);
+      border-radius: 0px;
       &.active {
-        color: var(--bs-success);
+        // color: var(--bs-success);
+        color: #0f674c;;
+        // border-radius: 0px;
         background-color: var(--#{$prefix}white);
         font-weight: 600;
+        border-left: 2px solid; 
       }
+      
     }
   }
   .ChartWrapper {
