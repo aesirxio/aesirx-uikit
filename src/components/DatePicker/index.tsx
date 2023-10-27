@@ -75,7 +75,7 @@ const AesirXDatePicker = ({
     return (
       <div
         ref={pickerRef}
-        className="rounded-3 shadow overflow-hidden py-2 px-1 bg-white react-datepicker-popper-wrapper"
+        className="rounded-3 overflow-hidden py-2 px-1 bg-white react-datepicker-popper-wrapper"
       >
         <div className={`${className}`}>{children}</div>
         {startDate && (
@@ -120,7 +120,7 @@ const AesirXDatePicker = ({
     <div
       style={{ minHeight: classContainer ? '' : '50px' }}
       ref={datePickerRef}
-      className="d-flex align-items-center bg-white rounded-1 shadow-sm daterange-picker-wrapper"
+      className="d-flex align-items-center bg-white rounded-1 daterange-picker-wrapper"
     >
       <div
         onClick={handleOpenDatePicker}

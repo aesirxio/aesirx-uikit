@@ -39,7 +39,7 @@ const GlobalFilter: React.FC<GlobalFilterProps> = ({
   }, 200);
 
   return (
-    <span className=" d-flex align-items-center position-relative pe-3 w-400">
+    <span className=" d-flex align-items-center position-relative w-400">
       <input
         onChange={(e) => {
           if (setFilter) {

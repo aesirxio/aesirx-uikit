@@ -90,6 +90,7 @@ class AesirXSelect extends React.Component<any, any> {
         placeholder={placeholder ?? t('txt_select')}
         styles={styles}
         formatGroupLabel={formatGroupLabel}
+        className="h-100"
       />
     );
   }
