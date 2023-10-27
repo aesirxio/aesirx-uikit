@@ -28,7 +28,7 @@ interface TableBarType {
   onAction: () => void;
   isList: boolean;
   onDelete: () => void;
-  onShowColumns: () => void;
+  onShowColumns: any;
   isSearch: boolean;
   isColumnSelected: boolean;
   isAction: boolean;
@@ -37,7 +37,7 @@ interface TableBarType {
   handleOnChange: () => void;
   onSearch: () => void;
   setDateFilter: () => void;
-  onDateFilter: () => void;
+  onDateFilter: any;
   actionList: true;
 }
 

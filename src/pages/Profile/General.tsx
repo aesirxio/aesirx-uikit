@@ -15,9 +15,7 @@ import { PAGE_STATUS } from 'constant/PageStatus';
 import SimpleReactValidator from 'simple-react-validator';
 import axios from 'axios';
 
-type FormPropsData = {
-  [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
-};
+type FormPropsData = any;
 
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
