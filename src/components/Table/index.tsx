@@ -60,6 +60,7 @@ const Table = ({
   hasSubRow,
   idKey,
   listViewModel,
+  dataFilter,
   ...props
 }: any) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }: any, ref: any) => {
@@ -133,7 +134,6 @@ const Table = ({
     useRowSelect,
     useRowState
   );
-
   useEffect(() => {
     const selectedIds = Object.keys(selectedRowIds);
     if (selectedIds.length > 0) {
@@ -190,6 +190,7 @@ const Table = ({
                               ? 'cursor-pointer'
                               : ''
                           } fw-normal px-3 py-3 flex-1 column-header-${column.id}
+                            ${dataFilter?.columns.includes(column.id) && 'd-none'}
                             `}
                           rowSpan={`${column.rowSpanHeader ?? 1}`}
                         >
@@ -310,7 +311,10 @@ const Table = ({
                                 key={index}
                                 rowSpan={cell.rowSpan}
                                 {...cell.getCellProps({ style: { width: cell.column.width } })}
-                                className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${cell.column.id}`}
+                                className={`py-16 fs-14 align-middle border-bottom-0 fw-normal px-3 cell-${
+                                  cell.column.id
+                                }
+                                ${dataFilter?.columns.includes(cell.column.id) && 'd-none'}`}
                               >
                                 {cell.render('Cell')}
                               </td>

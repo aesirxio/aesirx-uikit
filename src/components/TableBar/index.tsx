@@ -1,68 +1,128 @@
-/**
- * Renders MyComponent.
- *
- * @param {Object} props - The component props.
- * @param {string} props.dataFilter - The data filter.
- * @param {function} props.setFilter - The function to set the filter.
- * @param {Array} props.tableRowHeader - The table row headers.
- * @param {function} props.setGlobalFilters - The function to set the global filters.
- * @param {function} props.onAction - The function to handle the action.
- * @param {boolean} props.isList - Indicates whether the component should be displayed as a list.
- * @param {function} props.onDetele - The function to handle the delete item
- * @returns {JSX.Element} The rendered component.
- */
-
 import { faChevronDown, faColumns, faList, faTh } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GlobalFilter } from 'components/GlobalFilter';
-import React, { useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Collapse, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { AesirXDatePicker } from '../DatePicker';
+import styles from './index.module.scss';
+import ComponentFilter from '../ComponentFilter';
+import { useTable } from 'react-table';
 
-interface TableBarType {
-  dataFilter: { searchText: string };
-  setFilter: () => void;
-  tableRowHeader: { Header: string; accessor: string }[];
-  setGlobalFilters: () => void;
-  onAction: () => void;
-  isList: boolean;
-  onDelete: () => void;
-  onShowColumns: () => void;
-  isSearch: boolean;
-  isColumnSelected: boolean;
-  isAction: boolean;
-  isDateRange: boolean;
-  defaultDate: any;
-  handleOnChange: () => void;
-  onSearch: () => void;
-  setDateFilter: () => void;
-  onDateFilter: () => void;
-  actionList: true;
+interface DataFilterType {
+  searchText?: string;
+  columns?: string[];
 }
 
-const TableBar: React.FC<TableBarType> = ({
-  dataFilter,
+// interface TableBarType {
+//   dataFilter: DataFilterType;
+//   setFilter: () => void;
+//   setGlobalFilters(): void;
+//   onAction: () => void;
+//   isList: boolean;
+//   onDelete: () => void;
+//   isSearch?: boolean;
+//   isColumnSelected?: boolean;
+//   isAction?: boolean;
+//   isDateRange?: boolean;
+//   defaultDate: any;
+//   handleOnChange: () => void;
+//   onSearch: () => void;
+//   setDateFilter: () => void;
+//   onDateFilter: () => void;
+//   actionList?: true;
+//   isFilter?: boolean;
+//   dataFormFilter?: any;
+//   tableRowHeader: any;
+//   rowData: any;
+//   view: string;
+// }
+
+interface State {
+  isName: string;
+  isFilter: boolean;
+  indexPagination: number;
+  dataFilter: any;
+}
+
+const dataFilter = {
+  searchText: '',
+  columns: [],
+  titleFilter: {},
+  datetime: null,
+  page: '',
+};
+
+const TableBar = ({
+  rowData,
   setFilter,
-  tableRowHeader,
   setGlobalFilters,
   onAction,
   isList,
   onDelete,
-  onShowColumns,
   isSearch,
   isColumnSelected,
   isAction,
   isDateRange,
-  // defaultDate,
-  // handleOnChange,
-  // setDateFilter,
-  // onSearch,
   actionList,
   onDateFilter,
-}) => {
+  isFilter,
+  dataFormFilter,
+  tableRowHeader,
+  view,
+}: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
+  const [getState, setState] = useState<State>({
+    isName: 'list',
+    isFilter: false,
+    indexPagination: 0,
+    dataFilter: null,
+  });
+
+  const columns = useMemo(() => tableRowHeader, [tableRowHeader]);
+
+  const data = useMemo(() => rowData, [rowData]);
+
+  const { allColumns, state } = useTable({
+    columns,
+    data,
+    initialState: {
+      hiddenColumns: dataFilter?.columns,
+    },
+    autoResetHiddenColumns: false,
+  });
+
+  useEffect(() => {
+    if (view !== dataFilter.page) {
+      state.hiddenColumns = [];
+      setFilter(null, 6);
+      setFilter(view, 5);
+      setState({ isFilter: false });
+    }
+  }, [view]);
+
+  useEffect(() => {
+    if (setFilter) {
+      setFilter(state.hiddenColumns, 2);
+    }
+    return () => {};
+  }, [state.hiddenColumns]);
+
+  const setGlobalFilter = (dataFilter: DataFilterType | undefined) => {
+    if (setGlobalFilters !== undefined) {
+      const finalDataFilter = {
+        ...(typeof getState.dataFilter === 'object' && getState.dataFilter),
+        ...dataFilter,
+      };
+      setState({
+        ...getState,
+        dataFilter: finalDataFilter,
+      });
+
+      setGlobalFilters(finalDataFilter || undefined);
+    }
+  };
 
   const setDateFilter = (startDate: string, endDate: string) => {
     const dateFilter: any = {
@@ -73,20 +133,26 @@ const TableBar: React.FC<TableBarType> = ({
   };
 
   return (
-    <div className="px-3 d-flex justify-content-between w-100">
+    <div className="px-3 d-flex justify-content-between w-100 bg-white">
       <div className="d-flex">
         {isSearch && (
-          <GlobalFilter
-            setGlobalFilter={setGlobalFilters}
-            searchText="Search..."
-            filter={dataFilter}
-            setFilter={setFilter}
-          />
+          <div className="d-flex border-end">
+            <GlobalFilter
+              setGlobalFilter={setGlobalFilters}
+              searchText="Search..."
+              filter={dataFilter}
+              setFilter={setFilter}
+            />
+          </div>
         )}
         {isColumnSelected && (
-          <div className="me-3">
+          <div className="d-flex border-end">
             <Dropdown>
-              <Dropdown.Toggle variant="white" className="bg-white">
+              <Dropdown.Toggle
+                variant="white"
+                id="actions"
+                className={`align-items-center d-flex btn_toggle h-100 bg-white ${styles.btn_toggle}`}
+              >
                 <i>
                   <FontAwesomeIcon icon={faColumns} />
                 </i>
@@ -95,30 +161,31 @@ const TableBar: React.FC<TableBarType> = ({
                   <FontAwesomeIcon icon={faChevronDown} />
                 </i>
               </Dropdown.Toggle>
-              <Dropdown.Menu className="w-max">
-                {tableRowHeader.map(
-                  (rowHeader: { Header: string; accessor: string }, index: number) => (
-                    <div key={index} className="p-2 d-flex">
-                      <input
-                        type="checkbox"
-                        id={`item${index}`}
-                        className="form-check-input d-block"
-                        onChange={(e) => e.target.checked && onShowColumns(rowHeader.accessor)}
-                      />
-                      <label className="ps-2" htmlFor={`item${index}`}>
-                        {rowHeader.Header}
-                      </label>
-                    </div>
-                  )
+              <Dropdown.Menu className="pt-3 px-2 border-0 shadow">
+                {allColumns.map(
+                  (column) =>
+                    column.id !== 'selection' &&
+                    column.Header !== '' && (
+                      <div key={column.id} className="mb-2">
+                        <label>
+                          <input
+                            type="checkbox"
+                            {...column.getToggleHiddenProps()}
+                            className="form-check-input p-0"
+                          />
+                          <span className="ps-2">{column.Header}</span>
+                        </label>
+                      </div>
+                    )
                 )}
               </Dropdown.Menu>
             </Dropdown>
           </div>
         )}
         {isAction && (
-          <div className="me-3">
+          <div className="d-flex border-end">
             <Dropdown>
-              <Dropdown.Toggle variant="white" className="bg-white">
+              <Dropdown.Toggle variant="white" className="bg-white h-100">
                 <span className="ps-2 pe-3">{t('choose_an_action')}</span>
                 <i className="text-green">
                   <FontAwesomeIcon icon={faChevronDown} />
@@ -141,7 +208,7 @@ const TableBar: React.FC<TableBarType> = ({
           </div>
         )}
         {isDateRange && (
-          <div className="me-3">
+          <div className="d-flex border-end">
             <AesirXDatePicker
               placeholder={'All dates'}
               setIsOpen={setIsOpen}
@@ -154,6 +221,36 @@ const TableBar: React.FC<TableBarType> = ({
             />
           </div>
         )}
+        <div>
+          {isFilter && (
+            <>
+              <Collapse in={true} className="h-100">
+                <div>
+                  <div
+                    className={`bg-white rounded-2 h-100 ${
+                      getState.isFilter ? 'z-2 position-relative' : ''
+                    }`}
+                  >
+                    {dataFormFilter && (
+                      <ComponentFilter
+                        dataFormFilter={dataFormFilter}
+                        setGlobalFilter={setGlobalFilter}
+                        filter={dataFilter}
+                        setFilter={setFilter}
+                      />
+                    )}
+                  </div>
+                </div>
+              </Collapse>
+              {getState.isFilter && (
+                <div
+                  className="filter-backdrop position-fixed top-0 start-0 end-0 bottom-0 z-1"
+                  onClick={() => setState({ isFilter: false })}
+                ></div>
+              )}
+            </>
+          )}
+        </div>
       </div>
       <div className="d-flex items-center">
         {actionList && (

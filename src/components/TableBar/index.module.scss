@@ -1,0 +1,9 @@
+.btn_toggle {
+  &:after {
+    display: none !important;
+  }
+}
+
+.label {
+  width: max-content;
+}
