@@ -57,7 +57,7 @@ const ProfileGeneral = observer(() => {
 
   const fetchData = async () => {
     try {
-      const preregistrationData = await getPreregistration(jwt);
+      const preregistrationData = await getPreregistration(`${jwt}`);
 
       setFormPropsData({
         [MEMBER_FIELD_KEY.ID]: preregistrationData?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
