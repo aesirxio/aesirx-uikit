@@ -153,8 +153,10 @@ $utilities: (
   'width': (
     property: width,
     class: w,
+    responsive: true,
     values: (
       25: 25%,
+      20: 20%,
       40: 40%,
       50: 50%,
       75: 75%,
@@ -181,7 +183,7 @@ $utilities: (
       80vh: 80vh,
       465px: 465px,
       680px: 680px,
-      100px:100px,
+      100px: 100px,
       150px: 150px,
       400px: 400px,
     ),
