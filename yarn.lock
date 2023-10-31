@@ -3488,10 +3488,10 @@ aesirx-lib@^1.11.1, aesirx-lib@^1.11.2:
     query-string "7"
     react-secure-storage "^1.2.2"
 
-aesirx-lib@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-2.0.0.tgz#bacb51247f68303d5ad3df68305a88a70b513627"
-  integrity sha512-GVX59vR+ai6ryt4yTGnCMo1diTyodB+Kb5EgY7FP2ZrWgK2N+hVv9tABg62qiKBqGzPWSo44G3Gadm0KI7noVg==
+aesirx-lib@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-2.0.1.tgz#de4dcadb6552ac8d6135c3b07378f6cd466efd4a"
+  integrity sha512-b3uX0455+vfOz6VKeVTEcprIPSBrNf4klmgYoGybCxsc6Y+2JHlf4uPeelCnUMNg4G6PiNfv6q4p6zGUzWVQVg==
   dependencies:
     axios "^1.4.0"
     axios-auth-refresh "^3.3.6"
@@ -3523,10 +3523,10 @@ aesirx-sso@^1.2.1:
     viem "^1.0.0"
     wagmi "^1.3.2"
 
-aesirx-sso@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.4.2.tgz#943241b8c37ffc1161c7b418f4cacefa286c3b41"
-  integrity sha512-aluDlpsI+1icgJLrcqcvek3XrStI2Glske6Vyi1ksKcvgGdAQXMtCEeeVoGz9y3s4Th4ZVTT1KJ/ogIjZ2df1g==
+aesirx-sso@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.4.3.tgz#c435e8fc653243109fb664278520f621f8c3f433"
+  integrity sha512-HpcoJguIZ8DxPg2pAtKMhP2AvbjKLe9KDw60bcyOZpMtsMSCfvNGi6Shm1kOsFkYKdvU+A2uIGrEDRqXu7MNuQ==
   dependencies:
     "@concordium/browser-wallet-api-helpers" "^2.8.0"
     "@concordium/react-components" "^0.3.0"
@@ -3538,7 +3538,7 @@ aesirx-sso@^1.4.2:
     "@wagmi/core" "^1.3.8"
     "@web3modal/ethereum" "^2.7.0"
     "@web3modal/react" "^2.7.0"
-    aesirx-lib "^2.0.0"
+    aesirx-lib "^2.0.1"
     axios "^1.4.0"
     bootstrap "^5.3.0"
     cross-env "^7.0.3"
