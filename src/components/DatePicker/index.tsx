@@ -118,7 +118,7 @@ const AesirXDatePicker = ({
   };
   return (
     <div
-      style={{ minHeight: classContainer ? '' : '50px' }}
+      style={{ minHeight: classContainer ? '' : '48px' }}
       ref={datePickerRef}
       className="d-flex align-items-center bg-white rounded-1 shadow-sm daterange-picker-wrapper"
     >
@@ -146,7 +146,7 @@ const AesirXDatePicker = ({
           isClearable={false}
           className={`${
             isDays ? 'fs-14 fw-semibold mw-120' : 'ps-16 pe-6'
-          } form-control rounded-1 text-body opacity-100 h-100 ${i18n?.language} ${inputClass}`}
+          } form-control fs-sm rounded-1 text-body opacity-100 h-100 ${i18n?.language} ${inputClass}`}
           showPopperArrow={false}
           monthsShown={2}
           open={isOpen}

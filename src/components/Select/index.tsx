@@ -27,9 +27,18 @@ class AesirXSelect extends React.Component<any, any> {
       minWidth,
       t,
       isClearable = false,
+      isLanguageSelect = false,
     }: any = this.props;
 
-    const styles = customStyles(isBorder, plColor, arrowColor, isDisabled, size, minWidth);
+    const styles = customStyles(
+      isBorder,
+      plColor,
+      arrowColor,
+      isDisabled,
+      size,
+      minWidth,
+      isLanguageSelect
+    );
 
     if (async) {
       return (
@@ -39,7 +48,10 @@ class AesirXSelect extends React.Component<any, any> {
     const { ValueContainer, Placeholder, IndicatorSeparator } = components;
     const CustomValueContainer = ({ children, ...props }: any) => {
       return (
-        <ValueContainer {...props} className="valueContainerCustom ps-16 pe-14">
+        <ValueContainer
+          {...props}
+          className={`valueContainerCustom ps-16 ${isLanguageSelect ? '' : 'pe-14'}`}
+        >
           {!props.hasValue && (
             <Placeholder {...props} isFocused={props.isFocused}>
               {props.selectProps.placeholder}

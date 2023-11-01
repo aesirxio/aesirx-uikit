@@ -9,7 +9,7 @@ const LanguagesSwitcher = () => {
   const currentLanguage = listLanguages.filter((lang: any) => lang.value == i18n.language);
 
   return (
-    <div className="ms-auto d-flex align-items-center">
+    <div className="ms-auto me-3 d-flex align-items-center fs-sm">
       <ComponentSVG
         url="/assets/images/language-icon-light.svg"
         color="var(--aesirxui-body-color)"
@@ -30,6 +30,8 @@ const LanguagesSwitcher = () => {
           i18n.changeLanguage(data.value);
         }}
         defaultValue={currentLanguage}
+        minWidth={120}
+        isLanguageSelect={true}
       />
     </div>
   );
