@@ -40,7 +40,8 @@
     "sass": "^1.62.1",
     "tsup": "^7.1.0",
     "typescript": "^5.0.2",
-    "typescript-plugin-css-modules": "^5.0.1"
+    "typescript-plugin-css-modules": "^5.0.1",
+    "@walletconnect/types": "^2.4.9"
   },
   "files": [
     "dist"
@@ -50,11 +51,15 @@
     "@ckeditor/ckeditor5-core": "^38.0.1",
     "@ckeditor/ckeditor5-engine": "^38.0.1",
     "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@concordium/browser-wallet-api-helpers": "^2.8.0",
+    "@concordium/react-components": "^0.3.0",
+    "@concordium/web-sdk": "6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/react-color": "^3.0.6",
+    "@walletconnect/types": "^2.10.4",
     "aesirx-dam-app": "^1.5.0",
     "aesirx-lib": "^2.0.1",
     "aesirx-sso": "^1.4.3",
