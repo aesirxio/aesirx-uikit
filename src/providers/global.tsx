@@ -1,4 +1,11 @@
-import React ,{ createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import secureLocalStorage from 'react-secure-storage';
 
 interface GlobalContextType {

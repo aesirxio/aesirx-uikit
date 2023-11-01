@@ -42,16 +42,16 @@ const Payments = ({ item, license, show, setShow, backToLicense, subscription, a
       });
 
       if (res?.data?.result) {
-        notify(addNew ? 'Create successfully!' : 'Upgrade successfully!','success');
+        notify(addNew ? 'Create successfully!' : 'Upgrade successfully!', 'success');
 
         backToLicense(true);
       } else {
-        notify('Not enough' ,'error');
+        notify('Not enough', 'error');
         setShow(false);
       }
     } catch (error: any) {
       setSaving(false);
-      notify(error?.response?.data?._messages?.[0]?.message || error?.message , "error");
+      notify(error?.response?.data?._messages?.[0]?.message || error?.message, 'error');
     }
   };
 
@@ -77,7 +77,7 @@ const Payments = ({ item, license, show, setShow, backToLicense, subscription, a
           const web3id = preregistration.id;
 
           if (msg === web3id) {
-            notify(addNew ? 'Create successfully!' : 'Upgrade successfully!','success');
+            notify(addNew ? 'Create successfully!' : 'Upgrade successfully!', 'success');
             backToLicense(true);
           }
         });

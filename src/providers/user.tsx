@@ -1,11 +1,17 @@
-
 import { getDemoData, getPreregistration } from '../store/UtilsStore/web3';
-import React ,{ createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useGlobalContext } from './global';
 import { getMember } from '../store/UtilsStore/aesirx';
 import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
-import {notify} from '../components/Toast';
+import { notify } from '../components/Toast';
 import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
 interface UserContextType {
   preregistration?: any;
@@ -32,7 +38,6 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
   const [aesirxData, setAesirxData] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  
 
   useEffect(() => {
     if (jwt && accessToken) {
@@ -41,13 +46,11 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
           await getData(jwt, accessToken);
         })();
       } catch (error: any) {
-        notify(error.message , "error");
+        notify(error.message, 'error');
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt, accessToken]);
-
-  
 
   const getData = useCallback(async (jwt: string, accessToken: string) => {
     setLoading(true);

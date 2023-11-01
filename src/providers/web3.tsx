@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React,{ createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { BROWSER_WALLET } from '../store/UtilsStore/config';
 
-import {notify} from '../components/Toast';
+import { notify } from '../components/Toast';
 import { checkNetwork } from '../store/UtilsStore/concordium';
 import { useUserContext } from './user';
 import secureLocalStorage from 'react-secure-storage';
@@ -103,13 +103,13 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
 
   useEffect(() => {
     if (connectError) {
-     notify(connectError , 'error');
+      notify(connectError, 'error');
     }
   }, [connectError]);
 
   useEffect(() => {
     if (activeConnectorError) {
-     notify(activeConnectorError , 'error');
+      notify(activeConnectorError, 'error');
     }
   }, [activeConnectorError]);
 
@@ -146,7 +146,7 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
         })
         .catch((err) => {
           if (err) {
-            notify(err.message , "error");
+            notify(err.message, 'error');
           }
 
           connection.disconnect();

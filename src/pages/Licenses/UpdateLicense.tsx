@@ -49,7 +49,7 @@ const UpdateLicense = (props: Props) => {
         }
       } catch (error: any) {
         console.log('UpdateMember error', error);
-        notify(error?.message , "error");
+        notify(error?.message, 'error');
       }
 
       setLoading(false);

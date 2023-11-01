@@ -10,7 +10,7 @@ import { Button, Col, Row, Table } from 'react-bootstrap';
 import CollapseItems from './CollapseItems';
 import TooltipNote from './TooltipNote';
 import Payments from './Payments';
-import {Spinner } from '../../components/Spinner';
+import { Spinner } from '../../components/Spinner';
 
 interface Props {
   pricingDatas: Array<any>;
@@ -126,7 +126,7 @@ const UpgradeLicense = ({
   };
 
   return fetch ? (
-    < Spinner />
+    <Spinner />
   ) : (
     <>
       {showPayment && (

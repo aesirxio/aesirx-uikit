@@ -493,9 +493,7 @@ const validateEmail = async (email: any) => {
 const getPoolList = async (isFeature?: any) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/stakepool${
-        isFeature ? '?pool_feature=true' : ''
-      }`
+      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/stakepool${isFeature ? '?pool_feature=true' : ''}`
     );
   } catch (error: any) {
     console.error('error', error);
@@ -535,9 +533,7 @@ const getShare2Earn = async (jwt: any) => {
 const getShare2EarnList = async (isActive: any = false) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/share2earn/list${
-        isActive ? '?active=true' : ''
-      }`
+      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/share2earn/list${isActive ? '?active=true' : ''}`
     );
   } catch (error) {
     throw error;

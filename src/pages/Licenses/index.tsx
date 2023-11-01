@@ -1,6 +1,6 @@
 import ButtonCopy from '../../components/ButtonCopy';
-import{ useUserContext, UserContextProvider }from '../../providers/user';
-import {GlobalContextProvider } from '../../providers/global';
+import { useUserContext, UserContextProvider } from '../../providers/user';
+import { GlobalContextProvider } from '../../providers/global';
 import React, { useState } from 'react';
 import { Col, Dropdown, Row, Table } from 'react-bootstrap';
 import UpdateLicense from './UpdateLicense';
@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import Web3ContextProvider from '../../providers/web3';
-import {Spinner} from '../../components/Spinner';
+import { Spinner } from '../../components/Spinner';
 
 interface Modal {
   show: boolean;
@@ -32,10 +32,10 @@ interface UpgradePlan {
 const Licenses = (props: any) => {
   return (
     <GlobalContextProvider>
-    <UserContextProvider>
-    <Web3ContextProvider autoLoad={true}>
-      <LicensesApp {...props} />
-      </Web3ContextProvider>
+      <UserContextProvider>
+        <Web3ContextProvider autoLoad={true}>
+          <LicensesApp {...props} />
+        </Web3ContextProvider>
       </UserContextProvider>
     </GlobalContextProvider>
   );
@@ -46,7 +46,7 @@ const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
   const [modal, setModal] = useState<Modal>({ show: false });
   const [upgradePlan, setUpgradePlan] = useState<UpgradePlan>();
   const [addNew, setAddNew] = useState<boolean>(false);
-console.log('aesirxData', aesirxData)
+  console.log('aesirxData', aesirxData);
 
   const billingList =
     aesirxData?.licenses?.length &&
@@ -250,4 +250,4 @@ console.log('aesirxData', aesirxData)
   );
 };
 
-export {Licenses};
+export { Licenses };
