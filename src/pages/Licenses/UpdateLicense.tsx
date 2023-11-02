@@ -48,6 +48,7 @@ const UpdateLicense = (props: Props) => {
           props.setShow({ show: false });
         }
       } catch (error: any) {
+        // eslint-disable-next-line no-console
         console.log('UpdateMember error', error);
         notify(error?.message, 'error');
       }

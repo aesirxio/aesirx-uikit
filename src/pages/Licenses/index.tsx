@@ -46,7 +46,6 @@ const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
   const [modal, setModal] = useState<Modal>({ show: false });
   const [upgradePlan, setUpgradePlan] = useState<UpgradePlan>();
   const [addNew, setAddNew] = useState<boolean>(false);
-  console.log('aesirxData', aesirxData);
 
   const billingList =
     aesirxData?.licenses?.length &&

@@ -31,7 +31,7 @@ const userContext = createContext<UserContextType>({
   getData: undefined,
 });
 
-const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false }) => {
+const UserContextProvider: React.FC<Props> = ({ children }) => {
   const { jwt, onLogout } = useGlobalContext();
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
   const [preregistration, setPreregistration] = useState<any>(null);
@@ -49,7 +49,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
         notify(error.message, 'error');
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line no-console
   }, [jwt, accessToken]);
 
   const getData = useCallback(async (jwt: string, accessToken: string) => {
@@ -94,7 +94,7 @@ const UserContextProvider: React.FC<Props> = ({ children, isGetInterest = false 
     setAesirxData(aesirxData);
     setPreregistration(_preregistration);
     setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line no-console
   }, []);
 
   return (

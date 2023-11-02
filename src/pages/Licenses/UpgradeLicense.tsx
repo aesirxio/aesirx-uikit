@@ -56,12 +56,12 @@ const UpgradeLicense = ({
           setSubscription(subscription?.[0]);
           setFetch(false);
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.log('getSubcription error', error);
           setFetch(false);
         }
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const backToLicense = async (getNewData = false) => {

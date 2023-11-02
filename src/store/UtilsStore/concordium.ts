@@ -18,12 +18,12 @@ async function waitForFinalizedTransaction(transactionHash: any, connection: any
   while (transactionStatus !== TransactionStatusEnum.Finalized) {
     txnStatus = await client.getTransactionStatus(transactionHash);
     transactionStatus = txnStatus?.status;
-
+// eslint-disable-next-line no-console
     console.info(`txn : ${transactionHash}, status: ${txnStatus?.status}`);
 
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
   }
-
+// eslint-disable-next-line no-console
   console.log('Transaction has been finalized', txnStatus);
   return ensureValidOutcome(txnStatus?.outcomes);
 }
@@ -33,12 +33,12 @@ const ensureValidOutcome = (outcomes: any) => {
     throw Error('Null Outcome');
   }
 
-  let successTxnSummary = Object.keys(outcomes)
+  const successTxnSummary = Object.keys(outcomes)
     .map((k) => outcomes[k])
     .find((s) => s.result.outcome === 'success');
 
   if (!successTxnSummary) {
-    let failures = Object.keys(outcomes)
+    const failures = Object.keys(outcomes)
       .map((k) => outcomes[k])
       .filter((s) => s.result.outcome === 'reject')
       .map((s) => s.result.rejectReason.tag)
@@ -108,11 +108,12 @@ const invokeSmartContract = async (
       method,
       SchemaVersion.V2
     );
-
+// eslint-disable-next-line no-console
     console.log('invokeSmartContract', returnValue);
 
     return returnValue;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('invokeSmartContract error', error);
     return null;
   }
@@ -128,7 +129,7 @@ const checkPaid = async (account: any, connection: any, web3id: any) => {
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_RAWSCHEMA,
     'view'
   );
-
+// eslint-disable-next-line no-console
   console.log('checkPaid', web3id, data, data?.paid_web3ids.includes(web3id));
 
   if (data) {
@@ -188,6 +189,7 @@ const checkMintWeb3IDNFT = async (account: any, connection: any) => {
     process.env.NEXT_PUBLIC_SMARTCONTRACT_NFT_WEB3ID_RAWSCHEMA,
     'view'
   );
+  // eslint-disable-next-line no-console
   console.log(
     'checkMintWeb3IDNFT',
     account,

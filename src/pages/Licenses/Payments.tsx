@@ -88,10 +88,8 @@ const Payments = ({ item, license, show, setShow, backToLicense, subscription, a
         setShow(false);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   // eslint-disable-next-line no-console
   }, []);
-
-  console.log('preregistrationpreregistration', preregistration);
 
   return (
     <Modal show={show} onHide={() => setShow(false)} centered>

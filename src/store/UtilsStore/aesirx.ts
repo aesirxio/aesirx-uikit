@@ -25,6 +25,7 @@ const getMember = async (accessToken: string) => {
       return data?.data;
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('getMember', error);
     throw error;
   }
@@ -65,6 +66,7 @@ const getSubscriptionList = async (username: string, accessToken: string, produc
     }
     return response?.data?._embedded?.item;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('getSubscriptionList', error);
     throw error;
   }
@@ -93,6 +95,7 @@ const connectWallet = async (
     );
     return response?.data;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('connectWalletError', error);
     throw error;
   }
@@ -121,6 +124,7 @@ const removeWallet = async (
     );
     return response?.data;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('removeWalletError', error);
     throw error;
   }
@@ -158,6 +162,7 @@ const getServerToken = async () => {
     );
     return response?.data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('getServerJWT', error);
   }
 };
@@ -166,6 +171,7 @@ const registerWeb3id = async (data: any) => {
   try {
     return await axios.post(`/api/web3id`, data);
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('registerWeb3id', error);
     throw error;
   }
@@ -214,6 +220,7 @@ const activeWallet = async (wallet: any, username: any) => {
   try {
     return await axios.post(`/api/activewallet`, { wallet, username });
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('activeWallet', error);
     throw error;
   }

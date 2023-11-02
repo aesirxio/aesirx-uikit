@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { BROWSER_WALLET } from '../store/UtilsStore/config';
@@ -120,7 +119,7 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
     } else if (connection === 'walletconnect') {
       // setActiveConnectorType(WALLET_CONNECT);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line no-console
   }, []);
 
   useEffect(() => {

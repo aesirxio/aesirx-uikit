@@ -9,6 +9,7 @@ const createPreregistration = async (data: any, jwt: any) => {
       },
     });
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log(error);
     throw error;
   }
@@ -202,6 +203,7 @@ const savePreregistration = async (jwt: any, data: any) => {
       },
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     throw error;
   }
@@ -274,7 +276,7 @@ const getNFTMetaData = async (jwt: any) => {
 
 const createInterests = async (jwt: any, web3id: any, interests: any) => {
   try {
-    let formData: any = {};
+    const formData: any = {};
     formData['id'] = web3id;
     formData['network'] = process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK;
     Object.keys(interests).forEach((index: any) => {
@@ -297,7 +299,7 @@ const createInterests = async (jwt: any, web3id: any, interests: any) => {
 
 const updateInterests = async (jwt: any, web3id: any, interests: any) => {
   try {
-    let formData: any = {};
+    const formData: any = {};
     formData['id'] = web3id;
     formData['network'] = process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK;
     Object.keys(interests).forEach((index: any) => {
@@ -324,6 +326,7 @@ const getWe3IdMetadata = async (web3id: any) => {
       `${process.env.REACT_APP_WEB3_API_ENDPOINT}/demo/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/web3id/${web3id}`
     );
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 };
@@ -496,6 +499,7 @@ const getPoolList = async (isFeature?: any) => {
       `${process.env.REACT_APP_WEB3_API_ENDPOINT}/stakepool${isFeature ? '?pool_feature=true' : ''}`
     );
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.error('error', error);
   }
 };
@@ -554,6 +558,7 @@ const autoRegisterWeb3id = async (
       walletAccount,
     });
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('autoRegisterWeb3id', error);
     throw error;
   }
@@ -563,6 +568,7 @@ const getStatistic = async () => {
   try {
     return await axios.get(`${process?.env?.REACT_APP_WEB3_API_ENDPOINT}/statistic`);
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('getStatistic', error);
     throw error;
   }
@@ -580,6 +586,7 @@ const claimNFT = async (jwt: any) => {
       }
     );
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('claimNFT', error);
     throw error;
   }
@@ -592,6 +599,7 @@ const getChallenge = async (walletAccount: string) => {
       )
     ).data?.challenge;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('getChallenge', error);
     throw error;
   }
@@ -601,6 +609,7 @@ const getStatement = async () => {
   try {
     return (await axios.get(`${process?.env?.REACT_APP_WEB3_API_ENDPOINT}/statement`)).data;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('getChallenge', error);
     throw error;
   }
@@ -623,6 +632,7 @@ const verifyProof = async (challenge: any, proof: any) => {
       )
     ).data?.result;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('getChallenge', error);
     throw error;
   }
@@ -637,6 +647,7 @@ const getAffiliate2earn = async (jwt: any) => {
       },
     });
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log('getAffiliate2earn', error);
     throw error;
   }
