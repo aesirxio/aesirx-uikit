@@ -18,12 +18,12 @@ async function waitForFinalizedTransaction(transactionHash: any, connection: any
   while (transactionStatus !== TransactionStatusEnum.Finalized) {
     txnStatus = await client.getTransactionStatus(transactionHash);
     transactionStatus = txnStatus?.status;
-// eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.info(`txn : ${transactionHash}, status: ${txnStatus?.status}`);
 
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
   }
-// eslint-disable-next-line no-console
+  // eslint-disable-next-line no-console
   console.log('Transaction has been finalized', txnStatus);
   return ensureValidOutcome(txnStatus?.outcomes);
 }
@@ -108,7 +108,7 @@ const invokeSmartContract = async (
       method,
       SchemaVersion.V2
     );
-// eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.log('invokeSmartContract', returnValue);
 
     return returnValue;
@@ -129,7 +129,7 @@ const checkPaid = async (account: any, connection: any, web3id: any) => {
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_RAWSCHEMA,
     'view'
   );
-// eslint-disable-next-line no-console
+  // eslint-disable-next-line no-console
   console.log('checkPaid', web3id, data, data?.paid_web3ids.includes(web3id));
 
   if (data) {

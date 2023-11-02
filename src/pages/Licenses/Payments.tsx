@@ -88,7 +88,7 @@ const Payments = ({ item, license, show, setShow, backToLicense, subscription, a
         setShow(false);
       }
     })();
-   // eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
   }, []);
 
   return (
