@@ -12,14 +12,14 @@ import { Header } from 'components/Header';
 import { useAppContext } from 'providers';
 import { SbarLeft } from 'components';
 
-const SettingLayout = ({ logo }: any) => {
+const SettingLayout = ({ logo, isColorMode }: any) => {
   const { isLogin, settingRoutes } = useAppContext();
 
   return isLogin() ? (
     <div className="container-fluid">
       <div className="row">
         <main className="p-0">
-          <Header logo={logo} />
+          <Header logo={logo} isColorMode={isColorMode} />
           <div className="main_content vh-100 main_content_dashboard pd-t-80 d-flex">
             <SbarLeft />
             <div className="flex-1 bg-body mh-100 overflow-hidden overflow-y-auto position-relative">

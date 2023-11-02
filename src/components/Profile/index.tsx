@@ -5,6 +5,7 @@ import { Image } from 'components/Image';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from 'providers';
 import avatar from '../../assets/images/avatar.png';
+import sign_out from '../../assets/images/sign_out.svg';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
@@ -51,7 +52,7 @@ const Profile = () => {
             as={CustomToggleAvatar}
             id="dropdown-custom-components position-relative"
           ></Dropdown.Toggle>
-          <Dropdown.Menu className="shadow border-0">
+          <Dropdown.Menu className="shadow border-0 px-16">
             <div className="text px-16 pe-2">
               <p className="mb-0 fs-14 px-3 pb-2 pt-3 fw-bold">
                 <>
@@ -61,7 +62,7 @@ const Profile = () => {
               </p>
             </div>
             {profileMenu && (
-              <div className="px-16">
+              <div className="">
                 <ul className="list-unstyled ps-0 mb-0 list_menu_avatar">
                   {profileMenu?.map((value: any, index: any) => {
                     return (
@@ -79,9 +80,10 @@ const Profile = () => {
             )}
             <div
               onClick={logout}
-              className="d-flex align-items-center p-16 text-green border-gray cursor-pointer"
+              className="d-flex align-items-center border-gray cursor-pointer py-10px px-3 fw-medium cursor-pointer w-100 text-start d-flex align-items-center fs-7 btn btn-danger rounded-3"
             >
-              <span className="px-16">{t('txt_sign_out')}</span>
+              <Image src={sign_out} alt="" width={24} height={24} />
+              <span className="ms-2">{t('txt_sign_out')}</span>
             </div>
           </Dropdown.Menu>
         </Dropdown>

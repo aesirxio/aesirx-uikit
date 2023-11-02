@@ -940,6 +940,9 @@
     --datepicker-color: #c8c8db;
     --datepicker-range-bg-color: #181f3d;
     --aesirxui-input-disabled-bg: #171e3a;
+    .text-gray-heading {
+      color: $white;
+    }
     .bg-white {
       background-color: var(--#{$prefix}color-blue-6);
     }

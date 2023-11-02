@@ -19,6 +19,7 @@ $gray-900: #222328 !default;
 $gray-stroke-1: #f3f3f3 !default;
 $gray-stroke-2: #dedede !default;
 $gray-light: #97979e !default;
+$gray-heading: #5f5e70 !default;
 $black: #000 !default;
 
 $primary: #0a083b !default;
@@ -183,6 +184,7 @@ $custom-colors: (
   'gray-stroke-1': $gray-stroke-1,
   'gray-stroke-2': $gray-stroke-2,
   'gray-light': $gray-light,
+  'gray-heading': $gray-heading,
   'blue': $blue,
   'blue-light': $blue-light,
   'color-blue-6': $color-blue-6,
@@ -326,6 +328,7 @@ $spacers: (
   7: 70px,
   8: 80px,
   10: 10px,
+  13: 13px,
   14: 14px,
   40: 40px,
   18px: 18px,

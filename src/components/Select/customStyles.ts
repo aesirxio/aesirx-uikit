@@ -9,7 +9,8 @@ const customStyles = (
   arrowColor: any,
   isDisabled: any,
   size: any,
-  minWidth: any
+  minWidth: any,
+  isLanguageSelect?: any
 ) => {
   return {
     control: (provided: any) => {
@@ -54,19 +55,37 @@ const customStyles = (
         ...styles,
         paddingTop: 0,
         paddingBottom: 0,
+        ...(isLanguageSelect ? { paddingLeft: 16, paddingRight: 16 } : {}),
       };
     },
     option: (provided: any, state: any) => {
       return {
         ...provided,
-        color: state.isSelected ? 'var(--aesirxui-menu-lang-color)' : 'var(--aesirxui-body-color)',
-        backgroundColor: state.isSelected
-          ? 'var(--aesirxui-menu-lang-hover-bg)'
-          : 'var(--aesirxui-white)',
-        '&:hover': {
-          color: 'var(--aesirxui-menu-lang-color)',
-          backgroundColor: 'var(--aesirxui-menu-lang-hover-bg)',
-        },
+        ...(isLanguageSelect
+          ? {
+              borderBottom: '1px solid var(--aesirxui-gray-dark)',
+              color: state.isSelected ? 'var(--aesirxui-success)' : 'var(--aesirxui-body-color)',
+              backgroundColor: 'var(--aesirxui-white)',
+              '&:hover': {
+                color: 'var(--aesirxui-success)',
+                backgroundColor: 'transparent',
+                cursor: 'pointer',
+              },
+              paddingLeft: 0,
+              paddingRight: 0,
+            }
+          : {
+              color: state.isSelected
+                ? 'var(--aesirxui-menu-lang-color)'
+                : 'var(--aesirxui-body-color)',
+              backgroundColor: state.isSelected
+                ? 'var(--aesirxui-menu-lang-hover-bg)'
+                : 'var(--aesirxui-white)',
+              '&:hover': {
+                color: 'var(--aesirxui-menu-lang-color)',
+                backgroundColor: 'var(--aesirxui-menu-lang-hover-bg)',
+              },
+            }),
       };
     },
 
