@@ -10,7 +10,7 @@ const customStyles = (
   isDisabled: any,
   size: any,
   minWidth: any,
-  isLanguageSelect: any
+  isLanguageSelect?: any
 ) => {
   return {
     control: (provided: any) => {
