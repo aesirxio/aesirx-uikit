@@ -131,16 +131,17 @@ const removeWallet = async (
 };
 
 const getContent = (content: string, customRegex?: RegExp, customRegexReplace?: RegExp) => {
-  const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
-  const regexReplace = customRegexReplace ?? /<[^>]+>/g;
+  const regex = customRegex || /<h2\b[^>]*>(.*?)<\/h2>/gi;
+  const regexReplace = customRegexReplace || /<[^>]+>/g;
   const tags = content.match(regex);
   const contents = tags?.map((tag) => tag.replace(regexReplace, ''));
   return contents || [];
 };
 
+
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
-    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.REACT_APP_CONCORDIUM_NETWORK}`
+    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`
   );
 };
 
