@@ -131,10 +131,10 @@ const removeWallet = async (
 };
 
 const getContent = (content: string, customRegex?: RegExp, customRegexReplace?: RegExp) => {
-  const regex = customRegex || /<h2\b[^>]*>(.*?)<\/h2>/gi;
-  const regexReplace = customRegexReplace || /<[^>]+>/g;
+  const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
+  const regexReplace = customRegexReplace ?? /<[^>]+>/g;
   const tags = content.match(regex);
-  const contents = tags?.map((tag) => tag.replace(regexReplace, '')) || [];
+  const contents = tags?.map((tag) => tag.replace(regexReplace, ''));
   return contents;
 };
 
