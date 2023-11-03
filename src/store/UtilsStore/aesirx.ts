@@ -138,10 +138,9 @@ const getContent = (content: string, customRegex?: RegExp, customRegexReplace?: 
   return contents || [];
 };
 
-
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
-    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`
+    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.REACT_APP_CONCORDIUM_NETWORK}`
   );
 };
 
