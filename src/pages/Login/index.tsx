@@ -12,7 +12,6 @@ import { SSOButton } from 'aesirx-sso';
 import { AesirxAuthenticationApiService, Storage } from 'aesirx-lib';
 import { notify } from 'components/Toast';
 import { env } from 'aesirx-lib';
-import welcome from '../../assets/images/logo/welcome-logo.png';
 import { Spinner } from 'components/Spinner';
 import axios from 'axios';
 
