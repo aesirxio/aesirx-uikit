@@ -40,7 +40,8 @@
     "sass": "^1.62.1",
     "tsup": "^7.1.0",
     "typescript": "^5.0.2",
-    "typescript-plugin-css-modules": "^5.0.1"
+    "typescript-plugin-css-modules": "^5.0.1",
+    "@walletconnect/types": "^2.4.9"
   },
   "files": [
     "dist"
@@ -54,6 +55,9 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@concordium/browser-wallet-api-helpers": "^2.8.0",
+    "@concordium/react-components": "^0.3.0",
+    "@concordium/web-sdk": "6.4.0",
     "@types/react-color": "^3.0.6",
     "aesirx-dam-app": "^1.4.1",
     "aesirx-lib": "^1.11.2",
@@ -78,7 +82,9 @@
     "react-table": "^7.8.0",
     "react-toastify": "^9.1.2",
     "react-tooltip": "^5.18.0",
-    "simple-react-validator": "^1.6.2"
+    "simple-react-validator": "^1.6.2",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   },
   "resolutions": {
     "react": "^18",
