@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
@@ -17,7 +17,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run Build
-        run: CI=false yarn run build
+        run: CI=false yarn run prepublishOnly
 
       - name: Run Prettier
         run: yarn run format:check

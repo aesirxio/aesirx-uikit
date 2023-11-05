@@ -15,9 +15,7 @@ import { PAGE_STATUS } from 'constant/PageStatus';
 import SimpleReactValidator from 'simple-react-validator';
 import axios from 'axios';
 
-type FormPropsData = {
-  [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
-};
+type FormPropsData = any;
 
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
@@ -59,7 +57,7 @@ const ProfileGeneral = observer(() => {
 
   const fetchData = async () => {
     try {
-      const preregistrationData = await getPreregistration(jwt);
+      const preregistrationData = await getPreregistration(`${jwt}`);
 
       setFormPropsData({
         [MEMBER_FIELD_KEY.ID]: preregistrationData?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],
@@ -119,20 +117,6 @@ const ProfileGeneral = observer(() => {
         setFormPropsData({
           ...formPropsData,
           [MEMBER_FIELD_KEY.LAST_NAME]: event.target.value,
-        });
-      },
-    },
-    {
-      label: t('txt_description'),
-      key: MEMBER_FIELD_KEY.DESCRIPTION,
-      type: FORM_FIELD_TYPE.TEXTAREA,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.DESCRIPTION],
-      className: 'col-12',
-      inputClassName: 'border',
-      changed: (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormPropsData({
-          ...formPropsData,
-          [MEMBER_FIELD_KEY.DESCRIPTION]: event.target.value,
         });
       },
     },

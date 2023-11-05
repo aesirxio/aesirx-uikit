@@ -95,5 +95,8 @@
   "txt_sign_in_to_getting_started": "ลงชื่อเข้าใช้เพื่อเริ่มต้นใช้งาน",
   "txt_first_name": "ชื่อ",
   "txt_last_name": "นามสกุล",
-  "txt_organization": "องค์กร"
+  "txt_organization": "องค์กร",
+  "txt_running": "กําลังทำ",
+  "txt_schedule": "ตารางนัดหมาย",
+  "txt_stop": "หยุด"
 }

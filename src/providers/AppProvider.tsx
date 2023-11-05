@@ -27,6 +27,7 @@ interface IAppContext {
   settingMenu?: any;
   noHeader: boolean;
   logo?: any;
+  isColorMode?: boolean;
 }
 
 interface AppProviderProps {
@@ -46,6 +47,7 @@ interface AppProviderProps {
   children?: any;
   noHeader: boolean;
   logo?: any;
+  isColorMode?: boolean;
 }
 
 const AppContext = createContext<IAppContext>({
@@ -77,6 +79,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
   settingMenu,
   noHeader,
   logo,
+  isColorMode = true,
 }: AppProviderProps) => {
   const authPath = authRoutes
     ?.map((item: any) => {
@@ -127,7 +130,9 @@ const AppProvider: React.FC<AppProviderProps> = ({
             <Toast />
             <BrowserRouter>
               {integration ? (
-                <MainLayout logo={logo}>{children}</MainLayout>
+                <MainLayout logo={logo} isColorMode={isColorMode}>
+                  {children}
+                </MainLayout>
               ) : (
                 <Router history={history}>
                   <Switch>
@@ -138,12 +143,12 @@ const AppProvider: React.FC<AppProviderProps> = ({
                     )}
                     {settingPath && (
                       <Route exact path={settingPath}>
-                        <SettingLayout logo={logo} />
+                        <SettingLayout logo={logo} isColorMode={isColorMode} />
                       </Route>
                     )}
                     {mainPath && (
                       <Route path={mainPath}>
-                        <MainLayout logo={logo} />
+                        <MainLayout logo={logo} isColorMode={isColorMode} />
                       </Route>
                     )}
                     <Route path="*">
