@@ -1,6 +1,5 @@
 import FormData from 'form-data';
 import axios from 'axios';
-import DOMPurify from 'dompurify';
 const getMember = async (accessToken: string) => {
   try {
     const member = await axios.get(
@@ -135,11 +134,7 @@ const getContent = (content: string, customRegex?: any, customRegexReplace?: any
   const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
   const regexReplace = customRegexReplace ?? /<[^>]+>/g;
   const tags = content.match(regex);
-  const contents = tags?.map((tag) => {
-    // Use DOMPurify to sanitize the content
-    const sanitizedContent = DOMPurify.sanitize(tag.replace(regexReplace, ''));
-    return sanitizedContent;
-  });
+  const contents = tags?.map((tag) => tag.replace(regexReplace, '').replace(/(<([^>]+)>)/gi, ''));
   return contents || [];
 };
 
