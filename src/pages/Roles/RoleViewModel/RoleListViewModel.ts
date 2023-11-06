@@ -4,16 +4,16 @@
  */
 
 import { makeAutoObservable, runInAction } from 'mobx';
-import { ORGANISATION_MEMBER_FIELD } from 'aesirx-lib';
+import { ORGANISATION_ROLE_FIELD } from 'aesirx-lib';
 import { PAGE_STATUS } from 'constant';
-import { MemberStore } from '../store';
+import { RoleStore } from '../store';
 import moment from 'moment';
 import { notify } from 'components';
 
-class MemberListViewModel {
-  memberStore: MemberStore;
+class RoleListViewModel {
+  roleStore: RoleStore;
   formStatus = PAGE_STATUS.READY;
-  memberListViewModel = {};
+  roleListViewModel = {};
   items = [];
   filter = {};
   successResponse: { [key: string]: any } = {
@@ -24,25 +24,25 @@ class MemberListViewModel {
     filters: {
       'list[limit]': 10,
     },
-    listMembers: [],
+    listRoles: [],
     pagination: null,
-    listMembersWithoutPagination: [],
+    listRolesWithoutPagination: [],
   };
 
-  constructor(memberStore: MemberStore) {
+  constructor(roleStore: RoleStore) {
     makeAutoObservable(this);
-    this.memberStore = memberStore;
+    this.roleStore = roleStore;
   }
 
-  setForm = (memberListViewModel: any) => {
-    this.memberListViewModel = memberListViewModel;
+  setForm = (roleListViewModel: any) => {
+    this.roleListViewModel = roleListViewModel;
   };
 
   initializeData = async () => {
     runInAction(() => {
       this.successResponse.state = false;
     });
-    const data = await this.memberStore.getList(this.successResponse.filters);
+    const data = await this.roleStore.getList(this.successResponse.filters);
 
     runInAction(() => {
       if (!data?.error) {
@@ -57,11 +57,11 @@ class MemberListViewModel {
     runInAction(() => {
       this.successResponse.state = false;
     });
-    const data = await this.memberStore.getListWithoutPagination(this.filter);
+    const data = await this.roleStore.getListWithoutPagination(this.filter);
 
     runInAction(() => {
       if (!data?.error) {
-        this.callbackOnSuccessGetMembersHandler(data?.response);
+        this.callbackOnSuccessGetRolesHandler(data?.response);
       } else {
         this.onErrorHandler(data?.response);
       }
@@ -91,7 +91,7 @@ class MemberListViewModel {
       }
     }
 
-    const data = await this.memberStore.getList(this.successResponse.filters);
+    const data = await this.roleStore.getList(this.successResponse.filters);
 
     runInAction(() => {
       if (!data?.error) {
@@ -109,7 +109,7 @@ class MemberListViewModel {
     }
 
     if (result?.listItems) {
-      this.successResponse.listMembers = this.transform(result?.listItems);
+      this.successResponse.listRoles = this.transform(result?.listItems);
       this.successResponse.pagination = result?.pagination;
       this.items = result?.listItems;
       this.successResponse.state = true;
@@ -130,30 +130,28 @@ class MemberListViewModel {
 
   transform = (data: any) => {
     return data.map((o: any) => {
-      const date = moment(o[ORGANISATION_MEMBER_FIELD.MODIFIED_TIME]).format('DD MMM, YYYY');
+      const date = moment(o[ORGANISATION_ROLE_FIELD.MODIFIED_TIME]).format('DD MMM, YYYY');
       return {
-        member: {
-          id: o[ORGANISATION_MEMBER_FIELD.ID],
-          name: o[ORGANISATION_MEMBER_FIELD.MEMBER_NAME],
+        role: {
+          id: o[ORGANISATION_ROLE_FIELD.ID],
+          name: o[ORGANISATION_ROLE_FIELD.ROLE_NAME],
         },
-        memberEmail: o[ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL],
-        memberRole: o[ORGANISATION_MEMBER_FIELD.MEMBER_ROLE],
-        organisation: o[ORGANISATION_MEMBER_FIELD.ORGANISATION],
+        organisation: o[ORGANISATION_ROLE_FIELD.ORGANISATION],
         lastModified: {
-          status: o[ORGANISATION_MEMBER_FIELD.PUBLISHED],
+          status: o[ORGANISATION_ROLE_FIELD.PUBLISHED],
           dateTime: date ?? '',
-          author: o[ORGANISATION_MEMBER_FIELD.CREATED_USER_NAME],
+          author: o[ORGANISATION_ROLE_FIELD.CREATED_USER_NAME],
         },
         published: {
-          state: o[ORGANISATION_MEMBER_FIELD.PUBLISHED],
-          id: o[ORGANISATION_MEMBER_FIELD.ID],
+          state: o[ORGANISATION_ROLE_FIELD.PUBLISHED],
+          id: o[ORGANISATION_ROLE_FIELD.ID],
         },
       };
     });
   };
 
-  deleteMembers = async (arr: any) => {
-    const data = await this.memberStore.delete(arr);
+  deleteRoles = async (arr: any) => {
+    const data = await this.roleStore.delete(arr);
     runInAction(async () => {
       if (!data?.error) {
         await this.initializeData();
@@ -166,9 +164,9 @@ class MemberListViewModel {
   };
 
   setPublished = async ({ id, name }: any, state: any = 0) => {
-    const data = await this.memberStore.update({
+    const data = await this.roleStore.update({
       id: id.toString(),
-      member_name: name,
+      role_name: name,
       published: state.toString(),
     });
     runInAction(async () => {
@@ -187,18 +185,18 @@ class MemberListViewModel {
     });
   };
 
-  callbackOnSuccessGetMembersHandler = (result: any) => {
-    this.successResponse.listMembersWithoutPagination = result?.listItems?.map((o: any) => {
+  callbackOnSuccessGetRolesHandler = (result: any) => {
+    this.successResponse.listRolesWithoutPagination = result?.listItems?.map((o: any) => {
       let dash = '';
       for (let index = 1; index < o.level; index++) {
         dash += '- ';
       }
       return {
         value: o?.id,
-        label: `${dash}${o[ORGANISATION_MEMBER_FIELD.MEMBER_NAME]}`,
+        label: `${dash}${o[ORGANISATION_ROLE_FIELD.ROLE_NAME]}`,
       };
     });
   };
 }
 
-export default MemberListViewModel;
+export default RoleListViewModel;
