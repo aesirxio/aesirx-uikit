@@ -12,7 +12,6 @@ import { SSOButton } from 'aesirx-sso';
 import { AesirxAuthenticationApiService, Storage } from 'aesirx-lib';
 import { notify } from 'components/Toast';
 import { env } from 'aesirx-lib';
-import welcome from '../../assets/images/logo/welcome-logo.png';
 import { Spinner } from 'components/Spinner';
 import axios from 'axios';
 
@@ -68,23 +67,17 @@ const LoginPage = ({ text }: any) => {
           <div className="d-block p-2 p-lg-5">
             <p className="fs-2 fw-semibold mb-2 text-center text-blue-5">
               {t('txt_welcome_to')}
-              <img
-                className="pe-2"
-                style={{ verticalAlign: 'inherit' }}
-                alt="AesirX"
-                src={welcome}
-              />
-              {text}.
+              AesirX {text}
             </p>
             <p className="fs-2 fw-semibold text-center text-blue-5">
               {t('txt_sign_in_to_getting_started')}
             </p>
-            <div className="position-relative mt-5">
+            <div className="position-relative mt-24">
               {loading ? (
                 <Spinner />
               ) : (
                 <SSOButton
-                  className="btn-primary btn w-100 fw-bold position-relative d-flex align-item-center justify-content-center my-3  px-6"
+                  className="btn-success btn w-100 w-lg-50 w-xxl-40 mx-auto fw-semibold position-relative d-flex align-item-center justify-content-center my-3 px-4"
                   text={t('txt_sign_in_with_sso')}
                   onGetData={onGetData}
                   demoUser={env.REACT_APP_DEMO_USER ?? ''}
