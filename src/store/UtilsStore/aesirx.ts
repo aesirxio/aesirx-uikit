@@ -130,13 +130,20 @@ const removeWallet = async (
   }
 };
 
-const getContent = (content: string, customRegex?: RegExp, customRegexReplace?: RegExp) => {
+const DOMPurify = require('dompurify');
+
+const getContent = (content: string, customRegex?: any, customRegexReplace?: any) => {
   const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
   const regexReplace = customRegexReplace ?? /<[^>]+>/g;
   const tags = content.match(regex);
-  const contents = tags?.map((tag) => tag.replace(regexReplace, ''));
-  return contents;
+  const contents = tags?.map((tag) => {
+    // Use DOMPurify to sanitize the content
+    const sanitizedContent = DOMPurify.sanitize(tag.replace(regexReplace, ''));
+    return sanitizedContent;
+  });
+  return contents || [];
 };
+
 
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
