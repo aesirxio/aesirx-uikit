@@ -1,5 +1,6 @@
 import FormData from 'form-data';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 const getMember = async (accessToken: string) => {
   try {
     const member = await axios.get(
@@ -130,11 +131,16 @@ const removeWallet = async (
   }
 };
 
-const getContent = (content: string, customRegex?: any, customRegexReplace?: any) => {
-  const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
-  const regexReplace = customRegexReplace ?? /<[^>]+>/g;
-  const tags = content.match(regex);
-  const contents = tags?.map((tag) => tag.replace(regexReplace, '').replace(/(<([^>]+)>)/gi, ''));
+
+
+const getContent = (content: string, customRegex?: RegExp, customRegexReplace?: RegExp) => {
+  const sanitizedContent = DOMPurify.sanitize(content, { FORBID_TAGS: ['script'] });
+  const regex = customRegex || /<h2\b[^>]*>(.*?)<\/h2>/gi;
+  const regexReplace = customRegexReplace || /<[^>]+>/g;
+  const tags = sanitizedContent.match(regex);
+  const contents = tags?.map((tag: any) =>
+    tag.replace(regexReplace, '').replace(/(<([^>]+)>)/gi, '')
+  );
   return contents || [];
 };
 
