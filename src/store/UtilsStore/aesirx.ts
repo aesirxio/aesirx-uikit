@@ -135,19 +135,20 @@ const removeWallet = async (
 
 
   
-  const getContent = (content: string, customRegex?: any, customRegexReplace?: any) => {
-    const sanitizedContent = DOMPurify.sanitize(content, {
-      ALLOWED_TAGS: ['h2', 'p', 'strong', 'em'], // Specify the tags you want to allow
-      ALLOWED_ATTR: ['class', 'style'], // Specify the attributes you want to allow
-    });
-    const regex = customRegex || /<h2\b[^>]*>(.*?)<\/h2>/gi;
-    const regexReplace = customRegexReplace || /<[^>]+>/g;
-    const tags = sanitizedContent.match(regex);
-    const contents = tags?.map((tag : any) =>
-      tag.replace(regexReplace, '').replace(/(<([^>]+)>)/gi, '')
-    );
-    return contents || [];
-  };
+const getContent = (content: string, customRegex?: any, customRegexReplace?: any) => {
+  const sanitizedContent = DOMPurify.sanitize(content, {
+    ALLOWED_TAGS: ['h2', 'p', 'strong', 'em'],
+    ALLOWED_ATTR: ['class', 'style'],
+  });
+  const regex = customRegex || /<h2\b[^>]*>([\s\S]*?)<\/h2>/gi;
+  const regexReplace = customRegexReplace || /<\/?[^>]+(>|$)/g;
+  const tags = sanitizedContent.match(regex);
+  const contents = tags?.map((tag: any) =>
+    tag.replace(regexReplace, '').replace(/(<([^>]+)>)/gi, '')
+  );
+  return contents || [];
+};
+
 
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
