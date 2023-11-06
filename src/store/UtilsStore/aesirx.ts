@@ -135,11 +135,12 @@ const getContent = (content: string, customRegex?: any, customRegexReplace?: any
   const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
   const regexReplace = customRegexReplace ?? /<[^>]+>/g;
   const tags = content.match(regex);
-  
-  // Sanitize the content using DOMPurify
-  const sanitizedContents = tags?.map((tag) => DOMPurify.sanitize(tag.replace(regexReplace, '')));
-
-  return sanitizedContents || [];
+  const contents = tags?.map((tag) => {
+    // Use DOMPurify to sanitize the content
+    const sanitizedContent = DOMPurify.sanitize(tag.replace(regexReplace, ''));
+    return sanitizedContent;
+  });
+  return contents || [];
 };
 
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
