@@ -1,5 +1,6 @@
 import FormData from 'form-data';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 const getMember = async (accessToken: string) => {
   try {
     const member = await axios.get(
@@ -130,20 +131,16 @@ const removeWallet = async (
   }
 };
 
-const DOMPurify = require('dompurify');
-
 const getContent = (content: string, customRegex?: any, customRegexReplace?: any) => {
   const regex = customRegex ?? /<h2\b[^>]*>(.*?)<\/h2>/gi;
   const regexReplace = customRegexReplace ?? /<[^>]+>/g;
   const tags = content.match(regex);
-  const contents = tags?.map((tag) => {
-    // Use DOMPurify to sanitize the content
-    const sanitizedContent = DOMPurify.sanitize(tag.replace(regexReplace, ''));
-    return sanitizedContent;
-  });
-  return contents || [];
-};
+  
+  // Sanitize the content using DOMPurify
+  const sanitizedContents = tags?.map((tag) => DOMPurify.sanitize(tag.replace(regexReplace, '')));
 
+  return sanitizedContents || [];
+};
 
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
