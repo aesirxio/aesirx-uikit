@@ -128,7 +128,7 @@ const ProfileGeneral = observer(() => {
       className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
-    }
+    },
   ];
 
   const validator = new SimpleReactValidator();

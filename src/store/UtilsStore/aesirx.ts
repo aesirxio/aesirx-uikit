@@ -131,10 +131,6 @@ const removeWallet = async (
   }
 };
 
-
-
-
-  
 const getContent = (content: string, customRegex?: any, customRegexReplace?: any) => {
   const sanitizedContent = DOMPurify.sanitize(content, {
     ALLOWED_TAGS: ['h2', 'p', 'strong', 'em'],
@@ -148,7 +144,6 @@ const getContent = (content: string, customRegex?: any, customRegexReplace?: any
   );
   return contents || [];
 };
-
 
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
