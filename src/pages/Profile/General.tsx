@@ -32,7 +32,6 @@ const ProfileGeneral = observer(() => {
     [MEMBER_FIELD_KEY.LAST_NAME]: '',
     [MEMBER_FIELD_KEY.DESCRIPTION]: '',
     [MEMBER_FIELD_KEY.ORGANIZATION]: '',
-    [MEMBER_FIELD_KEY.CHATGPT_KEY]: '',
   });
 
   const getPreregistration = async (jwt: string) => {
@@ -72,7 +71,6 @@ const ProfileGeneral = observer(() => {
           preregistrationData?.description ?? memberInfo[MEMBER_GET_FIELD_KEY.DESCRIPTION],
         [MEMBER_FIELD_KEY.ORGANIZATION]:
           preregistrationData?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
-         [MEMBER_FIELD_KEY.CHATGPT_KEY]: memberInfo[MEMBER_GET_FIELD_KEY.CHATGPT_KEY],
       });
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -130,16 +128,7 @@ const ProfileGeneral = observer(() => {
       className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
-    },
-    {
-      label: "ChatGPT Key",
-      key: MEMBER_FIELD_KEY.CHATGPT_KEY,
-      type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.CHATGPT_KEY],
-      className: 'col-12',
-      inputClassName: 'border',
-      readOnly: true,
-    },
+    }
   ];
 
   const validator = new SimpleReactValidator();

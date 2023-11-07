@@ -1,4 +1,4 @@
-import { getPreregistration } from '../store/UtilsStore/web3';
+import { getDemoData, getPreregistration } from '../store/UtilsStore/web3';
 import React, {
   createContext,
   ReactNode,
@@ -10,7 +10,8 @@ import React, {
 import { useGlobalContext } from './global';
 import { getMember } from '../store/UtilsStore/aesirx';
 import secureLocalStorage from 'react-secure-storage';
-import { notify } from 'components';
+import axios from 'axios';
+import { notify } from '../components/Toast';
 import { AUTHORIZATION_KEY, Storage } from 'aesirx-lib';
 interface UserContextType {
   preregistration?: any;
@@ -35,19 +36,20 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
   const accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
   const [preregistration, setPreregistration] = useState<any>(null);
   const [aesirxData, setAesirxData] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (jwt && accessToken) {
       try {
         (async () => {
-          await getData(jwt, accessToken);
+          await getData(jwt, accessToken as string);
         })();
       } catch (error: any) {
         notify(error.message, 'error');
       }
     }
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-console
   }, [jwt, accessToken]);
 
   const getData = useCallback(async (jwt: string, accessToken: string) => {
@@ -61,15 +63,23 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
         aesirxData = { ...member };
 
         const preregistrationData = (await getPreregistration(jwt)).data?.objForm;
+        const demo = (await getDemoData(jwt)).data?.objForm;
+        if (preregistrationData?.aesirXAccount) {
+          const response = await axios.post('/api/member/checkadmin', {
+            username: preregistrationData?.aesirXAccount,
+          });
+          response?.data && setIsAdmin(true);
+        }
         _preregistration = {
           ...preregistrationData,
           ..._preregistration,
+          ...{ demo: demo },
         };
 
         secureLocalStorage.setItem('auth', true);
-        secureLocalStorage.setItem('access_token', accessToken);
-        secureLocalStorage.setItem('member_id', aesirxData?.member_id);
-        secureLocalStorage.setItem('member_email', aesirxData?.email);
+        secureLocalStorage.setItem('access_token', String(accessToken));
+        secureLocalStorage.setItem('member_id', String(aesirxData?.member_id));
+        secureLocalStorage.setItem('member_email', String(aesirxData?.email));
       } catch (error: any) {
         if (
           error?.response?.status === 403 ||
@@ -84,7 +94,7 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
     setAesirxData(aesirxData);
     setPreregistration(_preregistration);
     setLoading(false);
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-console
   }, []);
 
   return (
@@ -92,6 +102,7 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
       value={{
         preregistration: preregistration,
         aesirxData: aesirxData,
+        isAdmin: isAdmin,
         userLoading: loading,
         getData: getData,
       }}

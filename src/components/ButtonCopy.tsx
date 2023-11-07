@@ -1,10 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy';
-import copy_icon from '../assets/images/copy_icon.png';
 import { useState } from 'react';
-import ImageIcon from './ImageIcon';
-function ButtonCopy({ content, className, text, isBlack = false, isReplaceClass, iconClass }: any) {
+
+function ButtonCopy({ content, className, text, isReplaceClass }: any) {
   const [copy, setCopy] = useState(false);
   const handleCopy = (content: any) => {
     setCopy(true);
@@ -15,24 +14,12 @@ function ButtonCopy({ content, className, text, isBlack = false, isReplaceClass,
   };
   const customClass = isReplaceClass
     ? className
-    : `rounded-4 fs-8 lh-base font-opensans fw-bold btn btn-success text-body cursor-copy ${className}`;
+    : `rounded-1 fs-8 lh-base font-opensans fw-bold text-body cursor-copy ${className}`;
   return (
     <button onClick={() => handleCopy(content)} disabled={copy} className={customClass}>
       {!copy ? (
         <>
-          {text}{' '}
-          {isBlack ? (
-            <div className="d-flex align-items-center">
-              <ImageIcon
-                className={iconClass || 'icon-primary'}
-                src={copy_icon.src}
-                width={16}
-                height={16}
-              />
-            </div>
-          ) : (
-            <FontAwesomeIcon icon={faCopy} width={16} height={16} />
-          )}
+          {text} <FontAwesomeIcon icon={faCopy} width={16} height={16} />
         </>
       ) : (
         'COPIED!'
