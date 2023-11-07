@@ -110,5 +110,7 @@
   "txt_all_member_role": "All Member Role",
   "txt_member_role_name": "Member Role Name",
   "txt_add_member_role_name": "Add Member Role Name",
-  "txt_left_menu_member_role": "Member Role"
+  "txt_left_menu_member_role": "Member Role",
+  "txt_left_menu_permissions": "Permissions",
+  "txt_all_permission": "All Permissions"
 }
