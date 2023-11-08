@@ -7,3 +7,4 @@ export * from './Roles';
 export * from './Roles/edit';
 export * from './MemberRole';
 export * from './MemberRole/edit';
+export * from './Permission';

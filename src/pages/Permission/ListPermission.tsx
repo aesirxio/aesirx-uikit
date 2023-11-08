@@ -79,52 +79,7 @@ const ListPermission = observer((props: any) => {
       width: 100,
       className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
       Cell: ({ value, row }: any) => {
-        const optionsList = [
-          { label: 'Allowed', value: '1' },
-          { label: 'Denied', value: '0' },
-        ];
-        return (
-          <>
-            <div className="d-flex align-items-center py-8px">
-              <div className="mb-1 position-relative">
-                {row?.depth !== 0 && value && (
-                  <>
-                    {loadingUpdate[
-                      row?.original?.group_id + '-' + row?.original?.asset_id + '-' + 'create'
-                    ]?.status === 'saving' && <Spinner className="spinner-overlay" size={'30px'} />}
-                    <AesirXSelect
-                      defaultValue={{
-                        label: optionsList?.find((o: any) => o.value == value?.toString())?.label,
-                        value: value?.toString(),
-                      }}
-                      options={optionsList}
-                      isDisabled={
-                        loadingUpdate[
-                          row?.original?.group_id + '-' + row?.original?.asset_id + '-' + 'create'
-                        ]?.status === 'saving'
-                          ? true
-                          : false
-                      }
-                      className={`fs-sm`}
-                      isBorder={true}
-                      arrowColor={'var(--dropdown-indicator-color)'}
-                      size="large"
-                      onChange={(data: any) => {
-                        handleChangeOption(
-                          row?.original?.entity,
-                          row?.original?.asset_id,
-                          row?.original?.group_id,
-                          data?.value,
-                          'create'
-                        );
-                      }}
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        );
+        return <SelectPermission row={row} value={value} permission={'create'} />;
       },
     },
     {
@@ -133,52 +88,7 @@ const ListPermission = observer((props: any) => {
       width: 100,
       className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
       Cell: ({ value, row }: any) => {
-        const optionsList = [
-          { label: 'Allowed', value: '1' },
-          { label: 'Denied', value: '0' },
-        ];
-        return (
-          <>
-            <div className="d-flex align-items-center py-8px">
-              <div className="mb-1 position-relative">
-                {row?.depth !== 0 && value && (
-                  <>
-                    {loadingUpdate[
-                      row?.original?.group_id + '-' + row?.original?.asset_id + '-' + 'edit'
-                    ]?.status === 'saving' && <Spinner className="spinner-overlay" size={'30px'} />}
-                    <AesirXSelect
-                      defaultValue={{
-                        label: optionsList?.find((o: any) => o.value == value?.toString())?.label,
-                        value: value?.toString(),
-                      }}
-                      options={optionsList}
-                      className={`fs-sm`}
-                      isDisabled={
-                        loadingUpdate[
-                          row?.original?.group_id + '-' + row?.original?.asset_id + '-' + 'edit'
-                        ]?.status === 'saving'
-                          ? true
-                          : false
-                      }
-                      isBorder={true}
-                      arrowColor={'var(--dropdown-indicator-color)'}
-                      size="large"
-                      onChange={(data: any) => {
-                        handleChangeOption(
-                          row?.original?.entity,
-                          row?.original?.asset_id,
-                          row?.original?.group_id,
-                          data?.value,
-                          'edit'
-                        );
-                      }}
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        );
+        return <SelectPermission row={row} value={value} permission={'edit'} />;
       },
     },
     {
@@ -187,55 +97,57 @@ const ListPermission = observer((props: any) => {
       width: 100,
       className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
       Cell: ({ value, row }: any) => {
-        const optionsList = [
-          { label: 'Allowed', value: '1' },
-          { label: 'Denied', value: '0' },
-        ];
-        return (
-          <>
-            <div className="d-flex align-items-center py-8px">
-              <div className="mb-1 position-relative">
-                {row?.depth !== 0 && value && (
-                  <>
-                    {loadingUpdate[
-                      row?.original?.group_id + '-' + row?.original?.asset_id + '-' + 'delete'
-                    ]?.status === 'saving' && <Spinner className="spinner-overlay" size={'30px'} />}
-                    <AesirXSelect
-                      defaultValue={{
-                        label: optionsList?.find((o: any) => o.value == value?.toString())?.label,
-                        value: value?.toString(),
-                      }}
-                      isDisabled={
-                        loadingUpdate[
-                          row?.original?.group_id + '-' + row?.original?.asset_id + '-' + 'delete'
-                        ]?.status === 'saving'
-                          ? true
-                          : false
-                      }
-                      options={optionsList}
-                      className={`fs-sm`}
-                      isBorder={true}
-                      arrowColor={'var(--dropdown-indicator-color)'}
-                      size="large"
-                      onChange={(data: any) => {
-                        handleChangeOption(
-                          row?.original?.entity,
-                          row?.original?.asset_id,
-                          row?.original?.group_id,
-                          data?.value,
-                          'delete'
-                        );
-                      }}
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        );
+        return <SelectPermission row={row} value={value} permission={'delete'} />;
       },
     },
   ];
+
+  const SelectPermission = ({ row, value, permission }: any) => {
+    const optionsList = [
+      { label: 'Allowed', value: '1' },
+      { label: 'Denied', value: '0' },
+    ];
+    return (
+      <div className="d-flex align-items-center py-8px">
+        <div className="mb-1 position-relative">
+          {row?.depth !== 0 && value && (
+            <>
+              {loadingUpdate[
+                row?.original?.group_id + '-' + row?.original?.asset_id + '-' + permission
+              ]?.status === 'saving' && <Spinner className="spinner-overlay" size={'30px'} />}
+              <AesirXSelect
+                defaultValue={{
+                  label: optionsList?.find((o: any) => o.value == value?.toString())?.label,
+                  value: value?.toString(),
+                }}
+                options={optionsList}
+                className={`fs-sm`}
+                isDisabled={
+                  loadingUpdate[
+                    row?.original?.group_id + '-' + row?.original?.asset_id + '-' + permission
+                  ]?.status === 'saving'
+                    ? true
+                    : false
+                }
+                isBorder={true}
+                arrowColor={'var(--dropdown-indicator-color)'}
+                size="large"
+                onChange={(data: any) => {
+                  handleChangeOption(
+                    row?.original?.entity,
+                    row?.original?.asset_id,
+                    row?.original?.group_id,
+                    data?.value,
+                    permission
+                  );
+                }}
+              />
+            </>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   const handleChangeOption = async (
     entity: any,
