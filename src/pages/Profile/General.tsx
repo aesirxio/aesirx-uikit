@@ -15,9 +15,7 @@ import { PAGE_STATUS } from 'constant/PageStatus';
 import SimpleReactValidator from 'simple-react-validator';
 import axios from 'axios';
 
-type FormPropsData = {
-  [key in MEMBER_FIELD_KEY]: string; // eslint-disable-line
-};
+type FormPropsData = any;
 
 const ProfileGeneral = observer(() => {
   const [saving, setSaving] = useState(false);
@@ -59,7 +57,7 @@ const ProfileGeneral = observer(() => {
 
   const fetchData = async () => {
     try {
-      const preregistrationData = await getPreregistration(jwt);
+      const preregistrationData = await getPreregistration(`${jwt}`);
 
       setFormPropsData({
         [MEMBER_FIELD_KEY.ID]: preregistrationData?.id ?? memberInfo[MEMBER_GET_FIELD_KEY.ID],

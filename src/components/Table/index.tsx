@@ -152,7 +152,7 @@ const Table = ({
   const { t } = props;
   return (
     <>
-      <div className="fs-14 text-color position-relative pt-3 px-3 rounded-3 is-list">
+      <div className="fs-14 position-relative pt-3 px-3 rounded-3 is-list">
         {rows.length ? (
           <table {...getTableProps()} className={`${classNameTable} w-100`}>
             <thead className="fs-6 bg-blue-5 border-bottom-2">

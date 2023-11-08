@@ -2,7 +2,9 @@
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
  */
-
+.aesirxui {
+  @import 'aesirx-sso/build/lib/index.scss';
+}
 .btn_loading {
   display: none;
 }

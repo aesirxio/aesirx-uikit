@@ -11,7 +11,7 @@ import { ThemesSwitcher } from 'components/ThemesSwitcher';
 import { Profile } from 'components/Profile';
 import { useAppContext } from 'providers/AppProvider';
 
-const Header = ({ children, logo }: any) => {
+const Header = ({ children, logo, isColorMode }: any) => {
   const { noavatar, integration, rootId } = useAppContext();
   const [isMini, setMini] = useState(integration);
 
@@ -60,8 +60,7 @@ const Header = ({ children, logo }: any) => {
         <div className="d-flex justify-content-end flex-1 align-items-center">
           {children}
           <LanguagesSwitcher />
-          <ThemesSwitcher />
-
+          {isColorMode && <ThemesSwitcher />}
           {!noavatar && <Profile />}
         </div>
       </div>
