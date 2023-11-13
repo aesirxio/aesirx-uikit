@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusSquare, faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 import { PERMISSION_FIELD } from 'aesirx-lib';
 interface loadingUpdate {
-  [name: string]: { status: string };
+  [name: string]: { status: string; value: string };
 }
 const ListPermission = observer((props: any) => {
   const { t } = useTranslation();
@@ -107,18 +107,25 @@ const ListPermission = observer((props: any) => {
       { label: 'Allowed', value: '1' },
       { label: 'Denied', value: '0' },
     ];
+    const valueSelected =
+      loadingUpdate[row?.original?.group_id + '-' + row?.original?.asset_id + '-' + permission]
+        ?.value;
     return (
       <div className="d-flex align-items-center py-8px">
         <div className="mb-1 position-relative">
-          {row?.depth !== 0 && value && (
+          {row?.depth !== 0 && (value?.toString() === '0' || value?.toString() === '1') && (
             <>
               {loadingUpdate[
                 row?.original?.group_id + '-' + row?.original?.asset_id + '-' + permission
               ]?.status === 'saving' && <Spinner className="spinner-overlay" size={'30px'} />}
               <AesirXSelect
                 defaultValue={{
-                  label: optionsList?.find((o: any) => o.value == value?.toString())?.label,
-                  value: value?.toString(),
+                  label: optionsList?.find(
+                    (o: any) =>
+                      o.value?.toString() ===
+                      (valueSelected ? valueSelected?.toString() : value?.toString())
+                  )?.label,
+                  value: valueSelected ? valueSelected?.toString() : value?.toString(),
                 }}
                 options={optionsList}
                 className={`fs-sm`}
@@ -158,7 +165,7 @@ const ListPermission = observer((props: any) => {
   ) => {
     setLoadingUpdate({
       ...loadingUpdate,
-      [group_id + '-' + asset_id + '-' + action]: { status: 'saving' },
+      [group_id + '-' + asset_id + '-' + action]: { status: 'saving', value: value },
     });
     await viewModel.handleFormPropsData(PERMISSION_FIELD.ASSET_ID, asset_id ?? 0);
     await viewModel.handleFormPropsData(PERMISSION_FIELD.GROUP_ID, group_id ?? 0);
@@ -168,7 +175,7 @@ const ListPermission = observer((props: any) => {
     await viewModel.update();
     setLoadingUpdate({
       ...loadingUpdate,
-      [group_id + '-' + asset_id + '-' + action]: { status: 'done' },
+      [group_id + '-' + asset_id + '-' + action]: { status: 'done', value: value },
     });
   };
 
