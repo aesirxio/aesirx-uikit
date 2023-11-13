@@ -16,11 +16,11 @@ const customStyles = (
     control: (provided: any) => {
       return {
         ...provided,
-        minHeight: size === 'large' ? 46 : 32,
+        minHeight: size === 'large' ? 46 : size ? size : 32,
         height: '100%',
         boxShadow: 'none',
         borderRadius: '5px',
-        borderColor: isBorder ? 'var(--aesirxui-gray-dark)' : 'transparent',
+        borderColor: isBorder ? 'var(--aesirxui-border-color)' : 'transparent',
         '&:hover': {
           // borderColor: isBorder ? '#8bdcbc' : 'transparent',
           // borderRight: '1px solid var(--aesirxui-border-color)',
