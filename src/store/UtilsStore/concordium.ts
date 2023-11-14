@@ -1,9 +1,12 @@
 import { TESTNET, MAINNET, Network } from '@concordium/react-components';
 import {
-  AccountAddress,
   AccountTransactionType,
-  CcdAmount,
+  BlockHash,
+  ConcordiumGRPCClient,
+  ContractAddress,
   deserializeReceiveReturnValue,
+  ReceiveName,
+  ReturnValue,
   SchemaVersion,
   TransactionStatusEnum,
 } from '@concordium/web-sdk';
@@ -18,13 +21,9 @@ async function waitForFinalizedTransaction(transactionHash: any, connection: any
   while (transactionStatus !== TransactionStatusEnum.Finalized) {
     txnStatus = await client.getTransactionStatus(transactionHash);
     transactionStatus = txnStatus?.status;
-    // eslint-disable-next-line no-console
-    console.info(`txn : ${transactionHash}, status: ${txnStatus?.status}`);
-
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
   }
-  // eslint-disable-next-line no-console
-  console.log('Transaction has been finalized', txnStatus);
+
   return ensureValidOutcome(txnStatus?.outcomes);
 }
 
@@ -65,7 +64,7 @@ const updateSmartContract = async (
       account,
       AccountTransactionType.Update,
       {
-        amount: toCcd(BigInt(amount)),
+        amount: amount,
         address: {
           index: BigInt(index),
           subindex: BigInt(subIndex),
@@ -84,53 +83,51 @@ const updateSmartContract = async (
 };
 
 const invokeSmartContract = async (
-  connection: any,
   account: any,
   name: any,
   index: any,
   subIndex: any,
   schema: any,
-  method: any
+  method: any,
+  rpcClient: ConcordiumGRPCClient
 ) => {
   try {
-    const client = await connection.getJsonRpcClient();
-
-    const rawReturnValue = await client.invokeContract({
-      invoker: new AccountAddress(account),
-      contract: { index: BigInt(index), subindex: BigInt(subIndex) },
-      method: `${name}.${method}`,
+    const res = await rpcClient.invokeContract({
+      invoker: account,
+      method: ReceiveName.fromString(`${name}.${method}`),
+      contract: ContractAddress.create(index, subIndex),
     });
 
+    if (!res || res.tag === 'failure' || !res.returnValue) {
+      throw new Error(
+        `RPC call 'invokeContract' on method '${name}.view' of contract '${method}' failed`
+      );
+    }
+
     const returnValue = await deserializeReceiveReturnValue(
-      Buffer.from(rawReturnValue.returnValue, 'hex'),
+      ReturnValue.toBuffer(res.returnValue),
       Buffer.from(schema, 'base64'),
       name,
       method,
       SchemaVersion.V2
     );
-    // eslint-disable-next-line no-console
-    console.log('invokeSmartContract', returnValue);
 
     return returnValue;
   } catch (error: any) {
-    // eslint-disable-next-line no-console
-    console.log('invokeSmartContract error', error);
     return null;
   }
 };
 
-const checkPaid = async (account: any, connection: any, web3id: any) => {
+const checkPaid = async (account: any, web3id: any, rpcClient: ConcordiumGRPCClient) => {
   const data = await invokeSmartContract(
-    connection,
     account,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_NAME,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_INDEX,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_SUBINDEX,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_WHITELIST_RAWSCHEMA,
-    'view'
+    'view',
+    rpcClient
   );
-  // eslint-disable-next-line no-console
-  console.log('checkPaid', web3id, data, data?.paid_web3ids.includes(web3id));
 
   if (data) {
     return data?.paid_web3ids.includes(web3id);
@@ -179,22 +176,15 @@ const mintWeb3IDNFT = async (account: any, connection: any, web3id: any) => {
   }
 };
 
-const checkMintWeb3IDNFT = async (account: any, connection: any) => {
+const checkMintWeb3IDNFT = async (account: any, gRPCClient: any) => {
   const data = await invokeSmartContract(
-    connection,
     account,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_NFT_WEB3ID_NAME,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_NFT_WEB3ID_INDEX,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_NFT_WEB3ID_SUBINDEX,
     process.env.NEXT_PUBLIC_SMARTCONTRACT_NFT_WEB3ID_RAWSCHEMA,
-    'view'
-  );
-  // eslint-disable-next-line no-console
-  console.log(
-    'checkMintWeb3IDNFT',
-    account,
-    data,
-    data?.state?.some((arrVal: any) => account === arrVal[0]?.Account[0])
+    'view',
+    gRPCClient
   );
 
   if (data) {
@@ -202,23 +192,17 @@ const checkMintWeb3IDNFT = async (account: any, connection: any) => {
   }
 };
 
-const MICRO_CCD_IN_CCD = 1000000;
-
-const toCcd = (ccdAmount: any) => {
-  return new CcdAmount(ccdAmount * BigInt(MICRO_CCD_IN_CCD));
-};
-
 const transactionLink = (network: Network, txHash: string) => {
   return `${network.ccdScanBaseUrl}/?dcount=1&dentity=transaction&dhash=${txHash}`;
 };
 
-const checkNetwork = (hash: string) => {
+const checkNetwork = (hash: any) => {
   switch (process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK) {
     case 'testnet':
-      return hash === TESTNET.genesisHash;
+      return BlockHash.toHexString(hash) === TESTNET.genesisHash;
 
     default:
-      return hash === MAINNET.genesisHash;
+      return BlockHash.toHexString(hash) === MAINNET.genesisHash;
   }
 };
 
@@ -232,6 +216,5 @@ export {
   checkMintWeb3IDNFT,
   transactionLink,
   checkNetwork,
-  toCcd,
   ensureValidOutcome,
 };
