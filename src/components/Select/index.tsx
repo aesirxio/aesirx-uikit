@@ -50,7 +50,7 @@ class AesirXSelect extends React.Component<any, any> {
       return (
         <ValueContainer
           {...props}
-          className={`valueContainerCustom ps-16 ${isLanguageSelect ? '' : 'pe-14'}`}
+          className={`valueContainerCustom ps-16 py-2 ${isLanguageSelect ? '' : 'pe-14'}`}
         >
           {!props.hasValue && (
             <Placeholder {...props} isFocused={props.isFocused}>
