@@ -4,7 +4,6 @@ import { BROWSER_WALLET } from '../store/UtilsStore/config';
 
 import { notify } from '../components/Toast';
 import { checkNetwork } from '../store/UtilsStore/concordium';
-import { useUserContext } from './user';
 import secureLocalStorage from 'react-secure-storage';
 import {
   WithWalletConnector,
@@ -79,15 +78,10 @@ const Web3ContextApp: React.FC<AppProps> = ({ children, ...props }) => {
     autoLoad = true,
   } = props;
 
-  const { setConnection, account, connection, genesisHash } = useConnection(
-    connectedAccounts,
-    genesisHashes
-  );
+  const { setConnection, account, connection } = useConnection(connectedAccounts, genesisHashes);
 
   const { connect, connectError, isConnecting } = useConnect(activeConnector, setConnection);
   const [, setRpcGenesisHash] = useState<string>();
-
-  const { preregistration } = useUserContext();
 
   useEffect(() => {
     if (activeConnector) {

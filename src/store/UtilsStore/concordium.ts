@@ -21,13 +21,9 @@ async function waitForFinalizedTransaction(transactionHash: any, connection: any
   while (transactionStatus !== TransactionStatusEnum.Finalized) {
     txnStatus = await client.getTransactionStatus(transactionHash);
     transactionStatus = txnStatus?.status;
-
-    console.info(`txn : ${transactionHash}, status: ${txnStatus?.status}`);
-
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
   }
 
-  console.log('Transaction has been finalized', txnStatus);
   return ensureValidOutcome(txnStatus?.outcomes);
 }
 
@@ -36,12 +32,12 @@ const ensureValidOutcome = (outcomes: any) => {
     throw Error('Null Outcome');
   }
 
-  let successTxnSummary = Object.keys(outcomes)
+  const successTxnSummary = Object.keys(outcomes)
     .map((k) => outcomes[k])
     .find((s) => s.result.outcome === 'success');
 
   if (!successTxnSummary) {
-    let failures = Object.keys(outcomes)
+    const failures = Object.keys(outcomes)
       .map((k) => outcomes[k])
       .filter((s) => s.result.outcome === 'reject')
       .map((s) => s.result.rejectReason.tag)
@@ -116,11 +112,8 @@ const invokeSmartContract = async (
       SchemaVersion.V2
     );
 
-    console.log('invokeSmartContract', returnValue);
-
     return returnValue;
   } catch (error: any) {
-    console.log('invokeSmartContract error', error);
     return null;
   }
 };
@@ -135,8 +128,6 @@ const checkPaid = async (account: any, web3id: any, rpcClient: ConcordiumGRPCCli
     'view',
     rpcClient
   );
-
-  console.log('checkPaid', web3id, data, data?.paid_web3ids.includes(web3id));
 
   if (data) {
     return data?.paid_web3ids.includes(web3id);
@@ -195,19 +186,11 @@ const checkMintWeb3IDNFT = async (account: any, gRPCClient: any) => {
     'view',
     gRPCClient
   );
-  console.log(
-    'checkMintWeb3IDNFT',
-    account,
-    data,
-    data?.state?.some((arrVal: any) => account === arrVal[0]?.Account[0])
-  );
 
   if (data) {
     return data?.state?.some((arrVal: any) => account === arrVal[0]?.Account[0]);
   }
 };
-
-const MICRO_CCD_IN_CCD = 1000000;
 
 const transactionLink = (network: Network, txHash: string) => {
   return `${network.ccdScanBaseUrl}/?dcount=1&dentity=transaction&dhash=${txHash}`;
