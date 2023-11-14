@@ -8,7 +8,7 @@ import UpgradeLicense from './UpgradeLicense';
 import { shortenString } from '../../store/UtilsStore/aesirx';
 import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import Web3ContextProvider from '../../providers/web3';
 import { Spinner } from '../../components/Spinner';
 
@@ -40,12 +40,25 @@ const Licenses = (props: any) => {
     </GlobalContextProvider>
   );
 };
+const tableHead = [
+  { title: 'Domain' },
+  { title: 'Test Domain' },
+  { title: 'License' },
+  { title: 'Solution', sort: 'solution' },
+  { title: 'Plan', sort: 'plan' },
+  { title: '' },
+  { title: '' },
+];
 
 const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
   const { aesirxData, userLoading } = useUserContext();
   const [modal, setModal] = useState<Modal>({ show: false });
   const [upgradePlan, setUpgradePlan] = useState<UpgradePlan>();
   const [addNew, setAddNew] = useState<boolean>(false);
+  const [orderSort, setOrderSort] = useState<any>({
+    column: '',
+    reverseOrder: false,
+  });
 
   const billingList =
     aesirxData?.licenses?.length &&
@@ -86,6 +99,35 @@ const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
       />
     );
   }
+  const handleSort = (column?: string) => {
+    if (!column) return;
+    const newSort = {
+      column: column,
+      reverseOrder: column == orderSort.column ? !orderSort.reverseOrder : false,
+    };
+
+    if (aesirxData?.licenses?.length) {
+      aesirxData?.licenses.sort((a: UpgradePlan, b: UpgradePlan) => {
+        switch (column) {
+          case 'solution':
+            return (
+              (a.subscription?.[0]?.product_name < b.subscription?.[0]?.product_name ? -1 : 1) *
+              (newSort.reverseOrder ? -1 : 1)
+            );
+          case 'plan':
+            return (
+              (a.subscription?.[0]?.subscribed_package_name <
+              b.subscription?.[0]?.subscribed_package_name
+                ? -1
+                : 1) * (newSort.reverseOrder ? -1 : 1)
+            );
+          default:
+            return 0;
+        }
+      });
+      setOrderSort(newSort);
+    }
+  };
 
   return (
     <>
@@ -129,23 +171,50 @@ const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
         </Row>
         {aesirxData?.licenses?.length && (
           <>
-            <h3 className="fs-18 fw-semibold mb-3 ">Licenses</h3>
+            <Row>
+              <Col md={8} lg={7} xl={6} xxl={5}>
+                <h3 className="fs-4 fw-semibold mb-2">AesirX License Hub</h3>
+                <p className="text-gray-700">
+                  Your one-stop shop for privacy-conscious marketing solutions. Register, manage,
+                  and buy or upgrade licenses with USD or $AESIRX.
+                </p>
+              </Col>
+            </Row>
             <Table
               hover
-              className="bg-white fs-7 mb-5 text-gray-700 rounded shadow-table "
+              className="bg-white fs-7 mb-5 text-gray-700 rounded shadow-table"
               striped
               borderless
               responsive
             >
               <thead className="border-bottom">
                 <tr>
-                  <th className="fw-semibold text-gray-700 text-nowrap">Domain</th>
-                  <th className="fw-semibold text-gray-700 text-nowrap">Test Domain</th>
-                  <th className="fw-semibold text-gray-700 text-nowrap">License</th>
-                  <th className="fw-semibold text-gray-700 text-nowrap">Solution</th>
-                  <th className="fw-semibold text-gray-700 text-nowrap">Plan</th>
-                  <th className="fw-semibold text-gray-700 text-nowrap"></th>
-                  <th className="fw-semibold text-gray-700 text-nowrap"></th>
+                  {tableHead.map((item: any, index: number) => {
+                    return (
+                      <th key={index} className="fw-semibold text-gray-700 text-nowrap">
+                        {item.title}{' '}
+                        {item.sort && (
+                          <FontAwesomeIcon
+                            onClick={() => handleSort(item.sort)}
+                            className={`cursor-pointer ${
+                              orderSort.column == item.sort ? 'text-success' : ''
+                            } ${
+                              orderSort.column == item.sort && orderSort.reverseOrder
+                                ? ''
+                                : 'align-baseline'
+                            }`}
+                            icon={
+                              orderSort.column == item.sort && orderSort.reverseOrder
+                                ? faSortUp
+                                : faSortDown
+                            }
+                            width={14}
+                            height={14}
+                          />
+                        )}
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
               <tbody className="text-gray-900">
@@ -160,8 +229,7 @@ const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
                           <ButtonCopy
                             content={license?.name}
                             isBlack
-                            className="bg-transparent border-0 text-body py-0 ms-3"
-                            customClass=" rounded-2 p-2"
+                            className="bg-transparent border-0 text-dark py-0"
                           />
                         </div>
                       </td>
@@ -213,7 +281,7 @@ const LicensesApp = ({ pricingDatas, pricingListID }: any) => {
               borderless
               responsive
             >
-              <thead className="border-bottom">
+              <thead className="border-bottom-2">
                 <tr>
                   <th className="fw-semibold text-nowrap">ORDER ID</th>
                   <th className="fw-semibold text-nowrap">AESIRX SOLUTION</th>
