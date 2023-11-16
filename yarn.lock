@@ -3556,6 +3556,19 @@ aesirx-lib@^2.0.1:
     query-string "7"
     react-secure-storage "^1.2.2"
 
+aesirx-lib@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/aesirx-lib/-/aesirx-lib-2.0.2.tgz#b4b3f4f1aff9efa8a0d11c5434d26ff07ef46172"
+  integrity sha512-1mu7XGxHFaByWJ5NsNNrem8DkK/7thHIhmtRWsMBy89JNDhuUeYr13TerVDTx+QJI0a9tpUCvDAabSrnKmgKZw==
+  dependencies:
+    axios "^1.6.0"
+    axios-auth-refresh "^3.3.6"
+    date-fns "^2.30.0"
+    date-fns-tz "^2.0.0"
+    moment "^2.29.4"
+    query-string "7"
+    react-secure-storage "^1.2.2"
+
 aesirx-sso@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.2.1.tgz#c0811e9d4fc5562397f183cd8b2e242fe51daa68"
@@ -3845,6 +3858,15 @@ axios@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
   integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
+  dependencies:
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.6.0:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.2.tgz#de67d42c755b571d3e698df1b6504cde9b0ee9f2"
+  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"
