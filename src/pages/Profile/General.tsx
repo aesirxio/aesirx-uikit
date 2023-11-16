@@ -32,7 +32,7 @@ const ProfileGeneral = observer(() => {
     [MEMBER_FIELD_KEY.LAST_NAME]: '',
     [MEMBER_FIELD_KEY.DESCRIPTION]: '',
     [MEMBER_FIELD_KEY.ORGANIZATION]: '',
-    [MEMBER_FIELD_KEY.CHATGPT_KEY]: '',
+    [MEMBER_FIELD_KEY.CHATGPT_API_KEY]: '',
   });
 
   const getPreregistration = async (jwt: string) => {
@@ -72,7 +72,7 @@ const ProfileGeneral = observer(() => {
           preregistrationData?.description ?? memberInfo[MEMBER_GET_FIELD_KEY.DESCRIPTION],
         [MEMBER_FIELD_KEY.ORGANIZATION]:
           preregistrationData?.organization ?? memberInfo[MEMBER_GET_FIELD_KEY.ORGANIZATION],
-        [MEMBER_FIELD_KEY.CHATGPT_KEY]: memberInfo[MEMBER_GET_FIELD_KEY.CHATGPT_KEY],
+        [MEMBER_FIELD_KEY.CHATGPT_API_KEY]: memberInfo[MEMBER_GET_FIELD_KEY.CHATGPT_API_KEY],
       });
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -133,9 +133,9 @@ const ProfileGeneral = observer(() => {
     },
     {
       label: 'ChatGPT Key',
-      key: MEMBER_FIELD_KEY.CHATGPT_KEY,
+      key: MEMBER_FIELD_KEY.CHATGPT_API_KEY,
       type: FORM_FIELD_TYPE.INPUT,
-      getValueSelected: formPropsData[MEMBER_FIELD_KEY.CHATGPT_KEY],
+      getValueSelected: formPropsData[MEMBER_FIELD_KEY.CHATGPT_API_KEY],
       className: 'col-12',
       inputClassName: 'border',
       readOnly: true,
