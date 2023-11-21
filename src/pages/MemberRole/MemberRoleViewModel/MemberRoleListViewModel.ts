@@ -115,15 +115,17 @@ class MemberRoleListViewModel {
     return data.map((o: any) => {
       const date = moment(o[MEMBER_ROLE_FIELD.MODIFIED_TIME]).format('DD MMM, YYYY');
       return {
-        role: {
+        member_role: {
           id: o[MEMBER_ROLE_FIELD.ID],
           name: o[MEMBER_ROLE_FIELD.NAME],
         },
+        member: o[MEMBER_ROLE_FIELD.MEMBER_NAME],
+        role: o[MEMBER_ROLE_FIELD.ROLE_NAME],
         organisation: o[MEMBER_ROLE_FIELD.ORGANISATION],
         lastModified: {
           status: o[MEMBER_ROLE_FIELD.PUBLISHED],
           dateTime: date ?? '',
-          author: o[MEMBER_ROLE_FIELD.CREATED_USER_NAME],
+          author: o[MEMBER_ROLE_FIELD.MODIFIED_USER_NAME],
         },
         published: {
           state: o[MEMBER_ROLE_FIELD.PUBLISHED],

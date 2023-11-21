@@ -55,7 +55,7 @@ const PublishOptionsDetail = observer(
             <div className="d-flex align-items-center justify-content-between w-100 mb-24">
               <div>
                 <div style={{ marginLeft: '-5px' }}>
-                  <ComponentSVG url="/assets/images/post-status.svg" className="bg-black" />
+                  <ComponentSVG url="/assets/images/post-status.svg" className="bg-dark" />
                   &nbsp;
                   {t('txt_status')}:
                 </div>
@@ -98,8 +98,8 @@ const PublishOptionsDetail = observer(
           )}
           {isLastModified && (
             <div className="d-flex align-items-center justify-content-between w-100 mb-24 border-bottom pb-24">
-              <div>
-                <i className="me-1">
+              <div className="d-flex align-items-center">
+                <i className="me-2 mb-1">
                   <FontAwesomeIcon icon={faUser} />
                 </i>
                 {t('txt_last_modified')}:

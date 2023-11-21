@@ -19,7 +19,7 @@ const ListMemberRole = observer((props: any) => {
   const columnsTable = [
     {
       Header: t('txt_member_role_name'),
-      accessor: 'member-role',
+      accessor: 'member_role',
       width: 150,
       className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
       Cell: ({ value }: any) => {
@@ -27,11 +27,11 @@ const ListMemberRole = observer((props: any) => {
           <>
             <div className="d-flex align-items-center py-8px">
               <div>
-                <div className="mb-1">{value.name}</div>
+                <div className="mb-1">{value?.name}</div>
                 <div className="text-green">
                   <button
                     onClick={() => {
-                      history.push(`/member-role/edit/${value.id}`);
+                      history.push(`/member-role/edit/${value?.id}`);
                     }}
                     className="p-0 border-0 bg-transparent d-inline-block text-green"
                   >
@@ -41,6 +41,62 @@ const ListMemberRole = observer((props: any) => {
               </div>
             </div>
           </>
+        );
+      },
+    },
+    {
+      Header: t('txt_member_name'),
+      accessor: 'member',
+      width: 150,
+      className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
+      Cell: ({ value }: any) => {
+        return (
+          <>
+            <div className="d-flex align-items-center py-8px">
+              <div className="mb-1">{value}</div>
+            </div>
+          </>
+        );
+      },
+    },
+    {
+      Header: t('txt_role_name'),
+      accessor: 'role',
+      width: 150,
+      className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
+      Cell: ({ value }: any) => {
+        return (
+          <>
+            <div className="d-flex align-items-center py-8px">
+              <div className="mb-1">{value}</div>
+            </div>
+          </>
+        );
+      },
+    },
+    {
+      Header: t('txt_last_modified'),
+      accessor: 'lastModified',
+      className: 'py-18 text-gray border-bottom-1 text-uppercase fw-semibold align-middle',
+      Cell: ({ value }: any) => {
+        return (
+          <div className="pe-2">
+            <div className="mb-1">
+              {viewModel?.successResponse?.listPublishStatus?.find(
+                (o: any) => o.value == value.status
+              )?.label &&
+                t(
+                  'txt_' +
+                    viewModel?.successResponse?.listPublishStatus
+                      .find((o: any) => o.value == value.status)
+                      ?.label?.toString()
+                      .toLowerCase()
+                )}
+            </div>
+            <div>
+              {value.dateTime} {t('txt_by')} {value.author}
+            </div>
+          </div>
         );
       },
     },
