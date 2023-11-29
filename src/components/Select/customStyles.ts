@@ -36,7 +36,6 @@ const customStyles = (
     menu: (styles: any) => {
       return {
         ...styles,
-        top: 'calc(100% - 5px)',
         margin: 0,
         border: 0,
         borderTopLeftRadius: 0,
