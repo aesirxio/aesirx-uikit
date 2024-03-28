@@ -1,4 +1,4 @@
-import { PermissionApiService, PermissionItemModel, PermissionApiService } from 'aesirx-lib';
+import { PermissionApiService, PermissionItemModel } from 'aesirx-lib';
 
 class PermissionStore {
   async getList(filters: any) {
