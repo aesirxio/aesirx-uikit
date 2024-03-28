@@ -10,7 +10,7 @@ class ProfileStore {
       return false;
     }
   }
-  async updatePreregistration(jwt: any, data: any) {
+  async updatePreregistration(jwt: any, data: any): Promise<any> {
     try {
       const updateGeneralApiService = new AesirxMemberApiService();
 
@@ -30,7 +30,7 @@ class ProfileStore {
       return null;
     }
   }
-  async getMemberWeb3(jwt: any) {
+  async getMemberWeb3(jwt: any): Promise<any> {
     try {
       const getMemberInfoAPIService = new AesirxMemberApiService();
       return await getMemberInfoAPIService.getPreregistration(jwt);
