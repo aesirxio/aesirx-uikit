@@ -1,13 +1,9 @@
-import {
-  OrganizationMemberApiService,
-  OrganizationMemberItemModel,
-  OrganizationRoleApiService,
-} from 'aesirx-lib';
+import { PermissionApiService, PermissionItemModel, PermissionApiService } from 'aesirx-lib';
 
-class MemberStore {
+class PermissionStore {
   async getList(filters: any) {
     try {
-      const getListAPIService = new OrganizationMemberApiService();
+      const getListAPIService = new PermissionApiService();
       const respondedData = await getListAPIService.getList(filters);
       return { error: false, response: respondedData };
     } catch (error: any) {
@@ -17,19 +13,9 @@ class MemberStore {
 
   async getListWithoutPagination(filters: any) {
     try {
-      const getListAPIService = new OrganizationMemberApiService();
+      const getListAPIService = new PermissionApiService();
       const respondedData = await getListAPIService.getList({ ...filters, 'list[limit]': 9999 });
 
-      return { error: false, response: respondedData };
-    } catch (error: any) {
-      return { error: true, response: error?.response?.data };
-    }
-  }
-
-  async getRoleList(filters: any) {
-    try {
-      const getListAPIService = new OrganizationRoleApiService();
-      const respondedData = await getListAPIService.getList(filters);
       return { error: false, response: respondedData };
     } catch (error: any) {
       return { error: true, response: error?.response?.data };
@@ -43,7 +29,7 @@ class MemberStore {
       const results = true;
 
       if (results) {
-        const getDetailInfoAPIService = new OrganizationMemberApiService();
+        const getDetailInfoAPIService = new PermissionApiService();
 
         const respondedData = await getDetailInfoAPIService.getDetail(id);
 
@@ -57,9 +43,9 @@ class MemberStore {
   async create(createFieldData: any) {
     try {
       const convertedUpdateGeneralData =
-        OrganizationMemberItemModel.__transformItemToApiOfCreation(createFieldData);
+        PermissionItemModel.__transformItemToApiOfCreation(createFieldData);
       let resultOnSave: { result: '' };
-      const createOrganizationApiService = new OrganizationMemberApiService();
+      const createOrganizationApiService = new PermissionApiService();
 
       // eslint-disable-next-line prefer-const
       resultOnSave = await createOrganizationApiService.create(convertedUpdateGeneralData);
@@ -72,10 +58,10 @@ class MemberStore {
   async update(updateFieldData: any) {
     try {
       const convertedUpdateGeneralData =
-        OrganizationMemberItemModel.__transformItemToApiOfUpdation(updateFieldData);
+        PermissionItemModel.__transformItemToApiOfUpdation(updateFieldData);
 
       let resultOnSave: { result: '' };
-      const updateOrganizationApiService = new OrganizationMemberApiService();
+      const updateOrganizationApiService = new PermissionApiService();
       // eslint-disable-next-line prefer-const
       resultOnSave = await updateOrganizationApiService.update(convertedUpdateGeneralData);
       return { error: false, response: resultOnSave?.result };
@@ -86,7 +72,7 @@ class MemberStore {
 
   async delete(arr: any) {
     try {
-      const aesirxOrganizationApiService = new OrganizationMemberApiService();
+      const aesirxOrganizationApiService = new PermissionApiService();
       const respondedData = await aesirxOrganizationApiService.delete(arr);
       return { error: false, response: respondedData };
     } catch (error: any) {
@@ -95,4 +81,4 @@ class MemberStore {
   }
 }
 
-export { MemberStore };
+export { PermissionStore };

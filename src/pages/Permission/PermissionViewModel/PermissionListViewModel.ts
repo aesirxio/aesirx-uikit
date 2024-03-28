@@ -4,16 +4,16 @@
  */
 
 import { makeAutoObservable, runInAction } from 'mobx';
-import { ORGANISATION_MEMBER_FIELD } from 'aesirx-lib';
+import { PERMISSION_FIELD } from 'aesirx-lib';
 import { PAGE_STATUS } from 'constant';
-import { MemberStore } from '../store';
-import moment from 'moment';
+import { PermissionStore } from '../store';
 import { notify } from 'components';
 
-class MemberListViewModel {
-  memberStore: MemberStore;
+class PermissionListViewModel {
+  permissionStore: PermissionStore;
   formStatus = PAGE_STATUS.READY;
-  memberListViewModel = {};
+  permissionListViewModel = {};
+  formPropsData = [{}];
   items = [];
   filter = {};
   successResponse: { [key: string]: any } = {
@@ -24,25 +24,25 @@ class MemberListViewModel {
     filters: {
       'list[limit]': 10,
     },
-    listMembers: [],
+    listPermission: [],
     pagination: null,
-    listMembersWithoutPagination: [],
+    listPermissionWithoutPagination: [],
   };
 
-  constructor(memberStore: MemberStore) {
+  constructor(permissionStore: PermissionStore) {
     makeAutoObservable(this);
-    this.memberStore = memberStore;
+    this.permissionStore = permissionStore;
   }
 
-  setForm = (memberListViewModel: any) => {
-    this.memberListViewModel = memberListViewModel;
+  setForm = (permissionListViewModel: any) => {
+    this.permissionListViewModel = permissionListViewModel;
   };
 
   initializeData = async () => {
     runInAction(() => {
       this.successResponse.state = false;
     });
-    const data = await this.memberStore.getList(this.successResponse.filters);
+    const data = await this.permissionStore.getList(this.successResponse.filters);
 
     runInAction(() => {
       if (!data?.error) {
@@ -57,11 +57,11 @@ class MemberListViewModel {
     runInAction(() => {
       this.successResponse.state = false;
     });
-    const data = await this.memberStore.getListWithoutPagination(this.filter);
+    const data = await this.permissionStore.getListWithoutPagination(this.filter);
 
     runInAction(() => {
       if (!data?.error) {
-        this.callbackOnSuccessGetMembersHandler(data?.response);
+        this.callbackOnSuccessGetPermissionHandler(data?.response);
       } else {
         this.onErrorHandler(data?.response);
       }
@@ -91,7 +91,7 @@ class MemberListViewModel {
       }
     }
 
-    const data = await this.memberStore.getList(this.successResponse.filters);
+    const data = await this.permissionStore.getList(this.successResponse.filters);
 
     runInAction(() => {
       if (!data?.error) {
@@ -109,7 +109,7 @@ class MemberListViewModel {
     }
 
     if (result?.listItems) {
-      this.successResponse.listMembers = this.transform(result?.listItems);
+      this.successResponse.listPermission = this.transform(result?.listItems);
       this.successResponse.pagination = result?.pagination;
       this.items = result?.listItems;
       this.successResponse.state = true;
@@ -130,30 +130,43 @@ class MemberListViewModel {
 
   transform = (data: any) => {
     return data.map((o: any) => {
-      const date = moment(o[ORGANISATION_MEMBER_FIELD.MODIFIED_TIME]).format('DD MMM, YYYY');
+      // const date = moment(o[PERMISSION_FIELD.MODIFIED_TIME]).format('DD MMM, YYYY');
       return {
-        member: {
-          id: o[ORGANISATION_MEMBER_FIELD.ID],
-          name: o[ORGANISATION_MEMBER_FIELD.MEMBER_NAME],
+        permission: {
+          id: o[PERMISSION_FIELD.ID],
+          name: o[PERMISSION_FIELD.ROLE_NAME],
         },
-        memberEmail: o[ORGANISATION_MEMBER_FIELD.MEMBER_EMAIL],
-        memberRole: o[ORGANISATION_MEMBER_FIELD.MEMBER_ROLE],
-        organisation: o[ORGANISATION_MEMBER_FIELD.ORGANISATION],
-        lastModified: {
-          status: o[ORGANISATION_MEMBER_FIELD.PUBLISHED],
-          dateTime: date ?? '',
-          author: o[ORGANISATION_MEMBER_FIELD.CREATED_USER_NAME],
-        },
-        published: {
-          state: o[ORGANISATION_MEMBER_FIELD.PUBLISHED],
-          id: o[ORGANISATION_MEMBER_FIELD.ID],
-        },
+        create: '',
+        edit: '',
+        delete: '',
+        subRows: Object.keys(o[PERMISSION_FIELD.RULES]).map((key) => ({
+          permission: {
+            id: o[PERMISSION_FIELD.ID],
+            name: key ?? '',
+          },
+          asset_id: o[PERMISSION_FIELD.RULES][key][PERMISSION_FIELD.ASSET_ID],
+          entity: o[PERMISSION_FIELD.RULES][key][PERMISSION_FIELD.ENTITY],
+          group_id: o[PERMISSION_FIELD.GROUP_ID],
+          create: o[PERMISSION_FIELD.RULES][key]?.permission?.create,
+          edit: o[PERMISSION_FIELD.RULES][key]?.permission?.edit,
+          delete: o[PERMISSION_FIELD.RULES][key]?.permission?.delete,
+        })),
+        // organisation: o[PERMISSION_FIELD.ORGANISATION],
+        // lastModified: {
+        //   status: o[PERMISSION_FIELD.PUBLISHED],
+        //   dateTime: date ?? '',
+        //   author: o[PERMISSION_FIELD.CREATED_USER_NAME],
+        // },
+        // published: {
+        //   state: o[PERMISSION_FIELD.PUBLISHED],
+        //   id: o[PERMISSION_FIELD.ID],
+        // },
       };
     });
   };
 
-  deleteMembers = async (arr: any) => {
-    const data = await this.memberStore.delete(arr);
+  deletePermission = async (arr: any) => {
+    const data = await this.permissionStore.delete(arr);
     runInAction(async () => {
       if (!data?.error) {
         await this.initializeData();
@@ -166,9 +179,9 @@ class MemberListViewModel {
   };
 
   setPublished = async ({ id, name }: any, state: any = 0) => {
-    const data = await this.memberStore.update({
+    const data = await this.permissionStore.update({
       id: id.toString(),
-      member_name: name,
+      permission_name: name,
       published: state.toString(),
     });
     runInAction(async () => {
@@ -187,18 +200,57 @@ class MemberListViewModel {
     });
   };
 
-  callbackOnSuccessGetMembersHandler = (result: any) => {
-    this.successResponse.listMembersWithoutPagination = result?.listItems?.map((o: any) => {
+  callbackOnSuccessGetPermissionHandler = (result: any) => {
+    this.successResponse.listPermissionWithoutPagination = result?.listItems?.map((o: any) => {
       let dash = '';
       for (let index = 1; index < o.level; index++) {
         dash += '- ';
       }
       return {
         value: o?.id,
-        label: `${dash}${o[ORGANISATION_MEMBER_FIELD.MEMBER_NAME]}`,
+        label: `${dash}${o[PERMISSION_FIELD.ROLE_NAME]}`,
       };
     });
   };
+
+  update = async () => {
+    // this.formStatus = PAGE_STATUS.LOADING;
+    const data = await this.permissionStore.update(this.formPropsData);
+
+    runInAction(() => {
+      if (!data?.error) {
+        this.onUpdateSuccessHandler(data?.response, 'Updated successfully');
+      } else {
+        this.onUpdateErrorHandler(data?.response);
+      }
+    });
+    return data;
+  };
+
+  handleFormPropsData = (key: any, value: any) => {
+    if (key && value !== null) {
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        Object.assign(this.formPropsData[key], value);
+      } else {
+        this.formPropsData[key] = value;
+      }
+    }
+  };
+
+  onUpdateErrorHandler = (error: any) => {
+    error._messages[0]?.message
+      ? notify(error._messages[0]?.message, 'error')
+      : error.message && notify(error.message, 'error');
+    // this.successResponse.state = false;
+    // this.formStatus = PAGE_STATUS.READY;
+  };
+
+  onUpdateSuccessHandler = (result: any, message: any) => {
+    if (result && message) {
+      notify(message, 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
 }
 
-export default MemberListViewModel;
+export default PermissionListViewModel;

@@ -12,6 +12,7 @@ import arrow from '../../assets/images/arrow-right.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAppContext } from 'providers';
 // import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
+import { history } from 'routes/history';
 
 const Menu = ({ dataMenu, title = '' }: any) => {
   const { settingRoutes } = useAppContext();
@@ -47,7 +48,6 @@ const Menu = ({ dataMenu, title = '' }: any) => {
       document.getElementById('wr_list_menu')?.classList.add('wr_list_menu');
     }
   };
-
   return (
     <>
       {dataMenu && (
@@ -103,14 +103,20 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                         onClick={() => handleOpen(menuListkey)}
                         className={`d-flex align-items-center justify-content-center rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-white ${
                           isOpenCollapse === menuListkey.toString() ||
-                          isOpenCollapse?.includes(menuListkey + '-')
+                          isOpenCollapse?.includes(menuListkey + '-') ||
+                          menuList?.submenu?.find(
+                            (item: any) => item?.link === history.location.pathname
+                          )
                             ? 'active'
                             : ''
                         }`}
                         aria-controls="wr_list_submenu"
                         aria-expanded={
                           isOpenCollapse === menuListkey.toString() ||
-                          isOpenCollapse?.includes(menuListkey + '-')
+                          isOpenCollapse?.includes(menuListkey + '-') ||
+                          menuList?.submenu?.find(
+                            (item: any) => item?.link === history.location.pathname
+                          )
                         }
                       >
                         <span
@@ -134,7 +140,10 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                       <Collapse
                         in={
                           isOpenCollapse === menuListkey.toString() ||
-                          isOpenCollapse?.includes(menuListkey + '-')
+                          isOpenCollapse?.includes(menuListkey + '-') ||
+                          menuList?.submenu?.find(
+                            (item: any) => item?.link === history.location.pathname
+                          )
                         }
                       >
                         <ul id="wr_list_submenu" className="list-unstyled">

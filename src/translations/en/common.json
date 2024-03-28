@@ -99,5 +99,18 @@
   "txt_menu_setting": "Setting",
   "txt_running": "Running",
   "txt_schedule": "Schedule",
-  "txt_stop": "Stop"
+  "txt_stop": "Stop",
+  "txt_left_menu_members": "Members",
+  "txt_members": "Members",
+  "txt_roles": "Roles",
+  "txt_left_menu_roles": "Roles",
+  "txt_all_role": "All Roles",
+  "txt_role_name": "Role Name",
+  "txt_add_role_name": "Add Role Name",
+  "txt_all_member_role": "All Member Role",
+  "txt_member_role_name": "Member Role Name",
+  "txt_add_member_role_name": "Add Member Role Name",
+  "txt_left_menu_member_role": "Member Role",
+  "txt_left_menu_permissions": "Permissions",
+  "txt_all_permission": "All Permissions"
 }
