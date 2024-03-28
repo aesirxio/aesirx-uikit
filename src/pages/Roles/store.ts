@@ -1,8 +1,4 @@
-import {
-  OrganizationRoleApiService,
-  OrganizationRoleItemModel,
-  OrganizationRoleApiService,
-} from 'aesirx-lib';
+import { OrganizationRoleApiService, OrganizationRoleItemModel } from 'aesirx-lib';
 
 class RoleStore {
   async getList(filters: any) {
