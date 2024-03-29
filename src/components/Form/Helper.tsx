@@ -15,7 +15,10 @@ import { FormSelection } from './FormSelection';
 import { FormSelectDropdown } from './FormSelectDropdown';
 import { FormRadio } from './FormRadio';
 import { Input } from './Input';
-
+import { FormEditor } from './FormEditor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { Tooltip } from 'react-tooltip';
 const renderingGroupFieldHandler = (group: any, validator: any) =>
   Object.keys(group.fields)
     .map((fieldIndex) =>
@@ -138,9 +141,67 @@ const renderField = (field: any, validator: any) => {
         </Form.Group>
       );
 
+    case FORM_FIELD_TYPE.EDITOR:
+      return (
+        <Form.Group key={field.key} className={`mb-24 ${className}`}>
+          <div className="d-flex align-item-center">
+            {field.label && (
+              <Label
+                text={field.label}
+                isLabelHTML={field.isLabelHTML}
+                required={field.required ?? false}
+              />
+            )}
+            {field.description && (
+              <TooltipField
+                keyTooltip={field?.key}
+                description={field?.description}
+                defaultValue={field?.default}
+              />
+            )}
+          </div>
+          {field.isEditor === false ? (
+            <Form.Control
+              as="textarea"
+              defaultValue={field.getValueSelected}
+              required={field.required ?? false}
+              id={field.key}
+              onChange={field.handleChange ?? undefined}
+              onBlur={field.blurred ?? undefined}
+              placeholder={field.placeholder}
+              maxLength={field?.maxLength}
+            />
+          ) : (
+            <FormEditor field={field} key={field.key} />
+          )}
+          {field.validation &&
+            validator.message(field.label, field.value, field.validation, {
+              className: 'text-danger',
+            })}
+        </Form.Group>
+      );
+
     default:
       return <></>;
   }
+};
+
+const TooltipField = ({ keyTooltip, description, defaultValue }: any) => {
+  return (
+    <>
+      <FontAwesomeIcon
+        data-tooltip-id={`tooltip-${keyTooltip}`}
+        data-tooltip-html={
+          defaultValue
+            ? description + `</br>Default: <strong>${defaultValue}</strong>`
+            : description
+        }
+        className="mx-sm fs-12 mb-1"
+        icon={faCircleInfo}
+      />
+      <Tooltip id={`tooltip-${keyTooltip}`} />
+    </>
+  );
 };
 
 export { renderingGroupFieldHandler, renderField };

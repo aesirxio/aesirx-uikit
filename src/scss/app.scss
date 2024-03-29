@@ -940,6 +940,10 @@
     --datepicker-color: #c8c8db;
     --datepicker-range-bg-color: #181f3d;
     --aesirxui-input-disabled-bg: #171e3a;
+    --aesirxui-gray-heading: #ffffffcc;
+    .text-gray-heading {
+      color: $white;
+    }
     .bg-white {
       background-color: var(--#{$prefix}color-blue-6);
     }
@@ -1036,6 +1040,11 @@
     }
     .border-select-item {
       border-color: var(--#{$prefix}gray-dark);
+    }
+    .form-switch {
+      .form-check-input {
+        --aesirxui-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%238dd9ca'/%3e%3c/svg%3e") !important;
+      }
     }
   }
 }

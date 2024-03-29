@@ -89,7 +89,7 @@ const MemberInformation = observer(
                         this.viewModel.memberDetailViewModel.formPropsData[
                           ORGANISATION_MEMBER_FIELD.ROLE_ID
                         ].toString()
-                    )?.name,
+                    )?.role_name,
                     value:
                       this.viewModel.memberDetailViewModel.formPropsData[
                         ORGANISATION_MEMBER_FIELD.ROLE_ID
@@ -99,7 +99,7 @@ const MemberInformation = observer(
               getDataSelectOptions: this.viewModel?.roleList?.listItems?.length
                 ? this.viewModel?.roleList?.listItems?.map((item: any) => {
                     return {
-                      label: item.name,
+                      label: item.role_name,
                       value: item.id,
                     };
                   })

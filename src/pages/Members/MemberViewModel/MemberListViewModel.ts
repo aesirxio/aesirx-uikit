@@ -26,6 +26,7 @@ class MemberListViewModel {
     },
     listMembers: [],
     pagination: null,
+    listMembersWithoutPagination: [],
   };
 
   constructor(memberStore: MemberStore) {
@@ -49,6 +50,22 @@ class MemberListViewModel {
       } else {
         this.onErrorHandler(data?.response);
       }
+    });
+  };
+
+  initializeAllData = async () => {
+    runInAction(() => {
+      this.successResponse.state = false;
+    });
+    const data = await this.memberStore.getListWithoutPagination(this.filter);
+
+    runInAction(() => {
+      if (!data?.error) {
+        this.callbackOnSuccessGetMembersHandler(data?.response);
+      } else {
+        this.onErrorHandler(data?.response);
+      }
+      this.successResponse.state = true;
     });
   };
 
@@ -167,6 +184,19 @@ class MemberListViewModel {
   isLoading = () => {
     runInAction(() => {
       this.successResponse.state = false;
+    });
+  };
+
+  callbackOnSuccessGetMembersHandler = (result: any) => {
+    this.successResponse.listMembersWithoutPagination = result?.listItems?.map((o: any) => {
+      let dash = '';
+      for (let index = 1; index < o.level; index++) {
+        dash += '- ';
+      }
+      return {
+        value: o?.id,
+        label: `${dash}${o[ORGANISATION_MEMBER_FIELD.MEMBER_NAME]}`,
+      };
     });
   };
 }

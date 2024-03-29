@@ -15,6 +15,17 @@ class MemberStore {
     }
   }
 
+  async getListWithoutPagination(filters: any) {
+    try {
+      const getListAPIService = new OrganizationMemberApiService();
+      const respondedData = await getListAPIService.getList({ ...filters, 'list[limit]': 9999 });
+
+      return { error: false, response: respondedData };
+    } catch (error: any) {
+      return { error: true, response: error?.response?.data };
+    }
+  }
+
   async getRoleList(filters: any) {
     try {
       const getListAPIService = new OrganizationRoleApiService();

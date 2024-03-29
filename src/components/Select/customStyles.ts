@@ -9,17 +9,18 @@ const customStyles = (
   arrowColor: any,
   isDisabled: any,
   size: any,
-  minWidth: any
+  minWidth: any,
+  isLanguageSelect?: any
 ) => {
   return {
     control: (provided: any) => {
       return {
         ...provided,
-        minHeight: size === 'large' ? 46 : 32,
+        minHeight: size === 'large' ? 46 : size ? size : 32,
         height: '100%',
         boxShadow: 'none',
         borderRadius: '5px',
-        borderColor: isBorder ? 'var(--aesirxui-gray-dark)' : 'transparent',
+        borderColor: isBorder ? 'var(--aesirxui-border-color)' : 'transparent',
         '&:hover': {
           // borderColor: isBorder ? '#8bdcbc' : 'transparent',
           // borderRight: '1px solid var(--aesirxui-border-color)',
@@ -35,7 +36,6 @@ const customStyles = (
     menu: (styles: any) => {
       return {
         ...styles,
-        top: 'calc(100% - 5px)',
         margin: 0,
         border: 0,
         borderTopLeftRadius: 0,
@@ -54,19 +54,37 @@ const customStyles = (
         ...styles,
         paddingTop: 0,
         paddingBottom: 0,
+        ...(isLanguageSelect ? { paddingLeft: 16, paddingRight: 16 } : {}),
       };
     },
     option: (provided: any, state: any) => {
       return {
         ...provided,
-        color: state.isSelected ? 'var(--aesirxui-menu-lang-color)' : 'var(--aesirxui-body-color)',
-        backgroundColor: state.isSelected
-          ? 'var(--aesirxui-menu-lang-hover-bg)'
-          : 'var(--aesirxui-white)',
-        '&:hover': {
-          color: 'var(--aesirxui-menu-lang-color)',
-          backgroundColor: 'var(--aesirxui-menu-lang-hover-bg)',
-        },
+        ...(isLanguageSelect
+          ? {
+              borderBottom: '1px solid var(--aesirxui-gray-dark)',
+              color: state.isSelected ? 'var(--aesirxui-success)' : 'var(--aesirxui-body-color)',
+              backgroundColor: 'var(--aesirxui-white)',
+              '&:hover': {
+                color: 'var(--aesirxui-success)',
+                backgroundColor: 'transparent',
+                cursor: 'pointer',
+              },
+              paddingLeft: 0,
+              paddingRight: 0,
+            }
+          : {
+              color: state.isSelected
+                ? 'var(--aesirxui-menu-lang-color)'
+                : 'var(--aesirxui-body-color)',
+              backgroundColor: state.isSelected
+                ? 'var(--aesirxui-menu-lang-hover-bg)'
+                : 'var(--aesirxui-white)',
+              '&:hover': {
+                color: 'var(--aesirxui-menu-lang-color)',
+                backgroundColor: 'var(--aesirxui-menu-lang-hover-bg)',
+              },
+            }),
       };
     },
 
