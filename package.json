@@ -63,7 +63,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/react-color": "^3.0.6",
     "aesirx-dam-app": "^1.5.0",
-    "aesirx-lib": "^2.0.4",
+    "aesirx-lib": "^2.0.5",
     "aesirx-sso": "^1.4.6",
     "bootstrap": "^5.3.1",
     "dayjs": "^1.11.10",
