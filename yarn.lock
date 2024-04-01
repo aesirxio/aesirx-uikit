@@ -1163,6 +1163,15 @@
     "@ckeditor/ckeditor5-utils" "38.1.1"
     lodash-es "^4.17.15"
 
+"@ckeditor/ckeditor5-core@^41.2.1":
+  version "41.2.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-core/-/ckeditor5-core-41.2.1.tgz#908e04b5c933539c7a5edcaaa6e464bf0c405292"
+  integrity sha512-h75yyYy17a8Zj7SayWcNCevzD/JKosHGDIeGQht4R0HxfT+/108AGxRA8ELpAaiPTvb9uoOLSQg5DiM/hPjHuQ==
+  dependencies:
+    "@ckeditor/ckeditor5-engine" "41.2.1"
+    "@ckeditor/ckeditor5-utils" "41.2.1"
+    lodash-es "4.17.21"
+
 "@ckeditor/ckeditor5-easy-image@38.1.1":
   version "38.1.1"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-easy-image/-/ckeditor5-easy-image-38.1.1.tgz#3d830496e1c41c84aad7a191aa076a293a254aae"
@@ -1185,6 +1194,14 @@
   dependencies:
     "@ckeditor/ckeditor5-utils" "38.1.1"
     lodash-es "^4.17.15"
+
+"@ckeditor/ckeditor5-engine@41.2.1":
+  version "41.2.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-engine/-/ckeditor5-engine-41.2.1.tgz#e385298975b607feb9600c55d270ad0d06dbb36a"
+  integrity sha512-p2XtuSL7TGzgKHWPV/N8M0bX0I/ygmBTZ+D90TwqgW8cKCNYCTluQvceAleoRJAuovPK/KAi8OeDj/TjXXkakA==
+  dependencies:
+    "@ckeditor/ckeditor5-utils" "41.2.1"
+    lodash-es "4.17.21"
 
 "@ckeditor/ckeditor5-enter@38.1.1":
   version "38.1.1"
@@ -1336,6 +1353,13 @@
   integrity sha512-+dSCchr8sseqWSfCuuOk5uajCo2Tr71IXmn3EGalEHE6Fc1GjWElO90GAA4Pbezrt1zG1tDqhh+bZHULAcK8wQ==
   dependencies:
     lodash-es "^4.17.15"
+
+"@ckeditor/ckeditor5-utils@41.2.1":
+  version "41.2.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-41.2.1.tgz#d6d1cfe786976b7dea3696e97ed28d40ceb606c9"
+  integrity sha512-yBtKU3QteYieEU3Wa8Wj1fea4CBFqmsemhesOIb7K5JYHFBs7xQ+efAaTWL+YTSOt/y50SEy2BCK+9mUkRohBg==
+  dependencies:
+    lodash-es "4.17.21"
 
 "@ckeditor/ckeditor5-watchdog@38.1.1":
   version "38.1.1"
@@ -6471,7 +6495,7 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.15, lodash-es@^4.17.21:
+lodash-es@4.17.21, lodash-es@^4.17.15, lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
