@@ -120,7 +120,7 @@ const AesirXDatePicker = ({
     <div
       style={{ minHeight: classContainer ? '' : '48px' }}
       ref={datePickerRef}
-      className="d-flex align-items-center bg-white rounded-1 shadow-sm daterange-picker-wrapper"
+      className="d-flex align-items-center bg-white rounded-1 daterange-picker-wrapper"
     >
       <div
         onClick={handleOpenDatePicker}
@@ -139,8 +139,8 @@ const AesirXDatePicker = ({
               ? !isDays
                 ? getDateDiffString(startDate, endDate)
                 : getDateDiff(startDate, endDate)
-                ? `${getDateDiff(startDate, endDate)} ${t('txt_days')}`
-                : ''
+                  ? `${getDateDiff(startDate, endDate)} ${t('txt_days')}`
+                  : ''
               : placeholder
           }
           isClearable={false}
