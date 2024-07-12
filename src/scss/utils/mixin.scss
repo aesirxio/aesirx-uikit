@@ -62,6 +62,9 @@
           span {
             color: $white;
           }
+          .icon:not(.arrow) {
+            background-color: $white !important;
+          }
         }
         &.active {
           .icon.arrow {

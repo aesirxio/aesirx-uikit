@@ -29,7 +29,7 @@ const LanguagesSwitcher = () => {
         onChange={(data: any) => {
           i18n.changeLanguage(data.value);
         }}
-        defaultValue={currentLanguage}
+        defaultValue={currentLanguage ?? [{ label: 'English', value: 'en' }]}
         minWidth={120}
         isLanguageSelect={true}
       />

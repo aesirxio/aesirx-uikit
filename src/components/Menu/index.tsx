@@ -68,7 +68,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                         <NavLink
                           exact={true}
                           to={menuList.link}
-                          className={`d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none`}
+                          className={`d-block px-24 py-16 mx-3 rounded link_menu text-gray-menu text-decoration-none fw-medium`}
                           activeClassName={`active`}
                           onClick={() => setIsOpenCollapse(null)}
                         >
@@ -84,7 +84,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                   style={{
                                     WebkitMaskImage: `url(${menuList.icons_color})`,
                                     WebkitMaskRepeat: 'no-repeat',
-                                    backgroundColor: '#fff',
+                                    backgroundColor: '#c8c8db',
                                   }}
                                 ></span>
                               )}
@@ -101,7 +101,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                       <NavLink
                         to={menuList.link}
                         onClick={() => handleOpen(menuListkey)}
-                        className={`d-flex align-items-center justify-content-center rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-white ${
+                        className={`d-flex align-items-center justify-content-center rounded link_menu text-decoration-none text-break px-24 py-16 mx-3 shadow-none text-gray-menu fw-medium ${
                           isOpenCollapse === menuListkey.toString() ||
                           isOpenCollapse?.includes(menuListkey + '-') ||
                           menuList?.submenu?.find(
@@ -124,7 +124,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                           style={{
                             WebkitMaskImage: `url(${menuList.icons_color})`,
                             WebkitMaskRepeat: 'no-repeat',
-                            backgroundColor: '#fff',
+                            backgroundColor: '#c8c8db',
                           }}
                         ></span>
                         <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
@@ -133,7 +133,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                           style={{
                             WebkitMaskImage: `url('${arrow}')`,
                             WebkitMaskRepeat: 'no-repeat',
-                            backgroundColor: '#fff',
+                            backgroundColor: '#1AB394',
                           }}
                         ></span>
                       </NavLink>
@@ -158,7 +158,7 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                                   <NavLink
                                     exact={true}
                                     to={value.link}
-                                    className={`d-block px-24 py-16 mx-3 rounded link_menu text-white text-decoration-none`}
+                                    className={`d-block px-24 py-16 mx-3 rounded link_menu text-gray-menu text-decoration-none fw-medium`}
                                     activeClassName={`active`}
                                   >
                                     {value?.mini_text ? (
