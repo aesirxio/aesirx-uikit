@@ -8,14 +8,14 @@ import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 
-import { SSOButton } from 'aesirx-sso';
+import { SSOButton, EmailLogin } from 'aesirx-sso';
 import { AesirxAuthenticationApiService, Storage } from 'aesirx-lib';
 import { notify } from 'components/Toast';
 import { env } from 'aesirx-lib';
 import { Spinner } from 'components/Spinner';
 import axios from 'axios';
 
-const LoginPage = ({ text }: any) => {
+const LoginPage = ({ text, loginEmail }: any) => {
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
@@ -76,13 +76,25 @@ const LoginPage = ({ text }: any) => {
               {loading ? (
                 <Spinner />
               ) : (
-                <SSOButton
-                  className="btn-success btn w-100 w-lg-50 w-xxl-40 mx-auto fw-semibold position-relative d-flex align-item-center justify-content-center my-3 px-4"
-                  text={t('txt_sign_in_with_sso')}
-                  onGetData={onGetData}
-                  demoUser={env.REACT_APP_DEMO_USER ?? ''}
-                  demoPassword={env.REACT_APP_DEMO_PASSWORD ?? ''}
-                />
+                <>
+                  {loginEmail ? (
+                    <div className="w-100 w-lg-50 mx-auto">
+                      <EmailLogin
+                        onGetData={onGetData}
+                        demoUser={env.REACT_APP_DEMO_USER ?? ''}
+                        demoPassword={env.REACT_APP_DEMO_PASSWORD ?? ''}
+                      />
+                    </div>
+                  ) : (
+                    <SSOButton
+                      className="btn-success btn w-100 w-lg-50 w-xxl-40 mx-auto fw-semibold position-relative d-flex align-item-center justify-content-center my-3 px-4"
+                      text={t('txt_sign_in_with_sso')}
+                      onGetData={onGetData}
+                      demoUser={env.REACT_APP_DEMO_USER ?? ''}
+                      demoPassword={env.REACT_APP_DEMO_PASSWORD ?? ''}
+                    />
+                  )}
+                </>
               )}
             </div>
           </div>
