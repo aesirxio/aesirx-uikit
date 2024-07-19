@@ -146,7 +146,7 @@
           .data-stream-value {
             font-size: $h5-font-size;
           }
-          &.active,
+          &.show,
           &:hover {
             .data-stream-text {
               color: $white;
@@ -160,13 +160,21 @@
     }
     .data-stream {
       &.item_menu {
-        .link_menu:hover,
-        .link_menu.active {
-          color: $success;
-          background-color: transparent;
-          i,
-          span {
-            color: $success !important;
+        .link_menu {
+          &.dropdown-toggle {
+            min-width: 200px;
+            @include media-breakpoint-down(lg) {
+              min-width: 100px;
+            }
+          }
+          &:hover,
+          &.show {
+            color: $success;
+            background-color: transparent;
+            i,
+            span {
+              color: $success !important;
+            }
           }
         }
       }
