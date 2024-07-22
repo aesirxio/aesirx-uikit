@@ -32,8 +32,8 @@ const Thumb: React.FC<ThumbType> = ({ data }) => {
                       status === t('txt_running')
                         ? 'badge bg-posted mw-50 h-20 d-inline align-middle'
                         : status === t('txt_schedule')
-                        ? 'badge bg-processing mw-50 h-20 d-inline align-middle'
-                        : 'badge bg-failed mw-50 h-20 d-inline align-middle'
+                          ? 'badge bg-processing mw-50 h-20 d-inline align-middle'
+                          : 'badge bg-failed mw-50 h-20 d-inline align-middle'
                     }`}
                   >
                     {status}
