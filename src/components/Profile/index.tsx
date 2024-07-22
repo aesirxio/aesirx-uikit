@@ -27,8 +27,8 @@ const Profile = () => {
           preregistration?.objForm?.avatar
             ? preregistration?.objForm?.avatar
             : Helper.isValidUrl(String(Storage.getItem(AUTHORIZATION_KEY.AVATAR)))
-            ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
-            : avatar
+              ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
+              : avatar
         }
         alt=""
         className="img-avatar rounded-circle object-fit-cover h-45"
