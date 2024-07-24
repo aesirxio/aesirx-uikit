@@ -14,7 +14,7 @@ jobs:
           node-version: 18.x
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Run Build
         run: CI=false yarn run prepublishOnly
