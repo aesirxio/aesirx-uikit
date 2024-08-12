@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { stringMessage } from '@concordium/react-components';
+import { env } from 'aesirx-lib';
 const createPreregistration = async (data: any, jwt: any) => {
   try {
-    return await axios.post(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/`, data, {
+    return await axios.post(`${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/`, data, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + jwt,
@@ -17,7 +18,7 @@ const createPreregistration = async (data: any, jwt: any) => {
 
 const activation = async (web3id: any, code: any) => {
   return await axios.put(
-    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/activation/${web3id}/${code}`
+    `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/activation/${web3id}/${code}`
   );
 };
 
@@ -25,7 +26,7 @@ const getNonce = async (accountAddress: any, connection: any, text: string = '')
   try {
     const nonce = (
       await axios.get(
-        `${process.env.REACT_APP_WEB3_API_ENDPOINT}/account/${accountAddress}/nonce?text=${text}`
+        `${env.REACT_APP_WEB3_API_ENDPOINT}/account/${accountAddress}/nonce?text=${text}`
       )
     ).data.nonce;
 
@@ -43,7 +44,7 @@ const getNonce = async (accountAddress: any, connection: any, text: string = '')
 };
 
 const getPreregistration = async (jwt: any) => {
-  return await axios.get(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/aesirx`, {
+  return await axios.get(`${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/aesirx`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + jwt,
@@ -54,7 +55,7 @@ const getPreregistration = async (jwt: any) => {
 const getDemoData = async (jwt: any) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/demo/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/demo/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ const getDemoData = async (jwt: any) => {
 const linkAccount = async (web3Id: any, accountAddress: any, signedNonce: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/id/${web3Id}/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/id/${web3Id}/account/${accountAddress}/?signature=${signedNonce}&network=${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`
     );
   } catch (error) {
     throw error;
@@ -79,7 +80,7 @@ const linkAccount = async (web3Id: any, accountAddress: any, signedNonce: any) =
 
 const linkAesirXAccount = async (web3id: any, jwt: any) => {
   await axios.put(
-    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/aesirx/${web3id}`,
+    `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/aesirx/${web3id}`,
     {},
     {
       headers: {
@@ -94,7 +95,7 @@ const getNonceAesirX = async (accountAddress: any, connection: any) => {
   try {
     const nonce = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=getWalletNonce&webserviceClient=site&webserviceVersion=1.0.0`,
+        `${env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=getWalletNonce&webserviceClient=site&webserviceVersion=1.0.0`,
         {
           publicAddress: accountAddress,
           wallet: 'concordium',
@@ -124,7 +125,7 @@ const getNonceAesirX = async (accountAddress: any, connection: any) => {
 const loginAesirXAccount = async (accountAddress: any, signedNonce: any) => {
   try {
     return await axios.post(
-      `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
+      `${env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
       {
         publicAddress: accountAddress,
         wallet: 'concordium',
@@ -145,7 +146,7 @@ const createAesirXAccount = async (accountAddress: any, connection: any, email: 
   try {
     const nonce = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&api=hal`,
+        `${env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&api=hal`,
         {
           public_address: accountAddress,
           wallet: 'concordium',
@@ -166,7 +167,7 @@ const createAesirXAccount = async (accountAddress: any, connection: any, email: 
 
     const aesirXID = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&task=validateSignature&api=hal`,
+        `${env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=reditem&view=item_wallet_requests_66&task=validateSignature&api=hal`,
         {
           public_address: accountAddress,
           wallet: 'concordium',
@@ -196,7 +197,7 @@ const savePreregistration = async (jwt: any, data: any) => {
     formData.append('organization', data.organization);
     formData.append('avatar', data.avatar);
 
-    return await axios.put(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration`, data, {
+    return await axios.put(`${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration`, data, {
       headers: {
         'Content-type': 'multipart/form-data',
         Authorization: 'Bearer ' + jwt,
@@ -212,7 +213,7 @@ const savePreregistration = async (jwt: any, data: any) => {
 const joinTestnet = async (accountAddress: any, signedNonce: any, jwt: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/add/${accountAddress}?signature=${signedNonce}&network=${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/add/${accountAddress}?signature=${signedNonce}&network=${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
       {},
       {
         headers: {
@@ -229,7 +230,7 @@ const joinTestnet = async (accountAddress: any, signedNonce: any, jwt: any) => {
 const addWhitelist = async (jwt: any) => {
   try {
     return await axios.post(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/demo/whitelist/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/demo/whitelist/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
       {},
       {
         headers: {
@@ -245,7 +246,7 @@ const addWhitelist = async (jwt: any) => {
 const transactionWeb3NFT = async (jwt: any, transaction: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/demo/nft/web3id/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/${transaction}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/demo/nft/web3id/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/${transaction}`,
       {},
       {
         headers: {
@@ -261,7 +262,7 @@ const transactionWeb3NFT = async (jwt: any, transaction: any) => {
 const getNFTMetaData = async (jwt: any) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/interests/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/interests/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -278,12 +279,12 @@ const createInterests = async (jwt: any, web3id: any, interests: any) => {
   try {
     const formData: any = {};
     formData['id'] = web3id;
-    formData['network'] = process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK;
+    formData['network'] = env.NEXT_PUBLIC_CONCORDIUM_NETWORK;
     Object.keys(interests).forEach((index: any) => {
       formData['interests[' + index + ']'] = interests[index];
     });
     return await axios.post(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/interests/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/interests/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
       formData,
       {
         headers: {
@@ -301,12 +302,12 @@ const updateInterests = async (jwt: any, web3id: any, interests: any) => {
   try {
     const formData: any = {};
     formData['id'] = web3id;
-    formData['network'] = process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK;
+    formData['network'] = env.NEXT_PUBLIC_CONCORDIUM_NETWORK;
     Object.keys(interests).forEach((index: any) => {
       formData['interests[' + index + ']'] = interests[index];
     });
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/interests/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/interests/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`,
       formData,
       {
         headers: {
@@ -323,7 +324,7 @@ const updateInterests = async (jwt: any, web3id: any, interests: any) => {
 const getWe3IdMetadata = async (web3id: any) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/demo/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/web3id/${web3id}`
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/demo/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/web3id/${web3id}`
     );
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -339,7 +340,7 @@ const walletLogin = async (wallet: any, accountAddress: any, signedNonce: any) =
   try {
     const data = (
       await axios.post(
-        `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
+        `${env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?api=hal&option=member&task=walletLogin&webserviceClient=site&webserviceVersion=1.0.0`,
         {
           wallet: wallet,
           publicAddress: accountAddress,
@@ -368,7 +369,7 @@ const acceptConsent = async (jwt: any, web3id: any) => {
     });
     const signature = Buffer.from(signatureJson).toString('base64');
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/interests/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/consent?signature=${signature}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/interests/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/consent?signature=${signature}`,
       {},
       {
         headers: {
@@ -384,8 +385,8 @@ const acceptConsent = async (jwt: any, web3id: any) => {
 const claimCCD = async (jwt: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimccd_60`,
-      { network: process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK },
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimccd_60`,
+      { network: env.NEXT_PUBLIC_CONCORDIUM_NETWORK },
       {
         headers: {
           'Content-Type': 'application/json',
@@ -401,8 +402,8 @@ const claimCCD = async (jwt: any) => {
 const claimCCD40 = async (jwt: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimccd_40`,
-      { network: process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK },
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimccd_40`,
+      { network: env.NEXT_PUBLIC_CONCORDIUM_NETWORK },
       {
         headers: {
           'Content-Type': 'application/json',
@@ -418,7 +419,7 @@ const claimCCD40 = async (jwt: any) => {
 const claimAESIRX = async (jwt: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimaesirx`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimaesirx`,
       {},
       {
         headers: {
@@ -435,7 +436,7 @@ const claimAESIRX = async (jwt: any) => {
 const claimOldShare2Earn = async (jwt: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimshare2earn`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/claimshare2earn`,
       {},
       {
         headers: {
@@ -453,7 +454,7 @@ const checkAccountAvailable = async (accountAddress: any) => {
   try {
     return (
       await axios.get(
-        `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkwallet/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/${accountAddress}`
+        `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkwallet/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/${accountAddress}`
       )
     ).data.result;
   } catch (error) {
@@ -463,9 +464,8 @@ const checkAccountAvailable = async (accountAddress: any) => {
 
 const validateWeb3Id = async (id: any) => {
   try {
-    return !(
-      await axios.get(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkid/${id}`)
-    ).data.result;
+    return !(await axios.get(`${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkid/${id}`))
+      .data.result;
   } catch (error) {
     return false;
   }
@@ -474,14 +474,11 @@ const validateWeb3Id = async (id: any) => {
 const validateEmail = async (email: any) => {
   try {
     const [validateOnWeb3id, validateOnAesirx] = await Promise.all([
-      !(
-        await axios.get(
-          `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkemail/${email}`
-        )
-      ).data.result,
+      !(await axios.get(`${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/checkemail/${email}`))
+        .data.result,
       !(
         await axios.post(
-          `${process.env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=checkEmailIsUsed&api=hal`,
+          `${env.NEXT_PUBLIC_AESIRX_API_ENDPOINT}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=checkEmailIsUsed&api=hal`,
           {
             email: email,
           }
@@ -496,7 +493,7 @@ const validateEmail = async (email: any) => {
 const getPoolList = async (isFeature?: any) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/stakepool${isFeature ? '?pool_feature=true' : ''}`
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/stakepool${isFeature ? '?pool_feature=true' : ''}`
     );
   } catch (error: any) {
     // eslint-disable-next-line no-console
@@ -507,7 +504,7 @@ const getPoolList = async (isFeature?: any) => {
 const stake = async (amount: number, id: any, jwt: any) => {
   try {
     return await axios.put(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/demo/${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/stake/${id}/${amount}`,
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/demo/${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}/stake/${id}/${amount}`,
       {},
       {
         headers: {
@@ -523,7 +520,7 @@ const stake = async (amount: number, id: any, jwt: any) => {
 
 const getShare2Earn = async (jwt: any) => {
   try {
-    return await axios.get(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/share2earn`, {
+    return await axios.get(`${env.REACT_APP_WEB3_API_ENDPOINT}/share2earn`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + jwt,
@@ -537,7 +534,7 @@ const getShare2Earn = async (jwt: any) => {
 const getShare2EarnList = async (isActive: any = false) => {
   try {
     return await axios.get(
-      `${process.env.REACT_APP_WEB3_API_ENDPOINT}/share2earn/list${isActive ? '?active=true' : ''}`
+      `${env.REACT_APP_WEB3_API_ENDPOINT}/share2earn/list${isActive ? '?active=true' : ''}`
     );
   } catch (error) {
     throw error;

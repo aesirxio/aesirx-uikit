@@ -14,6 +14,7 @@ import { useProfileContext } from './model';
 import { PAGE_STATUS } from 'constant/PageStatus';
 import SimpleReactValidator from 'simple-react-validator';
 import axios from 'axios';
+import { env } from 'aesirx-lib';
 
 type FormPropsData = any;
 
@@ -38,7 +39,7 @@ const ProfileGeneral = observer(() => {
     try {
       const response = await axios.get(
         `${
-          process.env.REACT_APP_WEB3_API_ENDPOINT || 'https://web3id.backend.aesirx.io:8001'
+          env.REACT_APP_WEB3_API_ENDPOINT || 'https://web3id.backend.aesirx.io:8001'
         }/preregistration/aesirx`,
         {
           headers: {
