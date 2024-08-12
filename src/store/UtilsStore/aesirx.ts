@@ -1,10 +1,11 @@
 import FormData from 'form-data';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
+import { env } from 'aesirx-lib';
 const getMember = async (accessToken: string) => {
   try {
     const member = await axios.get(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=persona&api=hal&task=getTokenByUser`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=persona&api=hal&task=getTokenByUser`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -15,7 +16,7 @@ const getMember = async (accessToken: string) => {
 
     if (member?.data?.result?.member_id) {
       const data = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal&id=${member?.data?.result?.member_id}`,
+        `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal&id=${member?.data?.result?.member_id}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -35,7 +36,7 @@ const getMember = async (accessToken: string) => {
 const updateMember = async (bodyData: any, accessToken: any) => {
   try {
     const response = await axios.put(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal`,
       bodyData,
       {
         headers: {
@@ -53,7 +54,7 @@ const updateMember = async (bodyData: any, accessToken: any) => {
 const getSubscriptionList = async (username: string, accessToken: string, product: string) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=subscription&api=hal&filter[username]=${username}&filter[product]=${product}`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=subscription&api=hal&filter[username]=${username}&filter[product]=${product}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +82,7 @@ const connectWallet = async (
 ) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=setWallet&api=hal`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=setWallet&api=hal`,
       {
         wallet: walletType,
         publicAddress: address,
@@ -110,7 +111,7 @@ const removeWallet = async (
 ) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=deleteWallet&api=hal`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=deleteWallet&api=hal`,
       {
         wallet: walletType,
         publicAddress: address,
@@ -147,17 +148,17 @@ const getContent = (content: string, customRegex?: any, customRegexReplace?: any
 
 const getPreregistrationByAddress = async (accountAddress: string, signedNonce: any) => {
   return await axios.get(
-    `${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/account/${accountAddress}/?signature=${signedNonce}&network=${process.env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`
+    `${env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/account/${accountAddress}/?signature=${signedNonce}&network=${env.NEXT_PUBLIC_CONCORDIUM_NETWORK}`
   );
 };
 
 const getServerToken = async () => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?option=token&api=oauth2`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?option=token&api=oauth2`,
       {
-        client_id: process.env.AESIRX_CLIENT_ID,
-        client_secret: process.env.AESIRX_CLIENT_SECRET,
+        client_id: env.AESIRX_CLIENT_ID,
+        client_secret: env.AESIRX_CLIENT_SECRET,
         grant_type: 'client_credentials',
       },
       {
@@ -212,15 +213,15 @@ const formatRedForm = (data: any) => {
 };
 
 const registerForm = {
-  username: process.env.NEXT_PUBLIC_USERNAME ?? 0,
-  first_name: process.env.NEXT_PUBLIC_FIRSTNAME ?? 0,
-  last_name: process.env.NEXT_PUBLIC_LASTNAME ?? 0,
-  product: process.env.NEXT_PUBLIC_PRODUCT ?? 0,
-  email: process.env.NEXT_PUBLIC_EMAIL ?? 0,
-  organization: process.env.NEXT_PUBLIC_ORGANIZATION ?? 0,
-  message: process.env.NEXT_PUBLIC_MESSAGE ?? 0,
-  order_id: process.env.NEXT_PUBLIC_ORDER_ID ?? 0,
-  code: process.env.NEXT_PUBLIC_CODE ?? 0,
+  username: env.NEXT_PUBLIC_USERNAME ?? 0,
+  first_name: env.NEXT_PUBLIC_FIRSTNAME ?? 0,
+  last_name: env.NEXT_PUBLIC_LASTNAME ?? 0,
+  product: env.NEXT_PUBLIC_PRODUCT ?? 0,
+  email: env.NEXT_PUBLIC_EMAIL ?? 0,
+  organization: env.NEXT_PUBLIC_ORGANIZATION ?? 0,
+  message: env.NEXT_PUBLIC_MESSAGE ?? 0,
+  order_id: env.NEXT_PUBLIC_ORDER_ID ?? 0,
+  code: env.NEXT_PUBLIC_CODE ?? 0,
 };
 
 const activeWallet = async (wallet: any, username: any) => {
@@ -236,7 +237,7 @@ const activeWallet = async (wallet: any, username: any) => {
 const forgotPassword = async (data: any) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=processResetRequest&api=hal`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=processResetRequest&api=hal`,
       { data: data },
       {
         headers: {
@@ -253,7 +254,7 @@ const forgotPassword = async (data: any) => {
 const resetPassword = async (data: any) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=processResetComplete&api=hal`,
+      `${env.REACT_APP_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=processResetComplete&api=hal`,
       { data: data },
       {
         headers: {
