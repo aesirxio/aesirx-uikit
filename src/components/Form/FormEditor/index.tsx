@@ -30,7 +30,7 @@ const FormEditor = ({ field }: any) => {
         onClick={() => setShow(true)}
         className={`${styles['image-upload-button']} position-absolute bottom-0 end-0 zindex-1 mb-0 cursor-pointer`}
       >
-        <SVGComponent url="/assets/images/data-stream.svg" className={'bg-black'} />
+        <SVGComponent url="/assets/images/data-stream.svg" className={'bg-dark'} />
       </p>
       <ModalDAMComponent
         show={show}
@@ -44,6 +44,19 @@ const FormEditor = ({ field }: any) => {
       <div className={`${styles['custom-editor']} haha`}>
         <CKEditor
           editor={ClassicEditor}
+          config={{
+            removePlugins: [
+              'CKFinderUploadAdapter',
+              'CKFinder',
+              'EasyImage',
+              'Image',
+              'ImageCaption',
+              'ImageStyle',
+              'ImageToolbar',
+              'ImageUpload',
+              'MediaEmbed',
+            ],
+          }}
           data={field?.getValueSelected ?? ''}
           onReady={async (editor) => {
             setEditorState(editor);
