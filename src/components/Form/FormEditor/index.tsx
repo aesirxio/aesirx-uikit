@@ -1,10 +1,29 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import {
+  ClassicEditor,
+  Bold,
+  Essentials,
+  Italic,
+  Mention,
+  Paragraph,
+  Undo,
+  GeneralHtmlSupport,
+  Image,
+  ImageCaption,
+  ImageResize,
+  ImageStyle,
+  ImageToolbar,
+  LinkImage,
+  SourceEditing,
+  AutoLink,
+  Link,
+} from 'ckeditor5';
 import React, { useState } from 'react';
 
 import styles from 'styles.module.scss';
 import './index.scss';
+import 'ckeditor5/ckeditor5.css';
+
 import { ModalDAMComponent } from 'components/ModalDam';
 import { SVGComponent } from 'components/SVGComponent';
 
@@ -45,17 +64,64 @@ const FormEditor = ({ field }: any) => {
         <CKEditor
           editor={ClassicEditor}
           config={{
-            removePlugins: [
-              'CKFinderUploadAdapter',
-              'CKFinder',
-              'EasyImage',
-              'Image',
-              'ImageCaption',
-              'ImageStyle',
-              'ImageToolbar',
-              'ImageUpload',
-              'MediaEmbed',
+            toolbar: {
+              items: [
+                'sourceEditing',
+                'undo',
+                'redo',
+                '|',
+                'bold',
+                'italic',
+                'link',
+                'insertImage',
+              ],
+            },
+            plugins: [
+              Bold,
+              Essentials,
+              Italic,
+              Mention,
+              Paragraph,
+              Undo,
+              GeneralHtmlSupport,
+              Image,
+              ImageToolbar,
+              ImageCaption,
+              ImageStyle,
+              ImageResize,
+              LinkImage,
+              SourceEditing,
+              Link,
+              AutoLink,
             ],
+            htmlSupport: {
+              allow: [
+                {
+                  name: 'div',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+                {
+                  name: 'p',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+                {
+                  name: 'span',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+                {
+                  name: 'a',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+              ],
+            },
           }}
           data={field?.getValueSelected ?? ''}
           onReady={async (editor) => {
