@@ -50,10 +50,11 @@
     "dist"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^38.0.1",
-    "@ckeditor/ckeditor5-core": "^38.0.1",
-    "@ckeditor/ckeditor5-engine": "^38.0.1",
-    "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^43.0.0",
+    "@ckeditor/ckeditor5-core": "^43.0.0",
+    "@ckeditor/ckeditor5-engine": "^43.0.0",
+    "@ckeditor/ckeditor5-html-support": "^43.0.0",
+    "@ckeditor/ckeditor5-react": "^9.0.0",
     "@concordium/browser-wallet-api-helpers": "^3.0.0",
     "@concordium/react-components": "^0.4.0-rc.7",
     "@concordium/web-sdk": "^7.0.4-rc.3",
@@ -66,6 +67,7 @@
     "aesirx-lib": "^2.0.14",
     "aesirx-sso": "^1.4.17",
     "bootstrap": "^5.3.1",
+    "ckeditor5": "^43.0.0",
     "dayjs": "^1.11.10",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.1.0",

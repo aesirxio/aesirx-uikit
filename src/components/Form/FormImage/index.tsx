@@ -14,7 +14,7 @@ import { Image } from 'components/Image';
 const FormImage = ({ field, ...props }: any) => {
   const { t } = props;
   const [file, setFile] = useState(
-    field.isMulti ? field.getValueSelected ?? [] : field.getValueSelected ?? null
+    field.isMulti ? (field.getValueSelected ?? []) : (field.getValueSelected ?? null)
   );
 
   const [show, setShow] = useState(false);
