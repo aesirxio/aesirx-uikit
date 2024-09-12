@@ -1,6 +1,6 @@
 {
   "name": "aesirx-uikit",
-  "version": "1.2.8",
+  "version": "1.2.11",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.mts",
