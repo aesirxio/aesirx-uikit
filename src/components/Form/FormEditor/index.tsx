@@ -1,10 +1,29 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import {
+  ClassicEditor,
+  Bold,
+  Essentials,
+  Italic,
+  Mention,
+  Paragraph,
+  Undo,
+  GeneralHtmlSupport,
+  Image,
+  ImageCaption,
+  ImageResize,
+  ImageStyle,
+  ImageToolbar,
+  LinkImage,
+  SourceEditing,
+  AutoLink,
+  Link,
+} from 'ckeditor5';
 import React, { useState } from 'react';
 
 import styles from 'styles.module.scss';
 import './index.scss';
+import 'ckeditor5/ckeditor5.css';
+
 import { ModalDAMComponent } from 'components/ModalDam';
 import { SVGComponent } from 'components/SVGComponent';
 
@@ -30,7 +49,7 @@ const FormEditor = ({ field }: any) => {
         onClick={() => setShow(true)}
         className={`${styles['image-upload-button']} position-absolute bottom-0 end-0 zindex-1 mb-0 cursor-pointer`}
       >
-        <SVGComponent url="/assets/images/data-stream.svg" className={'bg-black'} />
+        <SVGComponent url="/assets/images/data-stream.svg" className={'bg-dark'} />
       </p>
       <ModalDAMComponent
         show={show}
@@ -44,6 +63,66 @@ const FormEditor = ({ field }: any) => {
       <div className={`${styles['custom-editor']} haha`}>
         <CKEditor
           editor={ClassicEditor}
+          config={{
+            toolbar: {
+              items: [
+                'sourceEditing',
+                'undo',
+                'redo',
+                '|',
+                'bold',
+                'italic',
+                'link',
+                'insertImage',
+              ],
+            },
+            plugins: [
+              Bold,
+              Essentials,
+              Italic,
+              Mention,
+              Paragraph,
+              Undo,
+              GeneralHtmlSupport,
+              Image,
+              ImageToolbar,
+              ImageCaption,
+              ImageStyle,
+              ImageResize,
+              LinkImage,
+              SourceEditing,
+              Link,
+              AutoLink,
+            ],
+            htmlSupport: {
+              allow: [
+                {
+                  name: 'div',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+                {
+                  name: 'p',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+                {
+                  name: 'span',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+                {
+                  name: 'a',
+                  attributes: true,
+                  classes: true,
+                  styles: true,
+                },
+              ],
+            },
+          }}
           data={field?.getValueSelected ?? ''}
           onReady={async (editor) => {
             setEditorState(editor);
