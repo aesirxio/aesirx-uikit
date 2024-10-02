@@ -98,7 +98,7 @@
     "tough-cookie": "^4",
     "semver": "^7",
     "jsdom": "^16",
-    "ws": "8.17.0",
+    "ws": "8.17.1",
     "react-router-dom": "5.2.0",
     "@types/react-router-dom": "5.3.3"
   }
