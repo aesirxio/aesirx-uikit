@@ -24,7 +24,15 @@ const Input = ({ field, ...props }: any) => {
       <Form.Control
         as="input"
         defaultValue={field.getValueSelected ?? ''}
-        type={field.typeFormat ? (field.typeFormat == 11 ? 'password' : 'text') : 'text'}
+        type={
+          field.typeFormat
+            ? field.typeFormat == 11
+              ? 'password'
+              : field.typeFormat === 'number'
+                ? 'number'
+                : 'text'
+            : 'text'
+        }
         required={field.required ?? false}
         id={field.key}
         onChange={(e) => handleChange(e)}
