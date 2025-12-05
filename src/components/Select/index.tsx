@@ -47,12 +47,13 @@ class AesirXSelect extends React.Component<any, any> {
     }
     const { ValueContainer, Placeholder, IndicatorSeparator } = components;
     const CustomValueContainer = ({ children, ...props }: any) => {
+      const showPlaceholder = !props.hasValue && !props.selectProps.inputValue;
       return (
         <ValueContainer
           {...props}
           className={`valueContainerCustom ps-16 py-2 ${isLanguageSelect ? '' : 'pe-14'}`}
         >
-          {!props.hasValue && (
+          {showPlaceholder && (
             <Placeholder {...props} isFocused={props.isFocused}>
               {props.selectProps.placeholder}
             </Placeholder>

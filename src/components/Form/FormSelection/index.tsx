@@ -34,6 +34,7 @@ class FormSelection extends Component<any, any> {
             placeholder={this.props.field.placeholder}
             className="fs-14"
             onChange={this.props.field.handleChange}
+            options={this.props.field.options}
           />
         ) : (
           <>
@@ -51,6 +52,9 @@ class FormSelection extends Component<any, any> {
               isDisabled={this.props.field?.isDisabled}
               size="large"
               isClearable={this.props.field?.isClearable}
+              async={this.props.field?.async}
+              loadOptions={this.props.field?.loadOptions}
+              defaultOptions={this.props.field?.defaultOptions}
             />
           </>
         )}
