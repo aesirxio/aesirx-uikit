@@ -119,15 +119,23 @@ const Menu = ({ dataMenu, title = '' }: any) => {
                           )
                         }
                       >
+                        {menuList.icons_color ? (
+                          <span
+                            className="icon d-inline-block align-text-bottom"
+                            style={{
+                              WebkitMaskImage: `url(${menuList.icons_color})`,
+                              WebkitMaskRepeat: 'no-repeat',
+                              backgroundColor: '#c8c8db',
+                            }}
+                          ></span>
+                        ) : (
+                          <></>
+                        )}
                         <span
-                          className="icon d-inline-block align-text-bottom"
-                          style={{
-                            WebkitMaskImage: `url(${menuList.icons_color})`,
-                            WebkitMaskRepeat: 'no-repeat',
-                            backgroundColor: '#c8c8db',
-                          }}
-                        ></span>
-                        <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
+                          className={`${menuList.icons_color ? 'ms-16' : ''} text d-inline-block`}
+                        >
+                          {t(menuList.text)}
+                        </span>
                         <span
                           className="icon arrow d-inline-block align-text-bottom ms-auto"
                           style={{
