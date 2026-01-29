@@ -23,6 +23,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NoData } from 'components/NoData';
 import SubRowAsync from './RowSubComponent';
+import { env } from 'process';
 
 function useInstance(instance: any) {
   const { allColumns } = instance;
@@ -331,7 +332,7 @@ const Table = ({
         {rows.length === 0 ? (
           <div style={{ height: '50vh' }}>
             <NoData
-              icons="/assets/images/ic_project.svg"
+              icons={env.PUBLIC_URL + `/assets/images/ic_project.svg`}
               title={textNodata ? textNodata : t('txt_nodata')}
               width="w-50"
             />
