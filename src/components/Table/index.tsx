@@ -331,7 +331,11 @@ const Table = ({
         {rows.length === 0 ? (
           <div style={{ height: '50vh' }}>
             <NoData
-              icons={process.env.PUBLIC_URL + `/assets/images/ic_project.svg`}
+              icons={
+                window.env.PUBLIC_URL
+                  ? window.env.PUBLIC_URL + `/assets/images/ic_project.svg`
+                  : `/assets/images/ic_project.svg`
+              }
               title={textNodata ? textNodata : t('txt_nodata')}
               width="w-50"
             />
