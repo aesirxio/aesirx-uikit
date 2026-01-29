@@ -332,8 +332,8 @@ const Table = ({
           <div style={{ height: '50vh' }}>
             <NoData
               icons={
-                window.env.PUBLIC_URL
-                  ? window.env.PUBLIC_URL + `/assets/images/ic_project.svg`
+                (window as any)?.env.PUBLIC_URL
+                  ? (window as any)?.env.PUBLIC_URL + `/assets/images/ic_project.svg`
                   : `/assets/images/ic_project.svg`
               }
               title={textNodata ? textNodata : t('txt_nodata')}
