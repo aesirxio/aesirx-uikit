@@ -520,6 +520,9 @@
         height: 1.5em;
         margin-left: -3em;
         margin-top: 0;
+        &::after {
+          display:none;
+        }
       }
     }
     .form-check-input {
